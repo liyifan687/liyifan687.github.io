@@ -1,36 +1,96 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<?xml-stylesheet type="text/xsl" href="https://liyifan687.github.io/sitemap.xsl"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://liyifan687.github.io/post/first/</loc>
-    <lastmod>2019-09-29T17:05:49+08:00</lastmod>
+    <loc>https://liyifan687.github.io/about/</loc>
+    <lastmod>2019-09-28T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://liyifan687.github.io/</loc>
-    <lastmod>2019-09-29T17:05:49+08:00</lastmod>
+    <loc>https://liyifan687.github.io/categories/</loc>
+    <lastmod>2019-09-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://liyifan687.github.io/post/</loc>
-    <lastmod>2019-09-29T17:05:49+08:00</lastmod>
+    <loc>https://liyifan687.github.io/categories/development/</loc>
+    <lastmod>2019-09-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://liyifan687.github.io/categories/</loc>
+    <loc>https://liyifan687.github.io/post/</loc>
+    <lastmod>2019-09-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://liyifan687.github.io/series/</loc>
+    <loc>https://liyifan687.github.io/tags/</loc>
+    <lastmod>2019-09-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://liyifan687.github.io/tags/</loc>
+    <loc>https://liyifan687.github.io/tags/development/</loc>
+    <lastmod>2019-09-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://liyifan687.github.io/tags/go/</loc>
+    <lastmod>2019-09-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://liyifan687.github.io/categories/golang/</loc>
+    <lastmod>2019-09-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://liyifan687.github.io/tags/golang/</loc>
+    <lastmod>2019-09-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://liyifan687.github.io/categories/index/</loc>
+    <lastmod>2019-09-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://liyifan687.github.io/tags/themes/</loc>
+    <lastmod>2019-09-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://liyifan687.github.io/post/two/</loc>
+    <lastmod>2019-09-28T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://liyifan687.github.io/</loc>
+    <lastmod>2019-09-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://liyifan687.github.io/post/first/</loc>
+    <lastmod>2014-09-28T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://liyifan687.github.io/tags/templates/</loc>
+    <lastmod>2014-09-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
