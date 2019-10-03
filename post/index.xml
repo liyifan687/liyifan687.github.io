@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on 无名鼠辈</title>
-    <link>https://liyifan687.github.io/post/</link>
+    <link>http://localhost:1313/post/</link>
     <description>Recent content in Posts on 无名鼠辈</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Sat, 28 Sep 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://liyifan687.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>“测试文章2&#34;</title>
-      <link>https://liyifan687.github.io/post/two/</link>
+      <link>http://localhost:1313/post/two/</link>
       <pubDate>Sat, 28 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://liyifan687.github.io/post/two/</guid>
+      <guid>http://localhost:1313/post/two/</guid>
       <description>TEST 好用，都用。 - 1 - 2</description>
     </item>
     
     <item>
       <title>Creating a New Theme</title>
-      <link>https://liyifan687.github.io/post/first/</link>
+      <link>http://localhost:1313/post/first/</link>
       <pubDate>Sun, 28 Sep 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://liyifan687.github.io/post/first/</guid>
+      <guid>http://localhost:1313/post/first/</guid>
       <description>TEST 好用，都用。 &amp;ndash; sss 1 2</description>
     </item>
     
