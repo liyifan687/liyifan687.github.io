@@ -6,10 +6,34 @@
     <description>Recent content on 无名鼠辈</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 28 Sep 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 04 Oct 2019 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://llc687.top/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Hello World</title>
+      <link>https://llc687.top/post/begin/</link>
+      <pubDate>Fri, 04 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/begin/</guid>
+      
+        <description>
+
+&lt;h3 id=&#34;先给-hugo-https-gohugo-io-赞一个&#34;&gt;先给&lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;赞一个！&lt;/h3&gt;
+
+&lt;h4 id=&#34;以及本主题-jane-https-github-com-xianmin-hugo-theme-jane&#34;&gt;以及本主题 &lt;a href=&#34;https://github.com/xianmin/hugo-theme-jane&#34;&gt;jane&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;​&lt;/p&gt;
+
+&lt;p&gt;​        之前在校时也自己用Java写过博客系统，当时还直接拿着当毕设了。也用过一些github上开源的系统，不过迫于产出不是很高（数量和质量&amp;hellip;）。更迫于快不能享受阿里云学生机了，那我可用不起了&amp;hellip;于是搜了搜，找到了Hugo。遂开整。&lt;/p&gt;
+
+&lt;p&gt;​        虽然跑起来的确挺简单，但再配置评论、搜索、域名等还是要花点时间。所幸贫穷和单身让我十一做了宅男，经过一番折腾终于是配好了。&lt;/p&gt;
+
+&lt;p&gt;​       主题用的国人&lt;a href=&#34;https://github.com/xianmin/hugo-theme-jane&#34;&gt;jane&lt;/a&gt;,还是很不错的。评论使用的*utteranc.es*，最初用的gitment,总有些鉴权问题。搜索使用的谷歌自定义搜索。这样本地直接用Typora写，完事生成push就OK了，再配合一下坚果云，将源文件目录做个同步，也有了版本管理哈哈，简直perfect。白嫖让人快乐~~&lt;/p&gt;
+</description>
+      
+    </item>
     
     <item>
       <title></title>
@@ -19,50 +43,9 @@
       <guid>https://llc687.top/about/</guid>
       
         <description>&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;刚毕业的服务端搬砖码农。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;本站使用Hugo生成，采用&lt;code&gt;hugo-theme-jane&lt;/code&gt;主题&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>“测试文章2&#34;</title>
-      <link>https://llc687.top/post/two/</link>
-      <pubDate>Sat, 28 Sep 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/two/</guid>
-      
-        <description>
-
-&lt;h4 id=&#34;test&#34;&gt;TEST&lt;/h4&gt;
-
-&lt;p&gt;好用，都用。
-- 1
-- 2&lt;/p&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>Creating a New Theme</title>
-      <link>https://llc687.top/post/first/</link>
-      <pubDate>Sun, 28 Sep 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/first/</guid>
-      
-        <description>
-
-&lt;h4 id=&#34;test&#34;&gt;TEST&lt;/h4&gt;
-
-&lt;p&gt;好用，都用。&lt;/p&gt;
-
-&lt;p&gt;&amp;ndash; sss&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;1&lt;/li&gt;
-&lt;li&gt;2&lt;/li&gt;
+&lt;li&gt;Java开发，秃头初级码农。&lt;/li&gt;
+&lt;li&gt;热爱游戏、健身、旅游、阅读。&lt;/li&gt;
+&lt;li&gt;为能混吃等死而努力。&lt;/li&gt;
 &lt;/ul&gt;
 </description>
       
