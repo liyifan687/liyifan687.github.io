@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on 无名鼠辈</title>
-    <link>https://llc687.top/post/</link>
-    <description>Recent content in Posts on 无名鼠辈</description>
+    <title>MapReduce on 无名鼠辈</title>
+    <link>https://llc687.top/tags/mapreduce/</link>
+    <description>Recent content in MapReduce on 无名鼠辈</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Sun, 03 Nov 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://llc687.top/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://llc687.top/tags/mapreduce/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -18,15 +18,6 @@
       
       <guid>https://llc687.top/post/hadoop%E4%B8%8Ehive/</guid>
       <description>1.计算框架 Hadoop 是一个计算框架，目前大型数据计算框架常用的大致有五种： 仅批处理框架：Apache hadoop. 仅流处理框架：Apache Storm、Apa</description>
-    </item>
-    
-    <item>
-      <title>Hello World</title>
-      <link>https://llc687.top/post/begin/</link>
-      <pubDate>Fri, 04 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/begin/</guid>
-      <description>先给Hugo赞一个！ 以及本主题 jane ​ ​ 之前在校时也自己用Java写过博客系统，当时还直接拿着当毕设了。也用过一些github上开源的系统，不过</description>
     </item>
     
   </channel>
