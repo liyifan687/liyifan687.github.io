@@ -384,6 +384,277 @@
     </item>
     
     <item>
+      <title>分布式缓存选择及常见问题</title>
+      <link>https://llc687.top/post/%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98/</link>
+      <pubDate>Sun, 08 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98/</guid>
+      
+        <description>
+
+&lt;h2 id=&#34;分布式缓存的选择和问题&#34;&gt;分布式缓存的选择和问题&lt;/h2&gt;
+
+&lt;p&gt;如今，缓存系统的应用非常广泛，能够用来提高并发数、数据吞吐量，提高快速响应能力。那么当数据量达到一定程序，单机环境可能就显得有些力不从心了，就需要一个分布式缓存系统。&lt;/p&gt;
+
+&lt;h3 id=&#34;1-缓存系统的选择&#34;&gt;1. 缓存系统的选择&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://img.llc687.top/uPic/截屏2019-11-28下午6.56.30.png&#34; style=&#34;zoom:50%;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;​                                                                       图1-1&lt;/p&gt;
+
+&lt;p&gt;如上图所示，首先缓存大致可以分为四大类。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;CDN缓存：CDN即内容分发网络，CDN边缘节点将数据缓存起来。&lt;/li&gt;
+&lt;li&gt;反向代理缓存：如Nginx的缓存。&lt;/li&gt;
+&lt;li&gt;本地缓存：代表的有EhCache和Guava Cache&lt;/li&gt;
+&lt;li&gt;分布式缓存：各缓存系统&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;本文主要探讨各分布式缓存系统，如下图所示，列出了五种：&lt;/p&gt;
+
+&lt;p&gt;之后对MemCache、Tair、Redis做出对比&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://img.llc687.top/uPic/tapd_40369546_1568709377_47.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;其中&lt;code&gt;EvCache&lt;/code&gt;和&lt;code&gt;Aerospike&lt;/code&gt;使用场景不是那么通用和广泛。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;EvCache：是Netflix的基于memcached &amp;amp; spymemcached的缓存方案。&lt;/li&gt;
+&lt;li&gt;Aerospike：是可基于SSD的K-V NoSQL数据库。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;除此之外，还有三种常见缓存系统。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Tair：阿里开源，跨机房、性能随结点添加线性上升、适用大数据量。Tair还有三种引擎&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;LDB: 基于google levelDB，支持kv和类hashmap结构,性能稍低,持久化可靠性最高。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;MDB: 基于memcache，支持kv和类hashMap,性能最优,不支持持久化存储。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;RDB: 基于Redis.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Memcache: 不支持数据同步、分布式支持较差。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Redis: 社区活跃、使用最多。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;综上所述，在一般情况下，考虑到适用性和稳定性，Redis 是搭建缓存系统的最优选择。以下将基于 Redis 介绍。&lt;/p&gt;
+
+&lt;h3 id=&#34;2-redis集群缓存方案&#34;&gt;2. Redis集群缓存方案&lt;/h3&gt;
+
+&lt;p&gt;如顶部图所示，列出了Redis的集群高可用的方案，基本可以分为三种。&lt;/p&gt;
+
+&lt;h4 id=&#34;主从机制&#34;&gt;主从机制&lt;/h4&gt;
+
+&lt;p&gt;常见的集群的架构，搭建简单，主要实现读写分离和备份，可以由 Master 负责读写，Slave 负责备份。但存在故障恢复复杂、水平拓展难、写能力受限等问题。结构图如下：&lt;/p&gt;
+
+&lt;p&gt;​                                                           &lt;img src=&#34;http://img.llc687.top/uPic/截屏2019-11-29上午10.23.07.png&#34; style=&#34;zoom:44%;&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;哨兵机制&#34;&gt;哨兵机制&lt;/h4&gt;
+
+&lt;p&gt;Redis Sentinel 是社区版本推出的原生高可用解决方案。由一或多个哨兵实例监视任意个主从服务器，且在 Master 宕机时，自动将宕机服务器属下的 Slave 服务器升级为 主服务器，从而保证系统的可用性。 较主从实现的监控、选主。但问题主要是要保证Master的HA切换。结构图如下：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://img.llc687.top/uPic/截屏2019-11-29上午10.27.15.png&#34; style=&#34;zoom:50%;&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;分布式&#34;&gt;&amp;ldquo;分布式&amp;rdquo;&lt;/h4&gt;
+
+&lt;p&gt;到这里其实以上两种机制其实只能算作“集群”，并非严格意义上的“分布式”。接着来看看分布式方案。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;集群强调高可用，分布式又强调协作。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;3-redis分布式缓存方案&#34;&gt;3. Redis分布式缓存方案&lt;/h3&gt;
+
+&lt;p&gt;任何分布式存储系统，首先面临的就是 sharding（分片）问题，如顶部图1-1所示可分为三种方式。&lt;/p&gt;
+
+&lt;h4 id=&#34;客户端分片&#34;&gt;客户端分片&lt;/h4&gt;
+
+&lt;p&gt;顾名思义，将数据分片的路由功能交给客户端，但这是一种静态分片，维护性差。基本而言是不予考虑的。&lt;/p&gt;
+
+&lt;h4 id=&#34;代理分片&#34;&gt;代理分片&lt;/h4&gt;
+
+&lt;p&gt;通过代理分发到具体的redis实例。有两个常用解决方案。
+-  &lt;a href=&#34;https://github.com/twitter/twemproxy&#34;&gt;Twemproxy&lt;/a&gt;
+    Twitter开源，轻量级，但不再维护，也无法平滑地扩容/缩容，运维也不是很友好，性能一般。
+- &lt;a href=&#34;https://github.com/CodisLabs/codis&#34;&gt;Codis&lt;/a&gt;
+    豌豆荚开源，支持水平拓展，运维平台完善，性能较 Twemproxy 快。Codis在国内使用较多，同时代理分片的思路也有很多公司在此基础开发了自己的二次方案。不过Codis也不再维护。&lt;/p&gt;
+
+&lt;p&gt;其实，这两种代理分片的方案，都是在 Redis 官方未推出良好的分布式方案时的策略，在官方更新后都不再维护。&lt;/p&gt;
+
+&lt;h4 id=&#34;服务器端分片&#34;&gt;服务器端分片&lt;/h4&gt;
+
+&lt;p&gt;这就要谈到 Redis 官方的方案 Redis-cluster 。&lt;/p&gt;
+
+&lt;p&gt;在 Redis3.0 之前是没有较好的分布式方案的，这也是第三方方案出现的原因。3.0 开始，官方推出了去中心化的分布式方案。集群中包含16384个散列槽，每个节点负责其中一部分。&lt;/p&gt;
+
+&lt;p&gt;​     先看下拓扑图：&lt;img src=&#34;http://img.llc687.top/uPic/截屏2019-11-29上午10.42.48.png&#34; style=&#34;zoom:50%;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;每个节点打开两个TCP连接，一个负责给客户端提供服务，一个负责节点间通信。&lt;/p&gt;
+
+&lt;p&gt;此刻要说说 CAP了 ： Consistency(一致性)、Availability(可用性)、Partition tolerance(分区容错性) 。对分布式系统而言，CAP 必须牺牲一者。Redis Cluster 的设计目标主要是高性能、高可用和高扩展, 只好抛弃一部分数据一致性.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;数据一致性：由于Redis Cluster 使用异步复制, 在某些情况下如Master宕机但未同步至Slave, 可能会丢失写入。在绝对需要时支持同步写入的时候, 可通过 WAIT 命令实现, 可使得丢失写入的可能性大大降低。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;可用性： 当集群中一部分节点故障后, 集群整体能响应客户端读写请求。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;节点间定时互 ping , 当超过一半Master 判定某节点失败，则标为 FAIL, 会向集群广播节点下线的消息。如下线节点是带有槽的主节点，则要从它的从节点选出一个替换。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://img.llc687.top/uPic/截屏2019-12-08下午2.13.56.png&#34; style=&#34;zoom:50%;&#34; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;高性能和拓展：操作某个 key时，不会先找到节点再处理，而是直接直接重定向到该节点, 同时相较代理分片也少了 proxy 的连接损耗。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;但是在进行&lt;code&gt;multiple key&lt;/code&gt;操作时需要&lt;code&gt;keys&lt;/code&gt;位于同一个&lt;code&gt;slot&lt;/code&gt;上,需要使用&lt;code&gt;hash tags&lt;/code&gt;,使用&lt;code&gt;{}&lt;/code&gt;强制将某些key映射到每个slot,以便进行&lt;code&gt;multiple&lt;/code&gt; 。&lt;/li&gt;
+&lt;li&gt;在拓展方面，Redis Cluster 最大支持线性拓展1000个节点，将新节点加入集群后可以通过命令指定和平均的从已有节点分配slot。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;3-缓存常见问题&#34;&gt;3. 缓存常见问题&lt;/h3&gt;
+
+&lt;p&gt;以上介绍了简单介绍了常见缓存系统，并具体列出了基于Redis的集群方案。下面谈一谈缓存系统常见的问题。&lt;/p&gt;
+
+&lt;p&gt;如下图所示，列出七个常见问题。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://img.llc687.top/uPic/截屏2019-12-08下午3.43.33.png&#34; style=&#34;zoom:40%;&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;3-1-缓存穿透&#34;&gt;3.1. 缓存穿透&lt;/h4&gt;
+
+&lt;p&gt;指访问不存在的数据，从而绕过缓存，直接请求到了数据源，当请求过多，就会对 DB 造成压力。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;空 key：指对于不存在的数据也将 key 存空值入缓存系统，这样下次访问也会得到返回。但只适用于空数据key有限、key 重复请求概率高，如果量大且不重复，就会造成很多无用 key 的创建。&lt;/li&gt;
+&lt;li&gt;布隆过滤器：布隆过滤器是一个很长的二进制向量和一系列随机映射函数。可用于检索一个元素是否在一个集合中加一层对空值的过滤器，空间和时间效率都很高。但由于 hash 产生的碰撞可能存在误判，以及因不存储 key 导致的无法删除。适用于空数据key各不同、重复请求概率低。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;3-2-缓存击穿&#34;&gt;3.2. 缓存击穿&lt;/h4&gt;
+
+&lt;p&gt;缓存击穿实际是缓存雪崩的一个特例。指当某些热点key过期时，就会有大量的请求击穿到DB。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;互斥锁
+在缓存失效的时候，不立即load db，可以先用如SETNX等命令去set一个mutex key，当操作返回成功时，说明拿到锁，此刻该线程进行load db的操作并更新缓存；否则未拿到锁就(可休眠一段)重试 get 缓存的方法。但要注意死锁风险。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;不过期&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;这里的不过期有两个概念，一个指未设过期时间，那是真的不过期，那没事了~~&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;另一个是指通过业务逻辑，将 key 的过期时间进行存储，请求是判断是否小于值，是则后台异步更新。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;3-3-缓存雪崩&#34;&gt;3.3. 缓存雪崩&lt;/h4&gt;
+
+&lt;p&gt;同一时刻大量缓存失效（故障）, 请求到了DB。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;随机时间：在设置过期时间时，可以在基础时间上 + 一个随机的时间，等于实现了分批过期。&lt;/li&gt;
+&lt;li&gt;后台更新：将更新失效的工作交给后台定时线程。&lt;/li&gt;
+&lt;li&gt;限流+本地缓存：如 &lt;strong&gt;ehcache本地缓存 + Hystrix限流&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;双缓存：类似于设置&lt;code&gt;主从&lt;/code&gt;缓存，从&lt;code&gt;key&lt;/code&gt;不过期。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;3-4-缓存更新与一致性&#34;&gt;3.4. 缓存更新与一致性&lt;/h4&gt;
+
+&lt;p&gt;如果保证数据一致性。列出四种更新策略：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Cache Aside：最常用的。 失效时回源取数据，更新；命中时，返回缓存数据；更新时先数据源更新，再跟你更新缓存。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Write Back：更新数据时，只更新缓存，不更新数据源。缓存异步批量更新数据库&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Read/Write Through&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Write Through ：当有数据更新时，如未命中缓存，直接更新数据库，并返回。如命中缓存，则更新缓存，再由 Cache 自己更新数据库。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Read Through ：更新数据源由缓存系统操作，读取数据时如缓存失效，则取回源数据更新缓存。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;3-5-热点数据&#34;&gt;3.5. 热点数据&lt;/h4&gt;
+
+&lt;p&gt;对于热点数据的处理方法。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;拆分复杂结构：如二级数据结构，进行拆分，这样热点key就被拆为若干个的 key 分布到不同节点。&lt;/li&gt;
+&lt;li&gt;迁移热点：对于Redis Cluster 而言可以将热点 key 所在的 slot 单独迁移到一个节点，降低其他节点压力。&lt;/li&gt;
+&lt;li&gt;多副本：复制多份缓存副本，将请求分散到多个节点上，减轻单台缓存服务器压力，适合多读少写。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;3-6-缓存预热&#34;&gt;3.6. 缓存预热&lt;/h4&gt;
+
+&lt;p&gt;指可以将某些的缓存数据提前加载到缓存系统。提前避免在如热点数据大量请求到库。&lt;/p&gt;
+
+&lt;h4 id=&#34;3-7-缓存降级&#34;&gt;3.7. 缓存降级&lt;/h4&gt;
+
+&lt;p&gt;指当访问量剧增、服务出现问题或非核心服务影响到核心流程的性能时，仍需保证主服务可用。可根据一些关键数据自动降级，也可配置开关人工降级。&lt;/p&gt;
+
+&lt;h3 id=&#34;4-redis-cluster使用&#34;&gt;4. Redis Cluster使用&lt;/h3&gt;
+
+&lt;p&gt;对于Redis Cluster环境的搭建和基础使用非常简单。&lt;/p&gt;
+
+&lt;p&gt;无论基于何种方式，只要搭建好n台 redis 服务并保证各服务间可以互相通讯后，任意进入一个redis 服务键入：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;redis-cli --cluster create IP1:port1 IP2:port2 IP3:port3 IP4:port4 IP5:port5 IP6:port6 ... --cluster-replicas &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;即可。之后可以使用 &lt;code&gt;cluster node&lt;/code&gt;   和&lt;code&gt;cluster info&lt;/code&gt;查看集群、节点信息。&lt;/p&gt;
+
+&lt;p&gt;而对于广大 JAVA 服务器端开发，Spring Data Redis 从1.7起即支持Redis Cluster，只需配置Master节点地址（和密码）。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;spring.redis.cluster.nodes=ip1:port1,ip2:port2,ip3:port3&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;加入依赖&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt; compile(&amp;#34;org.springframework.boot:spring-boot-starter-data-redis&amp;#34;)&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;即可通过 &lt;strong&gt;RedisTemplate&lt;/strong&gt; 使用。&lt;/p&gt;
+
+&lt;h3 id=&#34;5-总结&#34;&gt;5. 总结&lt;/h3&gt;
+
+&lt;p&gt;本文从缓存系统的选择出发，基于 Redis 介绍了几种集群方案并重点说明了 Redis Cluster 方案。之后列出缓存系统常见问题及常见解决方案，最后对使用做了简单说明。&lt;/p&gt;
+
+&lt;p&gt;当然，如何去落地，如何解决这些问题还需要根据实际场景具体分析和处理。&lt;/p&gt;
+
+&lt;h2 id=&#34;参考资源&#34;&gt;参考资源&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://redis.io/topics/cluster-spec/&#34;&gt;Redis Cluster Specification&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://juejin.im/entry/5b514768f265da0fa21a800f&#34;&gt;深入理解分布式系统中的缓存架构&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://juejin.im/post/5cb58b45f265da036b4a5a00&#34;&gt;分布式缓存架构设计分析&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://coolshell.cn/articles/17416.html&#34;&gt;缓存更新的套路&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://kns.cnki.net/KCMS/detail/detail.aspx?dbcode=CJFQ&amp;amp;dbname=CJFDLAST2018&amp;amp;filename=XTYY201810014&amp;amp;uid=WEEvREcwSlJHSldTTEYzVDhsN3d5eFVQZGhRU3liWkhHakVoQ0NSSDgxRT0&#34;&gt;一种高效的Redis Cluster的分布式缓存系统[J].计算机系统应用,2018,27(10):91-98.&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
+    
+    <item>
       <title>“SpringFox源码解析&#34;</title>
       <link>https://llc687.top/post/springfox%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-%E8%87%AA%E5%AE%9A%E4%B9%89modelenum/</link>
       <pubDate>Sun, 01 Dec 2019 00:00:00 +0000</pubDate>

@@ -21,6 +21,15 @@
     </item>
     
     <item>
+      <title>分布式缓存选择及常见问题</title>
+      <link>https://llc687.top/post/%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98/</link>
+      <pubDate>Sun, 08 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98/</guid>
+      <description>分布式缓存的选择和问题 如今，缓存系统的应用非常广泛，能够用来提高并发数、数据吞吐量，提高快速响应能力。那么当数据量达到一定程序，单机环境可能</description>
+    </item>
+    
+    <item>
       <title>“SpringFox源码解析&#34;</title>
       <link>https://llc687.top/post/springfox%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-%E8%87%AA%E5%AE%9A%E4%B9%89modelenum/</link>
       <pubDate>Sun, 01 Dec 2019 00:00:00 +0000</pubDate>
