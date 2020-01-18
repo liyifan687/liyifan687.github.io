@@ -6,10 +6,19 @@
     <description>Recent content in 剑指offer on 无名鼠辈</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 12 Jan 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 18 Jan 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://llc687.top/categories/%E5%89%91%E6%8C%87offer/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>“跳台阶&#34;</title>
+      <link>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E8%B7%B3%E5%8F%B0%E9%98%B6/</link>
+      <pubDate>Sat, 18 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E8%B7%B3%E5%8F%B0%E9%98%B6/</guid>
+      <description>跳台阶 描述 一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法（先后次序不同算不同的结果）。 一次只能跳1</description>
+    </item>
     
     <item>
       <title>两个栈实现队列</title>
