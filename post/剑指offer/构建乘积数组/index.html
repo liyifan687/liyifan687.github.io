@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>算法 · 无名鼠辈</title>
+  <title>构建乘积数组 - 无名鼠辈</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -22,7 +22,9 @@
 
 <meta name="mobile-web-app-capable" content="yes">
 
-<meta name="author" content="lyf687" />
+<meta name="author" content="Lyf" />
+  <meta name="description" content="构建乘积数组· 描述 给定一个数组A[0,1,&amp;hellip;,n-1]，请构建一个数组B[0,1,&amp;hellip;,n-1]，其中B中的元素B" />
+
 
 
 
@@ -32,8 +34,8 @@
 <meta name="generator" content="Hugo 0.55.6" />
 
 
-<link rel="canonical" href="https://llc687.top/tags/%E7%AE%97%E6%B3%95/" />
-<link href="/tags/%E7%AE%97%E6%B3%95/index.xml" rel="alternate" type="application/rss+xml" title="无名鼠辈" />
+<link rel="canonical" href="https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E6%9E%84%E5%BB%BA%E4%B9%98%E7%A7%AF%E6%95%B0%E7%BB%84/" />
+
 
 
 
@@ -56,19 +58,27 @@
 
 
 
-<meta property="og:title" content="算法" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://llc687.top/tags/%E7%AE%97%E6%B3%95/" />
+<meta property="og:title" content="构建乘积数组" />
+<meta property="og:description" content="构建乘积数组· 描述 给定一个数组A[0,1,&hellip;,n-1]，请构建一个数组B[0,1,&hellip;,n-1]，其中B中的元素B" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E6%9E%84%E5%BB%BA%E4%B9%98%E7%A7%AF%E6%95%B0%E7%BB%84/" />
+<meta property="article:published_time" content="2020-01-24T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2020-01-24T00:00:00&#43;00:00"/>
 
-<meta property="og:updated_time" content="2020-01-24T00:00:00&#43;00:00"/>
+<meta itemprop="name" content="构建乘积数组">
+<meta itemprop="description" content="构建乘积数组· 描述 给定一个数组A[0,1,&hellip;,n-1]，请构建一个数组B[0,1,&hellip;,n-1]，其中B中的元素B">
 
-<meta itemprop="name" content="算法">
-<meta itemprop="description" content="">
 
+<meta itemprop="datePublished" content="2020-01-24T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2020-01-24T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="330">
+
+
+
+<meta itemprop="keywords" content="算法,剑指offer," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="算法"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:title" content="构建乘积数组"/>
+<meta name="twitter:description" content="构建乘积数组· 描述 给定一个数组A[0,1,&hellip;,n-1]，请构建一个数组B[0,1,&hellip;,n-1]，其中B中的元素B"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -341,170 +351,174 @@
     <main id="main" class="main bg-llight">
       <div class="content-wrapper">
         <div id="content" class="content container">
-          
-
-<section id="archive" class="archive">
-  
+          <article class="post bg-white">
     
-      <div class="archive-title tag">
-        <h2 class="archive-name">标签： 算法</h2>
+    <header class="post-header">
+      <h1 class="post-title">构建乘积数组</h1>
+      
+      <div class="post-meta">
+        <time datetime="2020-01-24" class="post-time">
+          2020-01-24
+        </time>
+        <div class="post-category">
+            <a href="https://llc687.top/categories/%E5%89%91%E6%8C%87offer/"> 剑指offer </a>
+            
+          </div>
+        <span class="more-meta"> 约 330 字 </span>
+          <span class="more-meta"> 预计阅读 1 分钟 </span>
+
+        
+        
+
+        
+        
       </div>
+    </header>
+
     
-  
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#构建乘积数组">构建乘积数组·</a>
+<ul>
+<li><a href="#描述">描述</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
 
-  
-    <div class="archive-post">
-      <time datetime="2020-01-24" class="archive-post-time">
-        2020-01-24
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E5%89%91%E6%8C%87offer/%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%92%8C/" class="archive-post-link">
-          连续子数组的最大和
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2020-01-24" class="archive-post-time">
-        2020-01-24
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E5%89%91%E6%8C%87offer/%E7%9F%A9%E5%BD%A2%E8%A6%86%E7%9B%96/" class="archive-post-link">
-          矩形覆盖
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2020-01-24" class="archive-post-time">
-        2020-01-24
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E5%89%91%E6%8C%87offer/%E6%9E%84%E5%BB%BA%E4%B9%98%E7%A7%AF%E6%95%B0%E7%BB%84/" class="archive-post-link">
-          构建乘积数组
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2020-01-18" class="archive-post-time">
-        2020-01-18
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E5%89%91%E6%8C%87offer/%E9%95%9C%E5%83%8F%E4%BA%8C%E5%8F%89%E6%A0%91/" class="archive-post-link">
-          镜像二叉树
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2020-01-18" class="archive-post-time">
-        2020-01-18
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E5%89%91%E6%8C%87offer/%E8%B7%B3%E5%8F%B0%E9%98%B6/" class="archive-post-link">
-          跳台阶
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2020-01-18" class="archive-post-time">
-        2020-01-18
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E5%89%91%E6%8C%87offer/%E6%B1%821&#43;2&#43;3&#43;...&#43;n/" class="archive-post-link">
-          求1&#43;2&#43;3&#43;...&#43;n
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2020-01-18" class="archive-post-time">
-        2020-01-18
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E5%89%91%E6%8C%87offer/%E5%8F%98%E6%80%81%E8%B7%B3%E5%8F%B0%E9%98%B6/" class="archive-post-link">
-          变态跳台阶
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2020-01-18" class="archive-post-time">
-        2020-01-18
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E5%89%91%E6%8C%87offer/%E4%BA%8C%E5%8F%89%E6%A0%91%E6%B7%B1%E5%BA%A6/" class="archive-post-link">
-          二叉树深度
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2020-01-18" class="archive-post-time">
-        2020-01-18
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E5%89%91%E6%8C%87offer/%E4%B8%8D%E7%94%A8%E5%8A%A0%E5%87%8F%E4%B9%98%E9%99%A4%E5%81%9A%E5%8A%A0%E6%B3%95/" class="archive-post-link">
-          不用加减乘除做加法
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2020-01-12" class="archive-post-time">
-        2020-01-12
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E5%89%91%E6%8C%87offer/%E6%9B%BF%E6%8D%A2%E7%A9%BA%E6%A0%BC/" class="archive-post-link">
-          替换空格
-        </a>
-      </span>
-    </div>
-  
-</section>
-
-
-
-
-
-
-  
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-  <nav class="pagination">
-    <ul>
+    
+    <div class="post-content">
       
-      <li  class="active" >
-        <a href="/tags/%E7%AE%97%E6%B3%95/">1</a>
-      </li>
+
+<h3 id="构建乘积数组">构建乘积数组·</h3>
+
+<h4 id="描述">描述</h4>
+
+<blockquote>
+<p>给定一个数组A[0,1,&hellip;,n-1]，请构建一个数组B[0,1,&hellip;,n-1]，其中B中的元素B[i]=A[0]<em>A[1]</em>&hellip;*A[i-1]<em>A[i+1]</em>&hellip;*A[n-1]。不能使用除法。</p>
+</blockquote>
+
+<p><img src="http://img.llc687.top/uPic/gmhznV.png" style="zoom: 50%;" /></p>
+
+<p><strong>B[i]的值可以看作图中的矩阵中每行的乘积。</strong>也就是被<code>1</code>分割两边值的乘积。那么就可以分别计算两部分的乘积再把另一部分乘进去。同时可以看到分割后是两个三角，那么可以先计算下（上）三角的值，再将另一个三角乘进去。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">multiply</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">A</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">size</span><span class="o">];</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">size</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">b</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span>
+            <span class="c1">// 计算左边
+</span><span class="c1"></span>            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+                <span class="n">b</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">b</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">1</span><span class="o">]</span> <span class="o">*</span> <span class="n">A</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">1</span><span class="o">];</span>
+            <span class="o">}</span>
+            <span class="c1">// 计算右边
+</span><span class="c1"></span>            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">size</span> <span class="o">-</span> <span class="n">2</span><span class="o">,</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="n">0</span><span class="o">;</span> <span class="n">j</span><span class="o">--)</span> <span class="o">{</span>
+                <span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">*</span> <span class="n">A</span><span class="o">[</span><span class="n">j</span> <span class="o">+</span> <span class="n">1</span><span class="o">];</span>
+                <span class="n">b</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">b</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">*</span> <span class="n">temp</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">b</span><span class="o">;</span>
+    <span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    
+    
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://llc687.top/tags/%E7%AE%97%E6%B3%95/">算法</a>
+          <a href="https://llc687.top/tags/%E5%89%91%E6%8C%87offer/">剑指offer</a>
+          
+        </div>
+
       
-      <li >
-        <a href="/tags/%E7%AE%97%E6%B3%95/page/2/">2</a>
-      </li>
-      
-    </ul>
-  </nav>
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/%E5%89%91%E6%8C%87offer/%E7%9F%A9%E5%BD%A2%E8%A6%86%E7%9B%96/">
+            <span class="next-text nav-default">矩形覆盖</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
 
   
   
 
+  
+  
 
+  
 
+  
+  
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "liyifan687/comments"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+  
 
+  
+
+  
+
+  
+
+    
+
+  
 
         </div>
       </div>

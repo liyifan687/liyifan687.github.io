@@ -6,10 +6,37 @@
     <description>Recent content in 剑指offer on 无名鼠辈</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 18 Jan 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 24 Jan 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://llc687.top/categories/%E5%89%91%E6%8C%87offer/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>构建乘积数组</title>
+      <link>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E6%9E%84%E5%BB%BA%E4%B9%98%E7%A7%AF%E6%95%B0%E7%BB%84/</link>
+      <pubDate>Fri, 24 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E6%9E%84%E5%BB%BA%E4%B9%98%E7%A7%AF%E6%95%B0%E7%BB%84/</guid>
+      <description>构建乘积数组· 描述 给定一个数组A[0,1,&amp;hellip;,n-1]，请构建一个数组B[0,1,&amp;hellip;,n-1]，其中B中的元素B</description>
+    </item>
+    
+    <item>
+      <title>矩形覆盖</title>
+      <link>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E7%9F%A9%E5%BD%A2%E8%A6%86%E7%9B%96/</link>
+      <pubDate>Fri, 24 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E7%9F%A9%E5%BD%A2%E8%A6%86%E7%9B%96/</guid>
+      <description>矩形覆盖 描述 我们可以用2 * 1的小矩形横着或者竖着去覆盖更大的矩形。请问用n个2*1的小矩形无重叠地覆盖一个2*n的大矩形，总共有多少种方法？</description>
+    </item>
+    
+    <item>
+      <title>连续子数组的最大和</title>
+      <link>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%92%8C/</link>
+      <pubDate>Fri, 24 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%92%8C/</guid>
+      <description>连续子数组的最大和 描述 HZ偶尔会拿些专业问题来忽悠那些非计算机专业的同学。今天测试组开完会后,他又发话了:在古老的一维模式识别中,常常需要计</description>
+    </item>
     
     <item>
       <title>不用加减乘除做加法</title>
