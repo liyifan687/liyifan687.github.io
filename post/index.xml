@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>剪绳子</title>
+      <link>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E5%89%AA%E7%BB%B3%E5%AD%90/</link>
+      <pubDate>Fri, 31 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E5%89%AA%E7%BB%B3%E5%AD%90/</guid>
+      <description>剪绳子 题目描述 给你一根长度为n的绳子，请把绳子剪成整数长的m段（m、n都是整数，n&amp;gt;1并且m&amp;gt;1），每段绳子的长度记为k[0],</description>
+    </item>
+    
+    <item>
       <title>包含min函数的栈</title>
       <link>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E5%8C%85%E5%90%ABmin%E5%87%BD%E6%95%B0%E7%9A%84%E6%A0%88/</link>
       <pubDate>Fri, 31 Jan 2020 00:00:00 +0000</pubDate>
@@ -27,6 +36,15 @@
       
       <guid>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E6%95%B0%E5%80%BC%E7%9A%84%E6%95%B4%E6%95%B0%E6%AC%A1%E7%AD%89/</guid>
       <description>数值的整数次等 题目描述 给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方。 保证ba</description>
+    </item>
+    
+    <item>
+      <title>链表中环的入口节点</title>
+      <link>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%8E%AF%E7%9A%84%E5%85%A5%E5%8F%A3%E8%8A%82%E7%82%B9/</link>
+      <pubDate>Fri, 31 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%8E%AF%E7%9A%84%E5%85%A5%E5%8F%A3%E8%8A%82%E7%82%B9/</guid>
+      <description>链表中环的入口节点 题目描述 给一个链表，若其中包含环，请找出该链表的环的入口结点，否则，输出null。 分析 ​ 假定存在一个链表并包含环，如果存在</description>
     </item>
     
     <item>
@@ -171,24 +189,6 @@
       
       <guid>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E4%BB%8E%E5%B0%BE%E5%88%B0%E5%A4%B4%E6%89%93%E5%8D%B0%E9%93%BE%E8%A1%A8/</guid>
       <description>从尾到头打印链表 题目描述 输入一个链表，按链表从尾到头的顺序返回一个ArrayList。 一般来说，遇到这种问题，递归是最容易想到的。同时也会有</description>
-    </item>
-    
-    <item>
-      <title>斐波那契数列</title>
-      <link>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/</link>
-      <pubDate>Sun, 12 Jan 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/</guid>
-      <description>斐波那契数列 描述 大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0）。n&amp;lt;=39 这个应</description>
-    </item>
-    
-    <item>
-      <title>旋转数组的最小数</title>
-      <link>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E6%95%B0/</link>
-      <pubDate>Sun, 12 Jan 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E6%95%B0/</guid>
-      <description>旋转数组的最小数 描述 把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。 输入一个非递减排序的数组的一个旋转，输出旋转数组的最小</description>
     </item>
     
   </channel>
