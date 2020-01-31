@@ -6,10 +6,28 @@
     <description>Recent content in 剑指offer on 无名鼠辈</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 30 Jan 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 31 Jan 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://llc687.top/tags/%E5%89%91%E6%8C%87offer/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>包含min函数的栈</title>
+      <link>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E5%8C%85%E5%90%ABmin%E5%87%BD%E6%95%B0%E7%9A%84%E6%A0%88/</link>
+      <pubDate>Fri, 31 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E5%8C%85%E5%90%ABmin%E5%87%BD%E6%95%B0%E7%9A%84%E6%A0%88/</guid>
+      <description>包含min函数的栈 题目描述 定义栈的数据结构，请在该类型中实现一个能够得到栈中所含最小元素的min函数(时间复杂度应为O(1))。 可以使用辅助</description>
+    </item>
+    
+    <item>
+      <title>数值的整数次等</title>
+      <link>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E6%95%B0%E5%80%BC%E7%9A%84%E6%95%B4%E6%95%B0%E6%AC%A1%E7%AD%89/</link>
+      <pubDate>Fri, 31 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E6%95%B0%E5%80%BC%E7%9A%84%E6%95%B4%E6%95%B0%E6%AC%A1%E7%AD%89/</guid>
+      <description>数值的整数次等 题目描述 给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方。 保证ba</description>
+    </item>
     
     <item>
       <title>两个链表的第一个公共节点</title>
@@ -171,15 +189,6 @@
       
       <guid>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E6%95%B0/</guid>
       <description>旋转数组的最小数 描述 把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。 输入一个非递减排序的数组的一个旋转，输出旋转数组的最小</description>
-    </item>
-    
-    <item>
-      <title>替换空格</title>
-      <link>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E6%9B%BF%E6%8D%A2%E7%A9%BA%E6%A0%BC/</link>
-      <pubDate>Sun, 12 Jan 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E6%9B%BF%E6%8D%A2%E7%A9%BA%E6%A0%BC/</guid>
-      <description>替换空格 题目描述 请实现一个函数，将一个字符串中的每个空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%2</description>
     </item>
     
   </channel>
