@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>剑指offer · 无名鼠辈</title>
+  <title>数组中重复的数字 - 无名鼠辈</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -22,7 +22,9 @@
 
 <meta name="mobile-web-app-capable" content="yes">
 
-<meta name="author" content="lyf687" />
+<meta name="author" content="Lyf" />
+  <meta name="description" content="数组中重复的数字 题目描述 在一个长度为n的数组里的所有数字都在0到n-1的范围内。 数组中某些数字是重复的，但不知道有几个数字是重复的。也不知道" />
+
 
 
 
@@ -32,8 +34,8 @@
 <meta name="generator" content="Hugo 0.55.6" />
 
 
-<link rel="canonical" href="https://llc687.top/tags/%E5%89%91%E6%8C%87offer/" />
-<link href="/tags/%E5%89%91%E6%8C%87offer/index.xml" rel="alternate" type="application/rss+xml" title="无名鼠辈" />
+<link rel="canonical" href="https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/" />
+
 
 
 
@@ -56,19 +58,27 @@
 
 
 
-<meta property="og:title" content="剑指offer" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://llc687.top/tags/%E5%89%91%E6%8C%87offer/" />
+<meta property="og:title" content="数组中重复的数字" />
+<meta property="og:description" content="数组中重复的数字 题目描述 在一个长度为n的数组里的所有数字都在0到n-1的范围内。 数组中某些数字是重复的，但不知道有几个数字是重复的。也不知道" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/" />
+<meta property="article:published_time" content="2020-02-04T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2020-02-04T00:00:00&#43;00:00"/>
 
-<meta property="og:updated_time" content="2020-02-04T00:00:00&#43;00:00"/>
+<meta itemprop="name" content="数组中重复的数字">
+<meta itemprop="description" content="数组中重复的数字 题目描述 在一个长度为n的数组里的所有数字都在0到n-1的范围内。 数组中某些数字是重复的，但不知道有几个数字是重复的。也不知道">
 
-<meta itemprop="name" content="剑指offer">
-<meta itemprop="description" content="">
 
+<meta itemprop="datePublished" content="2020-02-04T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2020-02-04T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="617">
+
+
+
+<meta itemprop="keywords" content="算法,剑指offer," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="剑指offer"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:title" content="数组中重复的数字"/>
+<meta name="twitter:description" content="数组中重复的数字 题目描述 在一个长度为n的数组里的所有数字都在0到n-1的范围内。 数组中某些数字是重复的，但不知道有几个数字是重复的。也不知道"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -341,178 +351,215 @@
     <main id="main" class="main bg-llight">
       <div class="content-wrapper">
         <div id="content" class="content container">
-          
-
-<section id="archive" class="archive">
-  
+          <article class="post bg-white">
     
-      <div class="archive-title tag">
-        <h2 class="archive-name">标签： 剑指offer</h2>
+    <header class="post-header">
+      <h1 class="post-title">数组中重复的数字</h1>
+      
+      <div class="post-meta">
+        <time datetime="2020-02-04" class="post-time">
+          2020-02-04
+        </time>
+        <div class="post-category">
+            <a href="https://llc687.top/categories/%E5%89%91%E6%8C%87offer/"> 剑指offer </a>
+            
+          </div>
+        <span class="more-meta"> 约 617 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+
+        
+        
+
+        
+        
       </div>
+    </header>
+
     
-  
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#数组中重复的数字">数组中重复的数字</a>
+<ul>
+<li><a href="#题目描述">题目描述</a></li>
+<li><a href="#分析">分析</a></li>
+<li><a href="#实现">实现</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
 
-  
-    <div class="archive-post">
-      <time datetime="2020-02-04" class="archive-post-time">
-        2020-02-04
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E5%89%91%E6%8C%87offer/%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/" class="archive-post-link">
-          数组中重复的数字
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2020-02-04" class="archive-post-time">
-        2020-02-04
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E5%89%91%E6%8C%87offer/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%8E%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8/" class="archive-post-link">
-          二叉搜索树与双向链表
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2020-02-02" class="archive-post-time">
-        2020-02-02
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E5%89%91%E6%8C%87offer/%E6%A0%88%E7%9A%84%E5%8E%8B%E5%85%A5%E5%BC%B9%E5%87%BA%E5%BA%8F%E5%88%97/" class="archive-post-link">
-          栈的压入弹出序列
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2020-02-02" class="archive-post-time">
-        2020-02-02
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E5%89%91%E6%8C%87offer/%E6%95%B0%E7%BB%84%E4%B8%AD%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97/" class="archive-post-link">
-          数组中只出现一次的数字
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2020-02-02" class="archive-post-time">
-        2020-02-02
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E5%89%91%E6%8C%87offer/%E5%AD%A9%E5%AD%90%E4%BB%AC%E7%9A%84%E6%B8%B8%E6%88%8F/" class="archive-post-link">
-          孩子们的游戏
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2020-02-02" class="archive-post-time">
-        2020-02-02
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E5%89%91%E6%8C%87offer/%E5%90%88%E4%B8%BAs%E7%9A%84%E4%B8%A4%E4%B8%AA%E6%95%B0%E5%AD%97/" class="archive-post-link">
-          合为S的两个数字
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2020-02-02" class="archive-post-time">
-        2020-02-02
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E5%89%91%E6%8C%87offer/%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/" class="archive-post-link">
-          反转链表
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2020-02-02" class="archive-post-time">
-        2020-02-02
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E5%89%91%E6%8C%87offer/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%8B%E4%B8%80%E4%B8%AA%E8%8A%82%E7%82%B9/" class="archive-post-link">
-          二叉树的下一个节点
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2020-02-01" class="archive-post-time">
-        2020-02-01
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E5%89%91%E6%8C%87offer/%E6%95%B0%E5%AD%97%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0/" class="archive-post-link">
-          数字在排序数组中出现的次数
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2020-02-01" class="archive-post-time">
-        2020-02-01
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E5%89%91%E6%8C%87offer/%E6%8A%8A%E4%BA%8C%E5%8F%89%E6%A0%91%E6%89%93%E5%8D%B0%E6%88%90%E5%A4%9A%E8%A1%8C/" class="archive-post-link">
-          把二叉树打印成多行
-        </a>
-      </span>
-    </div>
-  
-</section>
-
-
-
-
-
-
-  
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-  <nav class="pagination">
-    <ul>
+    
+    <div class="post-content">
       
-      <li  class="active" >
-        <a href="/tags/%E5%89%91%E6%8C%87offer/">1</a>
-      </li>
+
+<h3 id="数组中重复的数字">数组中重复的数字</h3>
+
+<h4 id="题目描述">题目描述</h4>
+
+<blockquote>
+<p>在一个长度为n的数组里的所有数字都在0到n-1的范围内。 数组中某些数字是重复的，但不知道有几个数字是重复的。也不知道每个数字重复几次。请找出数组中任意一个重复的数字。 例如，如果输入长度为7的数组{2,3,1,0,2,5,3}，那么对应的输出是第一个重复的数字2</p>
+</blockquote>
+
+<h4 id="分析">分析</h4>
+
+<p>最简单的做法是排序后对比，时间空间复杂度分别是O(nlogn)和O(1)。也可利用HashSet特性解决。但都不是最优解。</p>
+
+<p>题干说到，数字是从 0 到 n-1。那么可以将遇到的数据进行归位（下标=值)。</p>
+
+<p>扫描数组，下标 i 的数字，首先比较该值 m 是否等于 i.</p>
+
+<ul>
+<li>如果是，则接着扫描下一个数字；</li>
+<li>如果不是，则拿值 m 与第 m 个数比较。
+
+<ul>
+<li>如果 m 与第 m 个数相等，则说明重复。</li>
+<li>如果不等将 m 与第 m 个数交换，将 m &ldquo;归位&rdquo;，重复比较交换，直到发现重复。</li>
+</ul></li>
+</ul>
+
+<p>比如存在数组 nums:<code>2,1,0,2</code></p>
+
+<ul>
+<li>下标 i = 0时，nums[0] = 2 != i 。 判断 nums[i] 不等于 nums[nums[i]], 不等于则交换nums[i] 和nums[nums[i]]。之后数组为：<code>0,1,2,2</code></li>
+<li>此时下标不变， i = 0，nums[0] = 0 = i 。 进行下一组。</li>
+<li>i = 1，nums[1] = 1  = i 。 进行下一组。</li>
+<li>i = 2，nums[2] = 2  = i 。 进行下一组。</li>
+<li>i = 3，nums[3] = 2 != i 。 但 nums[3] 等于 nums[nums[3]]，说明重复。</li>
+</ul>
+
+<h4 id="实现">实现</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">duplicate</span><span class="o">(</span><span class="kt">int</span> <span class="n">nums</span><span class="o">[],</span><span class="kt">int</span> <span class="n">length</span><span class="o">,</span><span class="kt">int</span> <span class="o">[]</span> <span class="n">duplication</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">nums</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">length</span> <span class="o">==</span> <span class="n">0</span><span class="o">){</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="o">;</span><span class="n">i</span><span class="o">++){</span>
+            <span class="k">while</span><span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">!=</span> <span class="n">i</span><span class="o">){</span>
+                <span class="k">if</span><span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">==</span> <span class="n">nums</span><span class="o">[</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]]){</span>
+                    <span class="n">duplication</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+                    <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+                <span class="o">}</span>
+                <span class="kt">int</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+                <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">tmp</span><span class="o">];</span>
+                <span class="n">nums</span><span class="o">[</span><span class="n">tmp</span><span class="o">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    
+    
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://llc687.top/tags/%E7%AE%97%E6%B3%95/">算法</a>
+          <a href="https://llc687.top/tags/%E5%89%91%E6%8C%87offer/">剑指offer</a>
+          
+        </div>
+
       
-      <li >
-        <a href="/tags/%E5%89%91%E6%8C%87offer/page/2/">2</a>
-      </li>
-      
-      <li >
-        <a href="/tags/%E5%89%91%E6%8C%87offer/page/3/">3</a>
-      </li>
-      
-      <li >
-        <a href="/tags/%E5%89%91%E6%8C%87offer/page/4/">4</a>
-      </li>
-      
-    </ul>
-  </nav>
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/%E5%89%91%E6%8C%87offer/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%8E%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">二叉搜索树与双向链表</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="/post/%E5%89%91%E6%8C%87offer/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%8B%E4%B8%80%E4%B8%AA%E8%8A%82%E7%82%B9/">
+            <span class="next-text nav-default">二叉树的下一个节点</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
 
   
   
 
+  
+  
 
+  
 
+  
+  
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "liyifan687/comments"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+  
 
+  
+
+  
+
+  
+
+    
+
+  
 
         </div>
       </div>
