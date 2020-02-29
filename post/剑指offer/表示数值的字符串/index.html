@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>归档 - 无名鼠辈</title>
+  <title>表示数值的字符串 - 无名鼠辈</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -22,7 +22,9 @@
 
 <meta name="mobile-web-app-capable" content="yes">
 
-<meta name="author" content="lyf687" />
+<meta name="author" content="Lyf" />
+  <meta name="description" content="表示数值的字符串 题目描述 请实现一个函数用来判断字符串是否表示数值（包括整数和小数）。例如，字符串&amp;rdquo;&#43;100&amp;rdquo;,&amp;ld" />
+
 
 
 
@@ -32,8 +34,8 @@
 <meta name="generator" content="Hugo 0.55.6" />
 
 
-<link rel="canonical" href="https://llc687.top/post/" />
-<link href="/post/index.xml" rel="alternate" type="application/rss+xml" title="无名鼠辈" />
+<link rel="canonical" href="https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E8%A1%A8%E7%A4%BA%E6%95%B0%E5%80%BC%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/" />
+
 
 
 
@@ -56,19 +58,27 @@
 
 
 
-<meta property="og:title" content="Posts" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://llc687.top/post/" />
+<meta property="og:title" content="表示数值的字符串" />
+<meta property="og:description" content="表示数值的字符串 题目描述 请实现一个函数用来判断字符串是否表示数值（包括整数和小数）。例如，字符串&rdquo;&#43;100&rdquo;,&ld" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E8%A1%A8%E7%A4%BA%E6%95%B0%E5%80%BC%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/" />
+<meta property="article:published_time" content="2020-02-20T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2020-02-20T00:00:00&#43;00:00"/>
 
-<meta property="og:updated_time" content="2020-02-20T00:00:00&#43;00:00"/>
+<meta itemprop="name" content="表示数值的字符串">
+<meta itemprop="description" content="表示数值的字符串 题目描述 请实现一个函数用来判断字符串是否表示数值（包括整数和小数）。例如，字符串&rdquo;&#43;100&rdquo;,&ld">
 
-<meta itemprop="name" content="Posts">
-<meta itemprop="description" content="">
 
+<meta itemprop="datePublished" content="2020-02-20T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2020-02-20T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="518">
+
+
+
+<meta itemprop="keywords" content="算法,剑指offer," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Posts"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:title" content="表示数值的字符串"/>
+<meta name="twitter:description" content="表示数值的字符串 题目描述 请实现一个函数用来判断字符串是否表示数值（包括整数和小数）。例如，字符串&rdquo;&#43;100&rdquo;,&ld"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -269,7 +279,7 @@
 
       </li>
     
-        <li class="menu-item active">
+        <li class="menu-item">
         
           
           
@@ -341,187 +351,241 @@
     <main id="main" class="main bg-llight">
       <div class="content-wrapper">
         <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">表示数值的字符串</h1>
+      
+      <div class="post-meta">
+        <time datetime="2020-02-20" class="post-time">
+          2020-02-20
+        </time>
+        <div class="post-category">
+            <a href="https://llc687.top/categories/%E5%89%91%E6%8C%87offer/"> 剑指offer </a>
+            
+          </div>
+        <span class="more-meta"> 约 518 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#表示数值的字符串">表示数值的字符串</a>
+<ul>
+<li><a href="#题目描述">题目描述</a></li>
+<li><a href="#分析">分析</a></li>
+<li><a href="#实现">实现</a>
+<ul>
+<li><a href="#实现1">实现1</a></li>
+<li><a href="#实现2">实现2</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<h3 id="表示数值的字符串">表示数值的字符串</h3>
+
+<h4 id="题目描述">题目描述</h4>
+
+<blockquote>
+<p>请实现一个函数用来判断字符串是否表示数值（包括整数和小数）。例如，字符串&rdquo;+100&rdquo;,&ldquo;5e2&rdquo;,&ldquo;-123&rdquo;,&ldquo;3.1416&rdquo;和&rdquo;-1E-16&rdquo;都表示数值。 但是&rdquo;12e&rdquo;,&ldquo;1a3.14&rdquo;,&ldquo;1.2.3&rdquo;,&ldquo;+-5&rdquo;和&rdquo;12e+4.3”都不是。</p>
+</blockquote>
+
+<h4 id="分析">分析</h4>
+
+<ol>
+<li>看到这种判断字符串的问题，一般来说最简洁的方法应该是用正则实现。但相对来说正则写起来并不一定手到擒来。</li>
+<li>可以对字符串标记符号、小数点、e进行扫描，判断是否出现过及其位置是否正确。</li>
+</ol>
+
+<h4 id="实现">实现</h4>
+
+<h5 id="实现1">实现1</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isNumeric</span><span class="o">(</span><span class="kt">char</span><span class="o">[]</span> <span class="n">str</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">String</span> <span class="n">string</span> <span class="o">=</span> <span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">str</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">string</span><span class="o">.</span><span class="na">matches</span><span class="o">(</span><span class="s">&#34;[\\+\\-]?\\d*(\\.\\d+)?([eE][\\+\\-]?\\d+)?&#34;</span><span class="o">);</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h5 id="实现2">实现2</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isNumeric</span><span class="o">(</span><span class="kt">char</span><span class="o">[]</span> <span class="n">str</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">str</span><span class="o">.</span><span class="na">length</span> <span class="o">&lt;</span> <span class="n">1</span><span class="o">)</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>    
+        <span class="kt">boolean</span> <span class="n">flag</span> <span class="o">=</span> <span class="n">scanInteger</span><span class="o">(</span><span class="n">str</span><span class="o">);</span>    
+        <span class="k">if</span> <span class="o">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">str</span><span class="o">.</span><span class="na">length</span> <span class="o">&amp;&amp;</span> <span class="n">str</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">==</span> <span class="sc">&#39;.&#39;</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">index</span><span class="o">++;</span>
+            <span class="n">flag</span> <span class="o">=</span> <span class="n">scanUnsignedInteger</span><span class="o">(</span><span class="n">str</span><span class="o">)</span> <span class="o">||</span> <span class="n">flag</span><span class="o">;</span>
+        <span class="o">}</span>  
+        <span class="k">if</span> <span class="o">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">str</span><span class="o">.</span><span class="na">length</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">str</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">==</span> <span class="sc">&#39;E&#39;</span> <span class="o">||</span> <span class="n">str</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">==</span> <span class="sc">&#39;e&#39;</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">index</span><span class="o">++;</span>
+            <span class="n">flag</span> <span class="o">=</span> <span class="n">flag</span> <span class="o">&amp;&amp;</span> <span class="n">scanInteger</span><span class="o">(</span><span class="n">str</span><span class="o">);</span>
+        <span class="o">}</span>   
+        <span class="k">return</span> <span class="n">flag</span> <span class="o">&amp;&amp;</span> <span class="n">index</span> <span class="o">==</span> <span class="n">str</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>        
+    <span class="o">}</span>
+     
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">scanInteger</span><span class="o">(</span><span class="kt">char</span><span class="o">[]</span> <span class="n">str</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">str</span><span class="o">.</span><span class="na">length</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">str</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">==</span> <span class="sc">&#39;+&#39;</span> <span class="o">||</span> <span class="n">str</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">==</span> <span class="sc">&#39;-&#39;</span><span class="o">)</span> <span class="o">)</span>
+            <span class="n">index</span><span class="o">++;</span>
+        <span class="k">return</span> <span class="n">scanUnsignedInteger</span><span class="o">(</span><span class="n">str</span><span class="o">);</span>    
+    <span class="o">}</span>
+     
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">scanUnsignedInteger</span><span class="o">(</span><span class="kt">char</span><span class="o">[]</span> <span class="n">str</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">start</span> <span class="o">=</span> <span class="n">index</span><span class="o">;</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">str</span><span class="o">.</span><span class="na">length</span> <span class="o">&amp;&amp;</span> <span class="n">str</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">&gt;=</span> <span class="sc">&#39;0&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">str</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="sc">&#39;9&#39;</span><span class="o">)</span>
+            <span class="n">index</span><span class="o">++;</span>
+        <span class="k">return</span> <span class="n">start</span> <span class="o">&lt;</span> <span class="n">index</span><span class="o">;</span> <span class="c1">//是否存在整数
+</span><span class="c1"></span>    <span class="o">}</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    
+    
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://llc687.top/tags/%E7%AE%97%E6%B3%95/">算法</a>
+          <a href="https://llc687.top/tags/%E5%89%91%E6%8C%87offer/">剑指offer</a>
           
-<section id="archive" class="archive">
-    
-      <div class="collection-title">
-        <h2 class="archive-year">2020</h2>
-      </div>
+        </div>
 
-    <div class="archive-post">
-      <time datetime="2020-01-12" class="archive-post-time">
-        2020-01-12
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E5%89%91%E6%8C%87offer/%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E6%95%B0/" class="archive-post-link">
-          旋转数组的最小数
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2020-01-12" class="archive-post-time">
-        2020-01-12
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E5%89%91%E6%8C%87offer/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/" class="archive-post-link">
-          斐波那契数列
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2020-01-12" class="archive-post-time">
-        2020-01-12
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E5%89%91%E6%8C%87offer/%E4%BB%8E%E5%B0%BE%E5%88%B0%E5%A4%B4%E6%89%93%E5%8D%B0%E9%93%BE%E8%A1%A8/" class="archive-post-link">
-          从尾到头打印链表
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2020-01-12" class="archive-post-time">
-        2020-01-12
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E5%89%91%E6%8C%87offer/%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E7%9A%84%E6%9F%A5%E6%89%BE/" class="archive-post-link">
-          二维数组的查找
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2020-01-12" class="archive-post-time">
-        2020-01-12
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E5%89%91%E6%8C%87offer/%E4%B8%A4%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/" class="archive-post-link">
-          两个栈实现队列
-        </a>
-      </span>
-    </div>
-    
-      <div class="collection-title">
-        <h2 class="archive-year">2019</h2>
-      </div>
-
-    <div class="archive-post">
-      <time datetime="2019-12-09" class="archive-post-time">
-        2019-12-09
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98/" class="archive-post-link">
-          分布式缓存的选择
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2019-12-08" class="archive-post-time">
-        2019-12-08
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/swagger-codegen%E4%BD%BF%E7%94%A8/" class="archive-post-link">
-          Swagger-Codegen使用
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2019-12-01" class="archive-post-time">
-        2019-12-01
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/springfox%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-%E8%87%AA%E5%AE%9A%E4%B9%89modelenum/" class="archive-post-link">
-          “SpringFox源码解析&#34;
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2019-11-03" class="archive-post-time">
-        2019-11-03
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/hadoop%E4%B8%8Ehive/" class="archive-post-link">
-          “MapReduce及Hive&#34;
-        </a>
-      </span>
-    </div>
-    
-
-    <div class="archive-post">
-      <time datetime="2019-10-04" class="archive-post-time">
-        2019-10-04
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/begin/" class="archive-post-link">
-          Hello World
-        </a>
-      </span>
-    </div></section>
-
-
-
-
-
-
-  
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-  <nav class="pagination">
-    <ul>
       
-      <li >
-        <a href="/post/">1</a>
-      </li>
-      
-      <li >
-        <a href="/post/page/2/">2</a>
-      </li>
-      
-      <li >
-        <a href="/post/page/3/">3</a>
-      </li>
-      
-      <li >
-        <a href="/post/page/4/">4</a>
-      </li>
-      
-      <li  class="active" >
-        <a href="/post/page/5/">5</a>
-      </li>
-      
-    </ul>
-  </nav>
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/%E5%89%91%E6%8C%87offer/%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%8E%92%E5%BA%8F%E7%9A%84%E9%93%BE%E8%A1%A8/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">合并两个排序的链表</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="/post/%E5%89%91%E6%8C%87offer/%E8%B0%83%E6%95%B4%E6%95%B0%E7%BB%84%E9%A1%BA%E5%BA%8F%E4%BD%BF%E5%A5%87%E6%95%B0%E4%BD%8D%E4%BA%8E%E5%81%B6%E6%95%B0%E5%89%8D%E9%9D%A2/">
+            <span class="next-text nav-default">调整数组顺序使奇数位于偶数前面</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
 
   
   
 
+  
+  
 
+  
 
+  
+  
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "liyifan687/comments"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+  
 
+  
+
+  
+
+  
+
+    
+
+  
 
         </div>
       </div>
