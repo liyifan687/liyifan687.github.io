@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>合并两个排序的链表 - 无名鼠辈</title>
+  <title>滑动窗口的最大值 - 无名鼠辈</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="Lyf" />
-  <meta name="description" content="合并两个排序的链表 题目描述 输入两个单调递增的链表，输出两个链表合成后的链表，当然我们需要合成后的链表满足单调不减规则。 分析 递归扫描两个链表，" />
+  <meta name="description" content="滑动窗口的最大值 题目描述 给定一个数组和滑动窗口的大小，找出所有滑动窗口里数值的最大值。例如，如果输入数组{2,3,4,2,6,2,5,1}及" />
 
 
 
@@ -34,7 +34,7 @@
 <meta name="generator" content="Hugo 0.55.6" />
 
 
-<link rel="canonical" href="https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%8E%92%E5%BA%8F%E7%9A%84%E9%93%BE%E8%A1%A8/" />
+<link rel="canonical" href="https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC/" />
 
 
 
@@ -58,27 +58,27 @@
 
 
 
-<meta property="og:title" content="合并两个排序的链表" />
-<meta property="og:description" content="合并两个排序的链表 题目描述 输入两个单调递增的链表，输出两个链表合成后的链表，当然我们需要合成后的链表满足单调不减规则。 分析 递归扫描两个链表，" />
+<meta property="og:title" content="滑动窗口的最大值" />
+<meta property="og:description" content="滑动窗口的最大值 题目描述 给定一个数组和滑动窗口的大小，找出所有滑动窗口里数值的最大值。例如，如果输入数组{2,3,4,2,6,2,5,1}及" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%8E%92%E5%BA%8F%E7%9A%84%E9%93%BE%E8%A1%A8/" />
-<meta property="article:published_time" content="2020-02-20T00:00:00&#43;00:00"/>
-<meta property="article:modified_time" content="2020-02-20T00:00:00&#43;00:00"/>
+<meta property="og:url" content="https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC/" />
+<meta property="article:published_time" content="2020-03-01T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2020-03-01T00:00:00&#43;00:00"/>
 
-<meta itemprop="name" content="合并两个排序的链表">
-<meta itemprop="description" content="合并两个排序的链表 题目描述 输入两个单调递增的链表，输出两个链表合成后的链表，当然我们需要合成后的链表满足单调不减规则。 分析 递归扫描两个链表，">
+<meta itemprop="name" content="滑动窗口的最大值">
+<meta itemprop="description" content="滑动窗口的最大值 题目描述 给定一个数组和滑动窗口的大小，找出所有滑动窗口里数值的最大值。例如，如果输入数组{2,3,4,2,6,2,5,1}及">
 
 
-<meta itemprop="datePublished" content="2020-02-20T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2020-02-20T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="154">
+<meta itemprop="datePublished" content="2020-03-01T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2020-03-01T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="658">
 
 
 
 <meta itemprop="keywords" content="算法,剑指offer," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="合并两个排序的链表"/>
-<meta name="twitter:description" content="合并两个排序的链表 题目描述 输入两个单调递增的链表，输出两个链表合成后的链表，当然我们需要合成后的链表满足单调不减规则。 分析 递归扫描两个链表，"/>
+<meta name="twitter:title" content="滑动窗口的最大值"/>
+<meta name="twitter:description" content="滑动窗口的最大值 题目描述 给定一个数组和滑动窗口的大小，找出所有滑动窗口里数值的最大值。例如，如果输入数组{2,3,4,2,6,2,5,1}及"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -354,18 +354,18 @@
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title">合并两个排序的链表</h1>
+      <h1 class="post-title">滑动窗口的最大值</h1>
       
       <div class="post-meta">
-        <time datetime="2020-02-20" class="post-time">
-          2020-02-20
+        <time datetime="2020-03-01" class="post-time">
+          2020-03-01
         </time>
         <div class="post-category">
             <a href="https://llc687.top/categories/%E5%89%91%E6%8C%87offer/"> 剑指offer </a>
             
           </div>
-        <span class="more-meta"> 约 154 字 </span>
-          <span class="more-meta"> 预计阅读 1 分钟 </span>
+        <span class="more-meta"> 约 658 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
 
         
         
@@ -386,11 +386,15 @@
 <ul>
 <li>
 <ul>
-<li><a href="#合并两个排序的链表">合并两个排序的链表</a>
+<li><a href="#滑动窗口的最大值">滑动窗口的最大值</a>
 <ul>
 <li><a href="#题目描述">题目描述</a></li>
 <li><a href="#分析">分析</a></li>
-<li><a href="#实现">实现</a></li>
+<li><a href="#实现">实现</a>
+<ul>
+<li><a href="#实现1">实现1</a></li>
+<li><a href="#实现2">实现2</a></li>
+</ul></li>
 </ul></li>
 </ul></li>
 </ul></li>
@@ -403,19 +407,24 @@
     <div class="post-content">
       
 
-<h3 id="合并两个排序的链表">合并两个排序的链表</h3>
+<h3 id="滑动窗口的最大值">滑动窗口的最大值</h3>
 
 <h4 id="题目描述">题目描述</h4>
 
 <blockquote>
-<p>输入两个单调递增的链表，输出两个链表合成后的链表，当然我们需要合成后的链表满足单调不减规则。</p>
+<p>给定一个数组和滑动窗口的大小，找出所有滑动窗口里数值的最大值。例如，如果输入数组{2,3,4,2,6,2,5,1}及滑动窗口的大小3，那么一共存在6个滑动窗口，他们的最大值分别为{4,4,6,6,6,5}； 针对数组{2,3,4,2,6,2,5,1}的滑动窗口有以下6个： {[2,3,4],2,6,2,5,1}， {2,[3,4,2],6,2,5,1}， {2,3,[4,2,6],2,5,1}， {2,3,4,[2,6,2],5,1}， {2,3,4,2,[6,2,5],1}， {2,3,4,2,6,[2,5,1]}。</p>
 </blockquote>
 
 <h4 id="分析">分析</h4>
 
-<p>递归扫描两个链表，首先判断第一个元素头结点的大小，小的则将其作为新链表的头结点。</p>
+<ul>
+<li>求指定范围数据的最大值，可以借助大顶堆实现。每次滑动，分别出入一个。堆顶即是最大值。</li>
+<li>也可以使用一个双端队列。第一个位置保存当前窗口最大值，滑动时判断当前最大值是否过期。对于新增的值从队尾比较，比其小的值丢掉。</li>
+</ul>
 
 <h4 id="实现">实现</h4>
+
+<h5 id="实现1">实现1</h5>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
@@ -433,23 +442,100 @@
 </span><span class="lnt">13
 </span><span class="lnt">14
 </span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="n">ListNode</span> <span class="nf">Merge</span><span class="o">(</span><span class="n">ListNode</span> <span class="n">list1</span><span class="o">,</span><span class="n">ListNode</span> <span class="n">list2</span><span class="o">)</span> <span class="o">{</span>
-       <span class="k">if</span><span class="o">(</span><span class="n">list1</span> <span class="o">==</span> <span class="kc">null</span><span class="o">){</span>
-           <span class="k">return</span> <span class="n">list2</span><span class="o">;</span>
-       <span class="o">}</span>
-       <span class="k">if</span><span class="o">(</span><span class="n">list2</span> <span class="o">==</span> <span class="kc">null</span><span class="o">){</span>
-           <span class="k">return</span> <span class="n">list1</span><span class="o">;</span>
-       <span class="o">}</span>
-       <span class="k">if</span><span class="o">(</span><span class="n">list1</span><span class="o">.</span><span class="na">val</span> <span class="o">&lt;=</span> <span class="n">list2</span><span class="o">.</span><span class="na">val</span><span class="o">){</span>
-           <span class="n">list1</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">Merge</span><span class="o">(</span><span class="n">list1</span><span class="o">.</span><span class="na">next</span><span class="o">,</span> <span class="n">list2</span><span class="o">);</span>
-           <span class="k">return</span> <span class="n">list1</span><span class="o">;</span>
-       <span class="o">}</span><span class="k">else</span><span class="o">{</span>
-           <span class="n">list2</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">Merge</span><span class="o">(</span><span class="n">list1</span><span class="o">,</span> <span class="n">list2</span><span class="o">.</span><span class="na">next</span><span class="o">);</span>
-           <span class="k">return</span> <span class="n">list2</span><span class="o">;</span>
-       <span class="o">}</span>       
-   <span class="o">}</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="c1">// 大顶堆
+</span><span class="c1"></span>    <span class="kd">public</span> <span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">maxQueue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;((</span><span class="n">o1</span><span class="o">,</span><span class="n">o2</span><span class="o">)-&gt;</span><span class="n">o2</span><span class="o">-</span><span class="n">o1</span><span class="o">);</span>
+    <span class="kd">public</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;();</span>
+    <span class="kd">public</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">maxInWindows</span><span class="o">(</span><span class="kt">int</span> <span class="o">[]</span> <span class="n">num</span><span class="o">,</span> <span class="kt">int</span> <span class="n">size</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">num</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">num</span><span class="o">.</span><span class="na">length</span> <span class="o">&lt;=</span> <span class="n">0</span> <span class="o">||</span> <span class="n">size</span> <span class="o">&lt;=</span> <span class="n">0</span> <span class="o">||</span> <span class="n">size</span> <span class="o">&gt;</span> <span class="n">num</span><span class="o">.</span><span class="na">length</span><span class="o">){</span>
+            <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="kt">int</span> <span class="n">count</span><span class="o">=</span><span class="n">0</span><span class="o">;</span>
+        <span class="c1">// 初始化滑动窗口
+</span><span class="c1"></span>        <span class="k">for</span><span class="o">(;</span><span class="n">count</span><span class="o">&lt;</span><span class="n">size</span><span class="o">;</span><span class="n">count</span><span class="o">++){</span>
+            <span class="n">maxQueue</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="n">num</span><span class="o">[</span><span class="n">count</span><span class="o">]);</span>
+        <span class="o">}</span>
+        <span class="c1">// 每次滑动，找到最大值，出入堆一个
+</span><span class="c1"></span>        <span class="k">while</span><span class="o">(</span><span class="n">count</span> <span class="o">&lt;</span> <span class="n">num</span><span class="o">.</span><span class="na">length</span><span class="o">){</span>
+            <span class="n">result</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">maxQueue</span><span class="o">.</span><span class="na">peek</span><span class="o">());</span>
+            <span class="n">maxQueue</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">num</span><span class="o">[</span><span class="n">count</span><span class="o">-</span><span class="n">size</span><span class="o">]);</span>
+            <span class="n">maxQueue</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">num</span><span class="o">[</span><span class="n">count</span><span class="o">]);</span>
+            <span class="n">count</span><span class="o">++;</span>
+        <span class="o">}</span>
+      	<span class="c1">// 保存结果
+</span><span class="c1"></span>        <span class="n">result</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">maxQueue</span><span class="o">.</span><span class="na">peek</span><span class="o">());</span> 
+        <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h5 id="实现2">实现2</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">maxInWindows</span><span class="o">(</span><span class="kt">int</span> <span class="o">[]</span> <span class="n">num</span><span class="o">,</span> <span class="kt">int</span> <span class="n">size</span><span class="o">){</span>
+				<span class="k">if</span> <span class="o">(</span><span class="n">num</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">num</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="n">0</span> <span class="o">||</span> <span class="n">size</span> <span class="o">&lt;=</span> <span class="n">0</span> <span class="o">||</span> <span class="n">num</span><span class="o">.</span><span class="na">length</span> <span class="o">&lt;</span> <span class="n">size</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;();</span>
+        <span class="o">}</span>
+        <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+        <span class="c1">//双端队列，用来记录每个窗口的最大值下标
+</span><span class="c1"></span>        <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">qmax</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;();</span>
+        <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">while</span> <span class="o">(!</span><span class="n">qmax</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">num</span><span class="o">[</span><span class="n">qmax</span><span class="o">.</span><span class="na">peekLast</span><span class="o">()]</span> <span class="o">&lt;</span> <span class="n">num</span><span class="o">[</span><span class="n">i</span><span class="o">])</span> <span class="o">{</span>
+                <span class="n">qmax</span><span class="o">.</span><span class="na">pollLast</span><span class="o">();</span>
+            <span class="o">}</span>
+            <span class="n">qmax</span><span class="o">.</span><span class="na">addLast</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+            <span class="c1">//判断队首元素是否过期
+</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">qmax</span><span class="o">.</span><span class="na">peekFirst</span><span class="o">()</span> <span class="o">==</span> <span class="n">i</span> <span class="o">-</span> <span class="n">size</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">qmax</span><span class="o">.</span><span class="na">pollFirst</span><span class="o">();</span>
+            <span class="o">}</span>
+            <span class="c1">//向result列表中加入元素
+</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="n">size</span> <span class="o">-</span> <span class="n">1</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">result</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">num</span><span class="o">[</span><span class="n">qmax</span><span class="o">.</span><span class="na">peekFirst</span><span class="o">()]);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+<span class="o">}</span></code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -471,7 +557,7 @@
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/%E5%89%91%E6%8C%87offer/%E8%B0%83%E6%95%B4%E6%95%B0%E7%BB%84%E9%A1%BA%E5%BA%8F%E4%BD%BF%E5%A5%87%E6%95%B0%E4%BD%8D%E4%BA%8E%E5%81%B6%E6%95%B0%E5%89%8D%E9%9D%A2/">
+          <a class="prev" href="/post/%E5%89%91%E6%8C%87offer/%E6%95%B0%E6%8D%AE%E6%B5%81%E4%B8%AD%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/">
             
             <i class="iconfont">
               <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -481,12 +567,12 @@
 </svg>
 
             </i>
-            <span class="prev-text nav-default">调整数组顺序使奇数位于偶数前面</span>
+            <span class="prev-text nav-default">数据流中的中位数</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         
-          <a class="next" href="/post/%E5%89%91%E6%8C%87offer/%E5%92%8C%E4%B8%BAs%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%AD%A3%E6%95%B0%E5%BA%8F%E5%88%97/">
-            <span class="next-text nav-default">和为S的连续正数序列</span>
+          <a class="next" href="/post/%E5%89%91%E6%8C%87offer/%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E5%92%8C%E4%B8%BA%E6%9F%90%E4%B8%80%E5%80%BC%E7%9A%84%E8%B7%AF%E5%BE%84/">
+            <span class="next-text nav-default">二叉树中和为某一值的路径</span>
             <span class="prev-text nav-mobile">下一篇</span>
             
             <i class="iconfont">
