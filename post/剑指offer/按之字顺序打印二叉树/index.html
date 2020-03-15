@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>二叉搜索树的后序遍历序列 - 无名鼠辈</title>
+  <title>按之字顺序打印二叉树点 - 无名鼠辈</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="Lyf" />
-  <meta name="description" content="二叉搜索树的后序遍历序列 题目描述 输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历的结果。如果是则输出Yes,否则输出No。假设输入的" />
+  <meta name="description" content="按之字顺序打印二叉树 题目描述 请实现一个函数按照之字形打印二叉树，即第一行按照从左到右的顺序打印，第二层按照从右至左的顺序打印，第三行按照从左" />
 
 
 
@@ -34,7 +34,7 @@
 <meta name="generator" content="Hugo 0.55.6" />
 
 
-<link rel="canonical" href="https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97/" />
+<link rel="canonical" href="https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E6%8C%89%E4%B9%8B%E5%AD%97%E9%A1%BA%E5%BA%8F%E6%89%93%E5%8D%B0%E4%BA%8C%E5%8F%89%E6%A0%91/" />
 
 
 
@@ -58,27 +58,27 @@
 
 
 
-<meta property="og:title" content="二叉搜索树的后序遍历序列" />
-<meta property="og:description" content="二叉搜索树的后序遍历序列 题目描述 输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历的结果。如果是则输出Yes,否则输出No。假设输入的" />
+<meta property="og:title" content="按之字顺序打印二叉树点" />
+<meta property="og:description" content="按之字顺序打印二叉树 题目描述 请实现一个函数按照之字形打印二叉树，即第一行按照从左到右的顺序打印，第二层按照从右至左的顺序打印，第三行按照从左" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97/" />
-<meta property="article:published_time" content="2020-03-01T00:00:00&#43;00:00"/>
-<meta property="article:modified_time" content="2020-03-01T00:00:00&#43;00:00"/>
+<meta property="og:url" content="https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E6%8C%89%E4%B9%8B%E5%AD%97%E9%A1%BA%E5%BA%8F%E6%89%93%E5%8D%B0%E4%BA%8C%E5%8F%89%E6%A0%91/" />
+<meta property="article:published_time" content="2020-03-15T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2020-03-15T00:00:00&#43;00:00"/>
 
-<meta itemprop="name" content="二叉搜索树的后序遍历序列">
-<meta itemprop="description" content="二叉搜索树的后序遍历序列 题目描述 输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历的结果。如果是则输出Yes,否则输出No。假设输入的">
+<meta itemprop="name" content="按之字顺序打印二叉树点">
+<meta itemprop="description" content="按之字顺序打印二叉树 题目描述 请实现一个函数按照之字形打印二叉树，即第一行按照从左到右的顺序打印，第二层按照从右至左的顺序打印，第三行按照从左">
 
 
-<meta itemprop="datePublished" content="2020-03-01T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2020-03-01T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="353">
+<meta itemprop="datePublished" content="2020-03-15T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2020-03-15T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="375">
 
 
 
 <meta itemprop="keywords" content="算法,剑指offer," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="二叉搜索树的后序遍历序列"/>
-<meta name="twitter:description" content="二叉搜索树的后序遍历序列 题目描述 输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历的结果。如果是则输出Yes,否则输出No。假设输入的"/>
+<meta name="twitter:title" content="按之字顺序打印二叉树点"/>
+<meta name="twitter:description" content="按之字顺序打印二叉树 题目描述 请实现一个函数按照之字形打印二叉树，即第一行按照从左到右的顺序打印，第二层按照从右至左的顺序打印，第三行按照从左"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -354,17 +354,17 @@
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title">二叉搜索树的后序遍历序列</h1>
+      <h1 class="post-title">按之字顺序打印二叉树点</h1>
       
       <div class="post-meta">
-        <time datetime="2020-03-01" class="post-time">
-          2020-03-01
+        <time datetime="2020-03-15" class="post-time">
+          2020-03-15
         </time>
         <div class="post-category">
             <a href="https://llc687.top/categories/%E5%89%91%E6%8C%87offer/"> 剑指offer </a>
             
           </div>
-        <span class="more-meta"> 约 353 字 </span>
+        <span class="more-meta"> 约 375 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
 
         
@@ -386,7 +386,7 @@
 <ul>
 <li>
 <ul>
-<li><a href="#二叉搜索树的后序遍历序列">二叉搜索树的后序遍历序列</a>
+<li><a href="#按之字顺序打印二叉树">按之字顺序打印二叉树</a>
 <ul>
 <li><a href="#题目描述">题目描述</a></li>
 <li><a href="#分析">分析</a></li>
@@ -403,22 +403,19 @@
     <div class="post-content">
       
 
-<h3 id="二叉搜索树的后序遍历序列">二叉搜索树的后序遍历序列</h3>
+<h3 id="按之字顺序打印二叉树">按之字顺序打印二叉树</h3>
 
 <h4 id="题目描述">题目描述</h4>
 
 <blockquote>
-<p>输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历的结果。如果是则输出Yes,否则输出No。假设输入的数组的任意两个数字都互不相同。</p>
+<p>请实现一个函数按照之字形打印二叉树，即第一行按照从左到右的顺序打印，第二层按照从右至左的顺序打印，第三行按照从左到右的顺序打印，其他行以此类推。</p>
 </blockquote>
 
 <h4 id="分析">分析</h4>
 
-<p>对于后序遍历。根节点位于末端，除去根节点后，对二叉搜索树而言其余数据可分为两段。前一段都小于根节点，即左子树。后一段都大于根节点，即右子树。且左右子树也为后序遍历序列。</p>
+<p>较简单的做法是层级遍历，在偶数层时进行翻转。但效率不是很理想。</p>
 
-<ul>
-<li>首先从后往前遍历，找到第一个小于根节点的值。</li>
-<li>该值右边即为右子树，左边及其本身即为左子树。递归判断即可。</li>
-</ul>
+<p>可以借助两个栈，分别存储奇偶行的节点，奇数行从左到右入栈。偶数行时依次从栈中取出节点，也就是上一层的从右到左了，这时再将偶数行从右到左加入栈供下一奇数行使用。</p>
 
 <h4 id="实现">实现</h4>
 <div class="highlight"><div class="chroma">
@@ -444,29 +441,81 @@
 </span><span class="lnt">19
 </span><span class="lnt">20
 </span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">VerifySquenceOfBST</span><span class="o">(</span><span class="kt">int</span> <span class="o">[]</span> <span class="n">sequence</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">sequence</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span>
-            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">sequence</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="n">1</span><span class="o">)</span>
-            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-        <span class="k">return</span> <span class="n">search</span><span class="o">(</span><span class="n">sequence</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">sequence</span><span class="o">.</span><span class="na">length</span><span class="o">-</span><span class="n">1</span><span class="o">);</span>
+<pre class="chroma"><code class="language-java" data-lang="java"> <span class="kd">public</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">Print</span><span class="o">(</span><span class="n">TreeNode</span> <span class="n">pRoot</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">layer</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span>
+        <span class="c1">//s1存奇数层节点
+</span><span class="c1"></span>        <span class="n">Stack</span><span class="o">&lt;</span><span class="n">TreeNode</span><span class="o">&gt;</span> <span class="n">s1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">TreeNode</span><span class="o">&gt;();</span>
+        <span class="n">s1</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">pRoot</span><span class="o">);</span>
+        <span class="c1">//s2存偶数层节点
+</span><span class="c1"></span>        <span class="n">Stack</span><span class="o">&lt;</span><span class="n">TreeNode</span><span class="o">&gt;</span> <span class="n">s2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">TreeNode</span><span class="o">&gt;();</span>
          
-    <span class="o">}</span>
-<span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">search</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">a</span><span class="o">,</span><span class="kt">int</span> <span class="n">star</span><span class="o">,</span><span class="kt">int</span> <span class="n">root</span><span class="o">){</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">star</span> <span class="o">&gt;=</span> <span class="n">root</span><span class="o">)</span>
-            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">root</span><span class="o">;</span>
-        <span class="c1">//从后面开始找
-</span><span class="c1"></span>        <span class="k">while</span><span class="o">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="n">star</span> <span class="o">&amp;&amp;</span> <span class="n">a</span><span class="o">[</span><span class="n">i</span><span class="o">-</span><span class="n">1</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">a</span><span class="o">[</span><span class="n">root</span><span class="o">])</span>
-            <span class="n">i</span><span class="o">--;</span><span class="c1">//找到比根小的坐标
-</span><span class="c1"></span>        <span class="c1">//从前面开始找 star到i-1应该比根小
-</span><span class="c1"></span>        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">star</span><span class="o">;</span><span class="n">j</span> <span class="o">&lt;</span> <span class="n">i</span> <span class="o">-</span> <span class="n">1</span><span class="o">;</span><span class="n">j</span><span class="o">++)</span>
-            <span class="k">if</span><span class="o">(</span><span class="n">a</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">a</span><span class="o">[</span><span class="n">root</span><span class="o">])</span>
-                <span class="k">return</span> <span class="kc">false</span><span class="o">;;</span>
-        <span class="k">return</span> <span class="n">search</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">star</span><span class="o">,</span> <span class="n">i</span><span class="o">-</span><span class="n">1</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">search</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">i</span><span class="o">,</span> <span class="n">root</span><span class="o">-</span><span class="n">1</span><span class="o">);</span>
-<span class="o">}</span></code></pre></td></tr></table>
+        <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;();</span>
+         
+        <span class="k">while</span> <span class="o">(!</span><span class="n">s1</span><span class="o">.</span><span class="na">empty</span><span class="o">()</span> <span class="o">||</span> <span class="o">!</span><span class="n">s2</span><span class="o">.</span><span class="na">empty</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">layer</span><span class="o">%</span><span class="n">2</span> <span class="o">!=</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">temp</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;();</span>
+                <span class="k">while</span> <span class="o">(!</span><span class="n">s1</span><span class="o">.</span><span class="na">empty</span><span class="o">())</span> <span class="o">{</span>
+                    <span class="n">TreeNode</span> <span class="n">node</span> <span class="o">=</span> <span class="n">s1</span><span class="o">.</span><span class="na">pop</span><span class="o">();</span>
+                    <span class="k">if</span><span class="o">(</span><span class="n">node</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="n">temp</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">val</span><span class="o">);</span>
+                        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">val</span> <span class="o">+</span> <span class="s">&#34; &#34;</span><span class="o">);</span>
+                        <span class="n">s2</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">left</span><span class="o">);</span>
+                        <span class="n">s2</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">right</span><span class="o">);</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+                <span class="k">if</span> <span class="o">(!</span><span class="n">temp</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+                    <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">temp</span><span class="o">);</span>
+                    <span class="n">layer</span><span class="o">++;</span>
+                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+                <span class="o">}</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">temp</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;();</span>
+                <span class="k">while</span> <span class="o">(!</span><span class="n">s2</span><span class="o">.</span><span class="na">empty</span><span class="o">())</span> <span class="o">{</span>
+                    <span class="n">TreeNode</span> <span class="n">node</span> <span class="o">=</span> <span class="n">s2</span><span class="o">.</span><span class="na">pop</span><span class="o">();</span>
+                    <span class="k">if</span><span class="o">(</span><span class="n">node</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="n">temp</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">val</span><span class="o">);</span>
+                        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">val</span> <span class="o">+</span> <span class="s">&#34; &#34;</span><span class="o">);</span>
+                        <span class="n">s1</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">right</span><span class="o">);</span>
+                        <span class="n">s1</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">left</span><span class="o">);</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+                <span class="k">if</span> <span class="o">(!</span><span class="n">temp</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+                    <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">temp</span><span class="o">);</span>
+                    <span class="n">layer</span><span class="o">++;</span>
+                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">list</span><span class="o">;</span>
+    <span class="o">}</span></code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -488,7 +537,7 @@
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/%E5%89%91%E6%8C%87offer/%E9%87%8D%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91/">
+          <a class="prev" href="/post/%E5%89%91%E6%8C%87offer/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E7%AC%ACk%E4%B8%AA%E8%8A%82%E7%82%B9/">
             
             <i class="iconfont">
               <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -498,12 +547,12 @@
 </svg>
 
             </i>
-            <span class="prev-text nav-default">重建二叉树</span>
+            <span class="prev-text nav-default">二叉搜索树的第k个节点</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         
-          <a class="next" href="/post/%E5%89%91%E6%8C%87offer/%E6%89%91%E5%85%8B%E7%89%8C%E9%A1%BA%E5%AD%90/">
-            <span class="next-text nav-default">扑克牌顺子</span>
+          <a class="next" href="/post/%E5%89%91%E6%8C%87offer/%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E8%BF%90%E5%8A%A8%E8%8C%83%E5%9B%B4/">
+            <span class="next-text nav-default">机器人的运动范围</span>
             <span class="prev-text nav-mobile">下一篇</span>
             
             <i class="iconfont">
