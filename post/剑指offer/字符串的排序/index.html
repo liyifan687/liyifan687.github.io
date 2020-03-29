@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>剑指offer · 无名鼠辈</title>
+  <title>字符串排序 - 无名鼠辈</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -22,7 +22,9 @@
 
 <meta name="mobile-web-app-capable" content="yes">
 
-<meta name="author" content="lyf687" />
+<meta name="author" content="Lyf" />
+  <meta name="description" content="字符串排序 题目描述 输入一个字符串,按字典序打印出该字符串中字符的所有排列。例如输入字符串abc,则打印出由字符a,b,c所能排列出来的所有字" />
+
 
 
 
@@ -32,8 +34,8 @@
 <meta name="generator" content="Hugo 0.55.6" />
 
 
-<link rel="canonical" href="https://llc687.top/categories/%E5%89%91%E6%8C%87offer/" />
-<link href="/categories/%E5%89%91%E6%8C%87offer/index.xml" rel="alternate" type="application/rss+xml" title="无名鼠辈" />
+<link rel="canonical" href="https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%8E%92%E5%BA%8F/" />
+
 
 
 
@@ -56,19 +58,27 @@
 
 
 
-<meta property="og:title" content="剑指offer" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://llc687.top/categories/%E5%89%91%E6%8C%87offer/" />
+<meta property="og:title" content="字符串排序" />
+<meta property="og:description" content="字符串排序 题目描述 输入一个字符串,按字典序打印出该字符串中字符的所有排列。例如输入字符串abc,则打印出由字符a,b,c所能排列出来的所有字" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%8E%92%E5%BA%8F/" />
+<meta property="article:published_time" content="2020-03-29T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2020-03-29T00:00:00&#43;00:00"/>
 
-<meta property="og:updated_time" content="2020-03-29T00:00:00&#43;00:00"/>
+<meta itemprop="name" content="字符串排序">
+<meta itemprop="description" content="字符串排序 题目描述 输入一个字符串,按字典序打印出该字符串中字符的所有排列。例如输入字符串abc,则打印出由字符a,b,c所能排列出来的所有字">
 
-<meta itemprop="name" content="剑指offer">
-<meta itemprop="description" content="">
 
+<meta itemprop="datePublished" content="2020-03-29T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2020-03-29T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="280">
+
+
+
+<meta itemprop="keywords" content="算法,剑指offer," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="剑指offer"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:title" content="字符串排序"/>
+<meta name="twitter:description" content="字符串排序 题目描述 输入一个字符串,按字典序打印出该字符串中字符的所有排列。例如输入字符串abc,则打印出由字符a,b,c所能排列出来的所有字"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -341,151 +351,219 @@
     <main id="main" class="main bg-llight">
       <div class="content-wrapper">
         <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">字符串排序</h1>
+      
+      <div class="post-meta">
+        <time datetime="2020-03-29" class="post-time">
+          2020-03-29
+        </time>
+        <div class="post-category">
+            <a href="https://llc687.top/categories/%E5%89%91%E6%8C%87offer/"> 剑指offer </a>
+            
+          </div>
+        <span class="more-meta"> 约 280 字 </span>
+          <span class="more-meta"> 预计阅读 1 分钟 </span>
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#字符串排序">字符串排序</a>
+<ul>
+<li><a href="#题目描述">题目描述</a></li>
+<li><a href="#分析">分析</a></li>
+<li><a href="#实现">实现</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<h3 id="字符串排序">字符串排序</h3>
+
+<h4 id="题目描述">题目描述</h4>
+
+<blockquote>
+<p>输入一个字符串,按字典序打印出该字符串中字符的所有排列。例如输入字符串abc,则打印出由字符a,b,c所能排列出来的所有字符串abc,acb,bac,bca,cab和cba。</p>
+</blockquote>
+
+<h4 id="分析">分析</h4>
+
+<p><img src="http://img.llc687.top/uPic/截屏2020-01-05下午3.09.53.png" style="zoom:80%;" /></p>
+
+<h4 id="实现">实现</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">Permutation</span><span class="o">(</span><span class="n">String</span> <span class="n">str</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">str</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">str</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">PermutationHelper</span><span class="o">(</span><span class="n">str</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">(),</span> <span class="n">0</span><span class="o">,</span> <span class="n">res</span><span class="o">);</span>
+            <span class="n">Collections</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">res</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="o">(</span><span class="n">ArrayList</span><span class="o">)</span><span class="n">res</span><span class="o">;</span>
+    <span class="o">}</span>
+ 
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">PermutationHelper</span><span class="o">(</span><span class="kt">char</span><span class="o">[]</span> <span class="n">cs</span><span class="o">,</span> <span class="kt">int</span> <span class="n">i</span><span class="o">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">list</span><span class="o">)</span> <span class="o">{</span>
+ 		  <span class="c1">// 递归终止条件，i下标已移到 char 数组的末尾时，考虑添加这组字符串进入结果集
+</span><span class="c1"></span>      <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">cs</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">1</span><span class="o">)</span> <span class="o">{</span>
+          <span class="n">String</span> <span class="n">val</span> <span class="o">=</span> <span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">cs</span><span class="o">);</span>
+          <span class="k">if</span> <span class="o">(!</span><span class="n">list</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">val</span><span class="o">))</span>
+              <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">val</span><span class="o">);</span>
+      <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        	<span class="c1">// 回溯法
+</span><span class="c1"></span>          <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">cs</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+              <span class="n">swap</span><span class="o">(</span><span class="n">cs</span><span class="o">,</span> <span class="n">i</span><span class="o">,</span> <span class="n">j</span><span class="o">);</span>
+              <span class="n">PermutationHelper</span><span class="o">(</span><span class="n">cs</span><span class="o">,</span> <span class="n">i</span><span class="o">+</span><span class="n">1</span><span class="o">,</span> <span class="n">list</span><span class="o">);</span>
+              <span class="n">swap</span><span class="o">(</span><span class="n">cs</span><span class="o">,</span> <span class="n">i</span><span class="o">,</span> <span class="n">j</span><span class="o">);</span> <span class="c1">// 复位
+</span><span class="c1"></span>          <span class="o">}</span>
+      <span class="o">}</span>
+<span class="o">}</span>
+ 
+<span class="c1">// 交换数组两下标的元素
+</span><span class="c1"></span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">swap</span><span class="o">(</span><span class="kt">char</span><span class="o">[]</span> <span class="n">cs</span><span class="o">,</span> <span class="kt">int</span> <span class="n">i</span><span class="o">,</span> <span class="kt">int</span> <span class="n">j</span><span class="o">)</span> <span class="o">{</span>
+      <span class="kt">char</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">cs</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+      <span class="n">cs</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">cs</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
+      <span class="n">cs</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    
+    
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://llc687.top/tags/%E7%AE%97%E6%B3%95/">算法</a>
+          <a href="https://llc687.top/tags/%E5%89%91%E6%8C%87offer/">剑指offer</a>
           
+        </div>
 
-<section id="archive" class="archive">
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/%E5%89%91%E6%8C%87offer/%E5%8F%8D%E8%BD%AC%E5%8D%95%E8%AF%8D%E9%A1%BA%E5%BA%8F%E5%88%97/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">反转单词顺序列</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="/post/%E5%89%91%E6%8C%87offer/%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%80%86%E5%BA%8F%E5%AF%B9/">
+            <span class="next-text nav-default">数组中的逆序对</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
   
 
   
-    <div class="archive-post">
-      <time datetime="2020-01-18" class="archive-post-time">
-        2020-01-18
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E5%89%91%E6%8C%87offer/%E4%B8%8D%E7%94%A8%E5%8A%A0%E5%87%8F%E4%B9%98%E9%99%A4%E5%81%9A%E5%8A%A0%E6%B3%95/" class="archive-post-link">
-          不用加减乘除做加法
-        </a>
-      </span>
+  
+
+  
+
+  
+  
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "liyifan687/comments"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
     </div>
   
-    <div class="archive-post">
-      <time datetime="2020-01-12" class="archive-post-time">
-        2020-01-12
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E5%89%91%E6%8C%87offer/%E6%9B%BF%E6%8D%A2%E7%A9%BA%E6%A0%BC/" class="archive-post-link">
-          替换空格
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2020-01-12" class="archive-post-time">
-        2020-01-12
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E5%89%91%E6%8C%87offer/%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E6%95%B0/" class="archive-post-link">
-          旋转数组的最小数
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2020-01-12" class="archive-post-time">
-        2020-01-12
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E5%89%91%E6%8C%87offer/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/" class="archive-post-link">
-          斐波那契数列
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2020-01-12" class="archive-post-time">
-        2020-01-12
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E5%89%91%E6%8C%87offer/%E4%BB%8E%E5%B0%BE%E5%88%B0%E5%A4%B4%E6%89%93%E5%8D%B0%E9%93%BE%E8%A1%A8/" class="archive-post-link">
-          从尾到头打印链表
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2020-01-12" class="archive-post-time">
-        2020-01-12
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E5%89%91%E6%8C%87offer/%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E7%9A%84%E6%9F%A5%E6%89%BE/" class="archive-post-link">
-          二维数组的查找
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2020-01-12" class="archive-post-time">
-        2020-01-12
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E5%89%91%E6%8C%87offer/%E4%B8%A4%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/" class="archive-post-link">
-          两个栈实现队列
-        </a>
-      </span>
-    </div>
-  
-</section>
 
-
-
-
-
-
-  
-  
   
 
   
-  
 
   
-  
+
+    
 
   
-  
-
-  
-  
-  <nav class="pagination">
-    <ul>
-      
-      <li >
-        <a href="/categories/%E5%89%91%E6%8C%87offer/">1</a>
-      </li>
-      
-      <li >
-        <a href="/categories/%E5%89%91%E6%8C%87offer/page/2/">2</a>
-      </li>
-      
-      <li >
-        <a href="/categories/%E5%89%91%E6%8C%87offer/page/3/">3</a>
-      </li>
-      
-      <li >
-        <a href="/categories/%E5%89%91%E6%8C%87offer/page/4/">4</a>
-      </li>
-      
-      <li >
-        <a href="/categories/%E5%89%91%E6%8C%87offer/page/5/">5</a>
-      </li>
-      
-      <li >
-        <a href="/categories/%E5%89%91%E6%8C%87offer/page/6/">6</a>
-      </li>
-      
-      <li  class="active" >
-        <a href="/categories/%E5%89%91%E6%8C%87offer/page/7/">7</a>
-      </li>
-      
-    </ul>
-  </nav>
-
-  
-  
-
-
-
-
 
         </div>
       </div>

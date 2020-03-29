@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>剑指offer · 无名鼠辈</title>
+  <title>删除链表中的重复节点 - 无名鼠辈</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -22,7 +22,9 @@
 
 <meta name="mobile-web-app-capable" content="yes">
 
-<meta name="author" content="lyf687" />
+<meta name="author" content="Lyf" />
+  <meta name="description" content="删除链表中的重复节点 题目描述 在一个排序的链表中，存在重复的结点，请删除该链表中重复的结点，重复的结点不保留，返回链表头指针。 例如，链表1-&amp;" />
+
 
 
 
@@ -32,8 +34,8 @@
 <meta name="generator" content="Hugo 0.55.6" />
 
 
-<link rel="canonical" href="https://llc687.top/categories/%E5%89%91%E6%8C%87offer/" />
-<link href="/categories/%E5%89%91%E6%8C%87offer/index.xml" rel="alternate" type="application/rss+xml" title="无名鼠辈" />
+<link rel="canonical" href="https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E8%8A%82%E7%82%B9/" />
+
 
 
 
@@ -56,19 +58,27 @@
 
 
 
-<meta property="og:title" content="剑指offer" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://llc687.top/categories/%E5%89%91%E6%8C%87offer/" />
+<meta property="og:title" content="删除链表中的重复节点" />
+<meta property="og:description" content="删除链表中的重复节点 题目描述 在一个排序的链表中，存在重复的结点，请删除该链表中重复的结点，重复的结点不保留，返回链表头指针。 例如，链表1-&" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E8%8A%82%E7%82%B9/" />
+<meta property="article:published_time" content="2020-03-29T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2020-03-29T00:00:00&#43;00:00"/>
 
-<meta property="og:updated_time" content="2020-03-29T00:00:00&#43;00:00"/>
+<meta itemprop="name" content="删除链表中的重复节点">
+<meta itemprop="description" content="删除链表中的重复节点 题目描述 在一个排序的链表中，存在重复的结点，请删除该链表中重复的结点，重复的结点不保留，返回链表头指针。 例如，链表1-&">
 
-<meta itemprop="name" content="剑指offer">
-<meta itemprop="description" content="">
 
+<meta itemprop="datePublished" content="2020-03-29T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2020-03-29T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="326">
+
+
+
+<meta itemprop="keywords" content="算法,剑指offer," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="剑指offer"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:title" content="删除链表中的重复节点"/>
+<meta name="twitter:description" content="删除链表中的重复节点 题目描述 在一个排序的链表中，存在重复的结点，请删除该链表中重复的结点，重复的结点不保留，返回链表头指针。 例如，链表1-&"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -341,151 +351,186 @@
     <main id="main" class="main bg-llight">
       <div class="content-wrapper">
         <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">删除链表中的重复节点</h1>
+      
+      <div class="post-meta">
+        <time datetime="2020-03-29" class="post-time">
+          2020-03-29
+        </time>
+        <div class="post-category">
+            <a href="https://llc687.top/categories/%E5%89%91%E6%8C%87offer/"> 剑指offer </a>
+            
+          </div>
+        <span class="more-meta"> 约 326 字 </span>
+          <span class="more-meta"> 预计阅读 1 分钟 </span>
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#删除链表中的重复节点">删除链表中的重复节点</a>
+<ul>
+<li><a href="#题目描述">题目描述</a></li>
+<li><a href="#分析">分析</a></li>
+<li><a href="#实现">实现</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<h3 id="删除链表中的重复节点">删除链表中的重复节点</h3>
+
+<h4 id="题目描述">题目描述</h4>
+
+<blockquote>
+<p>在一个排序的链表中，存在重复的结点，请删除该链表中重复的结点，重复的结点不保留，返回链表头指针。 例如，链表1-&gt;2-&gt;3-&gt;3-&gt;4-&gt;4-&gt;5 处理后为 1-&gt;2-&gt;5</p>
+</blockquote>
+
+<h4 id="分析">分析</h4>
+
+<p>在扫描时，如果遇到重复节点，就继续向后扫描找到第一个与当前节点不重复的节点。</p>
+
+<h4 id="实现">实现</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="n">ListNode</span> <span class="nf">deleteDuplication</span><span class="o">(</span><span class="n">ListNode</span> <span class="n">pHead</span><span class="o">){</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">pHead</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">pHead</span><span class="o">.</span><span class="na">next</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span> 
+            <span class="c1">// 只有0个或1个结点，则返回
+</span><span class="c1"></span>            <span class="k">return</span> <span class="n">pHead</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">pHead</span><span class="o">.</span><span class="na">val</span> <span class="o">==</span> <span class="n">pHead</span><span class="o">.</span><span class="na">next</span><span class="o">.</span><span class="na">val</span><span class="o">)</span> <span class="o">{</span> 
+            <span class="c1">// 当前结点是重复结点
+</span><span class="c1"></span>            <span class="n">ListNode</span> <span class="n">pNode</span> <span class="o">=</span> <span class="n">pHead</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+            <span class="k">while</span> <span class="o">(</span><span class="n">pNode</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">pNode</span><span class="o">.</span><span class="na">val</span> <span class="o">==</span> <span class="n">pHead</span><span class="o">.</span><span class="na">val</span><span class="o">)</span> <span class="o">{</span>
+                <span class="c1">// 跳过值与当前结点相同的全部结点,找到第一个与当前结点不同的结点
+</span><span class="c1"></span>                <span class="n">pNode</span> <span class="o">=</span> <span class="n">pNode</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+            <span class="o">}</span>
+            <span class="c1">// 从第一个与当前结点不同的结点开始递归
+</span><span class="c1"></span>            <span class="k">return</span> <span class="n">deleteDuplication</span><span class="o">(</span><span class="n">pNode</span><span class="o">);</span> 
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span> 
+            <span class="c1">// 当前结点不是重复结点
+</span><span class="c1"></span>            <span class="n">pHead</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">deleteDuplication</span><span class="o">(</span><span class="n">pHead</span><span class="o">.</span><span class="na">next</span><span class="o">);</span>
+            <span class="c1">// 保留当前结点，从下一个结点开始递归
+</span><span class="c1"></span>            <span class="k">return</span> <span class="n">pHead</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    
+    
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://llc687.top/tags/%E7%AE%97%E6%B3%95/">算法</a>
+          <a href="https://llc687.top/tags/%E5%89%91%E6%8C%87offer/">剑指offer</a>
           
+        </div>
 
-<section id="archive" class="archive">
+      
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/%E5%89%91%E6%8C%87offer/%E5%8F%8D%E8%BD%AC%E5%8D%95%E8%AF%8D%E9%A1%BA%E5%BA%8F%E5%88%97/">
+            <span class="next-text nav-default">反转单词顺序列</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
   
 
   
-    <div class="archive-post">
-      <time datetime="2020-01-18" class="archive-post-time">
-        2020-01-18
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E5%89%91%E6%8C%87offer/%E4%B8%8D%E7%94%A8%E5%8A%A0%E5%87%8F%E4%B9%98%E9%99%A4%E5%81%9A%E5%8A%A0%E6%B3%95/" class="archive-post-link">
-          不用加减乘除做加法
-        </a>
-      </span>
+  
+
+  
+
+  
+  
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "liyifan687/comments"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
     </div>
   
-    <div class="archive-post">
-      <time datetime="2020-01-12" class="archive-post-time">
-        2020-01-12
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E5%89%91%E6%8C%87offer/%E6%9B%BF%E6%8D%A2%E7%A9%BA%E6%A0%BC/" class="archive-post-link">
-          替换空格
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2020-01-12" class="archive-post-time">
-        2020-01-12
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E5%89%91%E6%8C%87offer/%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E6%95%B0/" class="archive-post-link">
-          旋转数组的最小数
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2020-01-12" class="archive-post-time">
-        2020-01-12
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E5%89%91%E6%8C%87offer/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/" class="archive-post-link">
-          斐波那契数列
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2020-01-12" class="archive-post-time">
-        2020-01-12
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E5%89%91%E6%8C%87offer/%E4%BB%8E%E5%B0%BE%E5%88%B0%E5%A4%B4%E6%89%93%E5%8D%B0%E9%93%BE%E8%A1%A8/" class="archive-post-link">
-          从尾到头打印链表
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2020-01-12" class="archive-post-time">
-        2020-01-12
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E5%89%91%E6%8C%87offer/%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E7%9A%84%E6%9F%A5%E6%89%BE/" class="archive-post-link">
-          二维数组的查找
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2020-01-12" class="archive-post-time">
-        2020-01-12
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E5%89%91%E6%8C%87offer/%E4%B8%A4%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/" class="archive-post-link">
-          两个栈实现队列
-        </a>
-      </span>
-    </div>
-  
-</section>
 
-
-
-
-
-
-  
-  
   
 
   
-  
 
   
-  
+
+    
 
   
-  
-
-  
-  
-  <nav class="pagination">
-    <ul>
-      
-      <li >
-        <a href="/categories/%E5%89%91%E6%8C%87offer/">1</a>
-      </li>
-      
-      <li >
-        <a href="/categories/%E5%89%91%E6%8C%87offer/page/2/">2</a>
-      </li>
-      
-      <li >
-        <a href="/categories/%E5%89%91%E6%8C%87offer/page/3/">3</a>
-      </li>
-      
-      <li >
-        <a href="/categories/%E5%89%91%E6%8C%87offer/page/4/">4</a>
-      </li>
-      
-      <li >
-        <a href="/categories/%E5%89%91%E6%8C%87offer/page/5/">5</a>
-      </li>
-      
-      <li >
-        <a href="/categories/%E5%89%91%E6%8C%87offer/page/6/">6</a>
-      </li>
-      
-      <li  class="active" >
-        <a href="/categories/%E5%89%91%E6%8C%87offer/page/7/">7</a>
-      </li>
-      
-    </ul>
-  </nav>
-
-  
-  
-
-
-
-
 
         </div>
       </div>
