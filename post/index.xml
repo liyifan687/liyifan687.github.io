@@ -6,10 +6,19 @@
     <description>Recent content in Posts on 无名鼠辈</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 29 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 19 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://llc687.top/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>如何完成一次快速的查询</title>
+      <link>https://llc687.top/post/%E5%A6%82%E4%BD%95%E5%AE%8C%E6%88%90%E4%B8%80%E6%AC%A1%E5%BF%AB%E9%80%9F%E7%9A%84%E6%9F%A5%E8%AF%A2/</link>
+      <pubDate>Sun, 19 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E5%A6%82%E4%BD%95%E5%AE%8C%E6%88%90%E4%B8%80%E6%AC%A1%E5%BF%AB%E9%80%9F%E7%9A%84%E6%9F%A5%E8%AF%A2/</guid>
+      <description>哪个男孩不想完成一次快速的查询？ 1. MySQL 查询慢是什么体验？ 谢邀，利益相关。 大多数互联网应用场景都是读多写少，业务逻辑更多分布在写上。对读的要求大</description>
+    </item>
     
     <item>
       <title>删除链表中的重复节点</title>
@@ -180,15 +189,6 @@
       
       <guid>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E6%89%91%E5%85%8B%E7%89%8C%E9%A1%BA%E5%AD%90/</guid>
       <description>扑克牌顺子 题目描述 LL今天心情特别好,因为他去买了一副扑克牌,发现里面居然有2个大王,2个小王(一副牌原本是54张^_^)&amp;hellip;他</description>
-    </item>
-    
-    <item>
-      <title>把字符串转换为整数</title>
-      <link>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E6%8A%8A%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2%E4%B8%BA%E6%95%B4%E6%95%B0/</link>
-      <pubDate>Sun, 01 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E6%8A%8A%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2%E4%B8%BA%E6%95%B4%E6%95%B0/</guid>
-      <description>把字符串转换为整数 题目描述 将一个字符串转换成一个整数，要求不能使用字符串转换整数的库函数。 数值为0或者字符串不是一个合法的数值则返回0 分析 对</description>
     </item>
     
   </channel>
