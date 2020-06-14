@@ -6,10 +6,28 @@
     <description>Recent content in Tags on 无名鼠辈</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 19 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 14 Jun 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://llc687.top/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>IO</title>
+      <link>https://llc687.top/tags/io/</link>
+      <pubDate>Sun, 14 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/tags/io/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>https://llc687.top/tags/linux/</link>
+      <pubDate>Sun, 14 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/tags/linux/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>ElasticSearch</title>
