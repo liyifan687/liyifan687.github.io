@@ -6,10 +6,82 @@
     <description>Recent content in Posts on 无名鼠辈</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 14 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 21 Jun 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://llc687.top/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>单例模式</title>
+      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Sun, 21 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</guid>
+      <description>单例模式 确保一个类只有一个实例，并提供该实例的全局访问点,。 类图 使用一个私有构造函数、一个私有静态变量以及一个公有静态函数来实现。 私有构造函</description>
+    </item>
+    
+    <item>
+      <title>原型模式</title>
+      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Sun, 21 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/</guid>
+      <description>原型模式 目的 使用原型实例指定要创建对象的类型，通过复制这个原型来创建新对象。 类图 角色 Client : 调用类 Prototype : 抽象原型类 ConcretePrototyp</description>
+    </item>
+    
+    <item>
+      <title>外观模式</title>
+      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%A4%96%E8%A7%82%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Sun, 21 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%A4%96%E8%A7%82%E6%A8%A1%E5%BC%8F/</guid>
+      <description>外观模式 目的 提供了一个统一的接口，用来访问子系统中的一群接口，从而让子系统更容易使用。 类图 角色 Facade: 外观角色 SubSystem:子系统角色 实现 子</description>
+    </item>
+    
+    <item>
+      <title>工厂方法</title>
+      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95/</link>
+      <pubDate>Sun, 21 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95/</guid>
+      <description>工厂方法 目的 定义一个创建对象的接口，但由子类决定要实例化哪个类，把实例化操作推迟到子类。 类图 在简单工厂中，创建对象的是另一个类，而在工厂方法</description>
+    </item>
+    
+    <item>
+      <title>建造者模式</title>
+      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Sun, 21 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/</guid>
+      <description>建造者模式 目的 封装一个对象的构造过程，并允许按步骤构造。 类图 角色 Builder：抽象建造者 ConcreteBuilder：具体建造者 Dire</description>
+    </item>
+    
+    <item>
+      <title>抽象工厂</title>
+      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82/</link>
+      <pubDate>Sun, 21 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82/</guid>
+      <description>抽象工厂 目的 提供一个接口，用于创建相关的对象家族 。也就是说创建了很多对象而不是一个对象，且这些对象是相关的，必须一起创建出来。 工厂方法是只用</description>
+    </item>
+    
+    <item>
+      <title>简单工厂</title>
+      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82/</link>
+      <pubDate>Sun, 21 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82/</guid>
+      <description>简单工厂 目的 在创建一个对象时不向客户暴露内部细节，并提供一个创建对象的通用接口。 类图 简单工厂不是设计模式，更像是一种编程习惯。 它把实例化的操</description>
+    </item>
+    
+    <item>
+      <title>适配器模式</title>
+      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Sun, 21 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/</guid>
+      <description>适配器模式 目的 将一个接口转换成用户希望的另一个接口，使接口不兼容的那些类可以一起工作，其别名为包装器(Wrapper)。 类图 角色 Target</description>
+    </item>
     
     <item>
       <title>如何完成一次  IO</title>
@@ -117,78 +189,6 @@
       
       <guid>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D/</guid>
       <description>正则表达式匹配 题目描述 请实现一个函数用来匹配包括&amp;rsquo;.&amp;lsquo;和&amp;rsquo;&amp;lsquo;的正则表达式。模式中的字符&amp;rs</description>
-    </item>
-    
-    <item>
-      <title>矩阵中的路径</title>
-      <link>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E8%B7%AF%E5%BE%84/</link>
-      <pubDate>Sun, 22 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E8%B7%AF%E5%BE%84/</guid>
-      <description>矩阵中的路径 题目描述 请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一个格子开始，每一步可</description>
-    </item>
-    
-    <item>
-      <title>链表中倒数第k个节点</title>
-      <link>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E9%93%BE%E8%A1%A8%E4%B8%AD%E5%80%92%E6%95%B0%E7%AC%ACk%E4%B8%AA%E8%8A%82%E7%82%B9/</link>
-      <pubDate>Sun, 22 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E9%93%BE%E8%A1%A8%E4%B8%AD%E5%80%92%E6%95%B0%E7%AC%ACk%E4%B8%AA%E8%8A%82%E7%82%B9/</guid>
-      <description>链表中倒数第k个节点 题目描述 输入一个链表，输出该链表中倒数第k个结点。 分析 快慢指针即可，快指针先跑 k-1 ,到达尾部时慢指针即为第 k 个节点。 实现 1</description>
-    </item>
-    
-    <item>
-      <title>二叉搜索树的第k个节点</title>
-      <link>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E7%AC%ACk%E4%B8%AA%E8%8A%82%E7%82%B9/</link>
-      <pubDate>Sun, 15 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E7%AC%ACk%E4%B8%AA%E8%8A%82%E7%82%B9/</guid>
-      <description>二叉搜索树的第k个节点 题目描述 给定一棵二叉搜索树，请找出其中的第k小的结点。例如， （5，3，7，2，4，6，8） 中，按结点数值大小顺序第三小</description>
-    </item>
-    
-    <item>
-      <title>按之字顺序打印二叉树点</title>
-      <link>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E6%8C%89%E4%B9%8B%E5%AD%97%E9%A1%BA%E5%BA%8F%E6%89%93%E5%8D%B0%E4%BA%8C%E5%8F%89%E6%A0%91/</link>
-      <pubDate>Sun, 15 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E6%8C%89%E4%B9%8B%E5%AD%97%E9%A1%BA%E5%BA%8F%E6%89%93%E5%8D%B0%E4%BA%8C%E5%8F%89%E6%A0%91/</guid>
-      <description>按之字顺序打印二叉树 题目描述 请实现一个函数按照之字形打印二叉树，即第一行按照从左到右的顺序打印，第二层按照从右至左的顺序打印，第三行按照从左</description>
-    </item>
-    
-    <item>
-      <title>机器人的运动范围</title>
-      <link>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E8%BF%90%E5%8A%A8%E8%8C%83%E5%9B%B4/</link>
-      <pubDate>Sun, 15 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E8%BF%90%E5%8A%A8%E8%8C%83%E5%9B%B4/</guid>
-      <description>机器人的运动范围 题目描述 地上有一个m行和n列的方格。一个机器人从坐标0,0的格子开始移动，每一次只能向左，右，上，下四个方向移动一格，但是不</description>
-    </item>
-    
-    <item>
-      <title>树的子结构</title>
-      <link>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E6%A0%91%E7%9A%84%E5%AD%90%E7%BB%93%E6%9E%84/</link>
-      <pubDate>Sun, 15 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E6%A0%91%E7%9A%84%E5%AD%90%E7%BB%93%E6%9E%84/</guid>
-      <description>树的子结构 题目描述 输入两棵二叉树A，B，判断B是不是A的子结构。（ps：我们约定空树不是任意一个树的子结构） 分析 使用递归，依次对比。 实现 1 2</description>
-    </item>
-    
-    <item>
-      <title>重建二叉树</title>
-      <link>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E9%87%8D%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91/</link>
-      <pubDate>Sun, 15 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E9%87%8D%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91/</guid>
-      <description>重建二叉树 题目描述 输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前</description>
-    </item>
-    
-    <item>
-      <title>二叉搜索树的后序遍历序列</title>
-      <link>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97/</link>
-      <pubDate>Sun, 01 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97/</guid>
-      <description>二叉搜索树的后序遍历序列 题目描述 输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历的结果。如果是则输出Yes,否则输出No。假设输入的</description>
     </item>
     
   </channel>
