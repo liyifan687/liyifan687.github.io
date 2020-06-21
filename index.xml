@@ -30,13 +30,13 @@
 
 &lt;p&gt;私有构造函数保证了不能通过构造函数来创建对象实例，只能通过公有静态函数返回唯一的私有静态变量。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://cdn.nlark.com/yuque/0/2020/png/668813/1591619977807-76818370-a3e1-4a34-b6fa-4b37895fb81e.png#align=left&amp;amp;display=inline&amp;amp;height=222&amp;amp;margin=%5Bobject%20Object%5D&amp;amp;originHeight=222&amp;amp;originWidth=460&amp;amp;size=0&amp;amp;status=done&amp;amp;style=none&amp;amp;width=460&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://img.llc687.top/uPic/1591619977807-76818370-a3e1-4a34-b6fa-4b37895fb81e.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;6种实现方式&#34;&gt;6种实现方式&lt;/h3&gt;
 
 &lt;h3 id=&#34;实现方式总结&#34;&gt;实现方式总结&lt;/h3&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://cdn.nlark.com/yuque/0/2020/png/668813/1591619976218-9478cedc-13a7-4e39-8f11-919d6860e376.png#align=left&amp;amp;display=inline&amp;amp;height=670&amp;amp;margin=%5Bobject%20Object%5D&amp;amp;originHeight=670&amp;amp;originWidth=1770&amp;amp;size=0&amp;amp;status=done&amp;amp;style=none&amp;amp;width=1770&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://img.llc687.top/uPic/1591619976218-9478cedc-13a7-4e39-8f11-919d6860e376.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&#34;懒汉式-线程不安全&#34;&gt;懒汉式-线程不安全&lt;/h4&gt;
 
@@ -454,7 +454,7 @@
 &lt;li&gt;SubSystem:子系统角色&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://cdn.nlark.com/yuque/0/2020/png/668813/1592390386754-02285a59-b878-4854-98ce-4f1d4ba4d75a.png#align=left&amp;amp;display=inline&amp;amp;height=496&amp;amp;margin=%5&#34; alt=&#34;image.png&#34; style=&#34;zoom:47%;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://img.llc687.top/uPic/1592390386754-02285a59-b878-4854-98ce-4f1d4ba4d75a.png&#34; alt=&#34;image.png&#34; style=&#34;zoom:47%;&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;实现&#34;&gt;实现&lt;/h3&gt;
 
@@ -592,7 +592,7 @@
 &lt;li&gt;ConcreteFactory：具体工厂&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://cdn.nlark.com/yuque/0/2020/png/668813/1592218629964-5ec8fef7-7ee0-494a-ad66-7fc324df935d.png#align=left&amp;amp;display=inline&amp;amp;height=280&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://img.llc687.top/uPic/1592218629964-5ec8fef7-7ee0-494a-ad66-7fc324df935d.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;实现&#34;&gt;实现&lt;/h3&gt;
 
@@ -775,7 +775,7 @@
 &lt;li&gt;Product：产品角色&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://cdn.nlark.com/yuque/0/2020/png/668813/1592284592219-d207518b-1b8b-4357-a5f8-17541cf628f3.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://img.llc687.top/uPic/1592284592219-d207518b-1b8b-4357-a5f8-17541cf628f3.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;实现&#34;&gt;实现&lt;/h3&gt;
 
@@ -964,7 +964,7 @@
 &lt;li&gt;Product：具体产品&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://cdn.nlark.com/yuque/0/2020/png/668813/1592278700752-04ffac88-666d-4efe-aa25-7b4855f56447.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://img.llc687.top/uPic/1592278700752-04ffac88-666d-4efe-aa25-7b4855f56447.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;代码实现&#34;&gt;代码实现&lt;/h3&gt;
 
@@ -1144,17 +1144,17 @@
 
 &lt;li&gt;&lt;p&gt;在添加新的产品对象时，难以扩展抽象工厂来生产新种类的产品，因为在抽象工厂角色中规定了所有可能被创建的产品集合，要支持新种类的产品就意味着要对该接口进行扩展，这将涉及到对抽象工厂角色及其所有子类的修改。&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;开闭原则的倾斜性。&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;开闭原则的倾斜性。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h3 id=&#34;场景&#34;&gt;场景&lt;/h3&gt;
 
-&lt;p&gt;在以下情况下可以使用抽象工厂模式：&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;在以下情况下可以使用抽象工厂模式：&lt;/p&gt;
 
-&lt;li&gt;&lt;p&gt;一个系统不依赖于产品类实例如何被创建、组合和表达的细节。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;系统中有多于一个的产品族，而每次只使用其中某一产品族。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;属于同一个产品族的产品将在一起使用。&lt;/p&gt;&lt;/li&gt;
+&lt;ul&gt;
+&lt;li&gt;一个系统不依赖于产品类实例如何被创建、组合和表达的细节。&lt;/li&gt;
+&lt;li&gt;系统中有多于一个的产品族，而每次只使用其中某一产品族。&lt;/li&gt;
+&lt;li&gt;属于同一个产品族的产品将在一起使用。&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;系统提供一个产品类的库，所有的产品以同样的接口出现，客户端不依赖于具体实现。&lt;/p&gt;
 
@@ -1199,7 +1199,7 @@
 &lt;li&gt;ConcreteProduct：具体产品&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://cdn.nlark.com/yuque/0/2020/png/668813/1592131142228-3a3087fc-b7a7-49ff-b27a-c6fc54b8ff17.png#align=left&amp;amp;display=inline&amp;amp;height=303&amp;amp;margin=%5s&#34; alt=&#34;image.png&#34; style=&#34;zoom:60%;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://img.llc687.top/uPic/1592131142228-3a3087fc-b7a7-49ff-b27a-c6fc54b8ff17.png&#34; alt=&#34;image.png&#34; style=&#34;zoom:60%;&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;实现&#34;&gt;实现&lt;/h3&gt;
 
@@ -1387,12 +1387,12 @@
 
 &lt;h4 id=&#34;对象适配器&#34;&gt;对象适配器&lt;/h4&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://cdn.nlark.com/yuque/0/2020/png/668813/1592549782748-a143c2e2-5b70-44da-a053-a0d2b4d98d76.png#align=left&amp;amp;display=inline&amp;amp;height=286&amp;amp;margin=%5&#34; alt=&#34;image.png&#34; style=&#34;zoom:57%;&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;&lt;img src=&#34;http://img.llc687.top/uPic/1592549782748-a143c2e2-5b70-44da-a053-a0d2b4d98d76.png&#34; alt=&#34;image.png&#34; style=&#34;zoom:57%;&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h4 id=&#34;类适配器&#34;&gt;类适配器&lt;/h4&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://cdn.nlark.com/yuque/0/2020/png/668813/1592549935636-2f98136c-3810-41aa-ba13-2290bda5df82.png#align=left&amp;amp;display=inline&amp;amp;height=368&amp;amp;margin=%5&#34; alt=&#34;image.png&#34; style=&#34;zoom:47%;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://img.llc687.top/uPic/1592549935636-2f98136c-3810-41aa-ba13-2290bda5df82.png&#34; alt=&#34;image.png&#34; style=&#34;zoom:47%;&#34; /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;在对象适配器模式中，适配器与适配者之间是关联关系；&lt;/p&gt;&lt;/li&gt;
