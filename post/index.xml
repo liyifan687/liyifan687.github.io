@@ -12,7 +12,7 @@
     
     
     <item>
-      <title>“享元模式&#34;</title>
+      <title>享元模式</title>
       <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F/</link>
       <pubDate>Fri, 26 Jun 2020 00:00:00 +0000</pubDate>
       
@@ -26,7 +26,7 @@
       <pubDate>Fri, 26 Jun 2020 00:00:00 +0000</pubDate>
       
       <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/</guid>
-      <description>##代理模式 目的 为其他对象提供一种代理以控制对这个对象的访问。 介绍 代理有四类： 远程代理(Remote Proxy): 控制对远程对象(不同地址空间)的访问，</description>
+      <description>代理模式 目的 为其他对象提供一种代理以控制对这个对象的访问。 介绍 代理有四类： 远程代理(Remote Proxy): 控制对远程对象(不同地址空间)的访问，负责</description>
     </item>
     
     <item>

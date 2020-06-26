@@ -12,7 +12,7 @@
     
     
     <item>
-      <title>“享元模式&#34;</title>
+      <title>享元模式</title>
       <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F/</link>
       <pubDate>Fri, 26 Jun 2020 00:00:00 +0000</pubDate>
       
@@ -34,7 +34,7 @@
 &lt;li&gt;FlyweightFactory: 享元工厂类&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://cdn.nlark.com/yuque/0/2020/png/668813/1593162650390-6469961c-219d-4426-b06c-e696952df296.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://img.llc687.top/uPic/1593162650390-6469961c-219d-4426-b06c-e696952df296.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;实现&#34;&gt;实现&lt;/h3&gt;
 
@@ -195,7 +195,7 @@
       
         <description>
 
-&lt;p&gt;##代理模式&lt;/p&gt;
+&lt;h2 id=&#34;代理模式&#34;&gt;代理模式&lt;/h2&gt;
 
 &lt;h3 id=&#34;目的&#34;&gt;目的&lt;/h3&gt;
 
@@ -223,7 +223,7 @@
 &lt;li&gt;&lt;p&gt;RealSubject: 真实主题角色&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://cdn.nlark.com/yuque/0/2020/png/668813/1593165283323-1b1d74b4-a879-483f-ad83-c53ce7619fbd.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://img.llc687.top/uPic/1593165283323-1b1d74b4-a879-483f-ad83-c53ce7619fbd.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;实现&#34;&gt;实现&lt;/h3&gt;
 
@@ -401,7 +401,7 @@
       
         <description>
 
-&lt;h1 id=&#34;桥接模式&#34;&gt;桥接模式&lt;/h1&gt;
+&lt;h2 id=&#34;桥接模式&#34;&gt;桥接模式&lt;/h2&gt;
 
 &lt;h3 id=&#34;目的&#34;&gt;目的&lt;/h3&gt;
 
@@ -418,7 +418,7 @@
 &lt;li&gt;ConcreteImplementor：具体实现类&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://cdn.nlark.com/yuque/0/2020/png/668813/1592826860333-b3d44a1f-8ed9-4a1c-9b08-a4dbf72c1967.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://img.llc687.top/uPic/1592826860333-b3d44a1f-8ed9-4a1c-9b08-a4dbf72c1967.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;动机&#34;&gt;动机&lt;/h3&gt;
 
@@ -626,7 +626,7 @@
 &lt;li&gt;Composite：容器（树枝）构件。包含子节点，子节点可以是叶子节点，也可以是容器节点，提供一个集合用于存储子节点，&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://cdn.nlark.com/yuque/0/2020/png/668813/1593153865135-99e51682-aaab-443c-8e55-ee4f5a5db6a6.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://img.llc687.top/uPic/1593153865135-99e51682-aaab-443c-8e55-ee4f5a5db6a6.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;实现&#34;&gt;实现&lt;/h3&gt;
 
@@ -899,7 +899,7 @@
 &lt;li&gt;ConcreteDecorator: 具体装饰类：抽象装饰类的子类，负责向构件添加新的职责。&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://cdn.nlark.com/yuque/0/2020/png/668813/1593159996339-7bc4075b-f9e8-4022-ba7b-0f41c988b5c7.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://img.llc687.top/uPic/1593159996339-7bc4075b-f9e8-4022-ba7b-0f41c988b5c7.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;实现&#34;&gt;实现&lt;/h3&gt;
 
