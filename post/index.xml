@@ -6,10 +6,55 @@
     <description>Recent content in Posts on 无名鼠辈</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 21 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 26 Jun 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://llc687.top/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>“享元模式&#34;</title>
+      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Fri, 26 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F/</guid>
+      <description>享元模式 目的 实现对象的复用：利用共享的方式来支持大量细粒度的对象，这些对象一部分内部状态是相同的 类图 Flyweight: 抽象享元类 ConcreteFlyweight: 具体享元类 FlyweightFactory: 享元工厂类 实现</description>
+    </item>
+    
+    <item>
+      <title>代理模式</title>
+      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Fri, 26 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/</guid>
+      <description>##代理模式 目的 为其他对象提供一种代理以控制对这个对象的访问。 介绍 代理有四类： 远程代理(Remote Proxy): 控制对远程对象(不同地址空间)的访问，</description>
+    </item>
+    
+    <item>
+      <title>桥接模式</title>
+      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Fri, 26 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F/</guid>
+      <description>桥接模式 目的 将抽象与实现分离开来，使它们可以独立变化。 类图 角色 Abstraction：抽象类 RefinedAbstraction：扩充抽象类</description>
+    </item>
+    
+    <item>
+      <title>组合模式</title>
+      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Fri, 26 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F/</guid>
+      <description>组合模式 目的 将对象组合成树形结构来表示“整体/部分”层次关系，允许用户以相同的方式处理单独对象和组合对象。 类图 Component ：抽象构件类。定义参加组合对</description>
+    </item>
+    
+    <item>
+      <title>装饰模式</title>
+      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Fri, 26 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F/</guid>
+      <description>装饰模式 目的 动态地给一个对象增加一些额外的职责。 类图 角色 Component: 抽象构件 ConcreteComponent: 具体构件 ：用于定义具体的构件对象，实现了在抽象构件中声明的方法。 Decorator: 抽象装</description>
+    </item>
     
     <item>
       <title>单例模式</title>
@@ -144,51 +189,6 @@
       
       <guid>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E9%A1%BA%E6%97%B6%E9%92%88%E6%89%93%E5%8D%B0%E7%9F%A9%E9%98%B5/</guid>
       <description>顺时针打印矩阵 题目描述 输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字，例如，如果输入如下4 X 4矩阵： 1 2 3 4 5 6 7 8 9 10 11 12 13</description>
-    </item>
-    
-    <item>
-      <title>丑数</title>
-      <link>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E4%B8%91%E6%95%B0/</link>
-      <pubDate>Sun, 22 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E4%B8%91%E6%95%B0/</guid>
-      <description>丑数 题目描述 把只包含质因子2、3和5的数称作丑数（Ugly Number）。例如6、8都是丑数，但14不是，因为它包含质因子7。 习惯上我们把1</description>
-    </item>
-    
-    <item>
-      <title>复杂链表的复制</title>
-      <link>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6/</link>
-      <pubDate>Sun, 22 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6/</guid>
-      <description>复杂链表的复制 题目描述 输入一个复杂链表（每个节点中有节点值，以及两个指针，一个指向下一个节点，另一个特殊指针指向任意一个节点），返回结果为复</description>
-    </item>
-    
-    <item>
-      <title>序列化二叉树</title>
-      <link>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E5%BA%8F%E5%88%97%E5%8C%96%E4%BA%8C%E5%8F%89%E6%A0%91/</link>
-      <pubDate>Sun, 22 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E5%BA%8F%E5%88%97%E5%8C%96%E4%BA%8C%E5%8F%89%E6%A0%91/</guid>
-      <description>序列化二叉树 题目描述 请实现两个函数，分别用来序列化和反序列化二叉树 二叉树的序列化是指：把一棵二叉树按照某种遍历方式的结果以某种格式保存为字符</description>
-    </item>
-    
-    <item>
-      <title>最小的K个数</title>
-      <link>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E6%9C%80%E5%B0%8F%E7%9A%84k%E4%B8%AA%E6%95%B0/</link>
-      <pubDate>Sun, 22 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E6%9C%80%E5%B0%8F%E7%9A%84k%E4%B8%AA%E6%95%B0/</guid>
-      <description>最小的K个数 题目描述 输入 n 个整数，找出其中最小的 K 个数。例如输入 4,5,1,6,2,7,3,8 这 8 个数字，则最小的4个数字是 1,2,3,4,。 分析 可以使用各种排序算法，</description>
-    </item>
-    
-    <item>
-      <title>正则表达式匹配</title>
-      <link>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D/</link>
-      <pubDate>Sun, 22 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D/</guid>
-      <description>正则表达式匹配 题目描述 请实现一个函数用来匹配包括&amp;rsquo;.&amp;lsquo;和&amp;rsquo;&amp;lsquo;的正则表达式。模式中的字符&amp;rs</description>
     </item>
     
   </channel>

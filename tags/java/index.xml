@@ -6,10 +6,55 @@
     <description>Recent content in Java on 无名鼠辈</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 21 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 26 Jun 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://llc687.top/tags/java/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>“享元模式&#34;</title>
+      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Fri, 26 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F/</guid>
+      <description>享元模式 目的 实现对象的复用：利用共享的方式来支持大量细粒度的对象，这些对象一部分内部状态是相同的 类图 Flyweight: 抽象享元类 ConcreteFlyweight: 具体享元类 FlyweightFactory: 享元工厂类 实现</description>
+    </item>
+    
+    <item>
+      <title>代理模式</title>
+      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Fri, 26 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/</guid>
+      <description>##代理模式 目的 为其他对象提供一种代理以控制对这个对象的访问。 介绍 代理有四类： 远程代理(Remote Proxy): 控制对远程对象(不同地址空间)的访问，</description>
+    </item>
+    
+    <item>
+      <title>桥接模式</title>
+      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Fri, 26 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F/</guid>
+      <description>桥接模式 目的 将抽象与实现分离开来，使它们可以独立变化。 类图 角色 Abstraction：抽象类 RefinedAbstraction：扩充抽象类</description>
+    </item>
+    
+    <item>
+      <title>组合模式</title>
+      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Fri, 26 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F/</guid>
+      <description>组合模式 目的 将对象组合成树形结构来表示“整体/部分”层次关系，允许用户以相同的方式处理单独对象和组合对象。 类图 Component ：抽象构件类。定义参加组合对</description>
+    </item>
+    
+    <item>
+      <title>装饰模式</title>
+      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Fri, 26 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F/</guid>
+      <description>装饰模式 目的 动态地给一个对象增加一些额外的职责。 类图 角色 Component: 抽象构件 ConcreteComponent: 具体构件 ：用于定义具体的构件对象，实现了在抽象构件中声明的方法。 Decorator: 抽象装</description>
+    </item>
     
     <item>
       <title>单例模式</title>
