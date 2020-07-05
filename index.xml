@@ -37,7 +37,7 @@
 &lt;li&gt;Invoker: 通过它来调用命令&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://cdn.nlark.com/yuque/0/2020/png/668813/1593940495598-89b2f899-ded0-43a9-a1a9-9c7ebab91f53.png#align=left&amp;amp;display=inline&amp;amp;height=317&amp;amp;margin=%5Bobject%20Object%5D&amp;amp;name=image.png&amp;amp;originHeight=634&amp;amp;originWidth=1440&amp;amp;size=97507&amp;amp;status=done&amp;amp;style=none&amp;amp;width=720&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://img.llc687.top/uPic/1593940495598-89b2f899-ded0-43a9-a1a9-9c7ebab91f53.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;实现&#34;&gt;实现&lt;/h3&gt;
 
@@ -299,7 +299,7 @@
 &lt;li&gt;ConcreteClass: 具体实现类&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://cdn.nlark.com/yuque/0/2020/png/668813/1593938073770-b29e60df-aa00-428d-aee0-a1ba8edb863d.png#align=left&amp;amp;display=inline&amp;amp;height=324&amp;amp;margin=%5Bobject%20Object%5D&amp;amp;name=image.png&amp;amp;originHeight=648&amp;amp;originWidth=1102&amp;amp;size=106357&amp;amp;status=done&amp;amp;style=none&amp;amp;width=551&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://img.llc687.top/uPic/1593938073770-b29e60df-aa00-428d-aee0-a1ba8edb863d.png&#34; alt=&#34;image.png&#34; style=&#34;zoom:57%;&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;实现&#34;&gt;实现&lt;/h3&gt;
 
@@ -489,7 +489,7 @@
 &lt;li&gt;ConcreteState: 具体状态类&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://cdn.nlark.com/yuque/0/2020/png/668813/1593939252312-6f0956c3-8980-4bfe-b2dc-bd16347124bc.png#align=left&amp;amp;display=inline&amp;amp;height=327&amp;amp;margin=%5Bobject%20Object%5D&amp;amp;name=image.png&amp;amp;originHeight=654&amp;amp;originWidth=1640&amp;amp;size=109430&amp;amp;status=done&amp;amp;style=none&amp;amp;width=820&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://img.llc687.top/uPic/1593939252312-6f0956c3-8980-4bfe-b2dc-bd16347124bc.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;实现&#34;&gt;实现&lt;/h3&gt;
 
@@ -667,7 +667,7 @@
 &lt;li&gt;ConcreteStrategy: 具体策略类&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://cdn.nlark.com/yuque/0/2020/png/668813/1593935834185-87ace761-c65e-405f-aa02-b78c0d482377.png#align=left&amp;amp;display=inline&amp;amp;height=304&amp;amp;margin=%5Bobject%20Object%5D&amp;amp;name=image.png&amp;amp;originHeight=608&amp;amp;originWidth=1790&amp;amp;size=133967&amp;amp;status=done&amp;amp;style=none&amp;amp;width=895&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://img.llc687.top/uPic/1593935834185-87ace761-c65e-405f-aa02-b78c0d482377.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;实现&#34;&gt;实现&lt;/h3&gt;
 
@@ -849,7 +849,7 @@
 &lt;li&gt;&lt;strong&gt;具体处理者(ConcreteHandler)角色：&lt;/strong&gt;具体处理者接到请求后，可以选择将请求处理掉，或者将请求传给下家。&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://cdn.nlark.com/yuque/0/2020/png/668813/1593932230761-60946445-70cc-4fea-9062-eb355fc5c578.png#align=left&amp;amp;display=inline&amp;amp;height=319&amp;amp;margin=%5Bobject%20Object%5D&amp;amp;name=image.png&amp;amp;originHeight=638&amp;amp;originWidth=1186&amp;amp;size=75866&amp;amp;status=done&amp;amp;style=none&amp;amp;width=593&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://img.llc687.top/uPic/1593932230761-60946445-70cc-4fea-9062-eb355fc5c578.png&#34; alt=&#34;image.png&#34; style=&#34;zoom:57%;&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;实现&#34;&gt;实现&lt;/h3&gt;
 
