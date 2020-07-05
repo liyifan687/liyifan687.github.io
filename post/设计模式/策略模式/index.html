@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>代理模式 - 无名鼠辈</title>
+  <title>策略模式 - 无名鼠辈</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="Lyf" />
-  <meta name="description" content="代理模式 目的 为其他对象提供一种代理以控制对这个对象的访问。 介绍 代理有四类： 远程代理(Remote Proxy): 控制对远程对象(不同地址空间)的访问，负责" />
+  <meta name="description" content="策略模式 目的 定义一系列算法，封装每个算法，并使它们可以互换。可以让算法独立于使用它的客户端。 类图 角色 Context: 环境类 Strategy: 抽象策略类 ConcreteStrategy: 具体策略类 实现 抽象" />
 
 
 
@@ -34,7 +34,7 @@
 <meta name="generator" content="Hugo 0.55.6" />
 
 
-<link rel="canonical" href="https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" />
+<link rel="canonical" href="https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/" />
 
 
 
@@ -58,27 +58,27 @@
 
 
 
-<meta property="og:title" content="代理模式" />
-<meta property="og:description" content="代理模式 目的 为其他对象提供一种代理以控制对这个对象的访问。 介绍 代理有四类： 远程代理(Remote Proxy): 控制对远程对象(不同地址空间)的访问，负责" />
+<meta property="og:title" content="策略模式" />
+<meta property="og:description" content="策略模式 目的 定义一系列算法，封装每个算法，并使它们可以互换。可以让算法独立于使用它的客户端。 类图 角色 Context: 环境类 Strategy: 抽象策略类 ConcreteStrategy: 具体策略类 实现 抽象" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" />
-<meta property="article:published_time" content="2020-06-26T00:00:00&#43;00:00"/>
-<meta property="article:modified_time" content="2020-06-26T00:00:00&#43;00:00"/>
+<meta property="og:url" content="https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/" />
+<meta property="article:published_time" content="2020-07-05T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2020-07-05T00:00:00&#43;00:00"/>
 
-<meta itemprop="name" content="代理模式">
-<meta itemprop="description" content="代理模式 目的 为其他对象提供一种代理以控制对这个对象的访问。 介绍 代理有四类： 远程代理(Remote Proxy): 控制对远程对象(不同地址空间)的访问，负责">
+<meta itemprop="name" content="策略模式">
+<meta itemprop="description" content="策略模式 目的 定义一系列算法，封装每个算法，并使它们可以互换。可以让算法独立于使用它的客户端。 类图 角色 Context: 环境类 Strategy: 抽象策略类 ConcreteStrategy: 具体策略类 实现 抽象">
 
 
-<meta itemprop="datePublished" content="2020-06-26T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2020-06-26T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="1238">
+<meta itemprop="datePublished" content="2020-07-05T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2020-07-05T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="740">
 
 
 
 <meta itemprop="keywords" content="设计模式,Java," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="代理模式"/>
-<meta name="twitter:description" content="代理模式 目的 为其他对象提供一种代理以控制对这个对象的访问。 介绍 代理有四类： 远程代理(Remote Proxy): 控制对远程对象(不同地址空间)的访问，负责"/>
+<meta name="twitter:title" content="策略模式"/>
+<meta name="twitter:description" content="策略模式 目的 定义一系列算法，封装每个算法，并使它们可以互换。可以让算法独立于使用它的客户端。 类图 角色 Context: 环境类 Strategy: 抽象策略类 ConcreteStrategy: 具体策略类 实现 抽象"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -354,18 +354,18 @@
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title">代理模式</h1>
+      <h1 class="post-title">策略模式</h1>
       
       <div class="post-meta">
-        <time datetime="2020-06-26" class="post-time">
-          2020-06-26
+        <time datetime="2020-07-05" class="post-time">
+          2020-07-05
         </time>
         <div class="post-category">
             <a href="https://llc687.top/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"> 设计模式 </a>
             
           </div>
-        <span class="more-meta"> 约 1238 字 </span>
-          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        <span class="more-meta"> 约 740 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
 
         
         
@@ -384,29 +384,29 @@
 <ul>
 <li>
 <ul>
-<li><a href="#代理模式">代理模式</a>
+<li><a href="#策略模式">策略模式</a>
 <ul>
 <li><a href="#目的">目的</a></li>
-<li><a href="#介绍">介绍</a></li>
 <li><a href="#类图">类图</a>
 <ul>
 <li><a href="#角色">角色</a></li>
 </ul></li>
 <li><a href="#实现">实现</a>
 <ul>
-<li><a href="#抽象主题">抽象主题</a></li>
-<li><a href="#真实主题角色">真实主题角色</a></li>
-<li><a href="#代理主题角色">代理主题角色</a></li>
-<li><a href="#调用类">调用类</a></li>
+<li><a href="#抽象策略类">抽象策略类</a></li>
+<li><a href="#抽象策略类-1">抽象策略类</a></li>
+<li><a href="#环境类">环境类</a></li>
+<li><a href="#client">Client</a></li>
 </ul></li>
 <li><a href="#优缺点">优缺点</a>
 <ul>
 <li><a href="#优点">优点</a></li>
 <li><a href="#缺点">缺点</a></li>
 </ul></li>
+<li><a href="#与状态模式的比较">与状态模式的比较</a></li>
 <li><a href="#使用场景">使用场景</a>
 <ul>
-<li><a href="#使用">使用</a></li>
+<li><a href="#jdk-中使用">JDK 中使用</a></li>
 </ul></li>
 </ul></li>
 </ul></li>
@@ -419,39 +419,27 @@
     <div class="post-content">
       
 
-<h2 id="代理模式">代理模式</h2>
+<h2 id="策略模式">策略模式</h2>
 
 <h3 id="目的">目的</h3>
 
-<p>为其他对象提供一种代理以控制对这个对象的访问。</p>
-
-<h3 id="介绍">介绍</h3>
-
-<p>代理有四类：</p>
-
-<ul>
-<li>远程代理(Remote Proxy): 控制对远程对象(不同地址空间)的访问，负责将请求及其参数进行编码，并向不同地址空间中的对象发送已经编码的请求。</li>
-<li>虚拟代理(Virtual Proxy): 根据需要创建开销很大的对象，可以缓存实体的附加信息，以便延迟对它的访问，例如在网站加载一个很大图片时，不能马上完成，可以用虚拟代理缓存图片的大小信息，然后生成一张临时图片代替原始图片。</li>
-<li>保护代理(Protection Proxy): 按权限控制对象的访问，负责检查调用者是否具有实现一个请求所必须的访问权限。</li>
-
-<li><p>智能代理(Smart Reference):  取代了简单的指针，它在访问对象时执行一些附加操作: 记录对象的引用次数；当第一次引用一个持久化对象时，将它装入内存；在访问一个实际对象前，检查是否已经锁定了它，以确保其它对象不能改变它。</p>
+<p>定义一系列算法，封装每个算法，并使它们可以互换。可以让算法独立于使用它的客户端。</p>
 
 <h3 id="类图">类图</h3>
 
-<h4 id="角色">角色</h4></li>
+<h4 id="角色">角色</h4>
 
-<li><p>Subject: 抽象主题角色</p></li>
-
-<li><p>Proxy: 代理主题角色</p></li>
-
-<li><p>RealSubject: 真实主题角色</p></li>
+<ul>
+<li>Context: 环境类</li>
+<li>Strategy: 抽象策略类</li>
+<li>ConcreteStrategy: 具体策略类</li>
 </ul>
 
-<p><img src="http://img.llc687.top/uPic/1593165283323-1b1d74b4-a879-483f-ad83-c53ce7619fbd.png" alt="image.png" /></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/668813/1593935834185-87ace761-c65e-405f-aa02-b78c0d482377.png#align=left&amp;display=inline&amp;height=304&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=608&amp;originWidth=1790&amp;size=133967&amp;status=done&amp;style=none&amp;width=895" alt="image.png" /></p>
 
 <h3 id="实现">实现</h3>
 
-<h4 id="抽象主题">抽象主题</h4>
+<h4 id="抽象策略类">抽象策略类</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
@@ -459,12 +447,48 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Subject</span> <span class="o">{</span>
-   <span class="kt">void</span> <span class="nf">doOperation</span><span class="o">();</span>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Strategy</span> <span class="o">{</span>
+   <span class="kd">public</span> <span class="kt">int</span> <span class="nf">doOperation</span><span class="o">(</span><span class="kt">int</span> <span class="n">num1</span><span class="o">,</span> <span class="kt">int</span> <span class="n">num2</span><span class="o">);</span>
 <span class="o">}</span></code></pre></td></tr></table>
 </div>
 </div>
-<h4 id="真实主题角色">真实主题角色</h4>
+<h4 id="抽象策略类-1">抽象策略类</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">OperationAdd</span> <span class="kd">implements</span> <span class="n">Strategy</span><span class="o">{</span>
+   <span class="nd">@Override</span>
+   <span class="kd">public</span> <span class="kt">int</span> <span class="nf">doOperation</span><span class="o">(</span><span class="kt">int</span> <span class="n">num1</span><span class="o">,</span> <span class="kt">int</span> <span class="n">num2</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">num1</span> <span class="o">+</span> <span class="n">num2</span><span class="o">;</span>
+   <span class="o">}</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">OperationSubtract</span> <span class="kd">implements</span> <span class="n">Strategy</span><span class="o">{</span>
+   <span class="nd">@Override</span>
+   <span class="kd">public</span> <span class="kt">int</span> <span class="nf">doOperation</span><span class="o">(</span><span class="kt">int</span> <span class="n">num1</span><span class="o">,</span> <span class="kt">int</span> <span class="n">num2</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">num1</span> <span class="o">-</span> <span class="n">num2</span><span class="o">;</span>
+   <span class="o">}</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h4 id="环境类">环境类</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
@@ -482,73 +506,26 @@
 </span><span class="lnt">13
 </span><span class="lnt">14
 </span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">RealSubject</span> <span class="kd">implements</span> <span class="n">Subject</span> <span class="o">{</span>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Context</span> <span class="o">{</span>
+   <span class="kd">private</span> <span class="n">Strategy</span> <span class="n">strategy</span><span class="o">;</span>
  
-   <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
- 
-   <span class="kd">public</span> <span class="nf">RealSubject</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">){</span>
-      <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
-      <span class="n">loadFromDisk</span><span class="o">(</span><span class="n">fileName</span><span class="o">);</span>
+   <span class="kd">public</span> <span class="nf">Context</span><span class="o">(</span><span class="n">Strategy</span> <span class="n">strategy</span><span class="o">){</span>
+      <span class="k">this</span><span class="o">.</span><span class="na">strategy</span> <span class="o">=</span> <span class="n">strategy</span><span class="o">;</span>
    <span class="o">}</span>
+   
+   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setStrategy</span><span class="o">(</span><span class="n">Strategy</span> <span class="n">strategy</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">strategy</span> <span class="o">=</span> <span class="n">strategy</span><span class="o">;</span>
+    <span class="o">}</span>
  
-   <span class="nd">@Override</span>
-   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doOperation</span><span class="o">()</span> <span class="o">{</span>
-      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;doOperation&#34;</span> <span class="o">+</span> <span class="n">name</span><span class="o">);</span>
-   <span class="o">}</span>
- 
-   <span class="kd">private</span> <span class="kt">void</span> <span class="nf">custom</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">){</span>
-      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Loading &#34;</span> <span class="o">+</span> <span class="n">name</span><span class="o">);</span>
+   <span class="kd">public</span> <span class="kt">int</span> <span class="nf">executeStrategy</span><span class="o">(</span><span class="kt">int</span> <span class="n">num1</span><span class="o">,</span> <span class="kt">int</span> <span class="n">num2</span><span class="o">){</span>
+      <span class="k">return</span> <span class="n">strategy</span><span class="o">.</span><span class="na">doOperation</span><span class="o">(</span><span class="n">num1</span><span class="o">,</span> <span class="n">num2</span><span class="o">);</span>
    <span class="o">}</span>
 <span class="o">}</span></code></pre></td></tr></table>
 </div>
 </div>
-<h4 id="代理主题角色">代理主题角色</h4>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProxySubject</span> <span class="kd">implements</span> <span class="n">Subject</span><span class="o">{</span>
- 
-   <span class="kd">private</span> <span class="n">RealSubject</span> <span class="n">realSubject</span><span class="o">;</span>
-   <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
- 
-   <span class="kd">public</span> <span class="nf">ProxySubject</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">){</span>
-       <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
-   <span class="o">}</span>
-    
-   <span class="nd">@Override</span>
-   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doOperation</span><span class="o">()</span> <span class="o">{</span>
-      <span class="k">if</span><span class="o">(</span><span class="n">realSubject</span> <span class="o">==</span> <span class="kc">null</span><span class="o">){</span>
-         <span class="n">realSubject</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RealSubject</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
-      <span class="o">}</span>
-      <span class="n">realSubject</span><span class="o">.</span><span class="na">doOperation</span><span class="o">();</span>
-   <span class="o">}</span>
-<span class="o">}</span></code></pre></td></tr></table>
-</div>
-</div>
-<h4 id="调用类">调用类</h4>
+<h4 id="client">Client</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
@@ -559,15 +536,17 @@
 </span><span class="lnt">6
 </span><span class="lnt">7
 </span><span class="lnt">8
+</span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProxyPatternDemo</span> <span class="o">{</span>
-   
-   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-      <span class="n">Subject</span> <span class="n">subject</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ProxySubject</span><span class="o">(</span><span class="s">&#34;proxyName&#34;</span><span class="o">);</span>
-      <span class="n">subject</span><span class="o">.</span><span class="na">doOperation</span><span class="o">();</span> 
-      <span class="o">...</span>
-   <span class="o">}</span>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Client</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Context</span> <span class="n">context</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Context</span><span class="o">();</span>
+        <span class="n">context</span><span class="o">.</span><span class="na">setStrategy</span><span class="o">(</span><span class="k">new</span> <span class="n">OperationAdd</span><span class="o">());</span>
+        <span class="n">context</span><span class="o">.</span><span class="na">executeStrategy</span><span class="o">();</span>
+        <span class="n">context</span><span class="o">.</span><span class="na">setStrategy</span><span class="o">(</span><span class="k">new</span> <span class="n">OperationSubtract</span><span class="o">());</span>
+        <span class="n">context</span><span class="o">.</span><span class="na">executeStrategy</span><span class="o">();</span>
+    <span class="o">}</span>
 <span class="o">}</span></code></pre></td></tr></table>
 </div>
 </div>
@@ -576,41 +555,39 @@
 <h4 id="优点">优点</h4>
 
 <ul>
-<li>能够协调调用者和被调用者，在一定程度上降低了系统的耦合度。</li>
-<li>远程代理使客户端可以访问在远程机器上的对象，可以快速响应并处理客户端请求。</li>
-<li>虚拟代理通过使用一个小对象来代表一个大对象，减少系统资源的消耗。</li>
+<li>对“开闭原则”的完美支持，可以在不修改原有系统的基础上选择算法或行为，也可以灵活地增加新的算法或行为。</li>
+<li>提供了管理相关的算法族的办法。</li>
+<li>提供了可以替换继承关系的办法。</li>
 
-<li><p>保护代理可以控制对真实对象的使用权限。</p>
+<li><p>可以避免使用多重条件转移语句。</p>
 
 <h4 id="缺点">缺点</h4></li>
 
-<li><p>客户端和真实主题之间增加了代理对象，可能会造成处理速度变慢。</p></li>
+<li><p>客户端必须知道所有的策略类，并自行决定使用哪一个策略类。</p></li>
 
-<li><p>有些代理模式的实现非常复杂。</p>
+<li><p>将造成产生很多策略类，但可通过使用享元模式在一定程度上减少对象的数量。</p>
+
+<h3 id="与状态模式的比较">与状态模式的比较</h3>
+
+<p>状态模式的类图和策略模式类似，并且都是能够动态改变对象的行为。</p></li>
+
+<li><p>状态模式通过状态转移来改变 Context 所组合的 State 对象，而策略模式是通过 Context 本身的决策来改变组合的 Strategy 对象。所谓的状态转移，是指 Context 在运行过程中由于一些条件发生改变而使得 State 对象发生改变，注意必须要是在运行过程中。</p></li>
+
+<li><p>状态模式主要是用来解决状态转移的问题，当状态发生转移了，那么 Context 对象就会改变它的行为；而策略模式主要是用来封装一组可以互相替代的算法族，并且可以根据需要动态地去替换 Context 使用的算法。</p>
 
 <h3 id="使用场景">使用场景</h3></li>
 
-<li><p>远程(Remote)代理：为一个位于不同的地址空间的对象提供一个本地 的代理对象，这个不同的地址空间可以是在同一台主机中，也可是在另一台主机中，远程代理又叫做大使(Ambassador)。</p></li>
+<li><p>如果在一个系统里有许多类，之间的区别仅在于它们的行为，那使用策略模式可动态地让一个对象在许多行为中选择一种行为。</p></li>
 
-<li><p>虚拟(Virtual)代理：如果需要创建一个资源消耗较大的对象，先创建一个消耗相对较小的对象来表示，真实对象只在需要时才会被真正创建。</p></li>
+<li><p>不希望客户端知道复杂的、与算法相关的数据结构，在具体策略类中封装算法和相关的数据结构，提高算法的保密性与安全性。</p>
 
-<li><p>Copy-on-Write代理：它是虚拟代理的一种，把复制（克隆）操作延迟 到只有在客户端真正需要时才执行。一般来说，对象的深克隆是一个 开销较大的操作，Copy-on-Write代理可以让这个操作延迟，只有对象被用到的时候才被克隆。</p></li>
+<h4 id="jdk-中使用">JDK 中使用</h4></li>
 
-<li><p>保护(Protect or Access)代理：控制对一个对象的访问，可以给不同的用户提供不同级别的使用权限。</p></li>
+<li><p>java.util.Comparator#compare()</p></li>
 
-<li><p>缓冲(Cache)代理：为某一个目标操作的结果提供临时的存储空间，以便多个客户端可以共享这些结果。</p></li>
+<li><p>javax.servlet.http.HttpServlet</p></li>
 
-<li><p>防火墙(Firewall)代理：保护目标不让恶意用户接近。</p></li>
-
-<li><p>同步化(Synchronization)代理：使几个用户能够同时使用一个对象而没有冲突。</p></li>
-
-<li><p>智能引用(Smart Reference)代理：当一个对象被引用时，提供一些额外的操作，如将此对象被调用的次数记录下来等。</p>
-
-<h4 id="使用">使用</h4></li>
-
-<li><p>java.lang.reflect.Proxy</p></li>
-
-<li><p>RMI</p></li>
+<li><p>javax.servlet.Filter#doFilter()</p></li>
 </ul>
 
     </div>
@@ -632,7 +609,7 @@
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F/">
+          <a class="prev" href="/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F/">
             
             <i class="iconfont">
               <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -642,12 +619,12 @@
 </svg>
 
             </i>
-            <span class="prev-text nav-default">享元模式</span>
+            <span class="prev-text nav-default">状态模式</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         
-          <a class="next" href="/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F/">
-            <span class="next-text nav-default">桥接模式</span>
+          <a class="next" href="/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%B4%A3%E4%BB%BB%E9%93%BE/">
+            <span class="next-text nav-default">责任链</span>
             <span class="prev-text nav-mobile">下一篇</span>
             
             <i class="iconfont">

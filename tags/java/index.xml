@@ -6,10 +6,55 @@
     <description>Recent content in Java on 无名鼠辈</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 26 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 05 Jul 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://llc687.top/tags/java/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>命令</title>
+      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Sun, 05 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F/</guid>
+      <description>命令模式 目的 将命令(请求)封装在对象中，以便使用命令来参数化其它对象，或将命令对象放入队列中排队，或将命令对象的操作记录到日志中，以及支持可</description>
+    </item>
+    
+    <item>
+      <title>模板方法</title>
+      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95/</link>
+      <pubDate>Sun, 05 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95/</guid>
+      <description>模板方法 目的 定义算法框架，并将一些步骤的实现延迟到子类。 通过模板方法，子类可以重新定义算法的某些步骤，而不用改变算法的结构。 类图 角色 Abst</description>
+    </item>
+    
+    <item>
+      <title>状态模式</title>
+      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Sun, 05 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F/</guid>
+      <description>状态模式 目的 允许对象在内部状态改变时改变它的行为，对象看起来好像修改了它所属的类。其别名为状态对象(Objects for States)，状态模式</description>
+    </item>
+    
+    <item>
+      <title>策略模式</title>
+      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Sun, 05 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/</guid>
+      <description>策略模式 目的 定义一系列算法，封装每个算法，并使它们可以互换。可以让算法独立于使用它的客户端。 类图 角色 Context: 环境类 Strategy: 抽象策略类 ConcreteStrategy: 具体策略类 实现 抽象</description>
+    </item>
+    
+    <item>
+      <title>责任链</title>
+      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%B4%A3%E4%BB%BB%E9%93%BE/</link>
+      <pubDate>Sun, 05 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%B4%A3%E4%BB%BB%E9%93%BE/</guid>
+      <description>责任链 目的 使多个对象都有机会处理请求，从而避免请求的发送者和接收者之间的耦合关系。将这些对象连成一条链，并沿着这条链发送该请求，直到有一个对</description>
+    </item>
     
     <item>
       <title>享元模式</title>

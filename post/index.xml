@@ -6,10 +6,55 @@
     <description>Recent content in Posts on 无名鼠辈</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 26 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 05 Jul 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://llc687.top/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>命令</title>
+      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Sun, 05 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F/</guid>
+      <description>命令模式 目的 将命令(请求)封装在对象中，以便使用命令来参数化其它对象，或将命令对象放入队列中排队，或将命令对象的操作记录到日志中，以及支持可</description>
+    </item>
+    
+    <item>
+      <title>模板方法</title>
+      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95/</link>
+      <pubDate>Sun, 05 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95/</guid>
+      <description>模板方法 目的 定义算法框架，并将一些步骤的实现延迟到子类。 通过模板方法，子类可以重新定义算法的某些步骤，而不用改变算法的结构。 类图 角色 Abst</description>
+    </item>
+    
+    <item>
+      <title>状态模式</title>
+      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Sun, 05 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F/</guid>
+      <description>状态模式 目的 允许对象在内部状态改变时改变它的行为，对象看起来好像修改了它所属的类。其别名为状态对象(Objects for States)，状态模式</description>
+    </item>
+    
+    <item>
+      <title>策略模式</title>
+      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Sun, 05 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/</guid>
+      <description>策略模式 目的 定义一系列算法，封装每个算法，并使它们可以互换。可以让算法独立于使用它的客户端。 类图 角色 Context: 环境类 Strategy: 抽象策略类 ConcreteStrategy: 具体策略类 实现 抽象</description>
+    </item>
+    
+    <item>
+      <title>责任链</title>
+      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%B4%A3%E4%BB%BB%E9%93%BE/</link>
+      <pubDate>Sun, 05 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%B4%A3%E4%BB%BB%E9%93%BE/</guid>
+      <description>责任链 目的 使多个对象都有机会处理请求，从而避免请求的发送者和接收者之间的耦合关系。将这些对象连成一条链，并沿着这条链发送该请求，直到有一个对</description>
+    </item>
     
     <item>
       <title>享元模式</title>
@@ -144,51 +189,6 @@
       
       <guid>https://llc687.top/post/%E5%A6%82%E4%BD%95%E5%AE%8C%E6%88%90%E4%B8%80%E6%AC%A1%E5%BF%AB%E9%80%9F%E7%9A%84%E6%9F%A5%E8%AF%A2/</guid>
       <description>哪个男孩不想完成一次快速的查询？ 1. MySQL 查询慢是什么体验？ 谢邀，利益相关。 大多数互联网应用场景都是读多写少，业务逻辑更多分布在写上。对读的要求大</description>
-    </item>
-    
-    <item>
-      <title>删除链表中的重复节点</title>
-      <link>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E8%8A%82%E7%82%B9/</link>
-      <pubDate>Sun, 29 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E8%8A%82%E7%82%B9/</guid>
-      <description>删除链表中的重复节点 题目描述 在一个排序的链表中，存在重复的结点，请删除该链表中重复的结点，重复的结点不保留，返回链表头指针。 例如，链表1-&amp;</description>
-    </item>
-    
-    <item>
-      <title>反转单词顺序列</title>
-      <link>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E5%8F%8D%E8%BD%AC%E5%8D%95%E8%AF%8D%E9%A1%BA%E5%BA%8F%E5%88%97/</link>
-      <pubDate>Sun, 29 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E5%8F%8D%E8%BD%AC%E5%8D%95%E8%AF%8D%E9%A1%BA%E5%BA%8F%E5%88%97/</guid>
-      <description>反转单词顺序列 题目描述 牛客最近来了一个新员工Fish，每天早晨总是会拿着一本英文杂志，写些句子在本子上。同事Cat对Fish写的内容颇感兴趣</description>
-    </item>
-    
-    <item>
-      <title>字符串排序</title>
-      <link>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%8E%92%E5%BA%8F/</link>
-      <pubDate>Sun, 29 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%8E%92%E5%BA%8F/</guid>
-      <description>字符串排序 题目描述 输入一个字符串,按字典序打印出该字符串中字符的所有排列。例如输入字符串abc,则打印出由字符a,b,c所能排列出来的所有字</description>
-    </item>
-    
-    <item>
-      <title>数组中的逆序对</title>
-      <link>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%80%86%E5%BA%8F%E5%AF%B9/</link>
-      <pubDate>Sun, 29 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%80%86%E5%BA%8F%E5%AF%B9/</guid>
-      <description>数组中的逆序对 题目描述 在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。输入一个数组,求出这个数组中的逆序对的</description>
-    </item>
-    
-    <item>
-      <title>顺时针打印矩阵</title>
-      <link>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E9%A1%BA%E6%97%B6%E9%92%88%E6%89%93%E5%8D%B0%E7%9F%A9%E9%98%B5/</link>
-      <pubDate>Sun, 29 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E5%89%91%E6%8C%87offer/%E9%A1%BA%E6%97%B6%E9%92%88%E6%89%93%E5%8D%B0%E7%9F%A9%E9%98%B5/</guid>
-      <description>顺时针打印矩阵 题目描述 输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字，例如，如果输入如下4 X 4矩阵： 1 2 3 4 5 6 7 8 9 10 11 12 13</description>
     </item>
     
   </channel>
