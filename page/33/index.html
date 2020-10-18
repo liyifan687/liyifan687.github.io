@@ -61,7 +61,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://llc687.top/" />
 
-<meta property="og:updated_time" content="2020-07-12T00:00:00&#43;00:00"/>
+<meta property="og:updated_time" content="2020-10-18T00:00:00&#43;00:00"/>
 
 <meta itemprop="name" content="无名鼠辈">
 <meta itemprop="description" content="">
@@ -353,6 +353,42 @@
   <header class="post-header">
     <h1 class="post-title">
       
+      <a class="post-link" href="/post/springfox%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-%E8%87%AA%E5%AE%9A%E4%B9%89modelenum/">“SpringFox源码解析&#34;</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2019-12-01" class="post-time">
+        2019-12-01
+      </time>
+      <div class="post-category">
+          <a href="https://llc687.top/categories/swagger/"> “Swagger&#34; </a>
+          
+        </div>
+      <span class="more-meta"> 约 4628 字 </span>
+      <span class="more-meta"> 预计阅读 10 分钟 </span>
+      
+      
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      SpringFox源码分析-自定义Model、Enum 先说一说Springfox和Swagger的关系 Swagger 是一种规范。 springfox-swagger 是基于 Spring 生态系统的该规
+    </div>
+    <div class="read-more">
+      <a href="/post/springfox%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-%E8%87%AA%E5%AE%9A%E4%B9%89modelenum/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
       <a class="post-link" href="/post/hadoop%E4%B8%8Ehive/">“MapReduce及Hive&#34;</a>
     </h1>
     
@@ -415,49 +451,6 @@
     </div>
     <div class="read-more">
       <a href="/post/begin/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/%E4%BB%8Emysql%E5%88%B0hbase/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 794 字 </span>
-      <span class="more-meta"> 预计阅读 4 分钟 </span>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      哪个男孩不想完成一次快速的查询？
-1. MySQL 查询慢是什么体验？ 谢邀，利益相关。
-大多数互联网应用场景都是读多写少，业务逻辑更多分布在写上。对读的要求大概就是要快。那么都有什么原因会导致我们完成一次出色的慢查询呢？
-1.1 索引 在数据量不是很大时，大多慢查询可以用索引解决，大多慢查询也因为索引不合理而产生。
-MySQL 索引基于 B+ 树，这句话相信面试都背烂了，接着就可以问最左前缀索引、 B+ 树和各种树了。
-说到最左前缀，实际就是组合索引的使用规则，使用合理组合索引可以有效的提高查询速度，为什么呢？
-因为索引下推。如果查询条件包含在了组合索引中，比如存在组合索引（a,b)，查询到满足 a 的记录后会直接在索引内部判断 b 是否满足，减少回表次数。同时，如果查询的列恰好包含在组合索引中，即为覆盖索引，无需回表。 索引规则估计都知道，实际开发中也会创建和使用。 问题可能更多的是：为什么建了索引还慢？
-1.1.1 什么原因导致索引失效 建了索引还慢，多半是索引失效（未使用），可用 explain 分析。索引失效常见原因有 :
- where 中使用 != 或 &lt;&gt; 或 or 或表达式或函数（左侧） like 语句 % 开头 字符串未加’’ 索引字段区分度过低，如性别 未匹配最左前缀  (一张嘴就知道老面试题了) 为什么这些做法会导致失效，成熟的 MySQL 也有自己的想法。
-1.1.2 这些原因为什么导致索引失效 如果要 MySQL 给一个理由，还是那棵 B+ 树。
-函数操作 当在 查询 where = 左侧使用表达式或函数时，如字段 A 为字符串型且有索引, 有 where length(a) = 6查询，这时传递一个 6 到 A 的索引树，不难想象在树的第一层就迷路了。
-    </div>
-    <div class="read-more">
-      <a href="/post/%E4%BB%8Emysql%E5%88%B0hbase/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -974,8 +967,6 @@ MySQL 索引基于 B+ 树，这句话相信面试都背烂了，接着就可以�
 
             
             
-              
-            
 
           
           
@@ -984,12 +975,6 @@ MySQL 索引基于 B+ 树，这句话相信面试都背烂了，接着就可以�
         
 
         
-        
-          <li class="">
-            <a href="/page/21/">
-              21
-            </a>
-          </li>
         
 
       
@@ -1366,10 +1351,45 @@ MySQL 索引基于 B+ 树，这句话相信面试都背烂了，接着就可以�
 
       
 
-      
+        
+
+        
+        
+
+          
+          
+          
+
+            
+            
+              
+            
+
+          
+          
+
+        
+        
+
+        
+        
+          <li class="">
+            <a href="/page/34/">
+              34
+            </a>
+          </li>
+        
+
       
 
       
+      
+      <li><a href="/page/34/">»</a></li>
+      
+
+      
+      
+      <li><a href="/page/34/">»»</a></li>
       
 
       </ul>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SpringBoot on 无名鼠辈</title>
+    <link>https://llc687.top/tags/springboot/</link>
+    <description>Recent content in SpringBoot on 无名鼠辈</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 18 Oct 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://llc687.top/tags/springboot/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>从 SpringApplication.run 开始</title>
+      <link>https://llc687.top/post/%E4%BB%8E-springapplication.run-%E5%BC%80%E5%A7%8B/</link>
+      <pubDate>Sun, 18 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E4%BB%8E-springapplication.run-%E5%BC%80%E5%A7%8B/</guid>
+      <description>从 SpringApplication.run 开始 这是你的 SpringBoot ，启动，只需一键。 1 2 3 4 5 6 @SpringBootApplication public class ServerApplication { public static void main(String[] args) { SpringApplication.run(ServerApplication.class,args); } } 但这一键背后发生了什么？ 挂着嘴边的 IOC 容器何时诞生，天天见的 @Au</description>
+    </item>
+    
+  </channel>
+</rss>

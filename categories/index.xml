@@ -6,10 +6,19 @@
     <description>Recent content in Categories on 无名鼠辈</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 12 Jul 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 18 Oct 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://llc687.top/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>SpringBoot</title>
+      <link>https://llc687.top/categories/springboot/</link>
+      <pubDate>Sun, 18 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/categories/springboot/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>设计模式</title>
