@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>微服务 on 无名鼠辈</title>
+    <link>https://llc687.top/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</link>
+    <description>Recent content in 微服务 on 无名鼠辈</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 28 Feb 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://llc687.top/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>微服务架构体系</title>
+      <link>https://llc687.top/post/%E6%9E%B6%E6%9E%84/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E4%BD%93%E7%B3%BB/</link>
+      <pubDate>Sun, 28 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://llc687.top/post/%E6%9E%B6%E6%9E%84/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E4%BD%93%E7%B3%BB/</guid>
+      <description>微服务架构体系 前段内部听了下分享 Service Mesh。做一些总结 架构的演进 这种东西有点信雅达，没什么绝对标准 单体应用：在第一阶段的单体应用很好理解。 垂</description>
+    </item>
+    
+  </channel>
+</rss>

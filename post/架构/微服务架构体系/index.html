@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="zh-cn" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>微服务架构体系 - 无名鼠辈</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="Lyf" />
+  <meta name="description" content="微服务架构体系 前段内部听了下分享 Service Mesh。做一些总结 架构的演进 这种东西有点信雅达，没什么绝对标准 单体应用：在第一阶段的单体应用很好理解。 垂" />
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.55.6" />
+
+
+<link rel="canonical" href="https://llc687.top/post/%E6%9E%B6%E6%9E%84/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E4%BD%93%E7%B3%BB/" />
+
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.af20b78e95c84de86b00a0242a4a77bd2601700e1b250edf27537d957ac0041d.css" integrity="sha256-ryC3jpXITehrAKAkKkp3vSYBcA4bJQ7fJ1N9lXrABB0=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="微服务架构体系" />
+<meta property="og:description" content="微服务架构体系 前段内部听了下分享 Service Mesh。做一些总结 架构的演进 这种东西有点信雅达，没什么绝对标准 单体应用：在第一阶段的单体应用很好理解。 垂" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://llc687.top/post/%E6%9E%B6%E6%9E%84/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E4%BD%93%E7%B3%BB/" />
+<meta property="article:published_time" content="2021-02-28T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2021-02-28T00:00:00&#43;00:00"/>
+
+<meta itemprop="name" content="微服务架构体系">
+<meta itemprop="description" content="微服务架构体系 前段内部听了下分享 Service Mesh。做一些总结 架构的演进 这种东西有点信雅达，没什么绝对标准 单体应用：在第一阶段的单体应用很好理解。 垂">
+
+
+<meta itemprop="datePublished" content="2021-02-28T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2021-02-28T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="5351">
+
+
+
+<meta itemprop="keywords" content="Service Mesh,K8s,微服务,分布式,springCloud," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="微服务架构体系"/>
+<meta name="twitter:description" content="微服务架构体系 前段内部听了下分享 Service Mesh。做一些总结 架构的演进 这种东西有点信雅达，没什么绝对标准 单体应用：在第一阶段的单体应用很好理解。 垂"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">无名鼠辈</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://llc687.top/">主页</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://llc687.top/post/">归档</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://llc687.top/tags/">标签</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://llc687.top/categories/">分类</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://llc687.top/about/">关于</a>
+          
+        
+      </li>
+    
+
+    
+      <li class="mobile-menu-item">
+        <a id="openSearchMobile" class="mobile-menu-item-link menu-item-search" href="#">
+          <i class="iconfont">
+            <svg version="1.1" viewBox="0 0 1024 1024"
+  xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M973.81454219 973.81454219a91.78207815 91.78207815 0 0 1-129.80999631 0l-161.97482118-161.97482118a425.48527711 425.48527711 0 0 1-230.35931791 68.16531768 428.3346319 428.3346319 0 1 1 428.3346319-428.3346319 425.48527711 425.48527711 0 0 1-68.16531768 230.35931791l162.02961656 161.97482118a91.83687354 91.83687354 0 0 1-0.05479538 129.80999631zM451.67040679 145.69361559a305.97679241 305.97679241 0 1 0 0 611.95358361 305.97679241 305.97679241 0 0 0 0-611.95358361z">
+  </path>
+</svg>
+
+          </i>
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+    
+<div class="modal-dialog">
+    
+    <div class="modal-content">
+      <div id="closeSearch" title="Close" class="close">X</div>
+      <div class="modal-header">
+        <div class="modal-title">Search</div>
+      </div>
+      <div class="modal-body">
+          <script>
+            (function() {
+              var cx = '014783502852757998779:nk1fvw21g2i';
+              var gcse = document.createElement('script');
+              gcse.type = 'text/javascript';
+              gcse.async = true;
+              gcse.src = (document.location.protocol == 'https:' ? 'https:' :
+                  'http:') +
+                '//cse.google.com/cse.js?cx=' + cx;
+              var s = document.getElementsByTagName('script')[0];
+              s.parentNode.insertBefore(gcse, s);
+            })();
+          </script>
+          <gcse:search></gcse:search>
+      </div>
+    </div>
+</div>
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      无名鼠辈
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://llc687.top/">主页</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://llc687.top/post/">归档</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://llc687.top/tags/">标签</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://llc687.top/categories/">分类</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://llc687.top/about/">关于</a>
+          
+
+        
+
+      </li>
+    
+
+    
+    
+
+    
+      <li class="menu-item">
+        <a id="openSearch" class="menu-item-link menu-item-search" href="#">
+          <i class="iconfont">
+            <svg version="1.1" viewBox="0 0 1024 1024"
+  xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M973.81454219 973.81454219a91.78207815 91.78207815 0 0 1-129.80999631 0l-161.97482118-161.97482118a425.48527711 425.48527711 0 0 1-230.35931791 68.16531768 428.3346319 428.3346319 0 1 1 428.3346319-428.3346319 425.48527711 425.48527711 0 0 1-68.16531768 230.35931791l162.02961656 161.97482118a91.83687354 91.83687354 0 0 1-0.05479538 129.80999631zM451.67040679 145.69361559a305.97679241 305.97679241 0 1 0 0 611.95358361 305.97679241 305.97679241 0 0 0 0-611.95358361z">
+  </path>
+</svg>
+
+          </i>
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">微服务架构体系</h1>
+      
+      <div class="post-meta">
+        <time datetime="2021-02-28" class="post-time">
+          2021-02-28
+        </time>
+        <div class="post-category">
+            <a href="https://llc687.top/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/"> 微服务架构 </a>
+            
+          </div>
+        <span class="more-meta"> 约 5351 字 </span>
+          <span class="more-meta"> 预计阅读 11 分钟 </span>
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#微服务架构体系">微服务架构体系</a>
+<ul>
+<li><a href="#架构的演进">架构的演进</a>
+<ul>
+<li><a href="#微服务和soa">微服务和SOA</a></li>
+<li><a href="#微服务和分布式">微服务和分布式</a></li>
+</ul></li>
+<li><a href="#spring-cloud-和-dubbo">Spring Cloud 和 Dubbo</a>
+<ul>
+<li><a href="#区别">区别</a>
+<ul>
+<li><a href="#定位">定位</a></li>
+<li><a href="#服务发现">服务发现</a></li>
+<li><a href="#传输方式">传输方式：</a></li>
+<li><a href="#模块区别">模块区别：</a></li>
+<li><a href="#架构-springcloud">架构 <strong>SpringCloud</strong></a></li>
+<li><a href="#架构-dubbo">架构 Dubbo</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#spring-cloud-和-k8s">Spring Cloud 和 K8s</a>
+<ul>
+<li><a href="#微服务关注什么">微服务关注什么</a></li>
+<li><a href="#区别-1">区别</a></li>
+</ul></li>
+<li><a href="#service-mesh">Service Mesh</a>
+<ul>
+<li><a href="#介绍">介绍</a></li>
+<li><a href="#isito">Isito</a></li>
+<li><a href="#服务网格">服务网格</a>
+<ul>
+<li><a href="#控制平面-数据平面">控制平面 数据平面</a></li>
+<li><a href="#服务网格带来的变化">服务网格带来的变化</a></li>
+<li><a href="#技术优势">技术优势</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#小结">小结</a></li>
+<li><a href="#参考">参考</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<h1 id="微服务架构体系">微服务架构体系</h1>
+
+<p>前段内部听了下分享 Service Mesh。做一些总结</p>
+
+<h2 id="架构的演进">架构的演进</h2>
+
+<p>这种东西有点信雅达，没什么绝对标准
+<img src="http://img.llc687.top/uPic/cd9b98fcee77ee7f03ada27ac4a20a3b.png" alt="" /></p>
+
+<ul>
+<li>单体应用：在第一阶段的单体应用很好理解。</li>
+<li>垂直应用：接着随着业务量增大,  将应用拆成互不相干的几个应用，<strong>Web框架(MVC)</strong> 是关键。
+
+<ul>
+<li>这一步，前后端分离、使用缓存、数据库和应用服务分离都会做, <strong>但服务间是独立的无法调用，且可能存在重复代码</strong>。</li>
+</ul></li>
+<li>分布式应用：垂直应用越来越多，<strong>应用之间交互</strong>不可避免，将核心业务抽取出来，作为独立的服务。这时用于提高业务复用及整合的 <strong>分布式服务框架(RPC)</strong> 是关键。
+
+<ul>
+<li>集群、读写分离、反向代理、加速、分布式数据库、nosql、服务拆分都会处理、消息。</li>
+<li>实现了服务调用，代码复用</li>
+</ul></li>
+</ul>
+
+<blockquote>
+<p>其实这时已经能算一种“微服务”了，一般会使用SpringBoot</p>
+</blockquote>
+
+<ul>
+<li>弹性流动计算：服务越来越多，容量评估，资源的使用等问题逐渐显现，需要调度中心基于访问压力实时管理集群容量，提高集群利用率。此时，用于提高机器利用率的 **资源调度和治理中心(SOA <strong>面向服务架构</strong>)** 是关键。
+
+<ul>
+<li>这时候要有一个注册中心，调用关系不需要自行维护了。</li>
+<li>Dubbo 就是SOA的概念了，更关注RPC和服务治理。</li>
+</ul></li>
+<li>微服务：最后是通俗含义的微服务，使用 SpringCloud编码，使用Docker、K8S等，解决微服务软运维问题。
+
+<ul>
+<li>微服务本身也算是面向服务架构（SOA），它是SOA发展道路上的优化选择，关注的是服务拆分力度，即：如何将服务合理的拆的更细、更小</li>
+<li>微服务需要关注点又更多，监控、日志、安全、调度、弹性容错等</li>
+</ul></li>
+</ul>
+
+<h3 id="微服务和soa">微服务和SOA</h3>
+
+<ol>
+<li>微服务相比于SOA更加精细，微服务更多的以独立的进程的方式存在，互相之间并无影响，不再需要协调其它服务部署对本服务的影响；</li>
+<li>微服务提供的接口方式更加通用化，如HTTP RESTful，各种终端都可以调用，无关语言、平台，所以技术可以更随意，只需要提供API</li>
+<li>微服务更倾向于分布式去中心化的部署方式，数据的去中心化，也可以使用更不同的数据库技术；</li>
+<li>微服务运维使用docker,k8s 可以自动化部署，集中管理。
+|            | SOA                                                          | 微服务                                                       |
+| &mdash;&mdash;&mdash;- | :&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash; | :&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash; |
+| 服务粒度   | 粒度较粗                                                     | 细粒度拆分                                                   |
+| 部署难度   | 需要重新创建或者部署整个应用                                 | 每个微服务可以独立构建部署                                   |
+| 通信开销   | 大部分业务模块在一个应用里面，通信开销低                     | 更多的远程调用，增加了通信开销                               |
+| 存储       | 一般所有服务共享数据存储                                     | 每个可以拥有单独的存储                                       |
+| 业务易上手 | 需要了解整个应用的业务，上手较难                             | 单服务上手容易，但是服务集群理解比较难(复杂度守恒定律：<strong>业务复杂度不会因为迁移到了微服务而降低</strong>) |
+| 通信方式   | SOA体系结构依赖于消息传递（AMQP，MSMQ）和SOAP作为主要的远程访问协议，协议偏重量级； | 使用轻量级协议，如HTTP/REST                                  |
+| 可扩展性   | 难以扩展                                                     | 使用容器技术很方便扩展                                       |</li>
+</ol>
+
+<h3 id="微服务和分布式">微服务和分布式</h3>
+
+<p>分布式关注的是服务分开部署，也就是如何将单一服务部署，变为多服务部署（垂直+水平拆分）。
+微服务关注的是服务拆分力度，即：一个服务要拆分到多大的维度合适</p>
+
+<h2 id="spring-cloud-和-dubbo">Spring Cloud 和 Dubbo</h2>
+
+<p>说到微服务，两大框架的讨论肯定跑不了</p>
+
+<h3 id="区别">区别</h3>
+
+<p><img src="http://img.llc687.top/uPic/ec5420e16d2df52e5ca174b5e0686e5a.png" alt="" /></p>
+
+<h4 id="定位">定位</h4>
+
+<p>Dubbo 是 SOA 时代的产物，关注点主要在于服务的调用，流量分发、流量监控和熔断，定位服务治理和** RPC；
+Spring Cloud 诞生于微服务架构时代，考虑的是微服务治理的方方面面，另外由于依托Spirng、Spirng Boot 的优势之上，两个框架在开始目标就不一致。
+Spirng Cloud 更是一个微服务架构生态。</p>
+
+<h4 id="服务发现">服务发现</h4>
+
+<p><strong>对于服务发现而言，可用性比数据一致性更加重要，AP 胜过 CP，而 Eureka 设计则遵循 AP 原则</strong>。</p>
+
+<h4 id="传输方式">传输方式：</h4>
+
+<ul>
+<li>Dubbo底层用Netty这样的NIO框架，基于TCP协议传输的，配合以Hession序列化完成RPC通信;</li>
+<li>SpringCloud基于Http协议+rest接口调用远程过程的通信，</li>
+<li>相对来说，Http会有更大的报文，占的带宽也更多。但是REST相比RPC更灵活，服务提供方和调用方的依赖只依靠一纸契约，不存在代码级别的强依赖，这在强调快速演化的微服务环境下，显得更为合适，至于注重通信速度还是方便灵活性，具体情况具体考虑。</li>
+</ul>
+
+<h4 id="模块区别">模块区别：</h4>
+
+<p>Dubbo 主要分为服务注册中心，服务提供者，服务消费者，还有管控中心；
+SpringCloud则是一个完整的分布式一站式框架，服务注册中心，服务提供者，服务消费者，管控台，断路器，分布式配置服务，消息总线，以及服务追踪等；</p>
+
+<h4 id="架构-springcloud">架构 <strong>SpringCloud</strong></h4>
+
+<p><img src="http://img.llc687.top/uPic/a6f60d18160085fc7121e8d9cdc6f1eb.png" alt="image.png" />
+流程：</p>
+
+<ul>
+<li>请求统一通过 API 网关（Zuul）来访问内部服务。</li>
+<li>网关接收到请求后，从注册中心（Eureka）获取可用服务。</li>
+<li>由 Ribbon 进行均衡负载后，分发到后端具体实例。</li>
+<li>微服务之间通过 Feign 进行通信处理业务。</li>
+<li>Hystrix 负责处理服务超时熔断。</li>
+<li>Turbine 监控服务间的调用和熔断相关指标。</li>
+</ul>
+
+<h4 id="架构-dubbo">架构 Dubbo</h4>
+
+<p><img src="http://img.llc687.top/uPic/edaca6f76eb4ade0b2b584e2b1fdc3fd.png" alt="image.png" /></p>
+
+<h2 id="spring-cloud-和-k8s">Spring Cloud 和 K8s</h2>
+
+<h3 id="微服务关注什么">微服务关注什么</h3>
+
+<p>差不多一半关注点是和运维相关的。spring cloud只是一个开发框架，对于应用如何部署和调度是无能为力的，而kubernetes是一个运维平台，看起来都不够。
+也许用spring cloud+cloud foundry去和kubernetes比较才更加合理，但即使加入了cloud foundry的paas能力，spring cloud仍然是“侵入式”的且语言相关，而kubernetes是“非侵入式”的且语言无关。
+<img src="http://img.llc687.top/uPic/15100c48a9ec0d004c935fa033c86574.png" alt="" /></p>
+
+<h3 id="区别-1">区别</h3>
+
+<p>![](<a href="https://img-blog.csdnimg.cn/img_convert/37eebaeb0b25cff70441120f5e53f0d6.png#align=left&amp;display=inline&amp;height=452spring">https://img-blog.csdnimg.cn/img_convert/37eebaeb0b25cff70441120f5e53f0d6.png#align=left&amp;display=inline&amp;height=452spring</a> cloud关注的功能是kubernetes的一个子集。</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">关注点</th>
+<th align="left">Spring Cloud</th>
+<th align="left">Kubernetes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">自愈和自动伸缩</td>
+<td align="left">无</td>
+<td align="left">kube-controller-manager</td>
+</tr>
+
+<tr>
+<td align="left">调度和发布</td>
+<td align="left">无</td>
+<td align="left">kube-scheduler+Deployment</td>
+</tr>
+
+<tr>
+<td align="left">配置管理</td>
+<td align="left">Spring Cloud Config/Nacos</td>
+<td align="left">ConfigMap</td>
+</tr>
+
+<tr>
+<td align="left">服务发现和LB</td>
+<td align="left">Eureka/Nacos</td>
+<td align="left">Service+CoreDNS/Istio</td>
+</tr>
+
+<tr>
+<td align="left">弹性和容错</td>
+<td align="left">Hystrix/Resillience4j</td>
+<td align="left">Istio</td>
+</tr>
+
+<tr>
+<td align="left">API网关</td>
+<td align="left">Zuul/Spring Cloud Gateway</td>
+<td align="left">Ingress/Istio Gateway</td>
+</tr>
+
+<tr>
+<td align="left">服务安全</td>
+<td align="left">Spring Cloud Security</td>
+<td align="left">Istio</td>
+</tr>
+
+<tr>
+<td align="left">调用链监控</td>
+<td align="left">Spring Cloud Sleuth+ZipKin</td>
+<td align="left">Istio+Jaeger/ZipKin</td>
+</tr>
+
+<tr>
+<td align="left">Metrics监控</td>
+<td align="left">actuator+Spring Boot Admin</td>
+<td align="left">Istio+Prometheus</td>
+</tr>
+
+<tr>
+<td align="left">日志收集</td>
+<td align="left">Spring Cloud Sleuth+ELK</td>
+<td align="left">fluentd/Istio</td>
+</tr>
+</tbody>
+</table>
+
+<p>两边的解决方案都是比较完整的。
+kubernetes，在Istio还没出来以前，只能提供最基础的服务注册、服务发现能力（service只是一个4层的转发代理），istio出来以后，具有了相对完整的微服务能力。
+spring cloud，除了发布、调度、自愈这些运维平台的功能，其他的功能也支持的比较全面。
+相对而言，云厂商会更喜欢kubernetes的方案，原因就是：非侵入。平台能力与应用层的解耦，使得云厂商可以非常方便的升级、维护基础设施而不需要去关心应用的情况。</p>
+
+<h2 id="service-mesh">Service Mesh</h2>
+
+<h3 id="介绍">介绍</h3>
+
+<p>又译作“服务网格”，作为<strong>服务间通信的基础设施层</strong>。
+可以将它比作是应用程序或微服务间的 TCP/IP，<strong>负责服务之间的网络调用、限流、熔断和监控</strong>。
+对于编写应用程序来说一般无须关心 TCP/IP 这一层（比如通过 HTTP 协议的 RESTful 应用），同样使用 Service Mesh 也就无须关系服务间的那些原来是通过应用程序或者其他框架实现的事情，比如 Spring Cloud、OSS，现在只要交给 Service Mesh 就可以了。</p>
+
+<h3 id="isito">Isito</h3>
+
+<p>目前Service Mesh具体落地实现的一种，呼声最高。</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">功能列表</th>
+<th align="center">Spring Cloud</th>
+<th align="center">Isito</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">服务注册与发现</td>
+<td align="center">支持，基于Eureka，consul等组件，提供server，和Client管理</td>
+<td align="center">支持，基于XDS接口获取服务信息，并依赖“虚拟服务路由表”实现服务发现</td>
+</tr>
+
+<tr>
+<td align="center">链路监控</td>
+<td align="center">支持，基于Zikpin或者Pinpoint或者Skywalking实现</td>
+<td align="center">支持，基于sideCar代理模型，记录网络请求信息实现</td>
+</tr>
+
+<tr>
+<td align="center">API网关</td>
+<td align="center">支持，基于zuul或者spring-cloud-gateway实现</td>
+<td align="center">支持，基于Ingress gateway以及egress实现</td>
+</tr>
+
+<tr>
+<td align="center">熔断器</td>
+<td align="center">支持，基于Hystrix实现</td>
+<td align="center">支持，基于声明配置文件，最终转化成路由规则实现</td>
+</tr>
+
+<tr>
+<td align="center">服务路由</td>
+<td align="center">支持，基于网关层实现路由转发</td>
+<td align="center">支持，基于iptables规则实现</td>
+</tr>
+
+<tr>
+<td align="center">安全策略</td>
+<td align="center">支持，基于spring-security组件实现，包括认证，鉴权等，支持通信加密</td>
+<td align="center">支持，基于RBAC的权限模型，依赖Kubernetes实现，同时支持通信加密</td>
+</tr>
+
+<tr>
+<td align="center">配置中心</td>
+<td align="center">支持，springcloud-config组件实现</td>
+<td align="center">不支持</td>
+</tr>
+
+<tr>
+<td align="center">性能监控</td>
+<td align="center">支持，基于Spring cloud提供的监控组件收集数据，对接第三方的监控数据存储</td>
+<td align="center">支持，基于SideCar代理，记录服务调用性能数据，并通过metrics adapter，导入第三方数据监控工具</td>
+</tr>
+
+<tr>
+<td align="center">日志收集</td>
+<td align="center">支持，提供client，对接第三方日志系统，例如ELK</td>
+<td align="center">支持，基于SideCar代理，记录日志信息，并通过log adapter，导入第三方日志系统</td>
+</tr>
+
+<tr>
+<td align="center">工具客户端集成</td>
+<td align="center">支持，提供消息，总线，部署管道，数据处理等多种工具客户端SDK</td>
+<td align="center">不支持</td>
+</tr>
+
+<tr>
+<td align="center">分布式事务</td>
+<td align="center">支持，支持不同的分布式事务模式：JTA，TCC，SAGA等，并且提供实现的SDK框架</td>
+<td align="center">不支持</td>
+</tr>
+
+<tr>
+<td align="center">其他</td>
+<td align="center">……</td>
+<td align="center">……</td>
+</tr>
+</tbody>
+</table>
+
+<p>从上面表格中可以看到，如果从功能层面考虑，Spring Cloud与Service Mesh在服务治理场景下，有相当大量的重叠功能，从这个层面而言，为Spring Cloud向Service Mesh迁移提供了一种潜在的可能性。</p>
+
+<h3 id="服务网格">服务网格</h3>
+
+<p>服务网格从总体架构上来讲比较简单，不过是一堆紧挨着各项服务的用户代理，外加一组任务管理流程组成。
+- 代理在服务网格中被称为数据层或数据平面（<a href="https://www.servicemesher.com/istio-handbook/GLOSSARY.html#data-plane">data plane</a>），
+- 管理流程被称为控制层或控制平面（<a href="https://www.servicemesher.com/istio-handbook/GLOSSARY.html#control-plane">control plane</a>）。
+数据层截获不同服务之间的调用并对其进行“处理”；控制层协调代理的行为，并为运维人员提供 API，用来操控和测量整个网络。</p>
+
+<p><img src="http://img.llc687.top/uPic/20e8c3415b598f183ee1c0ffb464bda1.png" alt="image.png" />
+更进一步地说，服务网格是一个专用的基础设施层，旨在“在微服务架构中实现可靠、快速和安全的服务间调用”。它不是一个“服务”的网格，而是一个“代理”的网格，服务可以插入这个代理，从而使网络抽象化。</p>
+
+<p>在典型的服务网格中，这些代理作为一个 <a href="https://www.servicemesher.com/istio-handbook/GLOSSARY.html#sidecar">sidecar</a>（边车）被注入到每个服务部署中。服务不直接通过网络调用服务，而是调用它们本地的 <a href="https://www.servicemesher.com/istio-handbook/GLOSSARY.html#sidecar">sidecar</a> 代理，而 <a href="https://www.servicemesher.com/istio-handbook/GLOSSARY.html#sidecar">sidecar</a> 代理又代表服务管理请求，从而封装了服务间通信的复杂性。</p>
+
+<p>相互连接的 <a href="https://www.servicemesher.com/istio-handbook/GLOSSARY.html#sidecar">sidecar</a> 代理集实现了所谓的数据平面，这与用于配置代理和收集指标的服务网格组件（控制平面）形成对比。
+总而言之，<a href="https://www.servicemesher.com/istio-handbook/GLOSSARY.html#service-mesh">Service Mesh</a> 的基础设施层主要分为两部分：控制平面与数据平面。当前流行的两款开源服务网格 <a href="https://www.servicemesher.com/istio-handbook/GLOSSARY.html#istio">Istio</a> 和 Linkerd 实际上都是这种构造。</p>
+
+<h4 id="控制平面-数据平面">控制平面 数据平面</h4>
+
+<p>控制平面的特点：</p>
+
+<ul>
+<li>不直接解析数据包。</li>
+<li>与控制平面中的代理通信，下发策略和配置。</li>
+<li>负责网络行为的可视化。</li>
+<li>通常提供 API 或者命令行工具可用于配置版本化管理，便于持续集成和部署。</li>
+</ul>
+
+<p>数据平面的特点：</p>
+
+<ul>
+<li>通常是按照无状态目标设计的，但实际上为了提高流量转发性能，需要缓存一些数据，因此无状态也是有争议的。</li>
+<li>直接处理入站和出站数据包，转发、路由、健康检查、负载均衡、认证、鉴权、产生监控数据等。</li>
+<li>对应用来说透明，即可以做到无感知部署。</li>
+</ul>
+
+<h4 id="服务网格带来的变化">服务网格带来的变化</h4>
+
+<p>第一，微服务治理与业务逻辑的解耦。服务网格把 SDK 中的<strong>大部分</strong>能力从应用中剥离出来，拆解为独立进程，以 <a href="https://www.servicemesher.com/istio-handbook/GLOSSARY.html#sidecar">sidecar</a> 的模式进行部署。</p>
+
+<p>第二，异构系统的统一治理。不同语言、不同框架的应用和服务，能够统一管控</p>
+
+<h4 id="技术优势">技术优势</h4>
+
+<p>此外，服务网格相对于传统微服务框架，还拥有三大技术优势：</p>
+
+<ul>
+<li>可观察性。
+
+<ul>
+<li>服务网格是一个专用的基础设施层，所有服务间通信都要通过它，它在技术堆栈中处于独特的位置，以便在服务调用级别上提供统一的遥测指标。这意味着，所有服务都被监控为“黑盒”。</li>
+<li>服务网格捕获诸如来源、目的地、协议、URL、状态码、延迟、持续时间等线路数据。本质上等同于 web 服务器日志可以提供的数据，但是服务网格可以为所有服务捕获这些数据，而不仅仅是单个服务的 web 层。存储与分析这些数据则需要额外能力的机制的补充，然后作用于警报或实例自动伸缩等。</li>
+</ul></li>
+
+<li><p>流量控制。</p>
+
+<ul>
+<li><p>通过 <a href="https://www.servicemesher.com/istio-handbook/GLOSSARY.html#service-mesh">Service Mesh</a>，可以为服务提供智能路由（蓝绿部署、金丝雀发布、A/B test）、超时重试、熔断、故障注入、流量镜像等各种控制能力。</p></li>
+
+<li><p>由于服务网格的设计目的是有效地将来源请求调用连接到其最优目标服务实例，所以这些流量控制特性是“面向目的地的”。这正是服务网格流量控制能力的一大特点。</p></li>
+</ul></li>
+
+<li><p>安全。</p>
+
+<ul>
+<li>在某种程度上，单体架构应用受其单地址空间的保护。服务网格的安全相关的好处主要体现在以下三个核心领域：服务的认证、服务间通讯的加密、安全相关策略的强制执行。</li>
+</ul></li>
+
+<li><p>平台独立: Istio 是独立于平台的，旨在运行在各种环境中，包括跨云、内部部署、Kubernetes、Mesos 等。</p></li>
+
+<li><p>集成和定制: 策略执行组件可以扩展和定制，以便与现有的 ACL、日志、监控、配额、审计等方案集成。</p></li>
+</ul>
+
+<p>服务网格被称为第二代“微服务架构”。但服务网格也有它的局限性。</p>
+
+<ul>
+<li>复杂度。服务网格将 <a href="https://www.servicemesher.com/istio-handbook/GLOSSARY.html#sidecar">sidecar</a> 代理和其它组件引入到已经很复杂的分布式环境中，会极大地增加整体链路和操作运维的复杂性。</li>
+<li>运维人员能力。</li>
+<li>延迟。从链路层面来讲，服务网格是一种侵入性的、复杂的技术，可以为系统调用增加显著的延迟。</li>
+<li>适配。服务网格的侵入性要适应高度自治的平台并遵守平台的规则。</li>
+</ul>
+
+<h2 id="小结">小结</h2>
+
+<p>从架构演进路径来看，从最早期的巨石单体（Monolithic）到分布式（Distributed），再到微服务（Microservices）、容器化（Containerization）、容器编排（Container Orchestration），最后到服务网格（<a href="https://www.servicemesher.com/istio-handbook/GLOSSARY.html#service-mesh">Service Mesh</a>）、无服务器（Serverless）。</p>
+
+<p>K8S 正爆炸式发展，已经成为企业绿地应用的容器编排的首选。如果说 Kubernetes 已经彻底赢得了市场，并且基于 Kubernetes 的应用程序的规模和复杂性持续增加，那么就会有一个临界点，而服务网格则将是有效管理这些应用程序所必需的。</p>
+
+<p>随着服务网格技术的持续发展，其实现产品（如 <a href="https://www.servicemesher.com/istio-handbook/GLOSSARY.html#istio">Istio</a>）的架构与功能的不断优化，服务网格将完全取代传统微服务架构，成为大小企业微服务化和上云改造的首选架构。</p>
+
+<h2 id="参考">参考</h2>
+
+<p><a href="http://www.79tui.com/happy/634831.html">微服务架构发展和趋势</a>
+<a href="https://segmentfault.com/a/1190000023675354">SpringCloud和Dubbo</a>
+<a href="https://www.servicemesher.com/blog/201909-build-full-micro-service-platform-by-spring-boot-with-kubernetes/">SpingBoot+K8s搭建环境</a>
+<a href="https://jimmysong.io/kubernetes-handbook/usecases/service-mesh.html">serviceMesh服务网格</a></p>
+
+    </div>
+
+    
+    
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://llc687.top/tags/service-mesh/">Service Mesh</a>
+          <a href="https://llc687.top/tags/k8s/">K8s</a>
+          <a href="https://llc687.top/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">微服务</a>
+          <a href="https://llc687.top/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
+          <a href="https://llc687.top/tags/springcloud/">springCloud</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/%E6%9E%B6%E6%9E%84/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E6%96%B9%E6%A1%88/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">分布式事务方案</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="/post/java/%E4%BB%8E-springapplication.run-%E5%BC%80%E5%A7%8B/">
+            <span class="next-text nav-default">从 SpringApplication.run 开始</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "liyifan687/comments"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="icon-links">
+  
+  
+    <a href="mailto:lyfa687@gmail.com" rel="me noopener" class="iconfont"
+      title="email" >
+      <svg class="icon" viewBox="0 0 1451 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M664.781909 681.472759 0 97.881301C0 3.997201 71.046997 0 71.046997 0L474.477909 0 961.649408 0 1361.641813 0C1361.641813 0 1432.688811 3.997201 1432.688811 97.881301L771.345323 681.472759C771.345323 681.472759 764.482731 685.154773 753.594283 688.65053L753.594283 688.664858C741.602731 693.493018 729.424896 695.068979 718.077952 694.839748 706.731093 695.068979 694.553173 693.493018 682.561621 688.664858L682.561621 688.65053C671.644501 685.140446 664.781909 681.472759 664.781909 681.472759L664.781909 681.472759ZM718.063616 811.603883C693.779541 811.016482 658.879232 802.205449 619.10784 767.734955 542.989056 701.759633 0 212.052267 0 212.052267L0 942.809523C0 942.809523 0 1024 83.726336 1024L682.532949 1024 753.579947 1024 1348.948139 1024C1432.688811 1024 1432.688811 942.809523 1432.688811 942.809523L1432.688811 212.052267C1432.688811 212.052267 893.138176 701.759633 817.019477 767.734955 777.248 802.205449 742.347691 811.03081 718.063616 811.603883L718.063616 811.603883Z"></path>
+</svg>
+
+    </a>
+  
+    <a href="https://github.com/liyifan687" rel="me noopener" class="iconfont"
+      title="github"  target="_blank"
+      >
+      <svg class="icon" style="" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M512 12.672c-282.88 0-512 229.248-512 512 0 226.261333 146.688 418.133333 350.08 485.76 25.6 4.821333 34.986667-11.008 34.986667-24.618667 0-12.16-0.426667-44.373333-0.64-87.04-142.421333 30.890667-172.458667-68.693333-172.458667-68.693333C188.672 770.986667 155.008 755.2 155.008 755.2c-46.378667-31.744 3.584-31.104 3.584-31.104 51.413333 3.584 78.421333 52.736 78.421333 52.736 45.653333 78.293333 119.850667 55.68 149.12 42.581333 4.608-33.109333 17.792-55.68 32.426667-68.48-113.706667-12.8-233.216-56.832-233.216-253.013333 0-55.893333 19.84-101.546667 52.693333-137.386667-5.76-12.928-23.04-64.981333 4.48-135.509333 0 0 42.88-13.738667 140.8 52.48 40.96-11.392 84.48-17.024 128-17.28 43.52 0.256 87.04 5.888 128 17.28 97.28-66.218667 140.16-52.48 140.16-52.48 27.52 70.528 10.24 122.581333 5.12 135.509333 32.64 35.84 52.48 81.493333 52.48 137.386667 0 196.693333-119.68 240-233.6 252.586667 17.92 15.36 34.56 46.762667 34.56 94.72 0 68.522667-0.64 123.562667-0.64 140.202666 0 13.44 8.96 29.44 35.2 24.32C877.44 942.592 1024 750.592 1024 524.672c0-282.752-229.248-512-512-512"></path>
+</svg>
+
+    </a>
+
+
+<a href="https://llc687.top/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+   
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    
+      2019 -
+    2021
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        lyf687
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <script>
+    $("#openSearch, #openSearchMobile").click(function(){
+      $(".modal-dialog").addClass("visible");
+    });
+
+    $("#closeSearch").click(function(){
+      $(".modal-dialog").removeClass("visible");
+    });
+
+    $(document).click(function(event) {
+    
+      if (!$(event.target).closest(".modal-content, #openSearch, #openSearchMobile").length) {
+        $("body").find(".modal-dialog").removeClass("visible");
+      }
+    });
+  </script>
+
+
+
+
+
+</body>
+</html>
