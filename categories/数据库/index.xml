@@ -1,33 +1,21 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>数据库 on 无名鼠辈</title>
-    <link>https://llc687.top/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
-    <description>Recent content in 数据库 on 无名鼠辈</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
-    <lastBuildDate>Sun, 28 Feb 2021 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://llc687.top/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>MySQL实战45讲</title>
-      <link>https://llc687.top/post/%E6%9E%B6%E6%9E%84/mysql45%E8%AE%B2/</link>
-      <pubDate>Sun, 28 Feb 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E6%9E%B6%E6%9E%84/mysql45%E8%AE%B2/</guid>
-      <description>MySQL45讲 1. 一条SQL查询语句怎么运行的 但是大多数情况下我会建议你不要使用查询缓存，为什么呢？因为查询缓存往往弊大于利。 查询缓存的失效</description>
-    </item>
-    
-    <item>
-      <title>如何完成一次快速的查询</title>
-      <link>https://llc687.top/post/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%A6%82%E4%BD%95%E5%AE%8C%E6%88%90%E4%B8%80%E6%AC%A1%E5%BF%AB%E9%80%9F%E7%9A%84%E6%9F%A5%E8%AF%A2/</link>
-      <pubDate>Sun, 19 Apr 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%A6%82%E4%BD%95%E5%AE%8C%E6%88%90%E4%B8%80%E6%AC%A1%E5%BF%AB%E9%80%9F%E7%9A%84%E6%9F%A5%E8%AF%A2/</guid>
-      <description>哪个男孩不想完成一次快速的查询？ 1. MySQL 查询慢是什么体验？ 谢邀，利益相关。 大多数互联网应用场景都是读多写少，业务逻辑更多分布在写上。对读的要求大</description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>数据库 - 分类 - 无名鼠辈</title>
+        <link>https://llc687.top/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+        <description>数据库 - 分类 - 无名鼠辈</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 28 Feb 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://llc687.top/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="self" type="application/rss+xml" /><item>
+    <title>MySQL实战45讲</title>
+    <link>https://llc687.top/posts/%E6%9E%B6%E6%9E%84/mysql45%E8%AE%B2/</link>
+    <pubDate>Sun, 28 Feb 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://llc687.top/posts/%E6%9E%B6%E6%9E%84/mysql45%E8%AE%B2/</guid>
+    <description><![CDATA[MySQL45讲 1. 一条SQL查询语句怎么运行的 但是大多数情况下我会建议你不要使用查询缓存，为什么呢？因为查询缓存往往弊大于利。 查询缓存的失效]]></description>
+</item><item>
+    <title>如何完成一次快速的查询</title>
+    <link>https://llc687.top/posts/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%A6%82%E4%BD%95%E5%AE%8C%E6%88%90%E4%B8%80%E6%AC%A1%E5%BF%AB%E9%80%9F%E7%9A%84%E6%9F%A5%E8%AF%A2/</link>
+    <pubDate>Sun, 19 Apr 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://llc687.top/posts/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%A6%82%E4%BD%95%E5%AE%8C%E6%88%90%E4%B8%80%E6%AC%A1%E5%BF%AB%E9%80%9F%E7%9A%84%E6%9F%A5%E8%AF%A2/</guid>
+    <description><![CDATA[哪个男孩不想完成一次快速的查询？ 1. MySQL 查询慢是什么体验？ 谢邀，利益相关。 大多数互联网应用场景都是读多写少，业务逻辑更多分布在写上。对读的要求大]]></description>
+</item></channel>
 </rss>

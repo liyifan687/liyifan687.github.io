@@ -1,33 +1,21 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>“Swagger&#34; on 无名鼠辈</title>
-    <link>https://llc687.top/categories/swagger/</link>
-    <description>Recent content in “Swagger&#34; on 无名鼠辈</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
-    <lastBuildDate>Sun, 08 Dec 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://llc687.top/categories/swagger/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Swagger-Codegen使用</title>
-      <link>https://llc687.top/post/java/swagger-codegen%E4%BD%BF%E7%94%A8/</link>
-      <pubDate>Sun, 08 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/java/swagger-codegen%E4%BD%BF%E7%94%A8/</guid>
-      <description>Swagger-Codegen使用 1. 是什么 swagger 是什么应该不需要介绍。swagger-Codegen是同一团队维护的开源项目，官方介绍如是： 1 Swagger</description>
-    </item>
-    
-    <item>
-      <title>“SpringFox源码解析&#34;</title>
-      <link>https://llc687.top/post/java/springfox%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-%E8%87%AA%E5%AE%9A%E4%B9%89modelenum/</link>
-      <pubDate>Sun, 01 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/java/springfox%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-%E8%87%AA%E5%AE%9A%E4%B9%89modelenum/</guid>
-      <description>SpringFox源码分析-自定义Model、Enum 先说一说Springfox和Swagger的关系 Swagger 是一种规范。 springfox-swagger 是基于 Spring 生态系统的该规</description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Swagger - 分类 - 无名鼠辈</title>
+        <link>https://llc687.top/categories/swagger/</link>
+        <description>Swagger - 分类 - 无名鼠辈</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 08 Dec 2019 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://llc687.top/categories/swagger/" rel="self" type="application/rss+xml" /><item>
+    <title>Swagger-Codegen使用</title>
+    <link>https://llc687.top/posts/java/swagger-codegen%E4%BD%BF%E7%94%A8/</link>
+    <pubDate>Sun, 08 Dec 2019 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://llc687.top/posts/java/swagger-codegen%E4%BD%BF%E7%94%A8/</guid>
+    <description><![CDATA[Swagger-Codegen使用 1. 是什么 swagger 是什么应该不需要介绍。swagger-Codegen是同一团队维护的开源项目，官方介绍如是： 1 Swagger]]></description>
+</item><item>
+    <title>SpringFox源码解析</title>
+    <link>https://llc687.top/posts/java/springfox%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-%E8%87%AA%E5%AE%9A%E4%B9%89modelenum/</link>
+    <pubDate>Sun, 01 Dec 2019 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://llc687.top/posts/java/springfox%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-%E8%87%AA%E5%AE%9A%E4%B9%89modelenum/</guid>
+    <description><![CDATA[SpringFox源码分析-自定义Model、Enum 先说一说Springfox和Swagger的关系 Swagger 是一种规范。 springfox-swagger 是基于 Spring 生态系统的该规]]></description>
+</item></channel>
 </rss>

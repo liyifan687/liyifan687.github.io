@@ -1,0 +1,1854 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>从 SpringApplication.run 开始 - 无名鼠辈</title><meta name="Description" content=""><meta property="og:title" content="从 SpringApplication.run 开始" />
+<meta property="og:description" content="从 SpringApplication.run 开始 这是你的 SpringBoot ，启动，只需一键。 1 2 3 4 5 6 @SpringBootApplication public class ServerApplication { public static void main(String[] args) { SpringApplication.run(ServerApplication.class,args); } } 但这一键背后发生了什么？ 挂着嘴边的 IOC 容器何时诞生，天天见的 @Au" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://llc687.top/posts/java/%E4%BB%8E-springapplication.run-%E5%BC%80%E5%A7%8B/" /><meta property="og:image" content="https://llc687.top/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-10-18T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2020-10-18T00:00:00&#43;00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://llc687.top/logo.png"/>
+
+<meta name="twitter:title" content="从 SpringApplication.run 开始"/>
+<meta name="twitter:description" content="从 SpringApplication.run 开始 这是你的 SpringBoot ，启动，只需一键。 1 2 3 4 5 6 @SpringBootApplication public class ServerApplication { public static void main(String[] args) { SpringApplication.run(ServerApplication.class,args); } } 但这一键背后发生了什么？ 挂着嘴边的 IOC 容器何时诞生，天天见的 @Au"/>
+<meta name="application-name" content="无名鼠辈">
+<meta name="apple-mobile-web-app-title" content="无名鼠辈"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://llc687.top/posts/java/%E4%BB%8E-springapplication.run-%E5%BC%80%E5%A7%8B/" /><link rel="prev" href="https://llc687.top/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%B8%AD%E4%BB%8B%E8%80%85%E6%A8%A1%E5%BC%8F/" /><link rel="next" href="https://llc687.top/posts/%E6%9E%B6%E6%9E%84/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E4%BD%93%E7%B3%BB/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "从 SpringApplication.run 开始",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/llc687.top\/posts\/java\/%E4%BB%8E-springapplication.run-%E5%BC%80%E5%A7%8B\/"
+        },"genre": "posts","keywords": "Spring, SpringBoot","wordcount":  8328 ,
+        "url": "https:\/\/llc687.top\/posts\/java\/%E4%BB%8E-springapplication.run-%E5%BC%80%E5%A7%8B\/","datePublished": "2020-10-18T00:00:00+00:00","dateModified": "2020-10-18T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "Lyf"},"author": {
+                "@type": "Person",
+                "name": "Lyf"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="无名鼠辈"><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 归档 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="无名鼠辈"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">归档</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">从 SpringApplication.run 开始</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lyf</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/springboot/"><i class="far fa-folder fa-fw"></i>SpringBoot</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-10-18">2020-10-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 8328 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 17 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#从-springapplicationrun-开始">从 SpringApplication.run 开始</a>
+      <ul>
+        <li><a href="#springboot">SpringBoot</a>
+          <ul>
+            <li><a href="#1-要有光">1. 要有光</a></li>
+            <li><a href="#2-run">2. run</a>
+              <ul>
+                <li><a href="#21-监听器">2.1. 监听器</a></li>
+                <li><a href="#22-环境构建">2.2. 环境构建</a></li>
+                <li><a href="#场间休息">场间休息</a></li>
+                <li><a href="#23-创建容器">2.3. 创建容器</a></li>
+                <li><a href="#24-事前准备">2.4. 事前准备</a></li>
+                <li><a href="#25-好戏登场">2.5. 好戏登场</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#springframework">SpringFramework</a>
+          <ul>
+            <li><a href="#1-初始化-ioc-容器">1. 初始化 IOC 容器</a>
+              <ul>
+                <li><a href="#springboot-版本">SpringBoot 版本</a></li>
+              </ul>
+            </li>
+            <li><a href="#2--准备bean-容器">2.  准备bean 容器</a></li>
+            <li><a href="#3-beanfactory-处理器">3. BeanFactory 处理器</a>
+              <ul>
+                <li><a href="#解析">解析</a></li>
+                <li><a href="#扫描">扫描</a></li>
+                <li><a href="#注册">注册</a></li>
+              </ul>
+            </li>
+            <li><a href="#4-实例化bean">4. 实例化Bean</a>
+              <ul>
+                <li><a href="#循环依赖">循环依赖</a></li>
+                <li><a href="#创建bean">创建Bean</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#spring-bean-生命周期">Spring Bean 生命周期</a>
+          <ul>
+            <li><a href="#1-实例化">1. 实例化</a></li>
+            <li><a href="#2-属性装配">2. 属性装配</a></li>
+            <li><a href="#3-初始化">3. 初始化</a></li>
+            <li><a href="#4-销毁">4. 销毁</a></li>
+          </ul>
+        </li>
+        <li><a href="#springboot-回来啦">SpringBoot 回来啦</a>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#6-afterrefresh">(6). afterRefresh</a></li>
+                <li><a href="#7listenersstarted">(7).listeners.started</a></li>
+                <li><a href="#8-thiscallrunners">(8). this.callRunners</a></li>
+                <li><a href="#9-return-context">(9). return context</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#总结">总结</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="从-springapplicationrun-开始">从 SpringApplication.run 开始</h2>
+<p>这是你的 SpringBoot ，启动，只需一键。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@SpringBootApplication</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ServerApplication</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">ServerApplication</span><span class="o">.</span><span class="na">class</span><span class="o">,</span><span class="n">args</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>但这一键背后发生了什么？</p>
+<p>挂着嘴边的 IOC 容器何时诞生，天天见的 @Autowired、@Service 如何实现，陪你一路的 Bean，穿林打叶， 始于何处又终于何方?</p>
+<p>这次，从 SpringApplication.run 开始。</p>
+<blockquote>
+<p>本文 SpringBoot Version : 2.1.15</p>
+</blockquote>
+<h3 id="springboot">SpringBoot</h3>
+<h4 id="1-要有光">1. 要有光</h4>
+<p>从<code>SpringApplication.run</code>下来：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="n">ConfigurableApplicationContext</span> <span class="nf">run</span><span class="o">(</span><span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">primarySource</span><span class="o">,</span><span class="n">String</span><span class="o">...</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">run</span><span class="o">(</span><span class="k">new</span> <span class="n">Class</span><span class="o">&lt;?&gt;[]</span> <span class="o">{</span> <span class="n">primarySource</span> <span class="o">},</span> <span class="n">args</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">ConfigurableApplicationContext</span> <span class="nf">run</span><span class="o">(</span><span class="n">Object</span><span class="o">[]</span> <span class="n">sources</span><span class="o">,</span> <span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="o">(</span><span class="k">new</span> <span class="n">SpringApplication</span><span class="o">(</span><span class="n">sources</span><span class="o">)).</span><span class="na">run</span><span class="o">(</span><span class="n">args</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>首先是<code>new SpringApplication(sources)</code>，<strong>构建 SpringApplication 实例</strong>，将 <code>ServerApplication.class</code> 存储在<code> this.primarySources</code> 属性中。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">SpringApplication</span><span class="o">(</span><span class="n">ResourceLoader</span> <span class="n">resourceLoader</span><span class="o">,</span> <span class="n">Class</span><span class="o">&lt;?&gt;...</span> <span class="n">primarySources</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">resourceLoader</span> <span class="o">=</span> <span class="n">resourceLoader</span><span class="o">;</span>
+    <span class="c1">// 把 ServerApplication.class 设置为属性存储起来
+</span><span class="c1"></span>    <span class="k">this</span><span class="o">.</span><span class="na">primarySources</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedHashSet</span><span class="o">&lt;&gt;(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">primarySources</span><span class="o">));</span>
+    <span class="c1">// 设置应用类型
+</span><span class="c1"></span>    <span class="k">this</span><span class="o">.</span><span class="na">webApplicationType</span> <span class="o">=</span> <span class="n">deduceWebApplicationType</span><span class="o">();</span>
+    <span class="c1">// 设置初始化器,最后会调用这些初始化器
+</span><span class="c1"></span>    <span class="n">setInitializers</span><span class="o">((</span><span class="n">Collection</span><span class="o">)</span> <span class="n">getSpringFactoriesInstances</span><span class="o">(</span> <span class="n">ApplicationContextInitializer</span><span class="o">.</span><span class="na">class</span><span class="o">));</span>
+    <span class="c1">// 设置监听器
+</span><span class="c1"></span>    <span class="n">setListeners</span><span class="o">((</span><span class="n">Collection</span><span class="o">)</span> <span class="n">getSpringFactoriesInstances</span><span class="o">(</span><span class="n">ApplicationListener</span><span class="o">.</span><span class="na">class</span><span class="o">));</span>
+    <span class="c1">// 根据堆栈，推断并设置主类
+</span><span class="c1"></span>    <span class="k">this</span><span class="o">.</span><span class="na">mainApplicationClass</span> <span class="o">=</span> <span class="n">deduceMainApplicationClass</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="2-run">2. run</h4>
+<p>有了实例，就要 run。这个方法看上去就知道做了一堆工作，一个个说。代码里已标出序号。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="n">ConfigurableApplicationContext</span> <span class="nf">run</span><span class="o">(</span><span class="n">String</span><span class="o">...</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// 计时工具
+</span><span class="c1"></span>    <span class="n">StopWatch</span> <span class="n">stopWatch</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StopWatch</span><span class="o">();</span>
+    <span class="n">stopWatch</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+    <span class="o">***</span>
+    <span class="c1">// 1：获取并启动监听器
+</span><span class="c1"></span>    <span class="n">SpringApplicationRunListeners</span> <span class="n">listeners</span> <span class="o">=</span> <span class="n">getRunListeners</span><span class="o">(</span><span class="n">args</span><span class="o">);</span>
+    <span class="n">listeners</span><span class="o">.</span><span class="na">starting</span><span class="o">();</span>
+    <span class="k">try</span> <span class="o">{</span>
+        <span class="n">ApplicationArguments</span> <span class="n">applicationArguments</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DefaultApplicationArguments</span><span class="o">(</span><span class="n">args</span><span class="o">);</span>
+        <span class="c1">// 2：根据 SpringApplicationRunListeners 及参数来准备环境
+</span><span class="c1"></span>        <span class="n">ConfigurableEnvironment</span> <span class="n">environment</span> <span class="o">=</span> <span class="n">prepareEnvironment</span><span class="o">(</span><span class="n">listeners</span><span class="o">,</span><span class="n">applicationArguments</span><span class="o">);</span>
+        <span class="n">configureIgnoreBeanInfo</span><span class="o">(</span><span class="n">environment</span><span class="o">);</span>
+        <span class="c1">// 打字：启动 Spring Boot的时候打印在控制台上的ASCII艺术字
+</span><span class="c1"></span>        <span class="n">Banner</span> <span class="n">printedBanner</span> <span class="o">=</span> <span class="n">printBanner</span><span class="o">(</span><span class="n">environment</span><span class="o">);</span>
+        <span class="c1">// 3：创建 Spring 容器
+</span><span class="c1"></span>        <span class="n">context</span> <span class="o">=</span> <span class="n">createApplicationContext</span><span class="o">();</span>
+        <span class="n">exceptionReporters</span> <span class="o">=</span> <span class="n">getSpringFactoriesInstances</span><span class="o">(</span>
+                <span class="n">SpringBootExceptionReporter</span><span class="o">.</span><span class="na">class</span><span class="o">,</span>
+                <span class="k">new</span> <span class="n">Class</span><span class="o">[]</span> <span class="o">{</span> <span class="n">ConfigurableApplicationContext</span><span class="o">.</span><span class="na">class</span> <span class="o">},</span> <span class="n">context</span><span class="o">);</span>
+        <span class="c1">// 4：容器前置处理
+</span><span class="c1"></span>        <span class="n">prepareContext</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">environment</span><span class="o">,</span> <span class="n">listeners</span><span class="o">,</span> <span class="n">applicationArguments</span><span class="o">,</span><span class="n">printedBanner</span><span class="o">);</span>
+        <span class="c1">// 5：刷新容器
+</span><span class="c1"></span>        <span class="n">refreshContext</span><span class="o">(</span><span class="n">context</span><span class="o">);</span>
+　　　　 <span class="c1">// 6：Spring容器后置处理
+</span><span class="c1"></span>        <span class="n">afterRefresh</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">applicationArguments</span><span class="o">);</span>
+  　　　 <span class="c1">// 7：发出结束执行的事件
+</span><span class="c1"></span>        <span class="n">listeners</span><span class="o">.</span><span class="na">started</span><span class="o">(</span><span class="n">context</span><span class="o">);</span>
+        <span class="c1">// 8：执行Runners
+</span><span class="c1"></span>        <span class="k">this</span><span class="o">.</span><span class="na">callRunners</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">applicationArguments</span><span class="o">);</span>
+        <span class="n">stopWatch</span><span class="o">.</span><span class="na">stop</span><span class="o">();</span>
+        <span class="c1">// 9. 返回容器
+</span><span class="c1"></span>        <span class="k">return</span> <span class="n">context</span><span class="o">;</span>
+    <span class="o">}***</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="21-监听器">2.1. 监听器</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">		<span class="c1">// 1：获取并启动监听器
+</span><span class="c1"></span>    <span class="n">SpringApplicationRunListeners</span> <span class="n">listeners</span> <span class="o">=</span> <span class="n">getRunListeners</span><span class="o">(</span><span class="n">args</span><span class="o">);</span>
+    <span class="n">listeners</span><span class="o">.</span><span class="na">starting</span><span class="o">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>首先看第一个，获取并启动监听器。会在 spring.factories 文件中寻找 <code>SpringApplicationRunListener</code>实现类名，反射构造实例，且持有<code>SpringApplication</code>的引用。再把实例放到<code>SpringApplicationRunListeners</code>容器来管理。</p>
+<p>最后遍历执行<code>listeners</code>容器里所有<code>SpringApplicationRunListener</code>对象的<code>starting</code>方法，其实就是调用<code>EventPublishingRunListener</code>的<code>starting()</code>启动。</p>
+<p>这个也不是我们要谈的, 不展开了。</p>
+<h5 id="22-环境构建">2.2. 环境构建</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 2：根据 SpringApplicationRunListeners 及参数来准备环境   
+</span><span class="c1"></span><span class="n">ConfigurableEnvironment</span> <span class="n">environment</span> <span class="o">=</span> <span class="n">prepareEnvironment</span><span class="o">(</span><span class="n">listeners</span><span class="o">,</span> <span class="n">applicationArguments</span><span class="o">);</span>
+<span class="n">configureIgnoreBeanInfo</span><span class="o">(</span><span class="n">environment</span><span class="o">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>稍微跟一下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="n">ConfigurableEnvironment</span> <span class="nf">prepareEnvironment</span><span class="o">(</span>
+        <span class="n">SpringApplicationRunListeners</span> <span class="n">listeners</span><span class="o">,</span> <span class="n">ApplicationArguments</span> <span class="n">applicationArguments</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">***</span>
+    <span class="c1">// 配置
+</span><span class="c1"></span>    <span class="n">configureEnvironment</span><span class="o">(</span><span class="n">environment</span><span class="o">,</span> <span class="n">applicationArguments</span><span class="o">.</span><span class="na">getSourceArgs</span><span class="o">());</span>
+    <span class="c1">// 发布环境已准备事件，这是第二次发布事件
+</span><span class="c1"></span>    <span class="n">listeners</span><span class="o">.</span><span class="na">environmentPrepared</span><span class="o">(</span><span class="n">environment</span><span class="o">);</span>
+    <span class="o">***</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>listeners.environmentPrepared(environment)</code>发布事件，哪个监听器获取呢，有个很重要的，叫<code>ConfigFileApplicationListener</code>，顾名思义,  配置文件。</p>
+<p>是的，项目中的 properties 和 yml 配置文件都是其内部类所加载。</p>
+<h5 id="场间休息">场间休息</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Banner</span> <span class="n">printedBanner</span> <span class="o">=</span> <span class="n">printBanner</span><span class="o">(</span><span class="n">environment</span><span class="o">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这个打印了启动时在控制台看到的 <code>Spring Boot</code> 艺术字。</p>
+<h5 id="23-创建容器">2.3. 创建容器</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 3：创建 Spring 容器 
+</span><span class="c1"></span><span class="n">context</span> <span class="o">=</span> <span class="n">createApplicationContext</span><span class="o">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">protected</span> <span class="n">ConfigurableApplicationContext</span> <span class="nf">createApplicationContext</span><span class="o">()</span> <span class="o">{</span>
+		<span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">contextClass</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">applicationContextClass</span><span class="o">;</span>
+		<span class="k">if</span> <span class="o">(</span><span class="n">contextClass</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+			<span class="k">try</span> <span class="o">{</span>
+				<span class="k">switch</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">webApplicationType</span><span class="o">)</span> <span class="o">{</span>
+				<span class="k">case</span> <span class="n">SERVLET</span><span class="o">:</span>
+					<span class="n">contextClass</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="n">DEFAULT_SERVLET_WEB_CONTEXT_CLASS</span><span class="o">);</span>
+					<span class="k">break</span><span class="o">;</span>
+				<span class="k">case</span> <span class="n">REACTIVE</span><span class="o">:</span>
+					<span class="n">contextClass</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="n">DEFAULT_REACTIVE_WEB_CONTEXT_CLASS</span><span class="o">);</span>
+					<span class="k">break</span><span class="o">;</span>
+				<span class="k">default</span><span class="o">:</span>
+					<span class="n">contextClass</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="n">DEFAULT_CONTEXT_CLASS</span><span class="o">);</span>
+				<span class="o">}</span>
+			<span class="o">}</span>
+			<span class="o">***</span>
+		<span class="o">}</span>
+		<span class="k">return</span> <span class="o">(</span><span class="n">ConfigurableApplicationContext</span><span class="o">)</span> <span class="n">BeanUtils</span><span class="o">.</span><span class="na">instantiateClass</span><span class="o">(</span><span class="n">contextClass</span><span class="o">);</span>
+	<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>创建<code>ApplicationContext</code>, 容器类型根据<code>webApplicationType</code>判断。比如是<code>SERVLET</code>时，会通过反射装载对应的字节码，是<strong>AnnotationConfigServletWebServerApplicationContext</strong>。</p>
+<p><strong>需要注意，这里的三个类型全都是继承<code>GenericApplicationContext</code></strong>。记住，后面要考。</p>
+<h5 id="24-事前准备">2.4. 事前准备</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 4：容器前置处理
+</span><span class="c1"></span><span class="n">prepareContext</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">environment</span><span class="o">,</span> <span class="n">listeners</span><span class="o">,</span> <span class="n">applicationArguments</span><span class="o">,</span><span class="n">printedBanner</span><span class="o">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>事前，什么事呢？这个准备包括了一个重要的操作：<strong>将启动类注入容器</strong>，为后续开启自动化配置奠定基础。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kt">void</span> <span class="nf">prepareContext</span><span class="o">(</span><span class="n">ConfigurableApplicationContext</span> <span class="n">context</span><span class="o">,</span>
+        <span class="n">ConfigurableEnvironment</span> <span class="n">environment</span><span class="o">,</span> <span class="n">SpringApplicationRunListeners</span> <span class="n">listeners</span><span class="o">,</span>
+        <span class="n">ApplicationArguments</span> <span class="n">applicationArguments</span><span class="o">,</span> <span class="n">Banner</span> <span class="n">printedBanner</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// 设置容器环境，包括各种变量
+</span><span class="c1"></span>    <span class="n">context</span><span class="o">.</span><span class="na">setEnvironment</span><span class="o">(</span><span class="n">environment</span><span class="o">);</span>
+    <span class="c1">// 执行容器后置处理
+</span><span class="c1"></span>    <span class="n">postProcessApplicationContext</span><span class="o">(</span><span class="n">context</span><span class="o">);</span>
+    <span class="c1">// 执行容器中的 ApplicationContextInitializer（包括 spring.factories 和自定义实例）
+</span><span class="c1"></span>    <span class="n">applyInitializers</span><span class="o">(</span><span class="n">context</span><span class="o">);</span>
+　　 <span class="c1">// 发送容器已经准备好的事件
+</span><span class="c1"></span>    <span class="n">listeners</span><span class="o">.</span><span class="na">contextPrepared</span><span class="o">(</span><span class="n">context</span><span class="o">);</span>
+    <span class="c1">// 注册启动参数bean，将容器指定的参数封装成bean，注入容器; 设置banner
+</span><span class="c1"></span>    <span class="o">***</span>
+    <span class="c1">// 获取启动类指定的参数，可以是多个
+</span><span class="c1"></span>    <span class="n">Set</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;</span> <span class="n">sources</span> <span class="o">=</span> <span class="n">getAllSources</span><span class="o">()</span>
+    <span class="c1">// 加载启动类，将启动类注入容器
+</span><span class="c1"></span>    <span class="n">load</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">sources</span><span class="o">.</span><span class="na">toArray</span><span class="o">(</span><span class="k">new</span> <span class="n">Object</span><span class="o">[</span><span class="n">0</span><span class="o">]));</span>
+    <span class="c1">// 发布容器已加载事件
+</span><span class="c1"></span>    <span class="n">listeners</span><span class="o">.</span><span class="na">contextLoaded</span><span class="o">(</span><span class="n">context</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>看一下<code>getAllSources()</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;</span> <span class="nf">getAllSources</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">Set</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;</span> <span class="n">allSources</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedHashSet</span><span class="o">();</span>
+    <span class="k">if</span> <span class="o">(!</span><span class="n">CollectionUtils</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">primarySources</span><span class="o">))</span> <span class="o">{</span>
+        <span class="c1">//获取primarySources属性，也就是之前存储的HelloWorldMainApplication.class
+</span><span class="c1"></span>        <span class="n">allSources</span><span class="o">.</span><span class="na">addAll</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">primarySources</span><span class="o">);</span>
+    <span class="o">}</span>
+   <span class="o">***</span>
+<span class="o">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p><code>primarySources</code>还记得不？在实例化<code>SpringApplication</code>时存了起来。也就是我们的启动类。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="k">this</span><span class="o">.</span><span class="na">primarySources</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedHashSet</span><span class="o">&lt;&gt;(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">primarySources</span><span class="o">));</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>再顺着<code>listeners.contextLoaded(context)</code>一路向下，来到<code>load</code>方法。以注解方式，将启动类 bean 信息加载到 beanDefinitionMap 中，后续该启动类将作为开启自动化配置的入口。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kt">int</span> <span class="nf">load</span><span class="o">(</span><span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">source</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">***</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">isComponent</span><span class="o">(</span><span class="n">source</span><span class="o">))</span> <span class="o">{</span>
+        <span class="c1">// 以注解方式，将启动类 bean 信息存入 beanDefinitionMap
+</span><span class="c1"></span>        <span class="k">this</span><span class="o">.</span><span class="na">annotatedReader</span><span class="o">.</span><span class="na">register</span><span class="o">(</span><span class="n">source</span><span class="o">);</span>
+        <span class="o">***</span>
+    <span class="o">}</span>
+		<span class="o">***</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="25-好戏登场">2.5. 好戏登场</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"> <span class="n">refreshContext</span><span class="o">(</span><span class="n">context</span><span class="o">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>刷新容器。就像本节标题，前面其实都是 <code>Spring Boot</code> 的工作， Bean 是放在 Spring 的 IOC 容器里，Spring 在哪呢？这就是了。</p>
+<p>这调用的是<code>org.springframework.context.support.AbstractApplicationContext</code>的<code>refresh</code>。</p>
+<p>如果你在网上冲浪，搜索 <code>Spring IOC 初始化</code>，大抵都是从这开始的。当然，如果不用<code>Spring Boot</code>，用原生的 Spring、Spring Mvc ，那前面的流程就变了，这里就不说了。</p>
+<h3 id="springframework">SpringFramework</h3>
+<p>从前所述，Spring Boot 告一段落，来到 SpringFramework 的 refresh。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">refresh</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">BeansException</span><span class="o">,</span> <span class="n">IllegalStateException</span> <span class="o">{</span>
+   <span class="kd">synchronized</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">startupShutdownMonitor</span><span class="o">)</span> <span class="o">{</span>
+      <span class="c1">// 准备工作，记录时间、标记状态、处理配置文件中的占位符等
+</span><span class="c1"></span>      <span class="n">prepareRefresh</span><span class="o">();</span>
+      <span class="c1">// 1.初始化 IOC 容器
+</span><span class="c1"></span>      <span class="n">ConfigurableListableBeanFactory</span> <span class="n">beanFactory</span> <span class="o">=</span> <span class="n">obtainFreshBeanFactory</span><span class="o">();</span>
+      <span class="c1">// 2. 设置 BeanFactory 的类加载器，添加BeanPostProcessor后置处理器
+</span><span class="c1"></span>      <span class="n">prepareBeanFactory</span><span class="o">(</span><span class="n">beanFactory</span><span class="o">);</span>
+      <span class="k">try</span> <span class="o">{</span>
+         <span class="c1">// 提供子类覆盖的额外处理
+</span><span class="c1"></span>         <span class="n">postProcessBeanFactory</span><span class="o">(</span><span class="n">beanFactory</span><span class="o">);</span>
+         <span class="c1">// 3. 调用BeanFactory后置处理器
+</span><span class="c1"></span>         <span class="n">invokeBeanFactoryPostProcessors</span><span class="o">(</span><span class="n">beanFactory</span><span class="o">);</span>          
+         <span class="c1">// 注册Bean后置处理器BeanPostProcessor 的实现类
+</span><span class="c1"></span>         <span class="n">registerBeanPostProcessors</span><span class="o">(</span><span class="n">beanFactory</span><span class="o">);</span>
+         <span class="c1">// 初始化当前 ApplicationContext 的 MessageSource，国际化处理
+</span><span class="c1"></span>         <span class="n">initMessageSource</span><span class="o">();</span>
+         <span class="c1">// 初始化当前 ApplicationContext 的事件广播器
+</span><span class="c1"></span>         <span class="n">initApplicationEventMulticaster</span><span class="o">();</span>
+         <span class="c1">// 模板方法(钩子)，供子类实现，初始化一些特殊的 Bean
+</span><span class="c1"></span>         <span class="n">onRefresh</span><span class="o">();</span>
+         <span class="c1">// 注册事件监听器，监听器需实现 ApplicationListener 接口。
+</span><span class="c1"></span>         <span class="n">registerListeners</span><span class="o">();</span>
+         <span class="c1">// 4. 初始化所有(non-lazy-init)singleton beans
+</span><span class="c1"></span>         <span class="n">finishBeanFactoryInitialization</span><span class="o">(</span><span class="n">beanFactory</span><span class="o">);</span>
+         <span class="c1">// 广播事件，ApplicationContext 初始化完成
+</span><span class="c1"></span>         <span class="n">finishRefresh</span><span class="o">();</span>
+      <span class="o">}</span>
+      <span class="k">catch</span> <span class="o">(</span><span class="n">BeansException</span> <span class="n">ex</span><span class="o">)</span> <span class="o">{</span>
+         <span class="c1">// 销毁已经初始化的 singleton 的 Beans，以免有些 bean 会一直占用资源
+</span><span class="c1"></span>         <span class="n">destroyBeans</span><span class="o">();</span>
+				<span class="o">***</span>
+      <span class="o">}</span>
+
+      <span class="k">finally</span> <span class="o">{</span>
+         <span class="o">***</span>
+      <span class="o">}</span>
+   <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>又是很多工作，但这里只重点关注部分内容。代码中也加上了序号。</p>
+<h4 id="1-初始化-ioc-容器">1. 初始化 IOC 容器</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 1.初始化 IOC 容器
+</span><span class="c1"></span><span class="n">ConfigurableListableBeanFactory</span> <span class="n">beanFactory</span> <span class="o">=</span> <span class="n">obtainFreshBeanFactory</span><span class="o">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在没<code>Spring Boot</code>的岁月， 这一步会做很多重要工作，<strong>比如将 <code>xml</code>配置中的 <code>bean</code>配置信息，也就是<code>Resource</code>转成<code>Document</code>再转成<code>BeanDefinition</code>,  接着注册到 IOC 容器 BeanFactory。</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">protected</span> <span class="n">ConfigurableListableBeanFactory</span> <span class="nf">obtainFreshBeanFactory</span><span class="o">()</span> <span class="o">{</span>
+		<span class="n">refreshBeanFactory</span><span class="o">();</span>
+		<span class="k">return</span> <span class="n">getBeanFactory</span><span class="o">();</span>
+	<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://img.llc687.top/uPic/image-20201009193833840.png"
+        data-srcset="http://img.llc687.top/uPic/image-20201009193833840.png, http://img.llc687.top/uPic/image-20201009193833840.png 1.5x, http://img.llc687.top/uPic/image-20201009193833840.png 2x"
+        data-sizes="auto"
+        alt="http://img.llc687.top/uPic/image-20201009193833840.png"
+        title="image-20201009193833840" /></p>
+<p>有两个实现类，大多数文章会告诉你，下一步是<code>AbstractRefreshableApplicationContext</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">	<span class="kd">protected</span> <span class="kd">final</span> <span class="kt">void</span> <span class="nf">refreshBeanFactory</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">BeansException</span> <span class="o">{</span>
+		<span class="o">***</span>
+		<span class="k">try</span> <span class="o">{</span>
+			<span class="n">DefaultListableBeanFactory</span> <span class="n">beanFactory</span> <span class="o">=</span> <span class="n">createBeanFactory</span><span class="o">();</span>
+			<span class="o">***</span>
+			<span class="n">loadBeanDefinitions</span><span class="o">(</span><span class="n">beanFactory</span><span class="o">);</span>
+		<span class="o">}</span>
+		<span class="o">***</span>
+	<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>接着会有不同的实现类，一般是 <code>XmlWebApplicationContext</code>, 之后解析配置等等。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://img.llc687.top/uPic/image-20201009194053425.png"
+        data-srcset="http://img.llc687.top/uPic/image-20201009194053425.png, http://img.llc687.top/uPic/image-20201009194053425.png 1.5x, http://img.llc687.top/uPic/image-20201009194053425.png 2x"
+        data-sizes="auto"
+        alt="http://img.llc687.top/uPic/image-20201009194053425.png"
+        title="image-20201009194053425" /></p>
+<p>没错。在使用 Spring MVC，xml 配置时，当启动 tomcat ，一路往下，初始化 Spring 应用上下文创建的是<code>WebApplicationContext</code>。(详见 ContextLoaderListener 父类 ContextLoader)</p>
+<p>最终实例化的实现类默认值在<code>ContextLoader.properties</code>中配置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="err">org.springframework.web.context.WebApplicationContext=org.springframework.web.context.support.XmlWebApplicationContext</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>所以这种说法是正确的。</p>
+<p>不过现在是基于 SpringBoot 的注解方式。难道是从 <code>XmlWebApplicationContext</code>换成了图中的<code>AnnotationConfigWebApplicationContext</code>，那它怎么知道动态用了注解呢？</p>
+<h5 id="springboot-版本">SpringBoot 版本</h5>
+<p>后退一步，回到<code>refreshBeanFactory()</code>，看看另一个实现类<code>GenericApplicationContext</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">protected</span> <span class="kd">final</span> <span class="kt">void</span> <span class="nf">refreshBeanFactory</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">IllegalStateException</span> <span class="o">{</span>
+		<span class="k">if</span> <span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="na">refreshed</span><span class="o">.</span><span class="na">compareAndSet</span><span class="o">(</span><span class="kc">false</span><span class="o">,</span> <span class="kc">true</span><span class="o">))</span> 
+		<span class="o">***</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">beanFactory</span><span class="o">.</span><span class="na">setSerializationId</span><span class="o">(</span><span class="n">getId</span><span class="o">());</span>
+	<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这里几乎什么都没做，看起来像是没用的。但<code>SpringBoot</code>项目就是会走到这里，在第一部分<code>SpringBoot.容器构建</code>那里说过：</p>
+<blockquote>
+<p>需要注意，这里的三个类型全都是继承<code>GenericApplicationContext</code>。记住，后面要考。</p>
+</blockquote>
+<p>所以其实创建<code>ApplicationContext</code>时就选定了类型。这样的话，<code>BeanDefinition</code>在哪加载的？</p>
+<h4 id="2--准备bean-容器">2.  准备bean 容器</h4>
+<p>带着上一个问题，往下看。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 2. 设置 BeanFactory 的类加载器，添加BeanPostProcessor后置处理器 
+</span><span class="c1"></span><span class="n">prepareBeanFactory</span><span class="o">(</span><span class="n">beanFactory</span><span class="o">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>如果是原始的 Spring MVC 模式，上一步把 xml 配置的 bean 注册后，这里会手动注册下特殊bean。</p>
+<p>也会对 BeanFactory 各种功能进行填充，如常用注解 @Autowired、 @Qualifier 等，添加后置处理器。</p>
+<h4 id="3-beanfactory-处理器">3. BeanFactory 处理器</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 3. 调用BeanFactory后置处理器
+</span><span class="c1"></span><span class="n">invokeBeanFactoryPostProcessors</span><span class="o">(</span><span class="n">beanFactory</span><span class="o">);</span>  
+</code></pre></td></tr></table>
+</div>
+</div><p>调用<code>BeanFactoryPostProcessor</code>各实现类的 <code>postProcessBeanFactory() </code>回调方法。这个在<code>SpringBoot</code>里就有点重要了。</p>
+<p>因为<strong>它实现了将 annotation 的 Bean 配置转化为 BeanDefinition ，以及注册。</strong></p>
+<p>是的，本章第 1 小结， SpringMvc 时期<code>obtainFreshBeanFactory()</code>的部分工作到了这里。刚才遗留的问题，在这听到了答案。</p>
+<p>再一路到<code>PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors</code>, 有</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">invokeBeanDefinitionRegistryPostProcessors</span><span class="o">(</span><span class="n">currentRegistryProcessors</span><span class="o">,</span> <span class="n">registry</span><span class="o">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这儿就是 BeanDefinition 的注册入口，注册 BeanDefinition 的后置处理器。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">	<span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">invokeBeanDefinitionRegistryPostProcessors</span><span class="o">(</span>
+			<span class="n">Collection</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">BeanDefinitionRegistryPostProcessor</span><span class="o">&gt;</span> <span class="n">postProcessors</span><span class="o">,</span> <span class="n">BeanDefinitionRegistry</span> <span class="n">registry</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">for</span> <span class="o">(</span><span class="n">BeanDefinitionRegistryPostProcessor</span> <span class="n">postProcessor</span> <span class="o">:</span> <span class="n">postProcessors</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">postProcessor</span><span class="o">.</span><span class="na">postProcessBeanDefinitionRegistry</span><span class="o">(</span><span class="n">registry</span><span class="o">);</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>其实现类是<code>ConfigurationClassPostProcessor</code>, 再往下到<code>processConfigBeanDefinitions</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">processConfigBeanDefinitions</span><span class="o">(</span><span class="n">BeanDefinitionRegistry</span> <span class="n">registry</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">beanName</span> <span class="o">:</span> <span class="n">candidateNames</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 默认仅有主类被添加
+</span><span class="c1"></span>        <span class="n">configCandidates</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">BeanDefinitionHolder</span><span class="o">(</span><span class="n">beanDef</span><span class="o">,</span> <span class="n">beanName</span><span class="o">));</span>
+    <span class="o">}</span>
+    <span class="c1">// 解析被 @Configuration 注解的类
+</span><span class="c1"></span>    <span class="n">ConfigurationClassParser</span> <span class="n">parser</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ConfigurationClassParser</span><span class="o">(</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">metadataReaderFactory</span><span class="o">,</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">problemReporter</span><span class="o">,</span><span class="k">this</span><span class="o">.</span><span class="na">environment</span><span class="o">,</span><span class="k">this</span><span class="o">.</span><span class="na">resourceLoader</span><span class="o">,</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">componentScanBeanNameGenerator</span><span class="o">,</span><span class="n">registry</span><span class="o">);</span>
+    <span class="k">do</span> <span class="o">{</span>
+        <span class="c1">// 解析的核心方法
+</span><span class="c1"></span>        <span class="n">parser</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="n">candidates</span><span class="o">);</span>
+        <span class="n">parser</span><span class="o">.</span><span class="na">validate</span><span class="o">();</span>
+    <span class="o">}</span> 
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="解析">解析</h5>
+<p>看这个解析的核心方法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">parser</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="n">candidates</span><span class="o">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">parse</span><span class="o">(</span><span class="n">Set</span><span class="o">&lt;</span><span class="n">BeanDefinitionHolder</span><span class="o">&gt;</span> <span class="n">configCandidates</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span><span class="n">BeanDefinitionHolder</span> <span class="n">holder</span> <span class="o">:</span> <span class="n">configCandidates</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">BeanDefinition</span> <span class="n">bd</span> <span class="o">=</span> <span class="n">holder</span><span class="o">.</span><span class="na">getBeanDefinition</span><span class="o">();</span>       
+        <span class="c1">// 主类的解析从这开始
+</span><span class="c1"></span>			  <span class="n">parse</span><span class="o">(((</span><span class="n">AnnotatedBeanDefinition</span><span class="o">)</span> <span class="n">bd</span><span class="o">).</span><span class="na">getMetadata</span><span class="o">(),</span> <span class="n">holder</span><span class="o">.</span><span class="na">getBeanName</span><span class="o">());</span>
+       <span class="o">}</span> 
+<span class="o">}</span>
+<span class="kd">protected</span> <span class="kd">final</span> <span class="kt">void</span> <span class="nf">parse</span><span class="o">(</span><span class="n">AnnotationMetadata</span> <span class="n">metadata</span><span class="o">,</span> <span class="n">String</span> <span class="n">beanName</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">processConfigurationClass</span><span class="o">(</span><span class="k">new</span> <span class="n">ConfigurationClass</span><span class="o">(</span><span class="n">metadata</span><span class="o">,</span> <span class="n">beanName</span><span class="o">));</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>主类被作为 BeanDefinition 加载到 BeanFactory 中，被 ConfigurationClassParser 解析器所解析。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">processConfigurationClass</span><span class="o">(</span><span class="n">ConfigurationClass</span> <span class="n">configClass</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// 从 main方法所在主类开始，递归解析
+</span><span class="c1"></span>    <span class="n">SourceClass</span> <span class="n">sourceClass</span> <span class="o">=</span> <span class="n">asSourceClass</span><span class="o">(</span><span class="n">configClass</span><span class="o">);</span>
+    <span class="k">do</span> <span class="o">{</span>
+        <span class="c1">// 解析单个配置类
+</span><span class="c1"></span>        <span class="n">sourceClass</span> <span class="o">=</span> <span class="n">doProcessConfigurationClass</span><span class="o">(</span><span class="n">configClass</span><span class="o">,</span> <span class="n">sourceClass</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>doProcessConfigurationClass</code>负责解析的主要工作，会处理一个非常或者说必用的注解<code>@ComponentScan</code>，根据该注解信息得到扫描路径，开始扫描。</p>
+<p>同时，对扫描出来的 Bean 又会返回个新的 sourceClass 用于继续解析。新 sourceClass 是上一个 sourceClass 的父类。所以该解析过程是个递归，主类开始，逐层向上。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">protected</span> <span class="kd">final</span> <span class="n">SourceClass</span> <span class="nf">doProcessConfigurationClass</span><span class="o">(</span><span class="n">ConfigurationClass</span> <span class="n">configClass</span><span class="o">,</span> <span class="n">SourceClass</span> <span class="n">sourceClass</span><span class="o">)</span> <span class="o">{</span>
+<span class="c1">// 处理 @ComponentScan 注解
+</span><span class="c1"></span><span class="n">Set</span><span class="o">&lt;</span><span class="n">AnnotationAttributes</span><span class="o">&gt;</span> <span class="n">componentScans</span> <span class="o">=</span> <span class="n">AnnotationConfigUtils</span><span class="o">.</span><span class="na">attributesForRepeatable</span><span class="o">(</span>
+				<span class="n">sourceClass</span><span class="o">.</span><span class="na">getMetadata</span><span class="o">(),</span> <span class="n">ComponentScans</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">ComponentScan</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+			<span class="k">for</span> <span class="o">(</span><span class="n">AnnotationAttributes</span> <span class="n">componentScan</span> <span class="o">:</span> <span class="n">componentScans</span><span class="o">)</span> <span class="o">{</span>
+				<span class="n">Set</span><span class="o">&lt;</span><span class="n">BeanDefinitionHolder</span><span class="o">&gt;</span> <span class="n">scannedBeanDefinitions</span> <span class="o">=</span>
+            <span class="c1">// 处理扫描出来bean
+</span><span class="c1"></span>						<span class="k">this</span><span class="o">.</span><span class="na">componentScanParser</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="n">componentScan</span><span class="o">,</span> <span class="n">sourceClass</span><span class="o">.</span><span class="na">getMetadata</span><span class="o">().</span><span class="na">getClassName</span><span class="o">());</span>
+				<span class="o">}}}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">BeanDefinitionHolder</span><span class="o">&gt;</span> <span class="nf">parse</span><span class="o">(</span><span class="n">AnnotationAttributes</span> <span class="n">componentScan</span><span class="o">,</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">declaringClass</span><span class="o">)</span> <span class="o">{</span>
+  <span class="o">***</span>
+	<span class="k">return</span> <span class="n">scanner</span><span class="o">.</span><span class="na">doScan</span><span class="o">(</span><span class="n">StringUtils</span><span class="o">.</span><span class="na">toStringArray</span><span class="o">(</span><span class="n">basePackages</span><span class="o">));</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>现在，获得了扫描器和扫描路径, 调用<code>doScan</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">protected</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">BeanDefinitionHolder</span><span class="o">&gt;</span> <span class="nf">doScan</span><span class="o">(</span><span class="n">String</span><span class="o">...</span> <span class="n">basePackages</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">Set</span><span class="o">&lt;</span><span class="n">BeanDefinitionHolder</span><span class="o">&gt;</span> <span class="n">beanDefinitions</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedHashSet</span><span class="o">&lt;&gt;();</span>
+    <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">basePackage</span> <span class="o">:</span> <span class="n">basePackages</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 1. 扫描获取 BeanDefinition
+</span><span class="c1"></span>        <span class="n">Set</span><span class="o">&lt;</span><span class="n">BeanDefinition</span><span class="o">&gt;</span> <span class="n">candidates</span> <span class="o">=</span> <span class="n">findCandidateComponents</span><span class="o">(</span><span class="n">basePackage</span><span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">BeanDefinition</span> <span class="n">candidate</span> <span class="o">:</span> <span class="n">candidates</span><span class="o">)</span> <span class="o">{</span>
+            <span class="o">***</span>
+           <span class="c1">// 2. 注册 BeanDefinition 到 BeanFactory
+</span><span class="c1"></span>           <span class="n">registerBeanDefinition</span><span class="o">(</span><span class="n">definitionHolder</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">registry</span><span class="o">);</span>  
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">beanDefinitions</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="扫描">扫描</h5>
+<p><code>findCandidateComponents</code> 方法将会根据扫描路径获取非常重要的 <code>BeanDefinition</code>。</p>
+<blockquote>
+<p>关于BeanDefinition，随口一提 : 在容器本身内，bean 定义表示为 BeanDefinition 对象。</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">BeanDefinition</span><span class="o">&gt;</span> <span class="nf">findCandidateComponents</span><span class="o">(</span><span class="n">String</span> <span class="n">basePackage</span><span class="o">)</span> <span class="o">{</span>
+		<span class="o">***</span>
+			<span class="k">return</span> <span class="n">scanCandidateComponents</span><span class="o">(</span><span class="n">basePackage</span><span class="o">);</span>
+	<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>好了，现在路径知道了，也开始扫描了，但哪个可爱的 Class 有幸被转化为 BeanDefinition 呢？</p>
+<p>是的，肯定有一个判断。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">BeanDefinition</span><span class="o">&gt;</span> <span class="nf">scanCandidateComponents</span><span class="o">(</span><span class="n">String</span> <span class="n">basePackage</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">Resource</span> <span class="n">resource</span> <span class="o">:</span> <span class="n">resources</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">resource</span><span class="o">.</span><span class="na">isReadable</span><span class="o">())</span> <span class="o">{</span>
+              		<span class="c1">// 类的元数据
+</span><span class="c1"></span>                  <span class="n">MetadataReader</span> <span class="n">metadataReader</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">metadataReaderFactory</span><span class="o">.</span>
+                        <span class="n">getMetadataReader</span><span class="o">(</span><span class="n">resource</span><span class="o">);</span>
+                  <span class="c1">// 判断是否满足条件
+</span><span class="c1"></span>                  <span class="k">if</span> <span class="o">(</span><span class="n">isCandidateComponent</span><span class="o">(</span><span class="n">metadataReader</span><span class="o">))</span> <span class="o">{</span> 
+							<span class="o">***</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">protected</span> <span class="kt">boolean</span> <span class="nf">isCandidateComponent</span><span class="o">(</span><span class="n">MetadataReader</span> <span class="n">metadataReader</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">TypeFilter</span> <span class="n">tf</span> <span class="o">:</span> <span class="k">this</span><span class="o">.</span><span class="na">excludeFilters</span><span class="o">)</span> <span class="o">{</span>    
+            <span class="k">if</span> <span class="o">(</span><span class="n">tf</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">metadataReader</span><span class="o">,</span> <span class="n">getMetadataReaderFactory</span><span class="o">()))</span> <span class="o">{</span>    
+                <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">TypeFilter</span> <span class="n">tf</span> <span class="o">:</span> <span class="k">this</span><span class="o">.</span><span class="na">includeFilters</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">tf</span><span class="o">.</span><span class="na">match</span><span class="o">(</span><span class="n">metadataReader</span><span class="o">,</span> <span class="n">getMetadataReaderFactory</span><span class="o">()))</span> <span class="o">{</span>   
+                <span class="k">return</span> <span class="n">isConditionMatch</span><span class="o">(</span><span class="n">metadataReader</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在判断方法<code>isCandidateComponent</code>里，会进行很多的过滤检查处理。</p>
+<p>其中<code>ClassPathScanningCandidateComponentProvider#registerDefaultFilters</code>方法，会给<code>includeFilters</code>添加默认的<code>AnnotationTypeFilter</code>，<strong>负责处理 @Component，@ManagedBean等注解</strong>。</p>
+<blockquote>
+<p>最终的调用链是： <code>AnnotationTypeFilter#match -&gt; matchSelf</code>.</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">protected</span> <span class="kt">boolean</span> <span class="nf">matchSelf</span><span class="o">(</span><span class="n">MetadataReader</span> <span class="n">metadataReader</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">AnnotationMetadata</span> <span class="n">metadata</span> <span class="o">=</span> <span class="n">metadataReader</span><span class="o">.</span><span class="na">getAnnotationMetadata</span><span class="o">();</span>    
+    <span class="k">return</span> <span class="n">metadata</span><span class="o">.</span><span class="na">hasAnnotation</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">annotationType</span><span class="o">.</span><span class="na">getName</span><span class="o">())</span> <span class="o">||</span>    
+            <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">considerMetaAnnotations</span> <span class="o">&amp;&amp;</span> <span class="n">metadata</span><span class="o">.</span><span class="na">hasMetaAnnotation</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">annotationType</span><span class="o">.</span><span class="na">getName</span><span class="o">()));</span> 
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这里会获取 Class 的注解元数据，检查是否有对应 annotationType,  简单来说，就是检查有没有那些我们常用的 <code>@Service</code>、<code>@Repository</code>了，并检查嵌套注解是否有对应的 annotationType。</p>
+<h5 id="注册">注册</h5>
+<p>回到<code>doScan</code>，扫描出来的 BeanDefinition 将会调用 registerBeanDefinition 注册。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">registerBeanDefinition</span><span class="o">(</span><span class="n">BeanDefinitionHolder</span> <span class="n">definitionHolder</span><span class="o">,</span> <span class="n">BeanDefinitionRegistry</span> <span class="n">registry</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">BeanDefinitionReaderUtils</span><span class="o">.</span><span class="na">registerBeanDefinition</span><span class="o">(</span><span class="n">definitionHolder</span><span class="o">,</span> <span class="n">registry</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">registerBeanDefinition</span><span class="o">(</span>
+        <span class="n">BeanDefinitionHolder</span> <span class="n">definitionHolder</span><span class="o">,</span><span class="n">BeanDefinitionRegistry</span> <span class="n">registry</span><span class="o">)</span>  <span class="o">{</span>
+    <span class="n">String</span> <span class="n">beanName</span> <span class="o">=</span> <span class="n">definitionHolder</span><span class="o">.</span><span class="na">getBeanName</span><span class="o">();</span>
+    <span class="n">registry</span><span class="o">.</span><span class="na">registerBeanDefinition</span><span class="o">(</span><span class="n">beanName</span><span class="o">,</span> <span class="n">definitionHolder</span><span class="o">.</span><span class="na">getBeanDefinition</span><span class="o">());</span>
+    <span class="o">***</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这里的 registry，默认实现类是 DefaultListableBeanFactory 。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kd">final</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">BeanDefinition</span><span class="o">&gt;</span> <span class="n">beanDefinitionMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ConcurrentHashMap</span><span class="o">&lt;&gt;(</span><span class="n">256</span><span class="o">);</span>
+
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">registerBeanDefinition</span><span class="o">(</span><span class="n">String</span> <span class="n">beanName</span><span class="o">,</span><span class="n">BeanDefinition</span> <span class="n">beanDefinition</span><span class="o">)</span>  <span class="o">{</span>
+    <span class="o">***</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">hasBeanCreationStarted</span><span class="o">())</span> <span class="o">{</span>
+         <span class="kd">synchronized</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">beanDefinitionMap</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">beanDefinitionMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">beanName</span><span class="o">,</span> <span class="n">beanDefinition</span><span class="o">);</span>
+            <span class="o">***</span>           <span class="o">}</span>
+        <span class="o">}</span> <span class="o">***</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>最终，也就是将 BeanDefinition 添加到一个 key-value 的集合当中，这样就完成了注册工作。</p>
+<h4 id="4-实例化bean">4. 实例化Bean</h4>
+<p>前面我们得到了充满 BeanDefinition 的 BeanFactory，中间一些流程先忽略。来到最重要的地方，实例化 Bean。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 4. 初始化所有(non-lazy-init)singleton beans
+</span><span class="c1"></span><span class="n">finishBeanFactoryInitialization</span><span class="o">(</span><span class="n">beanFactory</span><span class="o">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">	<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">finishBeanFactoryInitialization</span><span class="o">(</span><span class="n">ConfigurableListableBeanFactory</span> <span class="n">beanFactory</span><span class="o">)</span> <span class="o">{</span>
+	<span class="o">***</span>
+			<span class="n">beanFactory</span><span class="o">.</span><span class="na">setConversionService</span><span class="o">(</span>
+					<span class="n">beanFactory</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="n">CONVERSION_SERVICE_BEAN_NAME</span><span class="o">,</span> <span class="n">ConversionService</span><span class="o">.</span><span class="na">class</span><span class="o">));</span>
+	<span class="o">***</span>	
+  <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>getBean</code>, 该方法的实现位于<code>AbstractBeanFactory.doGetBean</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">protected</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">T</span> <span class="nf">doGetBean</span><span class="o">(</span>
+        <span class="kd">final</span> <span class="n">String</span> <span class="n">name</span><span class="o">,</span>
+        <span class="nd">@Nullable</span> <span class="kd">final</span> <span class="n">Class</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">requiredType</span><span class="o">,</span>
+        <span class="nd">@Nullable</span> <span class="kd">final</span> <span class="n">Object</span><span class="o">[]</span> <span class="n">args</span><span class="o">,</span>
+        <span class="kt">boolean</span> <span class="n">typeCheckOnly</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">BeansException</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="n">String</span> <span class="n">beanName</span> <span class="o">=</span> <span class="n">transformedBeanName</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
+    <span class="n">Object</span> <span class="n">bean</span><span class="o">;</span>
+    <span class="c1">// 获取已注册的单例 Bean
+</span><span class="c1"></span>    <span class="n">Object</span> <span class="n">sharedInstance</span> <span class="o">=</span> <span class="n">getSingleton</span><span class="o">(</span><span class="n">beanName</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">sharedInstance</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">args</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 根据 name 和 beanName 判断应该返回 factoryBean 还是 bean
+</span><span class="c1"></span>        <span class="n">bean</span> <span class="o">=</span> <span class="n">getObjectForBeanInstance</span><span class="o">(</span><span class="n">sharedInstance</span><span class="o">,</span> <span class="n">name</span><span class="o">,</span> <span class="n">beanName</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="c1">// *** 判断循环依赖、类型检查、获取父 BeanFactory
+</span><span class="c1"></span>      	<span class="o">***</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="kd">final</span> <span class="n">RootBeanDefinition</span> <span class="n">mbd</span> <span class="o">=</span> <span class="n">getMergedLocalBeanDefinition</span><span class="o">(</span><span class="n">beanName</span><span class="o">);</span>
+            <span class="c1">// 初始化依赖的Bean(@DependsOn)
+</span><span class="c1"></span>            <span class="o">***</span>
+            <span class="c1">// 创建单例
+</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">mbd</span><span class="o">.</span><span class="na">isSingleton</span><span class="o">())</span> <span class="o">{</span>
+                <span class="c1">// 回调创建
+</span><span class="c1"></span>                <span class="n">sharedInstance</span> <span class="o">=</span> <span class="n">getSingleton</span><span class="o">(</span><span class="n">beanName</span><span class="o">,</span> <span class="o">()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                    <span class="k">try</span> <span class="o">{</span>
+                        <span class="c1">// 创建 Bean
+</span><span class="c1"></span>                        <span class="k">return</span> <span class="n">createBean</span><span class="o">(</span><span class="n">beanName</span><span class="o">,</span> <span class="n">mbd</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
+                    <span class="o">}</span> 
+                <span class="o">});</span>
+                <span class="n">bean</span> <span class="o">=</span> <span class="n">getObjectForBeanInstance</span><span class="o">(</span><span class="n">sharedInstance</span><span class="o">,</span> <span class="n">name</span><span class="o">,</span> <span class="n">beanName</span><span class="o">,</span> <span class="n">mbd</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">mbd</span><span class="o">.</span><span class="na">isPrototype</span><span class="o">())</span> <span class="o">{</span>
+                <span class="c1">// 如果是 prototype scope 的
+</span><span class="c1"></span>                <span class="n">Object</span> <span class="n">prototypeInstance</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+                <span class="k">try</span> <span class="o">{</span>
+                    <span class="n">beforePrototypeCreation</span><span class="o">(</span><span class="n">beanName</span><span class="o">);</span>
+                    <span class="c1">// 创建Bean
+</span><span class="c1"></span>                    <span class="n">prototypeInstance</span> <span class="o">=</span> <span class="n">createBean</span><span class="o">(</span><span class="n">beanName</span><span class="o">,</span> <span class="n">mbd</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
+                <span class="o">}</span> <span class="o">***</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="c1">// 既不是单例Bean,也不是prototype,获取其 Scope，委托给相应的实现类来处理
+</span><span class="c1"></span>            <span class="o">}</span>
+        <span class="o">}</span> <span class="o">***</span>
+    <span class="o">}</span>
+    <span class="c1">// 类型检查
+</span><span class="c1"></span>    <span class="k">return</span> <span class="o">(</span><span class="n">T</span><span class="o">)</span> <span class="n">bean</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="循环依赖">循环依赖</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">	<span class="c1">// 尝试获取Bean
+</span><span class="c1"></span>	<span class="n">Object</span> <span class="n">sharedInstance</span> <span class="o">=</span> <span class="n">getSingleton</span><span class="o">(</span><span class="n">beanName</span><span class="o">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>根据 beanName 尝试从 singletonObjects 缓存中获取单例Bean，获取不到则再尝试从earlySingletonObjects、singletonFactories 从获取。同时这也是Spring 解决循环依赖的关键。</p>
+<h5 id="创建bean">创建Bean</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">createBean</span><span class="o">(</span><span class="n">beanName</span><span class="o">,</span> <span class="n">mbd</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>缓存中获取不到，就创建，</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Object</span> <span class="n">beanInstance</span> <span class="o">=</span> <span class="n">doCreateBean</span><span class="o">(</span><span class="n">beanName</span><span class="o">,</span> <span class="n">mbdToUse</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>它会调用<code>doCreateBean()</code>。在这停顿，打这开始，又是一个热门问题：<code>Spring Bean 生命周期</code>。</p>
+<h3 id="spring-bean-生命周期">Spring Bean 生命周期</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://img.llc687.top/uPic/image-20201010103637056.png"
+        data-srcset="http://img.llc687.top/uPic/image-20201010103637056.png, http://img.llc687.top/uPic/image-20201010103637056.png 1.5x, http://img.llc687.top/uPic/image-20201010103637056.png 2x"
+        data-sizes="auto"
+        alt="http://img.llc687.top/uPic/image-20201010103637056.png"
+        title="image-20201010103637056" /></p>
+<p>如图，谈到 Bean 生命周期，大概都是这张图的内容。对应的其实就是上文的<code>doCreateBean</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">protected</span> <span class="n">Object</span> <span class="nf">doCreateBean</span><span class="o">(</span>
+        <span class="kd">final</span> <span class="n">String</span> <span class="n">beanName</span><span class="o">,</span> <span class="kd">final</span> <span class="n">RootBeanDefinition</span> <span class="n">mbd</span><span class="o">,</span>
+        <span class="kd">final</span> <span class="nd">@Nullable</span> <span class="n">Object</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">BeanCreationException</span> <span class="o">{</span>
+    <span class="n">BeanWrapper</span> <span class="n">instanceWrapper</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="o">***</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">instanceWrapper</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 1. 说明不是 FactoryBean，实例化 Bean
+</span><span class="c1"></span>        <span class="n">instanceWrapper</span> <span class="o">=</span> <span class="n">createBeanInstance</span><span class="o">(</span><span class="n">beanName</span><span class="o">,</span> <span class="n">mbd</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="c1">// *** 解决循环依赖等
+</span><span class="c1"></span>    <span class="o">***</span>
+    <span class="n">Object</span> <span class="n">exposedObject</span> <span class="o">=</span> <span class="n">bean</span><span class="o">;</span>
+    <span class="k">try</span> <span class="o">{</span>
+        <span class="c1">// 2. 前面实例化后，属性装配，自动注入
+</span><span class="c1"></span>        <span class="n">populateBean</span><span class="o">(</span><span class="n">beanName</span><span class="o">,</span> <span class="n">mbd</span><span class="o">,</span> <span class="n">instanceWrapper</span><span class="o">);</span>
+        <span class="c1">// 3. 初始化。init-method、InitializingBean、BeanPostProcessor等，各种回调
+</span><span class="c1"></span>        <span class="n">exposedObject</span> <span class="o">=</span> <span class="n">initializeBean</span><span class="o">(</span><span class="n">beanName</span><span class="o">,</span> <span class="n">exposedObject</span><span class="o">,</span> <span class="n">mbd</span><span class="o">);</span>
+    <span class="o">}</span> <span class="o">***</span>
+    <span class="k">try</span> <span class="o">{</span>
+        <span class="c1">// 4. 销毁-注册回调接口
+</span><span class="c1"></span>        <span class="n">registerDisposableBeanIfNecessary</span><span class="o">(</span><span class="n">beanName</span><span class="o">,</span> <span class="n">bean</span><span class="o">,</span> <span class="n">mbd</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">exposedObject</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这个方法也有点长，而且每个分支跟下去都更长，这里截取部分且不进行过多深究。前面图中看着挺多，但实际可以分为几大步，代码中已标识。</p>
+<h4 id="1-实例化">1. 实例化</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"> <span class="n">instanceWrapper</span> <span class="o">=</span> <span class="n">createBeanInstance</span><span class="o">(</span><span class="n">beanName</span><span class="o">,</span> <span class="n">mbd</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">protected</span> <span class="n">BeanWrapper</span> <span class="nf">createBeanInstance</span><span class="o">(</span><span class="n">String</span> <span class="n">beanName</span><span class="o">,</span> <span class="n">RootBeanDefinition</span> <span class="n">mbd</span><span class="o">,</span> <span class="n">Object</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+   <span class="o">***</span>
+   <span class="c1">// 校验类访问权限
+</span><span class="c1"></span>   <span class="k">if</span> <span class="o">(</span><span class="n">mbd</span><span class="o">.</span><span class="na">getFactoryMethodName</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>  <span class="o">{</span>
+      <span class="c1">// 工厂方法实例化
+</span><span class="c1"></span>      <span class="k">return</span> <span class="n">instantiateUsingFactoryMethod</span><span class="o">(</span><span class="n">beanName</span><span class="o">,</span> <span class="n">mbd</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
+   <span class="o">}</span>
+
+   <span class="c1">// 非第一次创建，如prototype 。判断用无参构造，还是构造函数依赖注入来实例化
+</span><span class="c1"></span>   <span class="kt">boolean</span> <span class="n">resolved</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+   <span class="kt">boolean</span> <span class="n">autowireNecessary</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+   <span class="k">if</span> <span class="o">(</span><span class="n">args</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+      <span class="kd">synchronized</span> <span class="o">(</span><span class="n">mbd</span><span class="o">.</span><span class="na">constructorArgumentLock</span><span class="o">)</span> <span class="o">{</span>
+         <span class="k">if</span> <span class="o">(</span><span class="n">mbd</span><span class="o">.</span><span class="na">resolvedConstructorOrFactoryMethod</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">resolved</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+            <span class="n">autowireNecessary</span> <span class="o">=</span> <span class="n">mbd</span><span class="o">.</span><span class="na">constructorArgumentsResolved</span><span class="o">;</span>
+         <span class="o">}</span>
+      <span class="o">}</span>
+   <span class="o">}</span>
+   <span class="k">if</span> <span class="o">(</span><span class="n">resolved</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">autowireNecessary</span><span class="o">)</span> <span class="o">{</span>
+         <span class="c1">// 构造函数依赖注入
+</span><span class="c1"></span>         <span class="k">return</span> <span class="n">autowireConstructor</span><span class="o">(</span><span class="n">beanName</span><span class="o">,</span> <span class="n">mbd</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+      <span class="o">}</span>
+      <span class="k">else</span> <span class="o">{</span>
+         <span class="c1">// 无参构造函数
+</span><span class="c1"></span>         <span class="k">return</span> <span class="n">instantiateBean</span><span class="o">(</span><span class="n">beanName</span><span class="o">,</span> <span class="n">mbd</span><span class="o">);</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+   <span class="c1">// 是否采用有参构造函数
+</span><span class="c1"></span>   <span class="n">Constructor</span><span class="o">&lt;?&gt;[]</span> <span class="n">ctors</span> <span class="o">=</span> <span class="n">determineConstructorsFromBeanPostProcessors</span><span class="o">(</span><span class="n">beanClass</span><span class="o">,</span> <span class="n">beanName</span><span class="o">);</span>
+   <span class="k">if</span> <span class="o">(</span><span class="n">ctors</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">||</span>
+         <span class="n">mbd</span><span class="o">.</span><span class="na">getResolvedAutowireMode</span><span class="o">()</span> <span class="o">==</span> <span class="n">RootBeanDefinition</span><span class="o">.</span><span class="na">AUTOWIRE_CONSTRUCTOR</span> <span class="o">||</span>
+         <span class="n">mbd</span><span class="o">.</span><span class="na">hasConstructorArgumentValues</span><span class="o">()</span> <span class="o">||</span> <span class="o">!</span><span class="n">ObjectUtils</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">(</span><span class="n">args</span><span class="o">))</span>  <span class="o">{</span>
+      <span class="c1">// 构造函数依赖注入
+</span><span class="c1"></span>      <span class="k">return</span> <span class="n">autowireConstructor</span><span class="o">(</span><span class="n">beanName</span><span class="o">,</span> <span class="n">mbd</span><span class="o">,</span> <span class="n">ctors</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
+   <span class="o">}</span>
+   <span class="c1">// (默认) 调用无参构造函数
+</span><span class="c1"></span>   <span class="k">return</span> <span class="n">instantiateBean</span><span class="o">(</span><span class="n">beanName</span><span class="o">,</span> <span class="n">mbd</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>默认会采用无参构造函数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">protected</span> <span class="n">BeanWrapper</span> <span class="nf">instantiateBean</span><span class="o">(</span><span class="kd">final</span> <span class="n">String</span> <span class="n">beanName</span><span class="o">,</span> <span class="kd">final</span> <span class="n">RootBeanDefinition</span> <span class="n">mbd</span><span class="o">)</span> <span class="o">{</span>
+   <span class="k">try</span> <span class="o">{</span>
+      <span class="n">Object</span> <span class="n">beanInstance</span><span class="o">;</span>
+      <span class="kd">final</span> <span class="n">BeanFactory</span> <span class="n">parent</span> <span class="o">=</span> <span class="k">this</span><span class="o">;</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">getSecurityManager</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 实例化
+</span><span class="c1"></span>				<span class="n">beanInstance</span> <span class="o">=</span> <span class="n">AccessController</span><span class="o">.</span><span class="na">doPrivileged</span><span class="o">((</span><span class="n">PrivilegedAction</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;)</span> <span class="o">()</span> <span class="o">-&gt;</span>
+						<span class="n">getInstantiationStrategy</span><span class="o">().</span><span class="na">instantiate</span><span class="o">(</span><span class="n">mbd</span><span class="o">,</span> <span class="n">beanName</span><span class="o">,</span> <span class="n">parent</span><span class="o">),</span>
+						<span class="n">getAccessControlContext</span><span class="o">());</span>
+			<span class="o">}</span>
+      <span class="k">else</span> <span class="o">{</span>
+         <span class="c1">// 实例化
+</span><span class="c1"></span>         <span class="n">beanInstance</span> <span class="o">=</span> <span class="n">getInstantiationStrategy</span><span class="o">().</span><span class="na">instantiate</span><span class="o">(</span><span class="n">mbd</span><span class="o">,</span> <span class="n">beanName</span><span class="o">,</span> <span class="n">parent</span><span class="o">);</span>
+      <span class="o">}</span>
+      <span class="c1">// 包装一下，返回
+</span><span class="c1"></span>      <span class="n">BeanWrapper</span> <span class="n">bw</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BeanWrapperImpl</span><span class="o">(</span><span class="n">beanInstance</span><span class="o">);</span>
+      <span class="n">initBeanWrapper</span><span class="o">(</span><span class="n">bw</span><span class="o">);</span>
+      <span class="k">return</span> <span class="n">bw</span><span class="o">;</span>
+   <span class="o">}</span> <span class="o">***</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>可以看到，关键在于<code>getInstantiationStrategy().instantiate(mbd, beanName, parent)</code>在进行实际的实例化。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="n">Object</span> <span class="nf">instantiate</span><span class="o">(</span><span class="n">RootBeanDefinition</span> <span class="n">bd</span><span class="o">,</span> <span class="nd">@Nullable</span> <span class="n">String</span> <span class="n">beanName</span><span class="o">,</span> <span class="n">BeanFactory</span> <span class="n">owner</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// 如果不存在需要被重写的方法，就不用cglib，使用反射
+</span><span class="c1"></span>    <span class="k">if</span> <span class="o">(!</span><span class="n">bd</span><span class="o">.</span><span class="na">hasMethodOverrides</span><span class="o">())</span> <span class="o">{</span>
+        <span class="o">***</span>
+        <span class="c1">// 通过构造方法实例化
+</span><span class="c1"></span>        <span class="k">return</span> <span class="n">BeanUtils</span><span class="o">.</span><span class="na">instantiateClass</span><span class="o">(</span><span class="n">constructorToUse</span><span class="o">);</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="c1">// 存在方法覆写，通过cglib生成
+</span><span class="c1"></span>        <span class="k">return</span> <span class="n">instantiateWithMethodInjection</span><span class="o">(</span><span class="n">bd</span><span class="o">,</span> <span class="n">beanName</span><span class="o">,</span> <span class="n">owner</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>到这里，Bean 初始化完成了。</p>
+<h4 id="2-属性装配">2. 属性装配</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">populateBean</span><span class="o">(</span><span class="n">beanName</span><span class="o">,</span> <span class="n">mbd</span><span class="o">,</span> <span class="n">instanceWrapper</span><span class="o">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>属性装配，也就是注入。对已实例化好的 bean 的属性进行赋值, 如果 bean 中关联着其他 bean，也会帮建立 bean 间的关系。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">populateBean</span><span class="o">(</span><span class="n">String</span> <span class="n">beanName</span><span class="o">,</span> <span class="n">RootBeanDefinition</span> <span class="n">mbd</span><span class="o">,</span> <span class="nd">@Nullable</span> <span class="n">BeanWrapper</span> <span class="n">bw</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">***</span>
+    <span class="c1">// bean 实例的所有属性。获取待注入的property，配置文件中的&lt;property&gt;也将在这里被处理
+</span><span class="c1"></span>    <span class="n">PropertyValues</span> <span class="n">pvs</span> <span class="o">=</span> <span class="o">(</span><span class="n">mbd</span><span class="o">.</span><span class="na">hasPropertyValues</span><span class="o">()</span> <span class="o">?</span> <span class="n">mbd</span><span class="o">.</span><span class="na">getPropertyValues</span><span class="o">()</span> <span class="o">:</span> <span class="kc">null</span><span class="o">);</span>
+    <span class="o">***</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">mbd</span><span class="o">.</span><span class="na">getResolvedAutowireMode</span><span class="o">()</span> <span class="o">==</span> <span class="n">AUTOWIRE_BY_NAME</span> <span class="o">||</span> <span class="n">mbd</span><span class="o">.</span><span class="na">getResolvedAutowireMode</span><span class="o">()</span> <span class="o">==</span> <span class="n">AUTOWIRE_BY_TYPE</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">MutablePropertyValues</span> <span class="n">newPvs</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MutablePropertyValues</span><span class="o">(</span><span class="n">pvs</span><span class="o">);</span>
+        <span class="c1">// 按照名字获取属性
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">mbd</span><span class="o">.</span><span class="na">getResolvedAutowireMode</span><span class="o">()</span> <span class="o">==</span> <span class="n">AUTOWIRE_BY_NAME</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">autowireByName</span><span class="o">(</span><span class="n">beanName</span><span class="o">,</span> <span class="n">mbd</span><span class="o">,</span> <span class="n">bw</span><span class="o">,</span> <span class="n">newPvs</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="c1">// 按照类型获取属性
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">mbd</span><span class="o">.</span><span class="na">getResolvedAutowireMode</span><span class="o">()</span> <span class="o">==</span> <span class="n">AUTOWIRE_BY_TYPE</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">autowireByType</span><span class="o">(</span><span class="n">beanName</span><span class="o">,</span> <span class="n">mbd</span><span class="o">,</span> <span class="n">bw</span><span class="o">,</span> <span class="n">newPvs</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="n">pvs</span> <span class="o">=</span> <span class="n">newPvs</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="o">***</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">hasInstAwareBpps</span><span class="o">)</span> <span class="o">{</span>
+        <span class="o">***</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">BeanPostProcessor</span> <span class="n">bp</span> <span class="o">:</span> <span class="n">getBeanPostProcessors</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">bp</span> <span class="k">instanceof</span> <span class="n">InstantiationAwareBeanPostProcessor</span><span class="o">)</span> <span class="o">{</span>
+                <span class="o">***</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">pvsToUse</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="o">***</span>
+                    <span class="c1">// 后置处理器处理@Autowired @Resource等注解
+</span><span class="c1"></span>                    <span class="n">pvsToUse</span> <span class="o">=</span> <span class="n">ibp</span><span class="o">.</span><span class="na">postProcessPropertyValues</span><span class="o">(</span><span class="n">pvs</span><span class="o">,</span> <span class="n">filteredPds</span><span class="o">,</span> <span class="n">bw</span><span class="o">.</span><span class="na">getWrappedInstance</span><span class="o">(),</span> <span class="n">beanName</span><span class="o">);</span>
+                    <span class="o">***</span>
+                <span class="o">}</span>
+                <span class="n">pvs</span> <span class="o">=</span> <span class="n">pvsToUse</span><span class="o">;</span>
+            <span class="o">}}}</span>
+    <span class="c1">// 注入 &lt;property&gt; 属性
+</span><span class="c1"></span>    <span class="k">if</span> <span class="o">(</span><span class="n">pvs</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">applyPropertyValues</span><span class="o">(</span><span class="n">beanName</span><span class="o">,</span> <span class="n">mbd</span><span class="o">,</span> <span class="n">bw</span><span class="o">,</span> <span class="n">pvs</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这里有个很重要的地方，处理 Bean 间的依赖注入，说白点就是 @Autowored 注解。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">ibp</span><span class="o">.</span><span class="na">postProcessPropertyValues</span><span class="o">(</span><span class="n">pvs</span><span class="o">,</span> <span class="n">filteredPds</span><span class="o">,</span> <span class="n">bw</span><span class="o">.</span><span class="na">getWrappedInstance</span><span class="o">(),</span> <span class="n">beanName</span><span class="o">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在对 Bean 赋值时，会先去处理该 Bean 中注入的 Bean，因此对于相互注入的 Bean 来说不用担心 Bean 的生成先后顺序问题。</p>
+<h4 id="3-初始化">3. 初始化</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">exposedObject</span> <span class="o">=</span> <span class="n">initializeBean</span><span class="o">(</span><span class="n">beanName</span><span class="o">,</span> <span class="n">exposedObject</span><span class="o">,</span> <span class="n">mbd</span><span class="o">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>属性注入完成后，这一步就是处理各种回调了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">protected</span> <span class="n">Object</span> <span class="nf">initializeBean</span><span class="o">(</span><span class="kd">final</span> <span class="n">String</span> <span class="n">beanName</span><span class="o">,</span> <span class="kd">final</span> <span class="n">Object</span> <span class="n">bean</span><span class="o">,</span> <span class="nd">@Nullable</span> <span class="n">RootBeanDefinition</span> <span class="n">mbd</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">getSecurityManager</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">AccessController</span><span class="o">.</span><span class="na">doPrivileged</span><span class="o">((</span><span class="n">PrivilegedAction</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;)</span> <span class="o">()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="n">invokeAwareMethods</span><span class="o">(</span><span class="n">beanName</span><span class="o">,</span> <span class="n">bean</span><span class="o">);</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="o">},</span> <span class="n">getAccessControlContext</span><span class="o">());</span>
+    <span class="o">}</span>
+    <span class="k">else</span> <span class="o">{</span>
+        <span class="c1">// 1. 如bean实现了BeanNameAware、BeanClassLoaderAware、BeanFactoryAware 接口，回调
+</span><span class="c1"></span>        <span class="n">invokeAwareMethods</span><span class="o">(</span><span class="n">beanName</span><span class="o">,</span> <span class="n">bean</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="n">Object</span> <span class="n">wrappedBean</span> <span class="o">=</span> <span class="n">bean</span><span class="o">;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">mbd</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="o">!</span><span class="n">mbd</span><span class="o">.</span><span class="na">isSynthetic</span><span class="o">())</span> <span class="o">{</span>
+        <span class="c1">// 2. 执行BeanPostProcessor预初始化方法：postProcessBeforeInitialization 
+</span><span class="c1"></span>        <span class="n">wrappedBean</span> <span class="o">=</span> <span class="n">applyBeanPostProcessorsBeforeInitialization</span><span class="o">(</span><span class="n">wrappedBean</span><span class="o">,</span> <span class="n">beanName</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="k">try</span> <span class="o">{</span>
+        <span class="c1">// 3. 处理自定义的init-method，如实现了InitializingBean接口执行afterPropertiesSet()
+</span><span class="c1"></span>        <span class="n">invokeInitMethods</span><span class="o">(</span><span class="n">beanName</span><span class="o">,</span> <span class="n">wrappedBean</span><span class="o">,</span> <span class="n">mbd</span><span class="o">);</span>
+    <span class="o">}***</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">mbd</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="o">!</span><span class="n">mbd</span><span class="o">.</span><span class="na">isSynthetic</span><span class="o">())</span> <span class="o">{</span>
+        <span class="c1">// 执行BeanPostProcessor初始化后回调 postProcessAfterInitialization
+</span><span class="c1"></span>        <span class="n">wrappedBean</span> <span class="o">=</span> <span class="n">applyBeanPostProcessorsAfterInitialization</span><span class="o">(</span><span class="n">wrappedBean</span><span class="o">,</span> <span class="n">beanName</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">wrappedBean</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>可以看到，在<code>Bean 生命周期</code>图里各种初始化操作都是在这里完成的。</p>
+<ol>
+<li>执行一些Aware方法，比如 BeanNameAware的setBeanName(beanName)</li>
+<li>执行 BeanPostProcessor 预初始化方法，例如，@PostConstruct 注解的方法。</li>
+<li>执行 afterPropertiesSet() 方法与自定义的 inti-method</li>
+<li>执行 BeanPostProcessor 初始化后方法</li>
+</ol>
+<h4 id="4-销毁">4. 销毁</h4>
+<p>最后就是销毁。这个销毁当然不是指对象被 GC 的销毁。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">registerDisposableBeanIfNecessary</span><span class="o">(</span><span class="n">beanName</span><span class="o">,</span> <span class="n">bean</span><span class="o">,</span> <span class="n">mbd</span><span class="o">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>register</code>, 这里是在进行<strong>销毁逻辑的注册</strong>，在销毁时会执行。</p>
+<p>比如使用<code>@Bean(destroyMethod = &quot;***&quot;)</code>。</p>
+<h3 id="springboot-回来啦">SpringBoot 回来啦</h3>
+<p>好了，SpringFramework 的工作结束了，还记得开头的<code>SpringApplication.run</code>吗, 还没执行完呢。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">        <span class="c1">// 5：刷新容器
+</span><span class="c1"></span>        <span class="n">refreshContext</span><span class="o">(</span><span class="n">context</span><span class="o">);</span>
+　　　　 <span class="c1">// 6：Spring容器后置处理
+</span><span class="c1"></span>        <span class="n">afterRefresh</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">applicationArguments</span><span class="o">);</span>
+  　　　 <span class="c1">// 7：发出结束执行的事件
+</span><span class="c1"></span>        <span class="n">listeners</span><span class="o">.</span><span class="na">started</span><span class="o">(</span><span class="n">context</span><span class="o">);</span>
+        <span class="c1">// 8：执行Runners
+</span><span class="c1"></span>        <span class="k">this</span><span class="o">.</span><span class="na">callRunners</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">applicationArguments</span><span class="o">);</span>
+        <span class="n">stopWatch</span><span class="o">.</span><span class="na">stop</span><span class="o">();</span>
+        <span class="c1">// 9. 返回容器
+</span><span class="c1"></span>        <span class="k">return</span> <span class="n">context</span><span class="o">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>现在 步骤5 容器已经刷新了，之后还有：</p>
+<h5 id="6-afterrefresh">(6). afterRefresh</h5>
+<p>扩展接口，设计模式中的模板方法，默认为空实现。如果有自定义需求，可以重写该方法。比如打印一些启动结束log，或者一些其它后置处理。</p>
+<h5 id="7listenersstarted">(7).listeners.started</h5>
+<p>发布结束执行事件</p>
+<h5 id="8-thiscallrunners">(8). this.callRunners</h5>
+<p>区分<code>ApplicationRunner</code>和<code>CommandLineRunner</code>,  执行<code>run</code>方法。</p>
+<blockquote>
+<p>可以自定义 ApplicationRunner 或 CommandLineRunner，实现 run 方法，注入到容器中, 在SpringBoot 启动后，就会执行所有的 runner 的 run 方法。</p>
+</blockquote>
+<h5 id="9-return-context">(9). return context</h5>
+<p>终于 run 完了，返回容器。</p>
+<h3 id="总结">总结</h3>
+<p>从 <code>SpringApplication.run</code>开始，我们所看到的简单的一行代码背后却有这么多弯弯绕。</p>
+<p>以上很多地方只是浅尝辄止或一笔带过，主要谈了 IOC 和 Bean有关的主流程，尚有很多比如何解决循环依赖、为何 @Transactional 同类调用会失效等等一些称得上常见的问题，都可以在这里找到答案。</p>
+<p>本文主要为了对 SpringBoot 乃至 SpringFramework 的启动流程有个基本的认识，但一叶知秋透过这些不难看出很多巧妙的设计和思路。</p>
+<p>话说回来，有时会想，若非热爱和 interview，读源码或深究原理用处何在？</p>
+<p>转念又一想，提笔成文是基于大量阅读乃至背诵的。但编码一如识了字、懂些寻常语法便仗键天涯，虽二者不可一概，但总有共通之处。</p>
+<p>俗话说，“学而不思则罔”，对比文字逻辑性更强的代码，很难初窥门径便读名家之作。所以我觉得，目的性是要浓厚一些，无论是出发点还是阅读姿势。</p>
+<p>俗话说，“学而不思则罔”，比文字逻辑性更强的代码，很难初窥门径便读大师之作。所以我觉得目的性是要热烈一些，不论是出发点还是阅读姿势。一为解决问题而究其根源，二为习名家之法长己身之技，三为做些大家都不想做但又想做的事情。</p>
+<h2 id="参考">参考</h2>
+<ul>
+<li>
+<p><a href="https://blog.csdn.net/yhl_jxy/article/details/81019139" target="_blank" rel="noopener noreffer">resource 定位</a></p>
+</li>
+<li>
+<p><a href="https://www.xxelin.com/2020/05/29/SpringBoot-BeanDefinition-loading" target="_blank" rel="noopener noreffer">BeanDefinition 加载过程</a></p>
+</li>
+<li>
+<p><a href="https://www.cnblogs.com/java-chen-hao/p/11829344.html" target="_blank" rel="noopener noreffer"> Springboot ioc源码</a></p>
+</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-10-18</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://llc687.top/posts/java/%E4%BB%8E-springapplication.run-%E5%BC%80%E5%A7%8B/" data-title="从 SpringApplication.run 开始" data-hashtags="Spring,SpringBoot"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://llc687.top/posts/java/%E4%BB%8E-springapplication.run-%E5%BC%80%E5%A7%8B/" data-hashtag="Spring"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://llc687.top/posts/java/%E4%BB%8E-springapplication.run-%E5%BC%80%E5%A7%8B/" data-title="从 SpringApplication.run 开始"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://llc687.top/posts/java/%E4%BB%8E-springapplication.run-%E5%BC%80%E5%A7%8B/" data-title="从 SpringApplication.run 开始"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://llc687.top/posts/java/%E4%BB%8E-springapplication.run-%E5%BC%80%E5%A7%8B/" data-title="从 SpringApplication.run 开始"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/spring/">Spring</a>,&nbsp;<a href="/tags/springboot/">SpringBoot</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%B8%AD%E4%BB%8B%E8%80%85%E6%A8%A1%E5%BC%8F/" class="prev" rel="prev" title="中介者模式"><i class="fas fa-angle-left fa-fw"></i>中介者模式</a>
+            <a href="/posts/%E6%9E%B6%E6%9E%84/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E4%BD%93%E7%B3%BB/" class="next" rel="next" title="微服务架构体系">微服务架构体系<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.81.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2018 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">lyf687</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/twemoji/twemoji.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"liyifan687/comments"}},"data":{"id-1":"无名鼠辈","id-2":"无名鼠辈"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"","algoliaIndex":"","algoliaSearchKey":"","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', '014783502852757998779:nk1fvw21g2i', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=014783502852757998779:nk1fvw21g2i" async></script></body>
+</html>

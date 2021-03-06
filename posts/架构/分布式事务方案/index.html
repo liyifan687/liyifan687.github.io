@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>分布式事务方案 - 无名鼠辈</title><meta name="Description" content=""><meta property="og:title" content="分布式事务方案" />
+<meta property="og:description" content="分布式事务方案 XA/二阶段提交 基于XA协议的二阶段提交 所谓的 XA 方案，即：两阶段提交，有一个事务管理器的概念，负责协调多个数据库（资源管理器）" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://llc687.top/posts/%E6%9E%B6%E6%9E%84/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E6%96%B9%E6%A1%88/" /><meta property="og:image" content="https://llc687.top/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-02-28T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2021-02-28T00:00:00&#43;00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://llc687.top/logo.png"/>
+
+<meta name="twitter:title" content="分布式事务方案"/>
+<meta name="twitter:description" content="分布式事务方案 XA/二阶段提交 基于XA协议的二阶段提交 所谓的 XA 方案，即：两阶段提交，有一个事务管理器的概念，负责协调多个数据库（资源管理器）"/>
+<meta name="application-name" content="无名鼠辈">
+<meta name="apple-mobile-web-app-title" content="无名鼠辈"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://llc687.top/posts/%E6%9E%B6%E6%9E%84/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E6%96%B9%E6%A1%88/" /><link rel="prev" href="https://llc687.top/posts/%E6%9E%B6%E6%9E%84/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E4%BD%93%E7%B3%BB/" /><link rel="next" href="https://llc687.top/posts/%E6%9E%B6%E6%9E%84/mysql45%E8%AE%B2/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "分布式事务方案",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/llc687.top\/posts\/%E6%9E%B6%E6%9E%84\/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E6%96%B9%E6%A1%88\/"
+        },"genre": "posts","keywords": "分布式事务","wordcount":  4455 ,
+        "url": "https:\/\/llc687.top\/posts\/%E6%9E%B6%E6%9E%84\/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E6%96%B9%E6%A1%88\/","datePublished": "2021-02-28T00:00:00+00:00","dateModified": "2021-02-28T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "Lyf"},"author": {
+                "@type": "Person",
+                "name": "Lyf"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="无名鼠辈"><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 归档 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="无名鼠辈"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">归档</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">分布式事务方案</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lyf</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/"><i class="far fa-folder fa-fw"></i>微服务架构</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-02-28">2021-02-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4455 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 9 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#xa二阶段提交">XA/二阶段提交</a>
+      <ul>
+        <li><a href="#jta">JTA</a>
+          <ul>
+            <li><a href="#链式">链式</a></li>
+            <li><a href="#参考">参考</a></li>
+          </ul>
+        </li>
+        <li><a href="#问题">问题</a></li>
+      </ul>
+    </li>
+    <li><a href="#3pc">3PC</a>
+      <ul>
+        <li><a href="#cancommit">canCommit</a></li>
+        <li><a href="#precommit">precommit</a></li>
+        <li><a href="#docommit">doCommit</a></li>
+      </ul>
+    </li>
+    <li><a href="#tcc">TCC</a></li>
+    <li><a href="#sega">Sega</a>
+      <ul>
+        <li><a href="#基本原理">基本原理</a></li>
+        <li><a href="#使用场景">使用场景</a>
+          <ul>
+            <li><a href="#优势">优势</a></li>
+            <li><a href="#缺点">缺点</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#可靠消息最终一致性">可靠消息最终一致性</a>
+      <ul>
+        <li><a href="#流程">流程</a></li>
+        <li><a href="#下单为例">下单为例</a></li>
+      </ul>
+    </li>
+    <li><a href="#最大努力通知方案">最大努力通知方案</a></li>
+    <li><a href="#总结">总结</a>
+      <ul>
+        <li><a href="#acid">ACID</a></li>
+        <li><a href="#base理论">Base理论</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="分布式事务方案">分布式事务方案</h1>
+<h2 id="xa二阶段提交">XA/二阶段提交</h2>
+<blockquote>
+<p>基于XA协议的二阶段提交</p>
+</blockquote>
+<p>所谓的 XA 方案，即：两阶段提交，有一个<strong>事务管理器</strong>的概念，负责协调多个数据库（资源管理器）的事务，事务管理器先问各个数据库准备好了吗？如果每个数据库都回 ok，那就正式提交事务，在各个数据库上执行操作；如果任何其中一个数据库回答不 ok，那么就回滚事务。
+这种分布式事务方案，比较适合单块应用里，跨多个库的分布式事务，而且因为严重依赖于数据库层面来搞定复杂的事务，效率很低，不适合高并发的场景。
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.nlark.com/yuque/0/2020/png/668813/1599987195440-4dca408e-9979-46ed-aead-3ff939e3b9b8.png#align=left&amp;display=inline&amp;height=353"
+        data-srcset="https://cdn.nlark.com/yuque/0/2020/png/668813/1599987195440-4dca408e-9979-46ed-aead-3ff939e3b9b8.png#align=left&amp;display=inline&amp;height=353, https://cdn.nlark.com/yuque/0/2020/png/668813/1599987195440-4dca408e-9979-46ed-aead-3ff939e3b9b8.png#align=left&amp;display=inline&amp;height=353 1.5x, https://cdn.nlark.com/yuque/0/2020/png/668813/1599987195440-4dca408e-9979-46ed-aead-3ff939e3b9b8.png#align=left&amp;display=inline&amp;height=353 2x"
+        data-sizes="auto"
+        alt="https://cdn.nlark.com/yuque/0/2020/png/668813/1599987195440-4dca408e-9979-46ed-aead-3ff939e3b9b8.png#align=left&amp;display=inline&amp;height=353"
+        title="image.png" /></p>
+<h3 id="jta">JTA</h3>
+<p>JTA只是Java实现XA事务的一个规范，全称<code>Java``事务规范JTA（Java Transaction API)</code> ，我们日常使用的<code>@Transactional。</code>都可以叫JTA事务管理。实际上，JTA是基于XA架构上建模的，
+<strong>对于Spring来说，可以使用如JBoss之类的应用服务器提供的JTA事务管理器；可以以使用Atomikos、Bitronix等库提供的JTA事务管理器。Spring都有封装，开箱即用。</strong></p>
+<h4 id="链式">链式</h4>
+<p>对于Spring，还有个链式事务管理，就是声明一个ChainedTransactionManager 将所有的数据源事务按顺序放到该对象中，则事务会按相反的顺序来执行事务。事务依次提交后提交的事务若出错不能回滚。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="mi">1</span><span class="err">.start</span> <span class="err">message</span> <span class="err">transaction</span>
+<span class="mi">2</span><span class="err">.receive</span> <span class="err">message</span>
+<span class="mi">3</span><span class="err">.start</span> <span class="err">database</span> <span class="err">transaction</span>
+<span class="mi">4</span><span class="err">.update</span> <span class="err">database</span>
+<span class="mi">5</span><span class="err">.commit</span> <span class="err">database</span> <span class="err">transaction</span>
+<span class="mi">6</span><span class="err">.commit</span> <span class="err">message</span> <span class="err">transaction</span>   <span class="err">##当这一步出现错误时，上面的因为已经commit，所以不会rollback</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>和JTA比起来，更轻量，但只能单机用。</p>
+<h4 id="参考">参考</h4>
+<p>这个方案，很少用，一般来说<strong>某个系统内部如果出现跨多个库</strong>的这么一个操作，是<strong>不合规</strong>的。我可以给大家介绍一下， 现在微服务，一个大的系统分成几十个甚至几百个服务。一般来说，我们的规定和规范，是要求<strong>每个服务只能操作自己对应的一个数据库</strong>。
+如果你要操作别的服务对应的库，不允许直连别的服务的库，违反微服务架构的规范，你随便交叉胡乱访问，几百个服务的话，全体乱套，这样的一套服务是没法管理的，没法治理的，可能会出现数据被别人改错，自己的库被别人写挂等情况。
+如果你要操作别人的服务的库，你必须是通过<strong>调用别的服务的接口</strong>来实现，绝对不允许交叉访问别人的数据库。</p>
+<h3 id="问题">问题</h3>
+<ul>
+<li><strong>同步阻塞问题</strong>：二阶段提交算法在执行过程中，所有参与节点都是事务阻塞型的。也就是说，当本地资源管理器占有临界资源时，其他资源管理器如果要访问同一临界资源，会处于阻塞状态。</li>
+<li>**单点故障问题：**基于 XA 的二阶段提交算法类似于集中式算法，一旦事务管理器发生故障，整个系统都处于停滞状态。尤其是在提交阶段，一旦事务管理器发生故障，资源管理器会由于等待管理器的消息，而一直锁定事务资源，导致整个系统被阻塞。</li>
+<li>**数据不一致问题：**在提交阶段，当协调者向参与者发送 DoCommit 请求之后，如果发生了局部网络异常，或者在发送提交请求的过程中协调者发生了故障，就会导致只有一部分参与者接收到了提交请求并执行提交操作，但其他未接到提交请求的那部分参与者则无法执行事务提交。于是整个分布式系统便出现了数据不一致的问题。</li>
+</ul>
+<h2 id="3pc">3PC</h2>
+<p>三阶段提交协议（Three-phase commit protocol，3PC），是对二阶段提交（2PC）的改进。为了解决两阶段提交的同步阻塞和数据不一致问题，<strong>三阶段提交引入了超时机制和准备阶段</strong>。</p>
+<ul>
+<li>同时在协调者和参与者中引入超时机制。如果协调者或参与者在规定的时间内没有接收到来自其他节点的响应，就会根据当前的状态选择提交或者终止整个事务。</li>
+<li>在第一阶段和第二阶段中间引入了一个准备阶段，也就是在提交阶段之前，加入了一个预提交阶段。在预提交阶段排除一些不一致的情况，保证在最后提交之前各参与节点的状态是一致的。</li>
+</ul>
+<p>也就是说，除了引入超时机制之外，3PC 把 2PC 的提交阶段一分为二，这样三阶段提交协议就有 CanCommit、PreCommit、DoCommit 三个阶段。</p>
+<h3 id="cancommit">canCommit</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.nlark.com/yuque/0/2020/png/668813/1599987934945-529790a9-6b26-4638-bbdf-fde16303f6e1.png#align=left&amp;display=inline&amp;height=229"
+        data-srcset="https://cdn.nlark.com/yuque/0/2020/png/668813/1599987934945-529790a9-6b26-4638-bbdf-fde16303f6e1.png#align=left&amp;display=inline&amp;height=229, https://cdn.nlark.com/yuque/0/2020/png/668813/1599987934945-529790a9-6b26-4638-bbdf-fde16303f6e1.png#align=left&amp;display=inline&amp;height=229 1.5x, https://cdn.nlark.com/yuque/0/2020/png/668813/1599987934945-529790a9-6b26-4638-bbdf-fde16303f6e1.png#align=left&amp;display=inline&amp;height=229 2x"
+        data-sizes="auto"
+        alt="https://cdn.nlark.com/yuque/0/2020/png/668813/1599987934945-529790a9-6b26-4638-bbdf-fde16303f6e1.png#align=left&amp;display=inline&amp;height=229"
+        title="image.png" /></p>
+<h3 id="precommit">precommit</h3>
+<ul>
+<li>如果所有参与者回复的都是“Yes”，那么协调者就会执行事务的预执行：
+<ul>
+<li>**发送预提交请求。**协调者向参与者发送 PreCommit 请求，进入预提交阶段。</li>
+<li><strong>事务预提交</strong>。参与者接收到 PreCommit 请求后执行事务操作，并将 Undo 和 Redo 信息记录到事务日志中。</li>
+<li><strong>响应反馈</strong>。如果参与者成功执行了事务操作，则返回 ACK 响应，同时开始等待最终指令。</li>
+</ul>
+</li>
+<li>假如任何一个参与者向协调者发送了“No”消息，或者等待超时之后，协调者都没有收到参与者的响应，就执行中断事务的操作：
+<ul>
+<li><strong>发送中断请求</strong>。协调者向所有参与者发送“Abort”消息。</li>
+<li><strong>终断事务</strong>。参与者收到“Abort”消息之后，或超时后仍未收到协调者的消息，执行事务的终断操作。</li>
+</ul>
+</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.nlark.com/yuque/0/2020/png/668813/1599987962701-c38d1ab4-ee0d-4019-ac95-6471d7166d42.png#align=left&amp;display=inline&amp;height=344"
+        data-srcset="https://cdn.nlark.com/yuque/0/2020/png/668813/1599987962701-c38d1ab4-ee0d-4019-ac95-6471d7166d42.png#align=left&amp;display=inline&amp;height=344, https://cdn.nlark.com/yuque/0/2020/png/668813/1599987962701-c38d1ab4-ee0d-4019-ac95-6471d7166d42.png#align=left&amp;display=inline&amp;height=344 1.5x, https://cdn.nlark.com/yuque/0/2020/png/668813/1599987962701-c38d1ab4-ee0d-4019-ac95-6471d7166d42.png#align=left&amp;display=inline&amp;height=344 2x"
+        data-sizes="auto"
+        alt="https://cdn.nlark.com/yuque/0/2020/png/668813/1599987962701-c38d1ab4-ee0d-4019-ac95-6471d7166d42.png#align=left&amp;display=inline&amp;height=344"
+        title="image.png" /></p>
+<h3 id="docommit">doCommit</h3>
+<p>DoCmmit 阶段进行真正的事务提交，根据 PreCommit 阶段协调者发送的消息，进入执行提交阶段或事务中断阶段。</p>
+<ul>
+<li><strong>执行提交阶段：</strong>
+<ul>
+<li>发送提交请求。协调者接收到所有参与者发送的 Ack 响应，从预提交状态进入到提交状态，并向所有参与者发送 DoCommit 消息。</li>
+<li>事务提交。参与者接收到 DoCommit 消息之后，正式提交事务。完成事务提交之后，释放所有锁住的资源。</li>
+<li>响应反馈。参与者提交完事务之后，向协调者发送 Ack 响应。</li>
+<li>完成事务。协调者接收到所有参与者的 Ack 响应之后，完成事务。</li>
+</ul>
+</li>
+<li><strong>事务中断阶段：</strong>
+<ul>
+<li>发送中断请求。协调者向所有参与者发送 Abort 请求。</li>
+<li>事务回滚。参与者接收到 Abort 消息之后，利用其在 PreCommit 阶段记录的 Undo 信息执行事务的回滚操作，并释放所有锁住的资源。</li>
+<li>反馈结果。参与者完成事务回滚之后，向协调者发送 Ack 消息。</li>
+</ul>
+</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.nlark.com/yuque/0/2020/png/668813/1599988005768-5eb15dd2-8048-401a-ba64-175f20a1a28e.png#align=left&amp;display=inline&amp;height=365"
+        data-srcset="https://cdn.nlark.com/yuque/0/2020/png/668813/1599988005768-5eb15dd2-8048-401a-ba64-175f20a1a28e.png#align=left&amp;display=inline&amp;height=365, https://cdn.nlark.com/yuque/0/2020/png/668813/1599988005768-5eb15dd2-8048-401a-ba64-175f20a1a28e.png#align=left&amp;display=inline&amp;height=365 1.5x, https://cdn.nlark.com/yuque/0/2020/png/668813/1599988005768-5eb15dd2-8048-401a-ba64-175f20a1a28e.png#align=left&amp;display=inline&amp;height=365 2x"
+        data-sizes="auto"
+        alt="https://cdn.nlark.com/yuque/0/2020/png/668813/1599988005768-5eb15dd2-8048-401a-ba64-175f20a1a28e.png#align=left&amp;display=inline&amp;height=365"
+        title="image.png" /></p>
+<h2 id="tcc">TCC</h2>
+<p>TCC 的全称是： <code>Try</code> 、 <code>Confirm</code> 、 <code>Cancel</code> 。</p>
+<ul>
+<li>Try 阶段：这个阶段说的是对各个服务的资源做检测以及对资源进行<strong>锁定或者预留</strong>。</li>
+<li>Confirm 阶段：这个阶段说的是在各个服务中<strong>执行实际的操作</strong>。</li>
+<li>Cancel 阶段：如果任何一个服务的业务方法执行出错，那么这里就需要<strong>进行补偿</strong>，就是执行已经执行成功的业务逻辑的回滚操作。</li>
+</ul>
+<p>这种方案说实话几乎很少人使用。因为这个<strong>事务回滚</strong>实际上是<strong>严重依赖于你自己写代码来回滚和补偿</strong>了，会造成补偿代码巨大，非常之恶心。等于一个借口拆成三个。
+一般来说跟<strong>钱</strong>相关的，<strong>支付</strong>、<strong>交易</strong>，会用 TCC，严格保证分布式事务要么全部成功，要么全部自动回滚，严格保证资金正确。
+而且最好是各个业务执行的时间都比较短。
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.nlark.com/yuque/0/2020/png/668813/1599988206984-81e74099-7f12-4e26-8ae9-c134c6c93e89.png#align=left&amp;display=inline&amp;height=379"
+        data-srcset="https://cdn.nlark.com/yuque/0/2020/png/668813/1599988206984-81e74099-7f12-4e26-8ae9-c134c6c93e89.png#align=left&amp;display=inline&amp;height=379, https://cdn.nlark.com/yuque/0/2020/png/668813/1599988206984-81e74099-7f12-4e26-8ae9-c134c6c93e89.png#align=left&amp;display=inline&amp;height=379 1.5x, https://cdn.nlark.com/yuque/0/2020/png/668813/1599988206984-81e74099-7f12-4e26-8ae9-c134c6c93e89.png#align=left&amp;display=inline&amp;height=379 2x"
+        data-sizes="auto"
+        alt="https://cdn.nlark.com/yuque/0/2020/png/668813/1599988206984-81e74099-7f12-4e26-8ae9-c134c6c93e89.png#align=left&amp;display=inline&amp;height=379"
+        title="image.png" /></p>
+<h2 id="sega">Sega</h2>
+<p>金融核心等业务可能会选择 TCC 方案，以追求强一致性和更高的并发量，而对于更多的金融核心以下的业务系统 往往会选择补偿事务，补偿事务处理在 30 多年前就提出了 Saga 理论，随着微服务的发展，近些年才逐步受到大家的关注。目前业界比较公认的是采用 Saga 作为长事务的解决方案。</p>
+<h3 id="基本原理">基本原理</h3>
+<p>业务流程中每个参与者都提交本地事务，若某一个参与者失败，则补偿前面已经成功的参与者。下图左侧是正常的事务流程，当执行到 T3 时发生了错误，则开始执行右边的事务补偿流程，反向执行 T3、T2、T1 的补偿服务 C3、C2、C1，将 T3、T2、T1 已经修改的数据补偿掉。
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.nlark.com/yuque/0/2020/png/668813/1599988355232-d2af90e6-6faa-4be0-aae7-7b15d6eaa414.png#align=left&amp;display=inline&amp;height=357"
+        data-srcset="https://cdn.nlark.com/yuque/0/2020/png/668813/1599988355232-d2af90e6-6faa-4be0-aae7-7b15d6eaa414.png#align=left&amp;display=inline&amp;height=357, https://cdn.nlark.com/yuque/0/2020/png/668813/1599988355232-d2af90e6-6faa-4be0-aae7-7b15d6eaa414.png#align=left&amp;display=inline&amp;height=357 1.5x, https://cdn.nlark.com/yuque/0/2020/png/668813/1599988355232-d2af90e6-6faa-4be0-aae7-7b15d6eaa414.png#align=left&amp;display=inline&amp;height=357 2x"
+        data-sizes="auto"
+        alt="https://cdn.nlark.com/yuque/0/2020/png/668813/1599988355232-d2af90e6-6faa-4be0-aae7-7b15d6eaa414.png#align=left&amp;display=inline&amp;height=357"
+        title="image.png" /></p>
+<h3 id="使用场景">使用场景</h3>
+<p>对于一致性要求高、短流程、并发高 的场景，如：金融核心系统，会优先考虑 TCC 方案。而在另外一些场景下，我们并不需要这么强的一致性，只需要保证最终一致性即可。
+比如 很多金融核心以上的业务（渠道层、产品层、系统集成层），这些系统的特点是最终一致即可、流程多、流程长、还可能要调用其它公司的服务。这种情况如果选择 TCC 方案开发的话，一来成本高，二来无法要求其它公司的服务也遵循 TCC 模式。同时流程长，事务边界太长，加锁时间长，也会影响并发性能。
+<strong>所以 Saga 模式的适用场景是：</strong></p>
+<ul>
+<li>业务流程长、业务流程多；</li>
+<li>参与者包含其它公司或遗留系统服务，无法提供 TCC 模式要求的三个接口。</li>
+</ul>
+<h4 id="优势">优势</h4>
+<ul>
+<li>一阶段提交本地事务，无锁，高性能；</li>
+<li>参与者可异步执行，高吞吐；</li>
+<li>补偿服务易于实现，因为一个更新操作的反向操作是比较容易理解的。</li>
+</ul>
+<h4 id="缺点">缺点</h4>
+<ul>
+<li>不保证事务的隔离性。</li>
+</ul>
+<h2 id="可靠消息最终一致性">可靠消息最终一致性</h2>
+<h3 id="流程">流程</h3>
+<ol>
+<li>A 系统先发送一个 prepared 消息到 mq，如果这个 prepared 消息发送失败那么就直接取消操作别执行了；</li>
+<li>如果这个消息发送成功过了，那么接着执行本地事务，如果成功就告诉 mq 发送确认消息，如果失败就告诉 mq 回滚消息；</li>
+<li>如果发送了确认消息，那么此时 B 系统会接收到确认消息，然后执行本地的事务；</li>
+<li>mq 会自动<strong>定时轮询</strong>所有 prepared 消息回调你的接口，问你，这个消息是不是本地事务处理失败了，所有没发送确认的消息，是继续重试还是回滚？一般来说这里你就可以查下数据库看之前本地事务是否执行，如果回滚了，那么这里也回滚吧。这个就是避免可能本地事务执行成功了，而确认消息却发送失败了。</li>
+<li>这个方案里，要是系统 B 的事务失败了咋办？重试咯，自动不断重试直到成功，如果实在是不行，要么就是针对重要的资金类业务进行回滚，比如 B 系统本地回滚后，想办法通知系统 A 也回滚；或者是发送报警由人工来手工回滚和补偿。</li>
+<li>这个还是比较合适的，目前国内互联网公司大都是这么玩儿的，要不你就用 RocketMQ 支持的，要不你就自己基于类似 ActiveMQ？RabbitMQ？自己封装一套类似的逻辑出来，总之思路就是这样子的。</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.nlark.com/yuque/0/2020/png/668813/1599989352652-5099296b-62fc-4e4d-92f0-4d8029956d84.png#align=left&amp;display=inline&amp;height=247"
+        data-srcset="https://cdn.nlark.com/yuque/0/2020/png/668813/1599989352652-5099296b-62fc-4e4d-92f0-4d8029956d84.png#align=left&amp;display=inline&amp;height=247, https://cdn.nlark.com/yuque/0/2020/png/668813/1599989352652-5099296b-62fc-4e4d-92f0-4d8029956d84.png#align=left&amp;display=inline&amp;height=247 1.5x, https://cdn.nlark.com/yuque/0/2020/png/668813/1599989352652-5099296b-62fc-4e4d-92f0-4d8029956d84.png#align=left&amp;display=inline&amp;height=247 2x"
+        data-sizes="auto"
+        alt="https://cdn.nlark.com/yuque/0/2020/png/668813/1599989352652-5099296b-62fc-4e4d-92f0-4d8029956d84.png#align=left&amp;display=inline&amp;height=247"
+        title="image.png" /></p>
+<h3 id="下单为例">下单为例</h3>
+<p>以下单为例</p>
+<ol>
+<li>订单系统把订单消息发给消息中间件，消息状态标记为“待确认”。</li>
+<li>消息中间件收到消息后，进行消息持久化操作，即在消息存储系统中新增一条状态为“待发送”的消息。</li>
+<li>消息中间件返回消息持久化结果（成功 / 失败），订单系统根据返回结果判断如何进行业务操作。失败，放弃订单，结束（必要时向上层返回失败结果）；成功，则创建订单。</li>
+<li>订单操作完成后，把操作结果（成功 / 失败）发送给消息中间件。</li>
+<li>消息中间件收到业务操作结果后，根据结果进行处理：失败，删除消息存储中的消息，结束；成功，则更新消息存储中的消息状态为“待发送（可发送）”，并执行消息投递。</li>
+<li>如果消息状态为“可发送”，则 MQ 会将消息发送给支付系统，表示已经创建好订单，需要对订单进行支付。支付系统也按照上述方式进行订单支付操作。</li>
+<li>订单系统支付完成后，会将支付消息返回给消息中间件，中间件将消息传送给订单系统。订单系统再调用库存系统，进行出货操作。</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.nlark.com/yuque/0/2020/png/668813/1599989213615-65829806-6a70-4368-8cd4-0584b5baefa6.png#align=left&amp;display=inline&amp;height=251"
+        data-srcset="https://cdn.nlark.com/yuque/0/2020/png/668813/1599989213615-65829806-6a70-4368-8cd4-0584b5baefa6.png#align=left&amp;display=inline&amp;height=251, https://cdn.nlark.com/yuque/0/2020/png/668813/1599989213615-65829806-6a70-4368-8cd4-0584b5baefa6.png#align=left&amp;display=inline&amp;height=251 1.5x, https://cdn.nlark.com/yuque/0/2020/png/668813/1599989213615-65829806-6a70-4368-8cd4-0584b5baefa6.png#align=left&amp;display=inline&amp;height=251 2x"
+        data-sizes="auto"
+        alt="https://cdn.nlark.com/yuque/0/2020/png/668813/1599989213615-65829806-6a70-4368-8cd4-0584b5baefa6.png#align=left&amp;display=inline&amp;height=251"
+        title="image.png" /></p>
+<h2 id="最大努力通知方案">最大努力通知方案</h2>
+<p>这个方案的大致意思就是：</p>
+<ol>
+<li>系统 A 本地事务执行完之后，发送个消息到 MQ；</li>
+<li>这里会有个专门消费 MQ 的<strong>最大努力通知服务</strong>，这个服务会消费 MQ 然后写入数据库中记录下来，或者是放入个内存队列也可以，接着调用系统 B 的接口；</li>
+<li>要是系统 B 执行成功就 ok 了；要是系统 B 执行失败了，那么最大努力通知服务就定时尝试重新调用系统 B，反复 N 次，最后还是不行就放弃。</li>
+</ol>
+<h2 id="总结">总结</h2>
+<p>一般来说，最严格的就是TCC。其他常用的是基于消息的最终一致性。</p>
+<h3 id="acid">ACID</h3>
+<h3 id="base理论">Base理论</h3>
+<p>BASE 理论包括基本可用（Basically Available）、柔性状态（Soft State）和最终一致性（Eventual Consistency）。</p>
+<ul>
+<li>基本可用：分布式系统出现故障的时候，允许损失一部分功能的可用性。比如，某些电商 618 大促的时候，会对一些非核心链路的功能进行降级处理。</li>
+<li>柔性状态：在柔性事务中，允许系统存在中间状态，且这个中间状态不会影响系统整体可用性。比如，数据库读写分离，写库同步到读库（主库同步到从库）会有一个延时，其实就是一种柔性状态。</li>
+<li>最终一致性：事务在操作过程中可能会由于同步延迟等问题导致不一致，但最终状态下，数据都是一致的。</li>
+</ul>
+<p>可见，BASE 理论为了支持大型分布式系统，通过牺牲强一致性，保证最终一致性，来获得高可用性，是对 ACID 原则的弱化。具体到今天的三种分布式事务实现方式，二阶段提交、三阶段提交方法，遵循的是 ACID 原则，而消息最终一致性方案遵循的就是 BASE 理论。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.nlark.com/yuque/0/2020/png/668813/1599989525712-a7cb4f11-d842-4ba6-828b-ae7ffe9677d9.png#align=left&amp;display=inline&amp;height=816"
+        data-srcset="https://cdn.nlark.com/yuque/0/2020/png/668813/1599989525712-a7cb4f11-d842-4ba6-828b-ae7ffe9677d9.png#align=left&amp;display=inline&amp;height=816, https://cdn.nlark.com/yuque/0/2020/png/668813/1599989525712-a7cb4f11-d842-4ba6-828b-ae7ffe9677d9.png#align=left&amp;display=inline&amp;height=816 1.5x, https://cdn.nlark.com/yuque/0/2020/png/668813/1599989525712-a7cb4f11-d842-4ba6-828b-ae7ffe9677d9.png#align=left&amp;display=inline&amp;height=816 2x"
+        data-sizes="auto"
+        alt="https://cdn.nlark.com/yuque/0/2020/png/668813/1599989525712-a7cb4f11-d842-4ba6-828b-ae7ffe9677d9.png#align=left&amp;display=inline&amp;height=816"
+        title="image.png" /></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-02-28</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://llc687.top/posts/%E6%9E%B6%E6%9E%84/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E6%96%B9%E6%A1%88/" data-title="分布式事务方案" data-hashtags="分布式事务"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://llc687.top/posts/%E6%9E%B6%E6%9E%84/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E6%96%B9%E6%A1%88/" data-hashtag="分布式事务"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://llc687.top/posts/%E6%9E%B6%E6%9E%84/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E6%96%B9%E6%A1%88/" data-title="分布式事务方案"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://llc687.top/posts/%E6%9E%B6%E6%9E%84/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E6%96%B9%E6%A1%88/" data-title="分布式事务方案"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://llc687.top/posts/%E6%9E%B6%E6%9E%84/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E6%96%B9%E6%A1%88/" data-title="分布式事务方案"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/">分布式事务</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E6%9E%B6%E6%9E%84/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E4%BD%93%E7%B3%BB/" class="prev" rel="prev" title="微服务架构体系"><i class="fas fa-angle-left fa-fw"></i>微服务架构体系</a>
+            <a href="/posts/%E6%9E%B6%E6%9E%84/mysql45%E8%AE%B2/" class="next" rel="next" title="MySQL实战45讲">MySQL实战45讲<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.81.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2018 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">lyf687</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/twemoji/twemoji.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"liyifan687/comments"}},"data":{"id-1":"无名鼠辈","id-2":"无名鼠辈"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"","algoliaIndex":"","algoliaSearchKey":"","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', '014783502852757998779:nk1fvw21g2i', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=014783502852757998779:nk1fvw21g2i" async></script></body>
+</html>

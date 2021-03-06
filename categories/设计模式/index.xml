@@ -1,195 +1,77 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>设计模式 on 无名鼠辈</title>
-    <link>https://llc687.top/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
-    <description>Recent content in 设计模式 on 无名鼠辈</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
-    <lastBuildDate>Sun, 12 Jul 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://llc687.top/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>中介者模式</title>
-      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%B8%AD%E4%BB%8B%E8%80%85%E6%A8%A1%E5%BC%8F/</link>
-      <pubDate>Sun, 12 Jul 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%B8%AD%E4%BB%8B%E8%80%85%E6%A8%A1%E5%BC%8F/</guid>
-      <description>中介者模式 目的 集中相关对象之间复杂的沟通和控制方式。 类图 角色 Mediator: 抽象中介者 ConcreteMediator: 具体中介者 Colleague: 抽象同事类 ConcreteColleague: 具体同事类 实现 这个模式的现实案例最常见就是</description>
-    </item>
-    
-    <item>
-      <title>备忘录模式</title>
-      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F/</link>
-      <pubDate>Sun, 12 Jul 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F/</guid>
-      <description>备忘录模式 目的 在不违反封装的情况下获得对象的内部状态，在需要时可以将对象恢复到最初状态。 类图 角色 Originator: 原始对象，发起人。 Caretaker: 管理角色，负责保存好备</description>
-    </item>
-    
-    <item>
-      <title>观察者模式</title>
-      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/</link>
-      <pubDate>Sun, 12 Jul 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/</guid>
-      <description>观察者模式 目的 定义对象之间的一对多依赖，当一个对象状态改变时，它的所有依赖都会收到通知并且做出反应。 发生改变的对象称为观察目标，而被通知的对</description>
-    </item>
-    
-    <item>
-      <title>解释器模式</title>
-      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A7%A3%E9%87%8A%E5%99%A8%E6%A8%A1%E5%BC%8F/</link>
-      <pubDate>Sun, 12 Jul 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A7%A3%E9%87%8A%E5%99%A8%E6%A8%A1%E5%BC%8F/</guid>
-      <description>解释器模式 目的 为语言创建解释器，通常由语言的语法和语法分析来定义。 类图 角色 AbstractExpression 抽象解释器：声明一个所有具体表达式都要实现的抽象接口（或者抽象类</description>
-    </item>
-    
-    <item>
-      <title>访问者模式</title>
-      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BF%E9%97%AE%E8%80%85%E6%A8%A1%E5%BC%8F/</link>
-      <pubDate>Sun, 12 Jul 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BF%E9%97%AE%E8%80%85%E6%A8%A1%E5%BC%8F/</guid>
-      <description>访问者模式 目的 为一个对象结构(比如组合结构)增加新能力。 类图 角色 Visitor: 访问者。为每一个 ConcreteElement 声明一个 visit 操作 ConcreteVisitor: 具体访问者。存储遍历过程中的累计结果 ObjectStructure: 对</description>
-    </item>
-    
-    <item>
-      <title>迭代器模式</title>
-      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/</link>
-      <pubDate>Sun, 12 Jul 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/</guid>
-      <description>迭代器模式 目的 提供一种顺序访问聚合对象元素的方法，并且不暴露聚合对象的内部表示。 类图 角色 Aggregate 聚合类，其中 createIterator() 方法可以产生一个 Iterator； ConcreteAggregate</description>
-    </item>
-    
-    <item>
-      <title>命令</title>
-      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F/</link>
-      <pubDate>Sun, 05 Jul 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F/</guid>
-      <description>命令模式 目的 将命令(请求)封装在对象中，以便使用命令来参数化其它对象，或将命令对象放入队列中排队，或将命令对象的操作记录到日志中，以及支持可</description>
-    </item>
-    
-    <item>
-      <title>模板方法</title>
-      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95/</link>
-      <pubDate>Sun, 05 Jul 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95/</guid>
-      <description>模板方法 目的 定义算法框架，并将一些步骤的实现延迟到子类。 通过模板方法，子类可以重新定义算法的某些步骤，而不用改变算法的结构。 类图 角色 Abst</description>
-    </item>
-    
-    <item>
-      <title>状态模式</title>
-      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F/</link>
-      <pubDate>Sun, 05 Jul 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F/</guid>
-      <description>状态模式 目的 允许对象在内部状态改变时改变它的行为，对象看起来好像修改了它所属的类。其别名为状态对象(Objects for States)，状态模式</description>
-    </item>
-    
-    <item>
-      <title>策略模式</title>
-      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/</link>
-      <pubDate>Sun, 05 Jul 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/</guid>
-      <description>策略模式 目的 定义一系列算法，封装每个算法，并使它们可以互换。可以让算法独立于使用它的客户端。 类图 角色 Context: 环境类 Strategy: 抽象策略类 ConcreteStrategy: 具体策略类 实现 抽象</description>
-    </item>
-    
-    <item>
-      <title>责任链</title>
-      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%B4%A3%E4%BB%BB%E9%93%BE/</link>
-      <pubDate>Sun, 05 Jul 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%B4%A3%E4%BB%BB%E9%93%BE/</guid>
-      <description>责任链 目的 使多个对象都有机会处理请求，从而避免请求的发送者和接收者之间的耦合关系。将这些对象连成一条链，并沿着这条链发送该请求，直到有一个对</description>
-    </item>
-    
-    <item>
-      <title>享元模式</title>
-      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F/</link>
-      <pubDate>Fri, 26 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F/</guid>
-      <description>享元模式 目的 实现对象的复用：利用共享的方式来支持大量细粒度的对象，这些对象一部分内部状态是相同的 类图 Flyweight: 抽象享元类 ConcreteFlyweight: 具体享元类 FlyweightFactory: 享元工厂类 实现</description>
-    </item>
-    
-    <item>
-      <title>代理模式</title>
-      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/</link>
-      <pubDate>Fri, 26 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/</guid>
-      <description>代理模式 目的 为其他对象提供一种代理以控制对这个对象的访问。 介绍 代理有四类： 远程代理(Remote Proxy): 控制对远程对象(不同地址空间)的访问，负责</description>
-    </item>
-    
-    <item>
-      <title>桥接模式</title>
-      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F/</link>
-      <pubDate>Fri, 26 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F/</guid>
-      <description>桥接模式 目的 将抽象与实现分离开来，使它们可以独立变化。 类图 角色 Abstraction：抽象类 RefinedAbstraction：扩充抽象类</description>
-    </item>
-    
-    <item>
-      <title>组合模式</title>
-      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F/</link>
-      <pubDate>Fri, 26 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F/</guid>
-      <description>组合模式 目的 将对象组合成树形结构来表示“整体/部分”层次关系，允许用户以相同的方式处理单独对象和组合对象。 类图 Component ：抽象构件类。定义参加组合对</description>
-    </item>
-    
-    <item>
-      <title>装饰模式</title>
-      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F/</link>
-      <pubDate>Fri, 26 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F/</guid>
-      <description>装饰模式 目的 动态地给一个对象增加一些额外的职责。 类图 角色 Component: 抽象构件 ConcreteComponent: 具体构件 ：用于定义具体的构件对象，实现了在抽象构件中声明的方法。 Decorator: 抽象装</description>
-    </item>
-    
-    <item>
-      <title>单例模式</title>
-      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</link>
-      <pubDate>Sun, 21 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</guid>
-      <description>单例模式 确保一个类只有一个实例，并提供该实例的全局访问点,。 类图 使用一个私有构造函数、一个私有静态变量以及一个公有静态函数来实现。 私有构造函</description>
-    </item>
-    
-    <item>
-      <title>原型模式</title>
-      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/</link>
-      <pubDate>Sun, 21 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/</guid>
-      <description>原型模式 目的 使用原型实例指定要创建对象的类型，通过复制这个原型来创建新对象。 类图 角色 Client : 调用类 Prototype : 抽象原型类 ConcretePrototyp</description>
-    </item>
-    
-    <item>
-      <title>外观模式</title>
-      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%A4%96%E8%A7%82%E6%A8%A1%E5%BC%8F/</link>
-      <pubDate>Sun, 21 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%A4%96%E8%A7%82%E6%A8%A1%E5%BC%8F/</guid>
-      <description>外观模式 目的 提供了一个统一的接口，用来访问子系统中的一群接口，从而让子系统更容易使用。 类图 角色 Facade: 外观角色 SubSystem:子系统角色 实现 子</description>
-    </item>
-    
-    <item>
-      <title>工厂方法</title>
-      <link>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95/</link>
-      <pubDate>Sun, 21 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://llc687.top/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95/</guid>
-      <description>工厂方法 目的 定义一个创建对象的接口，但由子类决定要实例化哪个类，把实例化操作推迟到子类。 类图 在简单工厂中，创建对象的是另一个类，而在工厂方法</description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>设计模式 - 分类 - 无名鼠辈</title>
+        <link>https://llc687.top/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
+        <description>设计模式 - 分类 - 无名鼠辈</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 12 Jul 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://llc687.top/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="self" type="application/rss+xml" /><item>
+    <title>中介者模式</title>
+    <link>https://llc687.top/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%B8%AD%E4%BB%8B%E8%80%85%E6%A8%A1%E5%BC%8F/</link>
+    <pubDate>Sun, 12 Jul 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://llc687.top/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%B8%AD%E4%BB%8B%E8%80%85%E6%A8%A1%E5%BC%8F/</guid>
+    <description><![CDATA[中介者模式 目的 集中相关对象之间复杂的沟通和控制方式。 类图 角色 Mediator: 抽象中介者 ConcreteMediator: 具体中介者 Colleague: 抽象同事类 ConcreteColleague: 具体同事类 实现 这个模式的现实案例最常见就是]]></description>
+</item><item>
+    <title>备忘录模式</title>
+    <link>https://llc687.top/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F/</link>
+    <pubDate>Sun, 12 Jul 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://llc687.top/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F/</guid>
+    <description><![CDATA[备忘录模式 目的 在不违反封装的情况下获得对象的内部状态，在需要时可以将对象恢复到最初状态。 类图 角色 Originator: 原始对象，发起人。 Caretaker: 管理角色，负责保存好备]]></description>
+</item><item>
+    <title>观察者模式</title>
+    <link>https://llc687.top/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/</link>
+    <pubDate>Sun, 12 Jul 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://llc687.top/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/</guid>
+    <description><![CDATA[观察者模式 目的 定义对象之间的一对多依赖，当一个对象状态改变时，它的所有依赖都会收到通知并且做出反应。 发生改变的对象称为观察目标，而被通知的对]]></description>
+</item><item>
+    <title>解释器模式</title>
+    <link>https://llc687.top/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A7%A3%E9%87%8A%E5%99%A8%E6%A8%A1%E5%BC%8F/</link>
+    <pubDate>Sun, 12 Jul 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://llc687.top/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A7%A3%E9%87%8A%E5%99%A8%E6%A8%A1%E5%BC%8F/</guid>
+    <description><![CDATA[解释器模式 目的 为语言创建解释器，通常由语言的语法和语法分析来定义。 类图 角色 AbstractExpression 抽象解释器：声明一个所有具体表达式都要实现的抽象接口（或者抽象类]]></description>
+</item><item>
+    <title>访问者模式</title>
+    <link>https://llc687.top/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BF%E9%97%AE%E8%80%85%E6%A8%A1%E5%BC%8F/</link>
+    <pubDate>Sun, 12 Jul 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://llc687.top/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BF%E9%97%AE%E8%80%85%E6%A8%A1%E5%BC%8F/</guid>
+    <description><![CDATA[访问者模式 目的 为一个对象结构(比如组合结构)增加新能力。 类图 角色 Visitor: 访问者。为每一个 ConcreteElement 声明一个 visit 操作 ConcreteVisitor: 具体访问者。存储遍历过程中的累计结果 ObjectStructure: 对]]></description>
+</item><item>
+    <title>迭代器模式</title>
+    <link>https://llc687.top/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/</link>
+    <pubDate>Sun, 12 Jul 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://llc687.top/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/</guid>
+    <description><![CDATA[迭代器模式 目的 提供一种顺序访问聚合对象元素的方法，并且不暴露聚合对象的内部表示。 类图 角色 Aggregate 聚合类，其中 createIterator() 方法可以产生一个 Iterator； ConcreteAggregate]]></description>
+</item><item>
+    <title>命令</title>
+    <link>https://llc687.top/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F/</link>
+    <pubDate>Sun, 05 Jul 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://llc687.top/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F/</guid>
+    <description><![CDATA[命令模式 目的 将命令(请求)封装在对象中，以便使用命令来参数化其它对象，或将命令对象放入队列中排队，或将命令对象的操作记录到日志中，以及支持可]]></description>
+</item><item>
+    <title>模板方法</title>
+    <link>https://llc687.top/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95/</link>
+    <pubDate>Sun, 05 Jul 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://llc687.top/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95/</guid>
+    <description><![CDATA[模板方法 目的 定义算法框架，并将一些步骤的实现延迟到子类。 通过模板方法，子类可以重新定义算法的某些步骤，而不用改变算法的结构。 类图 角色 Abst]]></description>
+</item><item>
+    <title>状态模式</title>
+    <link>https://llc687.top/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F/</link>
+    <pubDate>Sun, 05 Jul 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://llc687.top/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F/</guid>
+    <description><![CDATA[状态模式 目的 允许对象在内部状态改变时改变它的行为，对象看起来好像修改了它所属的类。其别名为状态对象(Objects for States)，状态模式]]></description>
+</item><item>
+    <title>策略模式</title>
+    <link>https://llc687.top/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/</link>
+    <pubDate>Sun, 05 Jul 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://llc687.top/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/</guid>
+    <description><![CDATA[策略模式 目的 定义一系列算法，封装每个算法，并使它们可以互换。可以让算法独立于使用它的客户端。 类图 角色 Context: 环境类 Strategy: 抽象策略类 ConcreteStrategy: 具体策略类 实现 抽象]]></description>
+</item></channel>
 </rss>

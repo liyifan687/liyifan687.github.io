@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>分布式缓存的选择 - 无名鼠辈</title><meta name="Description" content=""><meta property="og:title" content="分布式缓存的选择" />
+<meta property="og:description" content="分布式缓存的选择和问题 如今，缓存系统的应用非常广泛，能够用来提高并发数、数据吞吐量，提高快速响应能力。那么当数据量达到一定程序，单机环境可能" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://llc687.top/posts/%E6%9E%B6%E6%9E%84/%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98/" /><meta property="og:image" content="https://llc687.top/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2019-12-09T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2019-12-09T00:00:00&#43;00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://llc687.top/logo.png"/>
+
+<meta name="twitter:title" content="分布式缓存的选择"/>
+<meta name="twitter:description" content="分布式缓存的选择和问题 如今，缓存系统的应用非常广泛，能够用来提高并发数、数据吞吐量，提高快速响应能力。那么当数据量达到一定程序，单机环境可能"/>
+<meta name="application-name" content="无名鼠辈">
+<meta name="apple-mobile-web-app-title" content="无名鼠辈"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://llc687.top/posts/%E6%9E%B6%E6%9E%84/%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98/" /><link rel="prev" href="https://llc687.top/posts/java/swagger-codegen%E4%BD%BF%E7%94%A8/" /><link rel="next" href="https://llc687.top/posts/%E5%89%91%E6%8C%87offer/%E6%9B%BF%E6%8D%A2%E7%A9%BA%E6%A0%BC/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "分布式缓存的选择",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/llc687.top\/posts\/%E6%9E%B6%E6%9E%84\/%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98\/"
+        },"genre": "posts","keywords": "分布式缓存","wordcount":  3542 ,
+        "url": "https:\/\/llc687.top\/posts\/%E6%9E%B6%E6%9E%84\/%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98\/","datePublished": "2019-12-09T00:00:00+00:00","dateModified": "2019-12-09T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "Lyf"},"author": {
+                "@type": "Person",
+                "name": "Lyf"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="无名鼠辈"><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 归档 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="无名鼠辈"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">归档</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">分布式缓存的选择</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lyf</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/"><i class="far fa-folder fa-fw"></i>中间件</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-09">2019-12-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3542 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 8 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#分布式缓存的选择和问题">分布式缓存的选择和问题</a>
+      <ul>
+        <li><a href="#1-缓存系统的选择">1. 缓存系统的选择</a></li>
+        <li><a href="#2-redis集群缓存方案">2. Redis集群缓存方案</a>
+          <ul>
+            <li><a href="#主从机制">主从机制</a></li>
+            <li><a href="#哨兵机制">哨兵机制</a></li>
+            <li><a href="#分布式">&ldquo;分布式&rdquo;</a></li>
+          </ul>
+        </li>
+        <li><a href="#3-redis分布式缓存方案">3. Redis分布式缓存方案</a>
+          <ul>
+            <li><a href="#客户端分片">客户端分片</a></li>
+            <li><a href="#代理分片">代理分片</a></li>
+            <li><a href="#服务器端分片">服务器端分片</a></li>
+          </ul>
+        </li>
+        <li><a href="#3-缓存常见问题">3. 缓存常见问题</a>
+          <ul>
+            <li><a href="#31-缓存穿透">3.1. 缓存穿透</a></li>
+            <li><a href="#32-缓存击穿">3.2. 缓存击穿</a></li>
+            <li><a href="#33-缓存雪崩">3.3. 缓存雪崩</a></li>
+            <li><a href="#34-缓存更新与一致性">3.4. 缓存更新与一致性</a></li>
+            <li><a href="#35-热点数据">3.5. 热点数据</a></li>
+            <li><a href="#36-缓存预热">3.6. 缓存预热</a></li>
+            <li><a href="#37-缓存降级">3.7. 缓存降级</a></li>
+          </ul>
+        </li>
+        <li><a href="#4-redis-cluster使用">4. Redis Cluster使用</a></li>
+        <li><a href="#5-总结">5. 总结</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考资源">参考资源</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="分布式缓存的选择和问题">分布式缓存的选择和问题</h2>
+<p>如今，缓存系统的应用非常广泛，能够用来提高并发数、数据吞吐量，提高快速响应能力。那么当数据量达到一定程序，单机环境可能就显得有些力不从心了，就需要一个分布式缓存系统。</p>
+<h3 id="1-缓存系统的选择">1. 缓存系统的选择</h3>
+<p><img src="http://img.llc687.top/uPic/截屏2019-11-28下午6.56.30.png" style="zoom:50%;" /></p>
+<p>​																		图1-1</p>
+<p>如上图所示，首先缓存大致可以分为四大类。</p>
+<ul>
+<li>CDN缓存：CDN即内容分发网络，CDN边缘节点将数据缓存起来。</li>
+<li>反向代理缓存：如Nginx的缓存。</li>
+<li>本地缓存：代表的有EhCache和Guava Cache</li>
+<li>分布式缓存：各缓存系统</li>
+</ul>
+<p>本文主要探讨各分布式缓存系统，如下图所示，列出了五种：</p>
+<p>之后对MemCache、Tair、Redis做出对比</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://img.llc687.top/uPic/tapd_40369546_1568709377_47.jpg"
+        data-srcset="http://img.llc687.top/uPic/tapd_40369546_1568709377_47.jpg, http://img.llc687.top/uPic/tapd_40369546_1568709377_47.jpg 1.5x, http://img.llc687.top/uPic/tapd_40369546_1568709377_47.jpg 2x"
+        data-sizes="auto"
+        alt="http://img.llc687.top/uPic/tapd_40369546_1568709377_47.jpg"
+        title="http://img.llc687.top/uPic/tapd_40369546_1568709377_47.jpg" /></p>
+<p>其中<code>EvCache</code>和<code>Aerospike</code>使用场景不是那么通用和广泛。</p>
+<ul>
+<li>EvCache：是Netflix的基于memcached &amp; spymemcached的缓存方案。</li>
+<li>Aerospike：是可基于SSD的K-V NoSQL数据库。</li>
+</ul>
+<p>除此之外，还有三种常见缓存系统。</p>
+<ul>
+<li>
+<p>Tair：阿里开源，跨机房、性能随结点添加线性上升、适用大数据量。Tair还有三种引擎</p>
+<ul>
+<li>
+<p>LDB: 基于google levelDB，支持kv和类hashmap结构,性能稍低,持久化可靠性最高。</p>
+</li>
+<li>
+<p>MDB: 基于memcache，支持kv和类hashMap,性能最优,不支持持久化存储。</p>
+</li>
+<li>
+<p>RDB: 基于Redis.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Memcache: 不支持数据同步、分布式支持较差。</p>
+</li>
+<li>
+<p>Redis: 社区活跃、使用最多。</p>
+</li>
+</ul>
+<p>综上所述，在一般情况下，考虑到适用性和稳定性，Redis 是搭建缓存系统的最优选择。以下将基于 Redis 介绍。</p>
+<h3 id="2-redis集群缓存方案">2. Redis集群缓存方案</h3>
+<p>如顶部图所示，列出了Redis的集群高可用的方案，基本可以分为三种。</p>
+<h4 id="主从机制">主从机制</h4>
+<p>常见的集群的架构，搭建简单，主要实现读写分离和备份，可以由 Master 负责读写，Slave 负责备份。但存在故障恢复复杂、水平拓展难、写能力受限等问题。结构图如下：</p>
+<p>​                                                      		<img src="http://img.llc687.top/uPic/截屏2019-11-29上午10.23.07.png" style="zoom:44%;" /></p>
+<h4 id="哨兵机制">哨兵机制</h4>
+<p>Redis Sentinel 是社区版本推出的原生高可用解决方案。由一或多个哨兵实例监视任意个主从服务器，且在 Master 宕机时，自动将宕机服务器属下的 Slave 服务器升级为 主服务器，从而保证系统的可用性。 较主从实现的监控、选主。但问题主要是要保证Master的HA切换。结构图如下：</p>
+<p><img src="http://img.llc687.top/uPic/截屏2019-11-29上午10.27.15.png" style="zoom:50%;" /></p>
+<h4 id="分布式">&ldquo;分布式&rdquo;</h4>
+<p>到这里其实以上两种机制其实只能算作“集群”，并非严格意义上的“分布式”。接着来看看分布式方案。</p>
+<blockquote>
+<p>集群强调高可用，分布式又强调协作。</p>
+</blockquote>
+<h3 id="3-redis分布式缓存方案">3. Redis分布式缓存方案</h3>
+<p>任何分布式存储系统，首先面临的就是 sharding（分片）问题，如顶部图1-1所示可分为三种方式。</p>
+<h4 id="客户端分片">客户端分片</h4>
+<p>顾名思义，将数据分片的路由功能交给客户端，但这是一种静态分片，维护性差。基本而言是不予考虑的。</p>
+<h4 id="代理分片">代理分片</h4>
+<p>通过代理分发到具体的redis实例。有两个常用解决方案。</p>
+<ul>
+<li><a href="https://github.com/twitter/twemproxy" target="_blank" rel="noopener noreffer">Twemproxy</a>
+Twitter开源，轻量级，但不再维护，也无法平滑地扩容/缩容，运维也不是很友好，性能一般。</li>
+<li><a href="https://github.com/CodisLabs/codis" target="_blank" rel="noopener noreffer">Codis</a>
+豌豆荚开源，支持水平拓展，运维平台完善，性能较 Twemproxy 快。Codis在国内使用较多，同时代理分片的思路也有很多公司在此基础开发了自己的二次方案。不过Codis也不再维护。</li>
+</ul>
+<p>其实，这两种代理分片的方案，都是在 Redis 官方未推出良好的分布式方案时的策略，在官方更新后都不再维护。</p>
+<h4 id="服务器端分片">服务器端分片</h4>
+<p>这就要谈到 Redis 官方的方案 Redis-cluster 。</p>
+<p>在 Redis3.0 之前是没有较好的分布式方案的，这也是第三方方案出现的原因。3.0 开始，官方推出了去中心化的分布式方案。集群中包含16384个散列槽，每个节点负责其中一部分。</p>
+<p>​     先看下拓扑图：<img src="http://img.llc687.top/uPic/截屏2019-11-29上午10.42.48.png" style="zoom:50%;" /></p>
+<p>每个节点打开两个TCP连接，一个负责给客户端提供服务，一个负责节点间通信。</p>
+<p>此刻要说说 CAP了 ： Consistency(一致性)、Availability(可用性)、Partition tolerance(分区容错性) 。对分布式系统而言，CAP 必须牺牲一者。Redis Cluster 的设计目标主要是高性能、高可用和高扩展, 只好抛弃一部分数据一致性.</p>
+<ul>
+<li>
+<p>数据一致性：由于Redis Cluster 使用异步复制, 在某些情况下如Master宕机但未同步至Slave, 可能会丢失写入。在绝对需要时支持同步写入的时候, 可通过 WAIT 命令实现, 可使得丢失写入的可能性大大降低。</p>
+</li>
+<li>
+<p>可用性： 当集群中一部分节点故障后, 集群整体能响应客户端读写请求。</p>
+<ul>
+<li>节点间定时互 ping , 当超过一半Master 判定某节点失败，则标为 FAIL, 会向集群广播节点下线的消息。如下线节点是带有槽的主节点，则要从它的从节点选出一个替换。</li>
+</ul>
+<p><img src="http://img.llc687.top/uPic/截屏2019-12-08下午2.13.56.png" style="zoom:50%;" /></p>
+</li>
+<li>
+<p>高性能和拓展：操作某个 key时，不会先找到节点再处理，而是直接直接重定向到该节点, 同时相较代理分片也少了 proxy 的连接损耗。</p>
+<ul>
+<li>但是在进行<code>multiple key</code>操作时需要<code>keys</code>位于同一个<code>slot</code>上,需要使用<code>hash tags</code>,使用<code>{}</code>强制将某些key映射到每个slot,以便进行<code>multiple </code> 。</li>
+<li>在拓展方面，Redis Cluster 最大支持线性拓展1000个节点，将新节点加入集群后可以通过命令指定和平均的从已有节点分配slot。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-缓存常见问题">3. 缓存常见问题</h3>
+<p>以上介绍了简单介绍了常见缓存系统，并具体列出了基于Redis的集群方案。下面谈一谈缓存系统常见的问题。</p>
+<p>如下图所示，列出七个常见问题。</p>
+<p><img src="http://img.llc687.top/uPic/截屏2019-12-08下午3.43.33.png" style="zoom:40%;" /></p>
+<h4 id="31-缓存穿透">3.1. 缓存穿透</h4>
+<p>指访问不存在的数据，从而绕过缓存，直接请求到了数据源，当请求过多，就会对 DB 造成压力。</p>
+<ul>
+<li>空 key：指对于不存在的数据也将 key 存空值入缓存系统，这样下次访问也会得到返回。但只适用于空数据key有限、key 重复请求概率高，如果量大且不重复，就会造成很多无用 key 的创建。</li>
+<li>布隆过滤器：布隆过滤器是一个很长的二进制向量和一系列随机映射函数。可用于检索一个元素是否在一个集合中加一层对空值的过滤器，空间和时间效率都很高。但由于 hash 产生的碰撞可能存在误判，以及因不存储 key 导致的无法删除。适用于空数据key各不同、重复请求概率低。</li>
+</ul>
+<h4 id="32-缓存击穿">3.2. 缓存击穿</h4>
+<p>缓存击穿实际是缓存雪崩的一个特例。指当某些热点key过期时，就会有大量的请求击穿到DB。</p>
+<ul>
+<li>
+<p>互斥锁
+在缓存失效的时候，不立即load db，可以先用如SETNX等命令去set一个mutex key，当操作返回成功时，说明拿到锁，此刻该线程进行load db的操作并更新缓存；否则未拿到锁就(可休眠一段)重试 get 缓存的方法。但要注意死锁风险。</p>
+</li>
+<li>
+<p>不过期</p>
+<ul>
+<li>
+<p>这里的不过期有两个概念，一个指未设过期时间，那是真的不过期，那没事了~~</p>
+</li>
+<li>
+<p>另一个是指通过业务逻辑，将 key 的过期时间进行存储，请求是判断是否小于值，是则后台异步更新。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="33-缓存雪崩">3.3. 缓存雪崩</h4>
+<p>同一时刻大量缓存失效（故障）, 请求到了DB。</p>
+<ul>
+<li>随机时间：在设置过期时间时，可以在基础时间上 + 一个随机的时间，等于实现了分批过期。</li>
+<li>后台更新：将更新失效的工作交给后台定时线程。</li>
+<li>限流+本地缓存：如 <strong>ehcache本地缓存 + Hystrix限流</strong>。</li>
+<li>双缓存：类似于设置<code>主从</code>缓存，从<code>key</code>不过期。</li>
+</ul>
+<h4 id="34-缓存更新与一致性">3.4. 缓存更新与一致性</h4>
+<p>如果保证数据一致性。列出四种更新策略：</p>
+<ul>
+<li>
+<p>Cache Aside：最常用的。 失效时回源取数据，更新；命中时，返回缓存数据；更新时先数据源更新，再跟你更新缓存。</p>
+</li>
+<li>
+<p>Write Back：更新数据时，只更新缓存，不更新数据源。缓存异步批量更新数据库</p>
+</li>
+<li>
+<p>Read/Write Through</p>
+<ul>
+<li>
+<p>Write Through ：当有数据更新时，如未命中缓存，直接更新数据库，并返回。如命中缓存，则更新缓存，再由 Cache 自己更新数据库。</p>
+</li>
+<li>
+<p>Read Through ：更新数据源由缓存系统操作，读取数据时如缓存失效，则取回源数据更新缓存。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="35-热点数据">3.5. 热点数据</h4>
+<p>对于热点数据的处理方法。</p>
+<ul>
+<li>拆分复杂结构：如二级数据结构，进行拆分，这样热点key就被拆为若干个的 key 分布到不同节点。</li>
+<li>迁移热点：对于Redis Cluster 而言可以将热点 key 所在的 slot 单独迁移到一个节点，降低其他节点压力。</li>
+<li>多副本：复制多份缓存副本，将请求分散到多个节点上，减轻单台缓存服务器压力，适合多读少写。</li>
+</ul>
+<h4 id="36-缓存预热">3.6. 缓存预热</h4>
+<p>指可以将某些的缓存数据提前加载到缓存系统。提前避免在如热点数据大量请求到库。</p>
+<h4 id="37-缓存降级">3.7. 缓存降级</h4>
+<p>指当访问量剧增、服务出现问题或非核心服务影响到核心流程的性能时，仍需保证主服务可用。可根据一些关键数据自动降级，也可配置开关人工降级。</p>
+<h3 id="4-redis-cluster使用">4. Redis Cluster使用</h3>
+<p>对于Redis Cluster环境的搭建和基础使用非常简单。</p>
+<p>无论基于何种方式，只要搭建好n台 redis 服务并保证各服务间可以互相通讯后，任意进入一个redis 服务键入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">redis-cli --cluster create IP1:port1 IP2:port2 IP3:port3 IP4:port4 IP5:port5 IP6:port6 ... --cluster-replicas <span class="m">1</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>即可。之后可以使用 <code>cluster node</code>   和<code>cluster info</code>查看集群、节点信息。</p>
+<p>而对于广大 JAVA 服务器端开发，Spring Data Redis 从1.7起即支持Redis Cluster，只需配置Master节点地址（和密码）。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">spring.redis.cluster.nodes=ip1:port1,ip2:port2,ip3:port3
+</code></pre></td></tr></table>
+</div>
+</div><p>加入依赖</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback"> compile(&#34;org.springframework.boot:spring-boot-starter-data-redis&#34;)
+</code></pre></td></tr></table>
+</div>
+</div><p>即可通过 <strong>RedisTemplate</strong> 使用。</p>
+<h3 id="5-总结">5. 总结</h3>
+<p>本文从缓存系统的选择出发，基于 Redis 介绍了几种集群方案并重点说明了 Redis Cluster 方案。之后列出缓存系统常见问题及常见解决方案，最后对使用做了简单说明。</p>
+<p>当然，如何去落地，如何解决这些问题还需要根据实际场景具体分析和处理。</p>
+<h2 id="参考资源">参考资源</h2>
+<ul>
+<li><a href="https://redis.io/topics/cluster-spec/" target="_blank" rel="noopener noreffer">Redis Cluster Specification</a></li>
+<li><a href="https://juejin.im/entry/5b514768f265da0fa21a800f" target="_blank" rel="noopener noreffer">深入理解分布式系统中的缓存架构</a></li>
+<li><a href="https://coolshell.cn/articles/17416.html" target="_blank" rel="noopener noreffer">缓存更新的套路</a></li>
+<li><a href="https://kns.cnki.net/KCMS/detail/detail.aspx?dbcode=CJFQ&amp;dbname=CJFDLAST2018&amp;filename=XTYY201810014&amp;uid=WEEvREcwSlJHSldTTEYzVDhsN3d5eFVQZGhRU3liWkhHakVoQ0NSSDgxRT0" target="_blank" rel="noopener noreffer">一种高效的Redis Cluster的分布式缓存系统[J].计算机系统应用,2018,27(10):91-98.</a></li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2019-12-09</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://llc687.top/posts/%E6%9E%B6%E6%9E%84/%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98/" data-title="分布式缓存的选择" data-hashtags="分布式缓存"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://llc687.top/posts/%E6%9E%B6%E6%9E%84/%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98/" data-hashtag="分布式缓存"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://llc687.top/posts/%E6%9E%B6%E6%9E%84/%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98/" data-title="分布式缓存的选择"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://llc687.top/posts/%E6%9E%B6%E6%9E%84/%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98/" data-title="分布式缓存的选择"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://llc687.top/posts/%E6%9E%B6%E6%9E%84/%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98/" data-title="分布式缓存的选择"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98/">分布式缓存</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/java/swagger-codegen%E4%BD%BF%E7%94%A8/" class="prev" rel="prev" title="Swagger-Codegen使用"><i class="fas fa-angle-left fa-fw"></i>Swagger-Codegen使用</a>
+            <a href="/posts/%E5%89%91%E6%8C%87offer/%E6%9B%BF%E6%8D%A2%E7%A9%BA%E6%A0%BC/" class="next" rel="next" title="替换空格">替换空格<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.81.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2018 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">lyf687</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/twemoji/twemoji.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"liyifan687/comments"}},"data":{"id-1":"无名鼠辈","id-2":"无名鼠辈"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"","algoliaIndex":"","algoliaSearchKey":"","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', '014783502852757998779:nk1fvw21g2i', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=014783502852757998779:nk1fvw21g2i" async></script></body>
+</html>

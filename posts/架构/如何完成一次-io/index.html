@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>如何完成一次  IO - 无名鼠辈</title><meta name="Description" content=""><meta property="og:title" content="如何完成一次  IO" />
+<meta property="og:description" content="如何完成一次 IO 哪个男孩不想来一场异步非阻塞的甜蜜恋爱？ 21 点，你打开微信，开心地对女孩说：“晚上好”。女孩说：“我在洗澡”。 你抱着手机等待晚点" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://llc687.top/posts/%E6%9E%B6%E6%9E%84/%E5%A6%82%E4%BD%95%E5%AE%8C%E6%88%90%E4%B8%80%E6%AC%A1-io/" /><meta property="og:image" content="https://llc687.top/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-06-14T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2020-06-14T00:00:00&#43;00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://llc687.top/logo.png"/>
+
+<meta name="twitter:title" content="如何完成一次  IO"/>
+<meta name="twitter:description" content="如何完成一次 IO 哪个男孩不想来一场异步非阻塞的甜蜜恋爱？ 21 点，你打开微信，开心地对女孩说：“晚上好”。女孩说：“我在洗澡”。 你抱着手机等待晚点"/>
+<meta name="application-name" content="无名鼠辈">
+<meta name="apple-mobile-web-app-title" content="无名鼠辈"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://llc687.top/posts/%E6%9E%B6%E6%9E%84/%E5%A6%82%E4%BD%95%E5%AE%8C%E6%88%90%E4%B8%80%E6%AC%A1-io/" /><link rel="prev" href="https://llc687.top/posts/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%A6%82%E4%BD%95%E5%AE%8C%E6%88%90%E4%B8%80%E6%AC%A1%E5%BF%AB%E9%80%9F%E7%9A%84%E6%9F%A5%E8%AF%A2/" /><link rel="next" href="https://llc687.top/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "如何完成一次  IO",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/llc687.top\/posts\/%E6%9E%B6%E6%9E%84\/%E5%A6%82%E4%BD%95%E5%AE%8C%E6%88%90%E4%B8%80%E6%AC%A1-io\/"
+        },"genre": "posts","keywords": "Linux, IO","wordcount":  5406 ,
+        "url": "https:\/\/llc687.top\/posts\/%E6%9E%B6%E6%9E%84\/%E5%A6%82%E4%BD%95%E5%AE%8C%E6%88%90%E4%B8%80%E6%AC%A1-io\/","datePublished": "2020-06-14T00:00:00+00:00","dateModified": "2020-06-14T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "lyf687"},"author": {
+                "@type": "Person",
+                "name": "lyf687"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="无名鼠辈"><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 归档 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="无名鼠辈"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">归档</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">如何完成一次  IO</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>lyf687</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>Linux</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-06-14">2020-06-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5406 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 11 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#如何完成一次--io">如何完成一次  IO</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#写在前面">写在前面</a></li>
+          </ul>
+        </li>
+        <li><a href="#1--什么是-io">1.  什么是 I/O</a></li>
+        <li><a href="#2-计算机内存">2. 计算机内存</a>
+          <ul>
+            <li><a href="#21-虚拟内存">2.1 虚拟内存</a></li>
+            <li><a href="#22-内核空间与用户空间">2.2 内核空间与用户空间</a></li>
+            <li><a href="#23-进程切换">2.3 进程切换</a></li>
+          </ul>
+        </li>
+        <li><a href="#3-linux-io-读写方式">3. Linux I/O 读写方式</a>
+          <ul>
+            <li><a href="#31-io中断">3.1 I/O中断</a></li>
+            <li><a href="#32-dma">3.2 DMA</a></li>
+          </ul>
+        </li>
+        <li><a href="#4-零拷贝">4. 零拷贝</a>
+          <ul>
+            <li><a href="#1-传统-io">1. 传统 I/O</a></li>
+            <li><a href="#2-用户态直接io">2. 用户态直接IO</a></li>
+            <li><a href="#3-mmap">3. mmap</a></li>
+            <li><a href="#4-sendfile">4. sendfile</a></li>
+            <li><a href="#5-sendfile--dma-gather-copy">5. sendfile + DMA gather copy</a></li>
+            <li><a href="#6-splice">6. splice</a></li>
+            <li><a href="#7-写时复制">7. 写时复制</a>
+              <ul>
+                <li><a href="#java-中的实现">Java 中的实现</a></li>
+              </ul>
+            </li>
+            <li><a href="#8-对比">8. 对比</a></li>
+          </ul>
+        </li>
+        <li><a href="#5-unix-io模型">5. Unix IO模型</a>
+          <ul>
+            <li><a href="#51-阻塞-io---同步阻塞">5.1 阻塞 IO - 同步阻塞</a></li>
+            <li><a href="#52-非阻塞---同步非阻塞">5.2 非阻塞 - 同步非阻塞</a></li>
+            <li><a href="#53-信号驱动---同步非阻塞">5.3 信号驱动 - 同步非阻塞</a></li>
+            <li><a href="#54-多路复用---同步阻塞">5.4 多路复用 - 同步阻塞</a></li>
+            <li><a href="#55-异步io---异步非阻塞">5.5 异步IO - 异步非阻塞</a>
+              <ul>
+                <li><a href="#56-模型比较">5.6 模型比较</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#6--java-及其他">6.  Java 及其他</a>
+          <ul>
+            <li><a href="#1-bio">1. BIO</a></li>
+            <li><a href="#2-nio">2. NIO</a></li>
+            <li><a href="#3-aio">3. AIO</a></li>
+          </ul>
+        </li>
+        <li><a href="#7-总结">7. 总结</a></li>
+        <li><a href="#8-最后">8. 最后</a></li>
+        <li><a href="#参考">参考</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="如何完成一次--io">如何完成一次  IO</h2>
+<p>哪个男孩不想来一场异步非阻塞的甜蜜恋爱？</p>
+<p>21 点，你打开微信，开心地对女孩说：“晚上好”。女孩说：“我在洗澡”。</p>
+<p>你抱着手机等待晚点聊，此刻，你是阻塞的，也是同步的。为什么？</p>
+<h4 id="写在前面">写在前面</h4>
+<p>谈起 IO,  Javaer 会说起 BIO、NIO、AIO，也会提到同步异步、阻塞非阻塞。但到底什么是 IO, IO又是怎么完成的？</p>
+<h3 id="1--什么是-io">1.  什么是 I/O</h3>
+<p>学术的说 I/O 是信息处理系统（计算机）与外界（人或信息处理系统）间的通信。如计算机，即 CPU 访问任何寄存器和 Cache 等封装以外的数据资源都可当成 I/O ，包括且不限于内存，磁盘，显卡。</p>
+<p>软件开发中的 I/O 则常指磁盘、网络 IO。</p>
+<p>Unix 系统下，不论是标准输入还是借助套接字接受网络输入，都有两个步骤：</p>
+<ol>
+<li>等待数据准备好**（Waiting for the data to be ready）**</li>
+<li>从内核向进程复制数据**（Copying the data from the kernel to the process）**</li>
+</ol>
+<p>等待数据准备好还比较好理解，从内核向进程复制数据是什么东东？</p>
+<h3 id="2-计算机内存">2. 计算机内存</h3>
+<p>计科、软工的同学都知道，修电脑是我们的对口工种，加内存条这种事更是入职基本要求。这的内存条又叫物理内存。那一般来说，有实就有虚，所以就有虚拟内存。</p>
+<h4 id="21-虚拟内存">2.1 虚拟内存</h4>
+<p>操作系统中进程间是共享 CPU 和内存资源的，就需要一套完善的内存管理机制防止进程间内存泄漏。</p>
+<p>现代操作系统提供了对主存的抽象概念：虚拟内存（Virtual Memory）。虚拟内存为每个进程提供一个一致私有的地址空间，每个进程拥有一片连续完整的内存空间，让进程有种在独享主存的美好错觉。</p>
+<p>实际上，虚拟内存通常被分隔成多个物理内存碎片，还有部分暂存在外部磁盘存储器，在需要时进行数据交换，加载到物理内存中来。大致如下图：
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://img.llc687.top/uPic/%e6%88%aa%e5%b1%8f2020-05-31%e4%b8%8b%e5%8d%885.11.13.png"
+        data-srcset="http://img.llc687.top/uPic/%e6%88%aa%e5%b1%8f2020-05-31%e4%b8%8b%e5%8d%885.11.13.png, http://img.llc687.top/uPic/%e6%88%aa%e5%b1%8f2020-05-31%e4%b8%8b%e5%8d%885.11.13.png 1.5x, http://img.llc687.top/uPic/%e6%88%aa%e5%b1%8f2020-05-31%e4%b8%8b%e5%8d%885.11.13.png 2x"
+        data-sizes="auto"
+        alt="http://img.llc687.top/uPic/截屏2020-05-31下午5.11.13.png"
+        title="截屏2020-05-31下午5.11.13" /></p>
+<p>当用户进程发出内存申请请求，系统会为进程分配虚拟地址，并创建内存映射放入页表中，如果对应的数据不在物理内存上就会发生缺页异常，需要把进程需要的数据从磁盘上拷贝到物理内存中。</p>
+<h4 id="22-内核空间与用户空间">2.2 内核空间与用户空间</h4>
+<p>上图有看到，虚拟内存分为内核和用户地址空间两部分，因为需要避免用户进程直接操作内核。</p>
+<p>操作系统的核心是内核，独立于普通应用程序，可访问受保护的内存空间，也可访问底层硬件设备。 在 Linux 系统中，内核模块运行在内核空间，当进程经过系统调用而陷入内核代码中执行时，称进程处于内核运行态，即<strong>内核态</strong>；反之，运行在用户空间执行用户自己的代码时，处于<strong>用户态</strong>。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://img.llc687.top/uPic/%e6%88%aa%e5%b1%8f2020-05-31%e4%b8%8b%e5%8d%885.19.16.png"
+        data-srcset="http://img.llc687.top/uPic/%e6%88%aa%e5%b1%8f2020-05-31%e4%b8%8b%e5%8d%885.19.16.png, http://img.llc687.top/uPic/%e6%88%aa%e5%b1%8f2020-05-31%e4%b8%8b%e5%8d%885.19.16.png 1.5x, http://img.llc687.top/uPic/%e6%88%aa%e5%b1%8f2020-05-31%e4%b8%8b%e5%8d%885.19.16.png 2x"
+        data-sizes="auto"
+        alt="http://img.llc687.top/uPic/截屏2020-05-31下午5.19.16.png"
+        title="截屏2020-05-31下午5.19.16" /></p>
+<p>上图可以看到，应用程序和内核间无法直接通信，必须通过<strong>系统调用，而系统调用的成本很高</strong>。</p>
+<p>当用户进程想要执行 IO 操作时，由于没有执行这些操作的权限，只能发起系统调用请求操作系统帮忙完成。而系统调用会产生中断陷入到内核，也就是进行了一次<strong>上下文切换</strong>操作。</p>
+<h4 id="23-进程切换">2.3 进程切换</h4>
+<p>到了内核，为了控制进程执行，内核必须有能力挂起正在 CPU 上运行的进程，并恢复以前挂起的某个进程的执行。这种行为被称为<strong>进程切换</strong>。</p>
+<blockquote>
+<p><strong>需要注意</strong>：这里的进程切换和上文 2.2 的用户态转内核态的上下文切换并不一样，后者只是同一个进程的 CPU 权限等级的修改。</p>
+</blockquote>
+<p>进程是资源分配的基本单位， 因此进程切换时，需保存、装载各种状态数据等资源， 代价就比较高。</p>
+<h3 id="3-linux-io-读写方式">3. Linux I/O 读写方式</h3>
+<p>现在我们知道用户进程需要通过系统调用转为内核态，才能在 CPU 上运行，进而访问底层如磁盘等硬件设备。其中磁盘等 I/O 设备的控制器中有寄存器，负责与 CPU 进行通信。</p>
+<p>那么，I/O 设备与 CPU 能用哪些方法进行通信呢？主要通过两种。</p>
+<h4 id="31-io中断">3.1 I/O中断</h4>
+<p>在 DMA 技术出现前，应用程序与磁盘间的 I/O 操作都通过 CPU 中断完成。外部存储设备<strong>采用中断方式主动通知 CPU</strong>，CPU 负责拷贝数据到内核缓冲区，再拷贝到用户缓冲区，每次就会有<strong>上下文切换的开销及 CPU 拷贝的时间</strong>。</p>
+<p><img src="http://img.llc687.top/uPic/screen-1527758.png" alt="screen-1527758" style="zoom:60%;" /></p>
+<h4 id="32-dma">3.2 DMA</h4>
+<p>DMA 全称叫直接内存存取（Direct Memory Access），是一种允许外围设备直接访问系统主存的机制。</p>
+<p>CPU 通知 DMA 控制器拷贝外部存储设备数据到内核缓冲区，完成后再通知 CPU 拷贝到用户缓冲区。和 I/O 中断方式相比，改由内存来执行外部存储器数据的 I/O 操作，减轻了CPU负担，且 CPU 读取内存比读取外部存储设备速度要快。</p>
+<p>目前大多数硬件设备，包括磁盘、网卡、声卡等都支持 DMA 技术。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://img.llc687.top/uPic/screen-1531490.png"
+        data-srcset="http://img.llc687.top/uPic/screen-1531490.png, http://img.llc687.top/uPic/screen-1531490.png 1.5x, http://img.llc687.top/uPic/screen-1531490.png 2x"
+        data-sizes="auto"
+        alt="http://img.llc687.top/uPic/screen-1531490.png"
+        title="screen-1531490" /></p>
+<h3 id="4-零拷贝">4. 零拷贝</h3>
+<p>一次 I/O ,无论是读还是写数据，都要经过硬盘 - 内核 - 用户空间，有了 DMA，磁盘到内核空间的拷贝问题得以解决，CPU 可以摸会鱼了。但用户空间和内核空间之间的传输怎么办呢，CPU 觉得要做就做一个摸鱼到下班的 CPU。于是有了零拷贝。</p>
+<p><code>零拷贝</code>是基于 DMA 的, 其目的就是优化多次数据拷贝的过程，避免 CPU 将数据从一块存储拷贝到另外一块存储。有 3 个实现思路：</p>
+<ol>
+<li>用户态直接 I/O : 应用程序直接访问硬件存储，内核只辅助数据传输。硬件上的数据直接拷贝给用户空间，也就不存在内核空间缓冲区和用户空间缓冲区间的数据拷贝了。</li>
+<li>减少数据拷贝次数：在数据传输过程中，减少数据在用户空间缓冲区和系统内核空间缓冲区之间的 CPU 拷贝次数，同时也避免数据在内核空间内部的 CPU 拷贝。</li>
+<li>写时复制：多个进程共享同一块数据时，如果某进程要对这份数据修改，那将其拷贝到自己的进程地址空间中。</li>
+</ol>
+<p>下面来看看这三种思路的具体实现。</p>
+<h4 id="1-传统-io">1. 传统 I/O</h4>
+<p>先来看看传统方式，在进行一次读写时共涉及了4次上下文切换，2次 DMA 拷贝以及2次 CPU 拷贝。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://img.llc687.top/uPic/screen-1535441.png"
+        data-srcset="http://img.llc687.top/uPic/screen-1535441.png, http://img.llc687.top/uPic/screen-1535441.png 1.5x, http://img.llc687.top/uPic/screen-1535441.png 2x"
+        data-sizes="auto"
+        alt="http://img.llc687.top/uPic/screen-1535441.png"
+        title="screen-1535441" /></p>
+<h4 id="2-用户态直接io">2. 用户态直接IO</h4>
+<p>这是第一种思路，使应用进程或处于用户态下的库函数跨过内核直接访问硬件，内核在数据传输过程除了进行必要的虚拟存储配置工作外，不参与任何其他工作。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://img.llc687.top/uPic/screen-1535947.png"
+        data-srcset="http://img.llc687.top/uPic/screen-1535947.png, http://img.llc687.top/uPic/screen-1535947.png 1.5x, http://img.llc687.top/uPic/screen-1535947.png 2x"
+        data-sizes="auto"
+        alt="http://img.llc687.top/uPic/screen-1535947.png"
+        title="screen-1535947" /></p>
+<p>但只适用于不需要内核缓冲区处理的应用程序，这些应用程序通常在进程地址空间有自己的数据缓存机制，又称为自缓存应用程序，如数据库管理系统。其次，因 CPU 和磁盘 I/O 之间的性能差距，就会造成资源的浪费，一般是会配合异步 I/O 使用。</p>
+<h4 id="3-mmap">3. mmap</h4>
+<p>这属于第二类优化，减少了 1 次 CPU 拷贝。MMAP 是数据不会到达用户空间内存，只会存在于系统空间的内存上，用户空间与系统空间共用同一个缓冲区，两者通过映射关联。<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://img.llc687.top/uPic/screen-1773287.png"
+        data-srcset="http://img.llc687.top/uPic/screen-1773287.png, http://img.llc687.top/uPic/screen-1773287.png 1.5x, http://img.llc687.top/uPic/screen-1773287.png 2x"
+        data-sizes="auto"
+        alt="http://img.llc687.top/uPic/screen-1773287.png"
+        title="screen-1773287" /></p>
+<p>整个 MMAP 过程，发生了 4 次上下文切换 + 1 次 CPU 拷贝 + 2 次 DMA 拷贝。</p>
+<h4 id="4-sendfile">4. sendfile</h4>
+<p>这也是第二类优化。用户进程不需要单独调用 read/write ，而是直接调用 sendfile() ，sendfile 再帮用户调用 read/write 操作。数据可以直接在内核空间进行 I/O 传输，省去了数据在用户空间和内核空间之间的拷贝。</p>
+<p>与 mmap 内存映射方式不同的是， sendfile() 调用中数据对用户空间是完全不可见的。也就是说，这是一次完全意义上的数据传输过程。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://img.llc687.top/uPic/image-20200610154454498.png"
+        data-srcset="http://img.llc687.top/uPic/image-20200610154454498.png, http://img.llc687.top/uPic/image-20200610154454498.png 1.5x, http://img.llc687.top/uPic/image-20200610154454498.png 2x"
+        data-sizes="auto"
+        alt="http://img.llc687.top/uPic/image-20200610154454498.png"
+        title="image-20200610154454498" /></p>
+<p>整个过程发生 2 次上下文切换，1 次 CPU 拷贝和 2 次 DMA 拷贝。</p>
+<h4 id="5-sendfile--dma-gather-copy">5. sendfile + DMA gather copy</h4>
+<p>在前面的 sendfile() 方式中，CPU 仍需要一次拷贝，从 Linux 2.4 版本开始，DMA 自带了收集功能，可以将对应的数据描述信息（内存地址、地址偏移量）记录到相应的网络缓冲区（ socket buffer），由DMA 根据这些信息直接将内核缓冲区的数据拷贝到网卡设备中，省下了最后一次 CPU 拷贝。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://img.llc687.top/uPic/image-20200610154613272.png"
+        data-srcset="http://img.llc687.top/uPic/image-20200610154613272.png, http://img.llc687.top/uPic/image-20200610154613272.png 1.5x, http://img.llc687.top/uPic/image-20200610154613272.png 2x"
+        data-sizes="auto"
+        alt="http://img.llc687.top/uPic/image-20200610154613272.png"
+        title="image-20200610154613272" /></p>
+<p>这次只发生 2 次上下文切换 + 2 次 DMA 数据拷贝。</p>
+<h4 id="6-splice">6. splice</h4>
+<p>sendfile 只适用于将数据从文件拷贝到网卡上，限定了使用范围。</p>
+<p>splice 系统调用可以在内核空间的读缓冲区和网络缓冲区之间建立管道，支持任意两个文件之间互连，可以在操作系统地址空间中整块地移动数据。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://img.llc687.top/uPic/image-20200610161033841.png"
+        data-srcset="http://img.llc687.top/uPic/image-20200610161033841.png, http://img.llc687.top/uPic/image-20200610161033841.png 1.5x, http://img.llc687.top/uPic/image-20200610161033841.png 2x"
+        data-sizes="auto"
+        alt="http://img.llc687.top/uPic/image-20200610161033841.png"
+        title="image-20200610161033841" /></p>
+<p>同样发生 2 次上下文切换 + 2 次 DMA 数据拷贝。</p>
+<h4 id="7-写时复制">7. 写时复制</h4>
+<p>这个就是第三种思路了，COW 写时复制。</p>
+<p>当用户进程有写操作时，就把这块共享的内存空间复制一份到其他区域，给写进程专用。这种方法在能够降低系统开销，如果某个进程永远不会对数据进行更改，那就永远不需要拷贝。</p>
+<h5 id="java-中的实现">Java 中的实现</h5>
+<p>其实这个策略对于 Javaer 来说不应该陌生，在解决并发问题时，最简单的策略莫过于不变性模式，对象一旦被创建之后，状态就不再发生变化。</p>
+<p>比如 包装类和 String 的线程安全就是依赖不变性，基于享元模式创建对象池，读的时候是共用的（这也是为什么包装类不适合做锁的原因），写的时候比如<code>String</code> 的 <code>replace()</code> ，并没有更改原字符串里面数组的内容，而是创建了一个新字符串，这就是写时复制策略了。</p>
+<p>尤其是从 Java8 开始的函数式编程，基础就是不可变性，所以修改操作都需要 COW 策略。当然早期 Java 就有类似容器，比如<code>CopyOnWriteArrayList </code>, 不过实现有点笨，不是按需复制。</p>
+<h4 id="8-对比">8. 对比</h4>
+<table>
+<thead>
+<tr>
+<th>拷贝方式</th>
+<th style="text-align:center">CPU拷贝</th>
+<th style="text-align:center">DMA拷贝</th>
+<th style="text-align:center">上下文切换</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>传统方式</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">4</td>
+<td></td>
+</tr>
+<tr>
+<td>mmap</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">4</td>
+<td></td>
+</tr>
+<tr>
+<td>sendfile</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+<td></td>
+</tr>
+<tr>
+<td>sendfile + DMA gather copy</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+<td></td>
+</tr>
+<tr>
+<td>splice</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>此刻，CPU 觉得还行。</p>
+<h3 id="5-unix-io模型">5. Unix IO模型</h3>
+<p>前面说了那么多，想必现在应该知道 I/O 是怎么一回事了，接着再瞧瞧啥叫阻塞啥叫同步。</p>
+<h4 id="51-阻塞-io---同步阻塞">5.1 阻塞 IO - 同步阻塞</h4>
+<p><img src="http://img.llc687.top/uPic/image-20200610163917210.png" alt="image-20200610163917210" style="zoom:50%;" /></p>
+<p><strong>等待数据、拷贝数据都是处于阻塞状态的。</strong> 这就是<strong>同步阻塞</strong>。</p>
+<h4 id="52-非阻塞---同步非阻塞">5.2 非阻塞 - 同步非阻塞</h4>
+<p><img src="http://img.llc687.top/uPic/image-20200610164001260.png" alt="image-20200610164001260" style="zoom:50%;" /></p>
+<p><strong>在I/O执行的第一个阶段（等待数据）不会阻塞线程，但在第二阶段（复制数据）会阻塞。</strong></p>
+<p>这就是<strong>同步非阻塞</strong>，其实就是轮询，当数据没准备好则返回 <code>EWOULDBLOCK</code>。</p>
+<h4 id="53-信号驱动---同步非阻塞">5.3 信号驱动 - 同步非阻塞</h4>
+<p><img src="http://img.llc687.top/uPic/image-20200610164056472.png" alt="image-20200610164056472" style="zoom:50%;" /></p>
+<p>前一个非阻塞模型中，需要调用者轮询，怎么避免呢？</p>
+<p>首先要开启 socket 的信号驱动式 IO 功能，应用进程通过 sigaction 系统调用注册 SIGIO 信号处理函数，该系统调用会立即返回。当数据准备好时，内核会为该进程产生一个 SIGIO 信号通知，之后再把数据拷贝到用户空间中。</p>
+<p>这也是<strong>同步非阻塞</strong>。虽然等待数据期间用户态进程不被阻塞，但当收到信号通知时是阻塞并拷贝数据，所以还是同步的。</p>
+<h4 id="54-多路复用---同步阻塞">5.4 多路复用 - 同步阻塞</h4>
+<p>也称事件驱动IO，在单个线程里同时监控多个套接字，通过 select 或 poll 轮询查看所负责的所有 socket，当某个 socket 有数据到达了，就通知用户进程。</p>
+<p><img src="http://img.llc687.top/uPic/image-20200610164547883.png" alt="image-20200610164547883" style="zoom:50%;" /></p>
+<p>多个进程的 IO 可以注册到同一个管道上，关键是<code>select</code>函数，多个进程的 IO 可以注册到同一个<code>select</code>上，当用户进程调用该<code>select</code>，<code>select</code>会监听所有注册好的 IO，如果所有被监听的 IO 需要的数据都没有准备好时，调用进程会阻塞，等待有套接字变为可读。当任意一个 IO 需要的数据准备好后，即当有套接字可读以后，<code>select</code>调用就会返回，然后进程再通过<code>recvfrom</code>来把对应的数据拷贝到用户进程缓冲区。</p>
+<p>**IO 复用模型，并没向内核注册信号处理函数，所以是阻塞的。**进程在发出<code>select</code>后，要等到<code>select</code>监听的所有 IO 操作中的至少一个需要的数据准备好，才会返回，也需要再次发送请求去进行文件拷贝。整个用户进程其实是一直被阻塞的，但 IO 复用的优势在于可以等待多个描述符就绪。</p>
+<p><strong>IO 复用的特点是进行了两次系统调用，进程先是阻塞在 select 上，再阻塞在读操作的第二个阶段上</strong>。这是<strong>同步阻塞</strong>的。</p>
+<p>多路复用机制还是值得细说的，比如重点的 select/poll/epoll，这里就不展开了，有兴趣的可以自行阅读相关资料。</p>
+<h4 id="55-异步io---异步非阻塞">5.5 异步IO - 异步非阻塞</h4>
+<p><img src="http://img.llc687.top/uPic/image-20200610170026760.png" alt="image-20200610170026760" style="zoom:50%;" /></p>
+<p>如图， 用户进程在发起调用后，内核会立即返回。接着用户进程就干别的事去了。</p>
+<p>然后内核等待数据准备完毕，自动将数据拷贝到用户内存，接着给用户进程发了个信号，通知 IO 操作已完成，这才是五个 I/O 模型中唯一一个异步模型。</p>
+<p>可能会有疑问，为啥信号驱动模型是同步模型，这是因为信号驱动是由内核通知何时启动一个 IO 操作，还需要用户进程再拷贝数据。而异步 IO 是由内核是在所有工作做完后，通知 IO 操作已完成。</p>
+<p>异步 IO 特点是 IO 执行的两个阶段（等待数据、拷贝数据）都由内核去完成，用户进程无需干预，也不会被阻塞。这就是异步非阻塞了。也就是 Java 中的 AIO。</p>
+<h5 id="56-模型比较">5.6 模型比较</h5>
+<p><img src="http://img.llc687.top/uPic/image-20200610170140700.png" alt="image-20200610170140700" style="zoom:50%;" /></p>
+<h3 id="6--java-及其他">6.  Java 及其他</h3>
+<p>前面说了这么多，或许你更想知道 “AIO 是不是异步”，“哪个框架用了这些东西”。</p>
+<h4 id="1-bio">1. BIO</h4>
+<p>BIO 属于同步阻塞，一客户端一线程。该模型下常见优化的方案就是用线程池。</p>
+<h4 id="2-nio">2. NIO</h4>
+<p>NIO 属于同步非阻塞，收到的请求会先注册到多路复用器 Selector 上，多路复用器轮询直到连接有 I/O 请求时才启动一个线程进行处理。也就是前文中的<strong>多路复用 I/O 模型</strong>，虽然说多路复用模型是阻塞的，但在 NIO 这里，因为有<strong>Selector</strong>，read 和 write 操作都是非阻塞的，其中 Selector 其实就是 select/poll/epoll 的外包类。</p>
+<p><img src="http://img.llc687.top/uPic/image-20200610173230680.png" alt="image-20200610173230680" style="zoom:50%;" /></p>
+<p>不仅如此，NIO 除了面向流和非阻塞外，还有一个效率高的原因就是前文中也有提到的零拷贝。</p>
+<p>NIO 中的 Channel（通道）相当于操作系统中的内核缓冲区， Buffer 就相当于操作系统中的用户空间缓冲区。零拷贝在 NIO 这里重要的是两个实现：</p>
+<ul>
+<li>FileChannel.map() :  基于内存映射 <strong>mmap</strong> 方式一种实现，可以把一个文件从 position 位置开始的 size 大小的区域映射为内存映像文件。</li>
+<li>FileChannel.transferTo() :  通过调用 <strong>sendfile</strong> 方式实现的零拷贝。</li>
+</ul>
+<p>关于 NIO 还有一个常见的实现。那就是 Netty , Netty 是一个高性能、异步事件驱动的 NIO 框架，但为啥不直接用 JDK 中的 NIO ，而要再造轮子呢，那当然是 Netty 比 JDK NIO 做的更多，比如解决了粘包半包、断连和 idle 处理、支持流量整形等。</p>
+<p>另外说起 NIO 的零拷贝，消息队列现在基本是标配，常用有 Kafka、RocketMQ、RabbitMQ，排名按性能分先后。其中 Kafka 和 RocketMQ 分别是基于 <strong>sendfile</strong> 和 <strong>mmap + write</strong>实现的零拷贝，这也是吞吐量较大的原因之一。</p>
+<h4 id="3-aio">3. AIO</h4>
+<p>AIO 属于异步非阻塞。在 NIO 的基础上引入了新的异步通道的概念，并提供了异步文件通道和异步套接字通道的实现。</p>
+<h3 id="7-总结">7. 总结</h3>
+<p>OK，到了这里，文章要结束了。</p>
+<p>本文主要讲述的其实是 Linux IO 的基本原理，这其中会涉及到 IO 模型、零拷贝、Java IO 等等，而这些比如 NIO 的多路复用、 Netty 的 Reactor 模型、Kafka 的高性能都值得用更多的文字去阐述，更多的时间去学习。</p>
+<p>我觉得，无论是技术还是生活，如果能把自己的知识或资源串起来，就是一件很棒的事。就像从 Linux IO 出发，看到内存条想到修电脑（笑~~）；看到零拷贝写时复制想起 Java 并发实现；看到不可变想到对象池想到 GC；看到多路复用 IO 模型想起 NIO&hellip;&hellip;希望自己有一天能够做到。</p>
+<h3 id="8-最后">8. 最后</h3>
+<p>读到这里，大概九点十五，开头九点发出的“晚上好”有了下文吗？</p>
+<p>如果没有的话，不妨大胆假设，其实女孩并没有去洗澡。</p>
+<p>那这是一次什么 I/O 呢？</p>
+<h3 id="参考">参考</h3>
+<ul>
+<li>《现代操作系统》</li>
+<li>《UNIX网络编程.卷1》 6章第 2 节 IO 模型</li>
+<li>零拷贝实现 <a href="https://rianico.tech/2019/12/03/Linux">https://rianico.tech/2019/12/03/Linux</a>零拷贝实现</li>
+<li>NIO效率高的原理之零拷贝与直接内存映射https://cloud.tencent.com/developer/article/1488087</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-06-14</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://llc687.top/posts/%E6%9E%B6%E6%9E%84/%E5%A6%82%E4%BD%95%E5%AE%8C%E6%88%90%E4%B8%80%E6%AC%A1-io/" data-title="如何完成一次  IO" data-hashtags="Linux,IO"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://llc687.top/posts/%E6%9E%B6%E6%9E%84/%E5%A6%82%E4%BD%95%E5%AE%8C%E6%88%90%E4%B8%80%E6%AC%A1-io/" data-hashtag="Linux"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://llc687.top/posts/%E6%9E%B6%E6%9E%84/%E5%A6%82%E4%BD%95%E5%AE%8C%E6%88%90%E4%B8%80%E6%AC%A1-io/" data-title="如何完成一次  IO"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://llc687.top/posts/%E6%9E%B6%E6%9E%84/%E5%A6%82%E4%BD%95%E5%AE%8C%E6%88%90%E4%B8%80%E6%AC%A1-io/" data-title="如何完成一次  IO"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://llc687.top/posts/%E6%9E%B6%E6%9E%84/%E5%A6%82%E4%BD%95%E5%AE%8C%E6%88%90%E4%B8%80%E6%AC%A1-io/" data-title="如何完成一次  IO"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/io/">IO</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%A6%82%E4%BD%95%E5%AE%8C%E6%88%90%E4%B8%80%E6%AC%A1%E5%BF%AB%E9%80%9F%E7%9A%84%E6%9F%A5%E8%AF%A2/" class="prev" rel="prev" title="如何完成一次快速的查询"><i class="fas fa-angle-left fa-fw"></i>如何完成一次快速的查询</a>
+            <a href="/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/" class="next" rel="next" title="适配器模式">适配器模式<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.81.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2018 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">lyf687</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/twemoji/twemoji.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"liyifan687/comments"}},"data":{"id-1":"无名鼠辈","id-2":"无名鼠辈"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"","algoliaIndex":"","algoliaSearchKey":"","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', '014783502852757998779:nk1fvw21g2i', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=014783502852757998779:nk1fvw21g2i" async></script></body>
+</html>

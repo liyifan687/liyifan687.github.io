@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>“MapReduce及Hive&#34; - 无名鼠辈</title><meta name="Description" content=""><meta property="og:title" content="“MapReduce及Hive&#34;" />
+<meta property="og:description" content="1.计算框架 Hadoop 是一个计算框架，目前大型数据计算框架常用的大致有五种： 仅批处理框架：Apache hadoop. 仅流处理框架：Apache Storm、Apa" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://llc687.top/posts/%E6%95%B0%E6%8D%AE%E5%BA%93/hadoop%E4%B8%8Ehive/" /><meta property="og:image" content="https://llc687.top/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2019-11-03T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2019-11-03T00:00:00&#43;00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://llc687.top/logo.png"/>
+
+<meta name="twitter:title" content="“MapReduce及Hive&#34;"/>
+<meta name="twitter:description" content="1.计算框架 Hadoop 是一个计算框架，目前大型数据计算框架常用的大致有五种： 仅批处理框架：Apache hadoop. 仅流处理框架：Apache Storm、Apa"/>
+<meta name="application-name" content="无名鼠辈">
+<meta name="apple-mobile-web-app-title" content="无名鼠辈"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://llc687.top/posts/%E6%95%B0%E6%8D%AE%E5%BA%93/hadoop%E4%B8%8Ehive/" /><link rel="prev" href="https://llc687.top/posts/begin/" /><link rel="next" href="https://llc687.top/posts/java/springfox%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-%E8%87%AA%E5%AE%9A%E4%B9%89modelenum/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "“MapReduce及Hive\"",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/llc687.top\/posts\/%E6%95%B0%E6%8D%AE%E5%BA%93\/hadoop%E4%B8%8Ehive\/"
+        },"genre": "posts","keywords": "Hadoop, MapReduce, Hive","wordcount":  3989 ,
+        "url": "https:\/\/llc687.top\/posts\/%E6%95%B0%E6%8D%AE%E5%BA%93\/hadoop%E4%B8%8Ehive\/","datePublished": "2019-11-03T00:00:00+00:00","dateModified": "2019-11-03T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "Lyf"},"author": {
+                "@type": "Person",
+                "name": "Lyf"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="无名鼠辈"><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 归档 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="无名鼠辈"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">归档</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">“MapReduce及Hive&#34;</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lyf</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"><i class="far fa-folder fa-fw"></i>大数据</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-11-03">2019-11-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3989 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 8 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1计算框架">1.计算框架</a></li>
+    <li><a href="#2-mapreduce">2. MapReduce</a>
+      <ul>
+        <li><a href="#21-mapreduce-是什么">2.1 MapReduce 是什么</a></li>
+        <li><a href="#22-mapreduce-组成">2.2 MapReduce 组成</a>
+          <ul>
+            <li><a href="#下面结合官方案例-wordcount-进行分析">下面结合官方案例 WordCount 进行分析：</a></li>
+          </ul>
+        </li>
+        <li><a href="#23-map-和-reduce">2.3 Map 和 Reduce</a>
+          <ul>
+            <li><a href="#231-map">2.3.1 Map</a></li>
+            <li><a href="#232-reduce">2.3.2 Reduce</a></li>
+          </ul>
+        </li>
+        <li><a href="#24-shuffle">2.4 shuffle</a>
+          <ul>
+            <li><a href="#先看左半边">先看左半边</a></li>
+            <li><a href="#再看右半边">再看右半边</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#3-hive">3. Hive</a>
+      <ul>
+        <li><a href="#31-hive是什么">3.1 Hive是什么</a></li>
+        <li><a href="#32-为什么是-hive">3.2 为什么是 Hive</a></li>
+        <li><a href="#33-hive-sql-to-mapreduce">3.3 HIVE SQL To MapReduce</a></li>
+      </ul>
+    </li>
+    <li><a href="#小结">小结</a></li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="1计算框架">1.计算框架</h2>
+<p>Hadoop 是一个计算框架，目前大型数据计算框架常用的大致有五种：</p>
+<ul>
+<li>仅批处理框架：<code>Apache hadoop</code>.</li>
+<li>仅流处理框架：<code>Apache Storm</code>、<code>Apache Samza</code>.</li>
+<li>混合框架：<code>Apache Spark</code>、<code>Apache Flink</code>.</li>
+</ul>
+<p>这其中名气最大、使用最广的当属 Hadoop 和 Spark。</p>
+<p>虽然两者都被称为大数据框架，但实际层级不同。Hadoop 是一个分布式数据基础设施，包括计算框架 MapReduce、分布式文件系统 HDFS、YARN 等。而Spark 是专门用来对分布式存储的大数据的处理工具，并不会进行数据存储，更像是 MapReduce 的替代。</p>
+<p>在使用场景上，Hadoop 主要用于离线数据计算，Spark更适用于需要精准实时的场景。本文主要介绍 Hadoop，对 Spark 不做讨论。</p>
+<p>本文介绍下 Hadoop 另一重要组件 MapReduce，以及 Hive。</p>
+<h2 id="2-mapreduce">2. MapReduce</h2>
+<h3 id="21-mapreduce-是什么">2.1 MapReduce 是什么</h3>
+<p><strong>一个基于 Java 的并行分布式计算框架</strong>。前文有提到 HDFS 提供了基于主从结构的分布式文件系统，基于此存储服务支持，MapReduce 可以实现任务的分发、跟踪、执行等工作，并收集结果。</p>
+<h3 id="22-mapreduce-组成">2.2 MapReduce 组成</h3>
+<p>MapReduce 主要思想讲的通俗一点就是<strong>将一个大的计算拆分成 Map（映射）和 Reduce（化简）。</strong>
+说到这里，其实 JAVA8 在引入 Lambda 后，也有 map 和 reduce 方法。下面是一段 Java 中的用法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">nums</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">2</span><span class="o">,</span> <span class="n">3</span><span class="o">);</span>
+
+<span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">doubleNums</span> <span class="o">=</span> <span class="n">nums</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">map</span><span class="o">(</span><span class="n">number</span> <span class="o">-&gt;</span> <span class="n">number</span> <span class="o">*</span> <span class="n">2</span><span class="o">).</span><span class="na">collect</span><span class="o">(</span><span class="n">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span>
+<span class="nl">结果:</span><span class="o">[</span><span class="n">2</span><span class="o">,</span><span class="n">4</span><span class="o">,</span><span class="n">6</span><span class="o">]</span>
+<span class="n">Optional</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">nums</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">reduce</span><span class="o">(</span><span class="n">Integer</span><span class="o">::</span><span class="n">sum</span><span class="o">);</span>
+<span class="nl">结果:</span><span class="o">[</span><span class="n">6</span><span class="o">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>代码很简单，map 负责归类，reduce 负责计算。而 Hadoop 中的 MapReduce 也有异曲同工之处。</p>
+<h4 id="下面结合官方案例-wordcount-进行分析">下面结合官方案例 WordCount 进行分析：</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Java" data-lang="Java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">WordCount</span> <span class="o">{</span>
+    <span class="c1">// Mapper泛型类，4个参数分别代表输入键、值，输出键、值类型
+</span><span class="c1"></span>    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">TokenizerMapper</span> <span class="kd">extends</span> <span class="n">Mapper</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">,</span> <span class="n">Text</span><span class="o">,</span> <span class="n">Text</span><span class="o">,</span> <span class="n">IntWritable</span><span class="o">&gt;{</span>
+        <span class="kd">private</span> <span class="kd">final</span> <span class="kd">static</span> <span class="n">IntWritable</span> <span class="n">one</span> <span class="o">=</span> <span class="k">new</span> <span class="n">IntWritable</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+        <span class="kd">private</span> <span class="n">Text</span> <span class="n">word</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Text</span><span class="o">();</span>
+
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">map</span><span class="o">(</span><span class="n">Object</span> <span class="n">key</span><span class="o">,</span> <span class="n">Text</span> <span class="n">value</span><span class="o">,</span> <span class="n">Context</span> <span class="n">context</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">InterruptedException</span> <span class="o">{</span>
+            <span class="c1">// 字符解析
+</span><span class="c1"></span>            <span class="n">StringTokenizer</span> <span class="n">itr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringTokenizer</span><span class="o">(</span><span class="n">value</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+            <span class="k">while</span> <span class="o">(</span><span class="n">itr</span><span class="o">.</span><span class="na">hasMoreTokens</span><span class="o">())</span> <span class="o">{</span>
+                <span class="c1">// nextToken()：返回从当前位置到下一个分隔符的字符串
+</span><span class="c1"></span>                <span class="n">word</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">itr</span><span class="o">.</span><span class="na">nextToken</span><span class="o">());</span>
+                <span class="n">context</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">word</span><span class="o">,</span> <span class="n">one</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    
+    <span class="c1">// Reducer同样也是四个参数
+</span><span class="c1"></span>    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">IntSumReducer</span> <span class="kd">extends</span> <span class="n">Reducer</span><span class="o">&lt;</span><span class="n">Text</span><span class="o">,</span><span class="n">IntWritable</span><span class="o">,</span><span class="n">Text</span><span class="o">,</span><span class="n">IntWritable</span><span class="o">&gt;</span> <span class="o">{</span>
+        <span class="kd">private</span> <span class="n">IntWritable</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="n">IntWritable</span><span class="o">();</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">reduce</span><span class="o">(</span><span class="n">Text</span> <span class="n">key</span><span class="o">,</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">IntWritable</span><span class="o">&gt;</span> <span class="n">values</span><span class="o">,</span><span class="n">Context</span> <span class="n">context</span><span class="o">)</span> <span class="kd">throws</span> 
+                                                                  <span class="n">IOException</span><span class="o">,</span><span class="n">InterruptedException</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+            <span class="c1">// 循环values，并记录“单词”个数
+</span><span class="c1"></span>            <span class="k">for</span> <span class="o">(</span><span class="n">IntWritable</span> <span class="n">val</span> <span class="o">:</span> <span class="n">values</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">sum</span> <span class="o">+=</span> <span class="n">val</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+            <span class="o">}</span>
+            <span class="n">result</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">sum</span><span class="o">);</span>
+            <span class="n">context</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">result</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在这段代码中，不难看出程序核心是 <strong>map</strong> 函数和 <strong>reduce</strong> 函数。是否 MapReduce 就是由这两者组成的？接着往下看。</p>
+<h3 id="23-map-和-reduce">2.3 Map 和 Reduce</h3>
+<h4 id="231-map">2.3.1 Map</h4>
+<p>在 WordCount 案例中，明显看到 <code>map</code> 函数的输入主要是一个 &lt;Key, Value&gt; 对，在本例中，Value 是要统计的所有文本中的一行数据。</p>
+<blockquote>
+<p>Context 在这里暂时性忽略，其是 Mapper 类的内部抽象类，一般计算中不会用到，可以先当做“上下文”理解。</p>
+</blockquote>
+<p><strong>map 函数计算过程是</strong>: 将这行文本中的单词提取出来，针对每个单词输出一个 &lt;word, 1&gt; 的 &lt;Key, Value&gt; 对。之后 MapReduce 会对这些 &lt;word, 1&gt; 进行处理，将相同的 word 放在一起，形成 &lt;word , &lt;1,1,1,1,1,1,1…&raquo; 的 &lt;Key, Value 集合 &gt; 数据结构，再将其输入给 reduce 函数。</p>
+<h4 id="232-reduce">2.3.2 Reduce</h4>
+<p>接着就来看看<code>reduce</code>,这里输入参数 Values 就是上面提到的由很多个 <code>1</code> 组成的集合，而 Key 就是具体“单词” word。</p>
+<p><strong>它的计算过程是</strong>: 将集合里的<code>1</code>求和，再将单词（word）与这个和（sum）组成一个 &lt;Key, Value&gt;，也就是 &lt;word, sum&gt; 输出。每一个输出就是一个单词和它的词频统计总和了。
+在实际处理中一个 map 函数可针对一部分数据进行运算，这样就可以将一个大块数据切分成很多块（这正是 HDFS 做的）。MapReduce 计算框架为每个数据块分配一个 map 函数去计算，从而实现大型数据的分布式计算。</p>
+<p>假设有两个数据块的文本数据需要进行词频统计，MapReduce 计算过程如下图所示：
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://img.llc687.top/%E4%B8%8B%E8%BD%BD.png"
+        data-srcset="http://img.llc687.top/%E4%B8%8B%E8%BD%BD.png, http://img.llc687.top/%E4%B8%8B%E8%BD%BD.png 1.5x, http://img.llc687.top/%E4%B8%8B%E8%BD%BD.png 2x"
+        data-sizes="auto"
+        alt="http://img.llc687.top/%E4%B8%8B%E8%BD%BD.png"
+        title="img" /></p>
+<p>到这都很容易理解，毕竟只是个 <code>HelloWorld</code> 的例子~，但整个MapReduce过程中最关键的部分其实是在 map 到 reduce 之间。</p>
+<p>还拿上面例子来说：统计相同单词在所有输入数据中出现的次数，一个 Map 只能处理一部分数据，而热点单词就很可能会出现在所有 Map 中了，意味着同一单词必须要合并到一起统计才能得到正确结果。这种数据关联几乎在所有的大数据计算场景都需要处理，如果是例子这种的当然只对 Key 合并就OK了，但类似数据库 join 操作这种较复杂的，就需对两种类型（或更多）的数据依据 Key 关联。</p>
+<p>这个数据关联操作在 MapReduce中的叫做：<code>shuffle</code>。</p>
+<h3 id="24-shuffle">2.4 shuffle</h3>
+<p><code>shuffer</code> 从字面意思来看，<strong>洗牌</strong>。下面是一个完整的MR过程，看一看如何洗牌。</p>
+<p><img src="http://img.llc687.top/shuffer.jpg" style="zoom:90%;" /></p>
+<h4 id="先看左半边">先看左半边</h4>
+<ol>
+<li>
+<p>从 HDFS 中读取数据，输入数据块到一个个的 map，其中 map 完成计算时，计算结果会存储到本地文件系统。而当 map 快要进行完时，就会启动 shuffle 过程。</p>
+</li>
+<li>
+<p>如图，shuffle 也可分为两种，在Map端的是 <code>Map shuffle</code>。大致过程为：Map 任务进程会调用一个 Partitioner 接口，对 Map 产生的每个 &lt;Key, Value&gt; 进行 Reduce 分区选择。再通过 HTTP 通信发送给对应的 Reduce 进程。</p>
+</li>
+</ol>
+<p>这里就实现了对 Map 结果的分区、排序、分割，以及将同一分区的输出合并写入磁盘，得到一个<strong>分区有序</strong>的文件。这样不管 Map 在哪个服务器节点，相同的 Key 一定会被发送给相同 Reduce 进程。Reduce 进程对收到的 &lt;Key, Value&gt; 排序合并，相同 Key 放在一起，组成 &lt;Key, Value 集合 &gt; 传递给 Reduce 执行。</p>
+<h4 id="再看右半边">再看右半边</h4>
+<ol>
+<li>
+<p><code>Reduce shuffle</code>，又可分为复制 Map 输出、排序合并两阶段。</p>
+<ul>
+<li>Copy：Reduce 任务从各个 Map 任务拖取数据后，通知父 TaskTracker 状态已更新，TaskTracker 通知 JobTracker。Reduce 会定期向JobTracker 获取 Map 的输出位置，一旦拿到位置，Reduce 任务会从此输出对应的 TaskTracker 上复制输出到本地，不会等到所有的Map任务结束。</li>
+<li>Merge Sort：
+<ul>
+<li>Copy 的数据先放入内存缓冲区，若缓冲区放得下就把数据写入内存，即内存到内存 merge。</li>
+<li>Reduce 向每个 Map 去拖取数据，内存中每个 Map 对应一块数据，当内存缓存区中存储的数据达到一定程度，开启内存中 merge，把内存中数据merge 输出到磁盘文件中，即内存到磁盘 merge。</li>
+<li>当属于该 reduce 的 map 输出全部拷贝完成，会在 reduce 上生成多个文件，执行合并操作，即磁盘到磁盘 merge。此刻 Map 的输出数据已经是有序的，Merge 进行一次合并排序，所谓 Reduce 端的 sort 过程就是这个合并的过程。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>经过上一步<code>Reduce shuffle</code>后，reduce进行最后的计算，将输出写入HDFS中。</p>
+</li>
+</ol>
+<p>以上便是 shuffle 大致四个步骤，关键是 map 输出的 &lt;Key, Value&gt;  shuffle 到哪个 Reduce 进程，它由 Partitioner 来实现，MapReduce 框架默认的 Partitioner 用 Key 哈希值对 Reduce 任务数量取模，相同 Key 会落在相同的 Reduce 任务 ID 上。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">getPartition</span><span class="o">(</span><span class="n">K2</span> <span class="n">key</span><span class="o">,</span> <span class="n">V2</span> <span class="n">value</span><span class="o">,</span> <span class="kt">int</span> <span class="n">numReduceTasks</span><span class="o">)</span> <span class="o">{</span>
+   <span class="k">return</span> <span class="o">(</span><span class="n">key</span><span class="o">.</span><span class="na">hashCode</span><span class="o">()</span> <span class="o">&amp;</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">)</span> <span class="o">%</span> <span class="n">numReduceTasks</span><span class="o">;</span> 
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>如果对 <code>Shuffle</code> 总结一句话: <strong>分布式计算将不同服务器中的数据合并到一起进行后续计算的过程</strong>。</p>
+<blockquote>
+<p>shuffle 是大数据计算过程中神奇的地方，不管是 MapReduce 还是 Spark，只要是大数据批处理计算，一定会有 shuffle 过程，只有<strong>让数据关联起来</strong>，它的内在关系和价值才会呈现。</p>
+</blockquote>
+<h2 id="3-hive">3. Hive</h2>
+<p>上一部分介绍了 MapReduce，接下来简单谈谈 <code>Hive</code>.</p>
+<p>我觉得任何一项技术的出现都是为了解决某类问题，<code>MapReduce</code> 毫无疑问简化了大数据开发的编程难度。但实际上进行数据计算更常用的手段可能是 SQL，那么有没有办法直接运行<code>SQL</code>？</p>
+<h3 id="31-hive是什么">3.1 Hive是什么</h3>
+<blockquote>
+<p>基于Hadoop的一个<strong>数据仓库</strong>系统，定义了一种类SQL查询语言：<strong>Hive SQL</strong>。</p>
+</blockquote>
+<p>这里有一个名词 <strong>数据仓库</strong>，数据仓库是指：面向主题（Subject Oriented）、集成（Integrated）、相对稳定（Non-Volatile）、反应历史变化（Time Variant）的数据集合，用于支持管理决策。</p>
+<p>这么说可能有点抽象，分解一下：</p>
+<ul>
+<li>主题：数据仓库针对某个<strong>主题</strong>来进行组织，<strong>指使用数据仓库决策时所关心的重点方面</strong>。比如用户行为分析就可以当做一个主题。</li>
+<li>集成：数据仓库要将多个数据源数据存到一起，但数据以前的存储方式不同，要经过<strong>抽取、清洗、转换</strong>。（也就是 <code>ETL</code>）</li>
+<li>稳定：保存的数据是一系列历史快照，不允许修改，只能分析。</li>
+<li>时变：会定期接收到新的数据，反应出最新的数据变化。</li>
+</ul>
+<p>现在再看下定义：<strong>数据仓库是将多个数据源的数据按照一定的主题集成，进行抽取、清洗、转换。且处理整合后的数据不允许随意修改，只能分析，还需定期更新。</strong></p>
+<h3 id="32-为什么是-hive">3.2 为什么是 Hive</h3>
+<p>了解了 Hive 的基础定义，想一下：一个依赖于 HDFS 的数据仓库在 Hadoop 环境中可以扮演什么角色？</p>
+<p>前面说到，可不可以让 SQL 直接运行在 Hadoop 平台，这里的答案便是 Hive。<strong>它可以将 Hive SQL 转换为 MapReduce 程序运行。</strong></p>
+<blockquote>
+<p>Hive 初期版本默认 Hive on Mapreduce</p>
+</blockquote>
+<p>启动 <code>hive</code> 前通常要先启动 <code>hdfs</code> 和 <code>yarn</code>, 同时一般需要配置 MySQL，Hive 依赖于 HDFS 的数据存储，但为了能操作 HDFS 上的数据集，要知道数据切分格式、存储类型、地址等。这些信息通过一张表存储，称为元数据，可以存储到 MySQL 中。</p>
+<p>现在来看下 Hive 的部分命令</p>
+<ul>
+<li>
+<p>新建数据库：<code>create database xxx;</code></p>
+</li>
+<li>
+<p>删除数据库：<code>drop database xxx;</code></p>
+</li>
+<li>
+<p>建表：<code>create table table_name(col_name data_type);</code></p>
+<ul>
+<li>Hive 的表有两个概念：<strong>内部表和外部表</strong>。默认内部表，简单来说，内部表数据存储在每个表相应的HDFS目录下。外部表的数据存在别处，要删除这个外部表，该外部表所指向的数据是不会被删除的，只会删除外部表对应的元数据。</li>
+</ul>
+</li>
+<li>
+<p>查询：<code>select * from t_table where a&lt;100 and b&gt;1000;</code></p>
+</li>
+<li>
+<p>连接查询： <code>select a.*,b.* from t_a a join t_b b on a.name=b.name;</code></p>
+</li>
+</ul>
+<p>看到这里，可能会觉得我在写 SQL, 没错，对于熟悉 SQL 的人来说，Hive 是非常易于上手的。</p>
+<h3 id="33-hive-sql-to-mapreduce">3.3 HIVE SQL To MapReduce</h3>
+<p>前面说到 HQL 可以‘转换’为 MapReduce, 下面就来看看：一个 HQL 是如何转化为 MapReduce 的</p>
+<p>Hive的基础架构：
+<img src="http://img.llc687.top/1648d5a405564edf.jpg" style="zoom:80%;" /></p>
+<p>通过 Client 向 Hive 提交 SQL 命令。如果是 DDL，Hive 就会通过执行引擎 Driver 将数据表的信息记录在 Metastore 元数据组件中，这个组件通常用一个关系数据库实现，记录表名、字段名、字段类型、关联 HDFS 文件路径等 Meta 信息（元信息）。</p>
+<p>如果是DQL，Driver 就会将该语句提交给自己的编译器 进行语法分析、解析、优化等一系列操作，最后生成一个 MapReduce 执行计划。再根据执行计划生成一个 MapReduce 的作业，提交给 Hadoop 的 MapReduce 计算框架处理。</p>
+<p>比如输入一条 <code>select xxx from a ;</code> 其执行顺序为：首先在 metastore 查询&ndash;&gt; sql 解析&ndash;&gt; 查询优化&mdash;&gt; 物理计划&ndash;&gt; 执行 MapReduce。</p>
+<h2 id="小结">小结</h2>
+<p>本文大致阐述了什么是 MapReduce 及其组成和基本原理。同时也介绍了Hive。其实在实践中，并不需要常编写 MapReduce 程序，主要的数据处理还是 SQL 分析，因此 Hive 在大数据应用中的拥有很大的作用。</p>
+<h2 id="参考">参考</h2>
+<p>林子雨.《大数据技术原理与应用》（第二版）</p>
+<p><a href="https://time.geekbang.org/column/article/68489" target="_blank" rel="noopener noreffer">MapReduce如何让数据完成一次旅行？</a></p>
+<p><a href="https://andr-robot.github.io/Hadoop%e4%b8%adShuffle%e8%bf%87%e7%a8%8b/" target="_blank" rel="noopener noreffer">Hadoop的Shuffle过程</a></p>
+<p><a href="https://juejin.im/entry/5b47008bf265da0fa50a03fc" target="_blank" rel="noopener noreffer">Hive架构特点</a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2019-11-03</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://llc687.top/posts/%E6%95%B0%E6%8D%AE%E5%BA%93/hadoop%E4%B8%8Ehive/" data-title="“MapReduce及Hive&#34;" data-hashtags="Hadoop,MapReduce,Hive"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://llc687.top/posts/%E6%95%B0%E6%8D%AE%E5%BA%93/hadoop%E4%B8%8Ehive/" data-hashtag="Hadoop"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://llc687.top/posts/%E6%95%B0%E6%8D%AE%E5%BA%93/hadoop%E4%B8%8Ehive/" data-title="“MapReduce及Hive&#34;"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://llc687.top/posts/%E6%95%B0%E6%8D%AE%E5%BA%93/hadoop%E4%B8%8Ehive/" data-title="“MapReduce及Hive&#34;"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://llc687.top/posts/%E6%95%B0%E6%8D%AE%E5%BA%93/hadoop%E4%B8%8Ehive/" data-title="“MapReduce及Hive&#34;"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/hadoop/">Hadoop</a>,&nbsp;<a href="/tags/mapreduce/">MapReduce</a>,&nbsp;<a href="/tags/hive/">Hive</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/begin/" class="prev" rel="prev" title="Hello World"><i class="fas fa-angle-left fa-fw"></i>Hello World</a>
+            <a href="/posts/java/springfox%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-%E8%87%AA%E5%AE%9A%E4%B9%89modelenum/" class="next" rel="next" title="SpringFox源码解析">SpringFox源码解析<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.81.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2018 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">lyf687</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/twemoji/twemoji.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"liyifan687/comments"}},"data":{"id-1":"无名鼠辈","id-2":"无名鼠辈"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"","algoliaIndex":"","algoliaSearchKey":"","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', '014783502852757998779:nk1fvw21g2i', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=014783502852757998779:nk1fvw21g2i" async></script></body>
+</html>
