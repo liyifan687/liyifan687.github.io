@@ -157,7 +157,7 @@
 <li><code>NonTerminalExpression</code>  非终结符表达式：文法中的每条规则对应于一个非终结符表达式，非终结符表达式一般是文法中的运算符或者其他关键字.比如公式 <code>R=R1+R2</code> ， <code>+</code> 就是非终结符，解析 <code>+</code> 的解释器就是一个非终结符表达式。非终结符表达式根据逻辑的复杂程度而增加，原则上每个文法规则都对应一个非终结符表达式。</li>
 <li><code>Context</code>  环境角色：一般是用来存放文法中各个终结符所对应的具体值，比如 <code>R=R1+R2</code> ，给 <code>R1</code> 赋值100，给 <code>R2</code> 赋值200。这些信息需要存放到环境角色中，大多使用 <code>Map</code> 来充当环境角色。</li>
 </ul>
-<p><img src="http://img.llc687.top/uPic/1594357986324-65201b94-44f1-486d-8294-86bafa51c286.png" alt="image.png" style="zoom:50%;" /></p>
+<p><img src="https://img.llc687.top/uPic/1594357986324-65201b94-44f1-486d-8294-86bafa51c286.png" alt="image.png" style="zoom:50%;" /></p>
 <h3 id="实现">实现</h3>
 <p>实现规则检验器，具有 and 和 or 规则，可以构建一颗解析树，用来检验一个文本是否满足解析树定义的规则。
 例如一颗解析树为 D And (A Or (B C))，文本 &ldquo;D A&rdquo; 满足该解析树定义的规则。
@@ -375,10 +375,10 @@
 </blockquote>
 <h4 id="jdk-中的使用">JDK 中的使用</h4>
 <ul>
-<li><a href="http://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html" target="_blank" rel="noopener noreffer">java.util.Pattern</a></li>
-<li><a href="http://docs.oracle.com/javase/8/docs/api/java/text/Normalizer.html" target="_blank" rel="noopener noreffer">java.text.Normalizer</a></li>
-<li>All subclasses of <a href="http://docs.oracle.com/javase/8/docs/api/java/text/Format.html" target="_blank" rel="noopener noreffer">java.text.Format</a></li>
-<li><a href="http://docs.oracle.com/javaee/7/api/javax/el/ELResolver.html" target="_blank" rel="noopener noreffer">javax.el.ELResolver</a></li>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html" target="_blank" rel="noopener noreffer">java.util.Pattern</a></li>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/text/Normalizer.html" target="_blank" rel="noopener noreffer">java.text.Normalizer</a></li>
+<li>All subclasses of <a href="https://docs.oracle.com/javase/8/docs/api/java/text/Format.html" target="_blank" rel="noopener noreffer">java.text.Format</a></li>
+<li><a href="https://docs.oracle.com/javaee/7/api/javax/el/ELResolver.html" target="_blank" rel="noopener noreffer">javax.el.ELResolver</a></li>
 </ul>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">

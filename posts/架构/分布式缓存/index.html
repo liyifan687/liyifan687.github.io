@@ -153,7 +153,7 @@
             </div><div class="content" id="content"><h2 id="分布式缓存的选择和问题">分布式缓存的选择和问题</h2>
 <p>如今，缓存系统的应用非常广泛，能够用来提高并发数、数据吞吐量，提高快速响应能力。那么当数据量达到一定程序，单机环境可能就显得有些力不从心了，就需要一个分布式缓存系统。</p>
 <h3 id="1-缓存系统的选择">1. 缓存系统的选择</h3>
-<p><img src="http://img.llc687.top/uPic/截屏2019-11-28下午6.56.30.png" style="zoom:50%;" /></p>
+<p><img src="https://img.llc687.top/uPic/截屏2019-11-28下午6.56.30.png" style="zoom:50%;" /></p>
 <p>​																		图1-1</p>
 <p>如上图所示，首先缓存大致可以分为四大类。</p>
 <ul>
@@ -167,11 +167,11 @@
 <p><img
         class="lazyload"
         src="/svg/loading.min.svg"
-        data-src="http://img.llc687.top/uPic/tapd_40369546_1568709377_47.jpg"
-        data-srcset="http://img.llc687.top/uPic/tapd_40369546_1568709377_47.jpg, http://img.llc687.top/uPic/tapd_40369546_1568709377_47.jpg 1.5x, http://img.llc687.top/uPic/tapd_40369546_1568709377_47.jpg 2x"
+        data-src="https://img.llc687.top/uPic/tapd_40369546_1568709377_47.jpg"
+        data-srcset="https://img.llc687.top/uPic/tapd_40369546_1568709377_47.jpg, https://img.llc687.top/uPic/tapd_40369546_1568709377_47.jpg 1.5x, https://img.llc687.top/uPic/tapd_40369546_1568709377_47.jpg 2x"
         data-sizes="auto"
-        alt="http://img.llc687.top/uPic/tapd_40369546_1568709377_47.jpg"
-        title="http://img.llc687.top/uPic/tapd_40369546_1568709377_47.jpg" /></p>
+        alt="https://img.llc687.top/uPic/tapd_40369546_1568709377_47.jpg"
+        title="https://img.llc687.top/uPic/tapd_40369546_1568709377_47.jpg" /></p>
 <p>其中<code>EvCache</code>和<code>Aerospike</code>使用场景不是那么通用和广泛。</p>
 <ul>
 <li>EvCache：是Netflix的基于memcached &amp; spymemcached的缓存方案。</li>
@@ -205,10 +205,10 @@
 <p>如顶部图所示，列出了Redis的集群高可用的方案，基本可以分为三种。</p>
 <h4 id="主从机制">主从机制</h4>
 <p>常见的集群的架构，搭建简单，主要实现读写分离和备份，可以由 Master 负责读写，Slave 负责备份。但存在故障恢复复杂、水平拓展难、写能力受限等问题。结构图如下：</p>
-<p>​                                                      		<img src="http://img.llc687.top/uPic/截屏2019-11-29上午10.23.07.png" style="zoom:44%;" /></p>
+<p>​                                                      		<img src="https://img.llc687.top/uPic/截屏2019-11-29上午10.23.07.png" style="zoom:44%;" /></p>
 <h4 id="哨兵机制">哨兵机制</h4>
 <p>Redis Sentinel 是社区版本推出的原生高可用解决方案。由一或多个哨兵实例监视任意个主从服务器，且在 Master 宕机时，自动将宕机服务器属下的 Slave 服务器升级为 主服务器，从而保证系统的可用性。 较主从实现的监控、选主。但问题主要是要保证Master的HA切换。结构图如下：</p>
-<p><img src="http://img.llc687.top/uPic/截屏2019-11-29上午10.27.15.png" style="zoom:50%;" /></p>
+<p><img src="https://img.llc687.top/uPic/截屏2019-11-29上午10.27.15.png" style="zoom:50%;" /></p>
 <h4 id="分布式">&ldquo;分布式&rdquo;</h4>
 <p>到这里其实以上两种机制其实只能算作“集群”，并非严格意义上的“分布式”。接着来看看分布式方案。</p>
 <blockquote>
@@ -230,7 +230,7 @@ Twitter开源，轻量级，但不再维护，也无法平滑地扩容/缩容，
 <h4 id="服务器端分片">服务器端分片</h4>
 <p>这就要谈到 Redis 官方的方案 Redis-cluster 。</p>
 <p>在 Redis3.0 之前是没有较好的分布式方案的，这也是第三方方案出现的原因。3.0 开始，官方推出了去中心化的分布式方案。集群中包含16384个散列槽，每个节点负责其中一部分。</p>
-<p>​     先看下拓扑图：<img src="http://img.llc687.top/uPic/截屏2019-11-29上午10.42.48.png" style="zoom:50%;" /></p>
+<p>​     先看下拓扑图：<img src="https://img.llc687.top/uPic/截屏2019-11-29上午10.42.48.png" style="zoom:50%;" /></p>
 <p>每个节点打开两个TCP连接，一个负责给客户端提供服务，一个负责节点间通信。</p>
 <p>此刻要说说 CAP了 ： Consistency(一致性)、Availability(可用性)、Partition tolerance(分区容错性) 。对分布式系统而言，CAP 必须牺牲一者。Redis Cluster 的设计目标主要是高性能、高可用和高扩展, 只好抛弃一部分数据一致性.</p>
 <ul>
@@ -242,7 +242,7 @@ Twitter开源，轻量级，但不再维护，也无法平滑地扩容/缩容，
 <ul>
 <li>节点间定时互 ping , 当超过一半Master 判定某节点失败，则标为 FAIL, 会向集群广播节点下线的消息。如下线节点是带有槽的主节点，则要从它的从节点选出一个替换。</li>
 </ul>
-<p><img src="http://img.llc687.top/uPic/截屏2019-12-08下午2.13.56.png" style="zoom:50%;" /></p>
+<p><img src="https://img.llc687.top/uPic/截屏2019-12-08下午2.13.56.png" style="zoom:50%;" /></p>
 </li>
 <li>
 <p>高性能和拓展：操作某个 key时，不会先找到节点再处理，而是直接直接重定向到该节点, 同时相较代理分片也少了 proxy 的连接损耗。</p>
@@ -255,7 +255,7 @@ Twitter开源，轻量级，但不再维护，也无法平滑地扩容/缩容，
 <h3 id="3-缓存常见问题">3. 缓存常见问题</h3>
 <p>以上介绍了简单介绍了常见缓存系统，并具体列出了基于Redis的集群方案。下面谈一谈缓存系统常见的问题。</p>
 <p>如下图所示，列出七个常见问题。</p>
-<p><img src="http://img.llc687.top/uPic/截屏2019-12-08下午3.43.33.png" style="zoom:40%;" /></p>
+<p><img src="https://img.llc687.top/uPic/截屏2019-12-08下午3.43.33.png" style="zoom:40%;" /></p>
 <h4 id="31-缓存穿透">3.1. 缓存穿透</h4>
 <p>指访问不存在的数据，从而绕过缓存，直接请求到了数据源，当请求过多，就会对 DB 造成压力。</p>
 <ul>

@@ -20,7 +20,7 @@
 <meta name="application-name" content="无名鼠辈">
 <meta name="apple-mobile-web-app-title" content="无名鼠辈"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://llc687.top/posts/%E6%95%B0%E6%8D%AE%E5%BA%93/%E4%BB%8Emysql%E5%88%B0hbase/" /><link rel="next" href="https://llc687.top/posts/begin/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://llc687.top/posts/%E6%95%B0%E6%8D%AE%E5%BA%93/%E4%BB%8Emysql%E5%88%B0hbase/" /><link rel="next" href="https://llc687.top/posts/%E6%95%B0%E6%8D%AE%E5%BA%93/hadoop%E4%B8%8Ehive/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -417,10 +417,10 @@
 <p><img
         class="lazyload"
         src="/svg/loading.min.svg"
-        data-src="http://img.llc687.top/uPic/%e6%88%aa%e5%b1%8f2020-04-12%e4%b8%8b%e5%8d%885.02.07.png"
-        data-srcset="http://img.llc687.top/uPic/%e6%88%aa%e5%b1%8f2020-04-12%e4%b8%8b%e5%8d%885.02.07.png, http://img.llc687.top/uPic/%e6%88%aa%e5%b1%8f2020-04-12%e4%b8%8b%e5%8d%885.02.07.png 1.5x, http://img.llc687.top/uPic/%e6%88%aa%e5%b1%8f2020-04-12%e4%b8%8b%e5%8d%885.02.07.png 2x"
+        data-src="https://img.llc687.top/uPic/%e6%88%aa%e5%b1%8f2020-04-12%e4%b8%8b%e5%8d%885.02.07.png"
+        data-srcset="https://img.llc687.top/uPic/%e6%88%aa%e5%b1%8f2020-04-12%e4%b8%8b%e5%8d%885.02.07.png, https://img.llc687.top/uPic/%e6%88%aa%e5%b1%8f2020-04-12%e4%b8%8b%e5%8d%885.02.07.png 1.5x, https://img.llc687.top/uPic/%e6%88%aa%e5%b1%8f2020-04-12%e4%b8%8b%e5%8d%885.02.07.png 2x"
         data-sizes="auto"
-        alt="http://img.llc687.top/uPic/截屏2020-04-12下午5.02.07.png"
+        alt="https://img.llc687.top/uPic/截屏2020-04-12下午5.02.07.png"
         title="截屏2020-04-12下午5.02.07" /></p>
 <p>图中的 Ada、Sara 被称作 term，其实就是分词后的词了。如果把图中的 Term Index 去掉，是不是有点像 MySQL 了？Term Dictionary 就像二级索引，但 MySQL 是保存在磁盘上的，检索一个 term 需要若干次的 random access 磁盘操作。</p>
 <p>而 ES 在 Term Dictionary 基础上多了层 Term Index ，它以 FST 形式保存在内存中，保存着 term 的前缀，借此可以快速的定位到 Term dictionary 的本 term 的 offset 。而且 FST 形式和 Term dictionary 的 block 存储方式都很节省内存和磁盘空间。</p>
@@ -513,10 +513,10 @@
 <p>下图是一个 HBASE 实际的表模型结构。<img
         class="lazyload"
         src="/svg/loading.min.svg"
-        data-src="http://img.llc687.top/uPic/%e6%88%aa%e5%b1%8f2020-04-12%e4%b8%8b%e5%8d%886.57.09.png"
-        data-srcset="http://img.llc687.top/uPic/%e6%88%aa%e5%b1%8f2020-04-12%e4%b8%8b%e5%8d%886.57.09.png, http://img.llc687.top/uPic/%e6%88%aa%e5%b1%8f2020-04-12%e4%b8%8b%e5%8d%886.57.09.png 1.5x, http://img.llc687.top/uPic/%e6%88%aa%e5%b1%8f2020-04-12%e4%b8%8b%e5%8d%886.57.09.png 2x"
+        data-src="https://img.llc687.top/uPic/%e6%88%aa%e5%b1%8f2020-04-12%e4%b8%8b%e5%8d%886.57.09.png"
+        data-srcset="https://img.llc687.top/uPic/%e6%88%aa%e5%b1%8f2020-04-12%e4%b8%8b%e5%8d%886.57.09.png, https://img.llc687.top/uPic/%e6%88%aa%e5%b1%8f2020-04-12%e4%b8%8b%e5%8d%886.57.09.png 1.5x, https://img.llc687.top/uPic/%e6%88%aa%e5%b1%8f2020-04-12%e4%b8%8b%e5%8d%886.57.09.png 2x"
         data-sizes="auto"
-        alt="http://img.llc687.top/uPic/截屏2020-04-12下午6.57.09.png"
+        alt="https://img.llc687.top/uPic/截屏2020-04-12下午6.57.09.png"
         title="截屏2020-04-12下午6.57.09" /></p>
 <p>Row key 是主键，按照字典序排序。TimeStamp 是版本号。 info 和 area 都是列簇（column Family），列簇将表进行横向切割。name、age 叫做列，属于某一个列簇，可进行动态添加。Cell  是具体的 Value 。</p>
 <h4 id="32-oltp-和-olap">3.2 OLTP 和 OLAP</h4>
@@ -575,7 +575,7 @@
     </div>
 
     <div class="post-nav">
-            <a href="/posts/begin/" class="next" rel="next" title="Hello World">Hello World<i class="fas fa-angle-right fa-fw"></i></a></div>
+            <a href="/posts/%E6%95%B0%E6%8D%AE%E5%BA%93/hadoop%E4%B8%8Ehive/" class="next" rel="next" title="MapReduce及Hive">MapReduce及Hive<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"><div id="utterances"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.

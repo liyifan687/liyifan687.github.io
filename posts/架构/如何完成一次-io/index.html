@@ -203,10 +203,10 @@
 <img
         class="lazyload"
         src="/svg/loading.min.svg"
-        data-src="http://img.llc687.top/uPic/%e6%88%aa%e5%b1%8f2020-05-31%e4%b8%8b%e5%8d%885.11.13.png"
-        data-srcset="http://img.llc687.top/uPic/%e6%88%aa%e5%b1%8f2020-05-31%e4%b8%8b%e5%8d%885.11.13.png, http://img.llc687.top/uPic/%e6%88%aa%e5%b1%8f2020-05-31%e4%b8%8b%e5%8d%885.11.13.png 1.5x, http://img.llc687.top/uPic/%e6%88%aa%e5%b1%8f2020-05-31%e4%b8%8b%e5%8d%885.11.13.png 2x"
+        data-src="https://img.llc687.top/uPic/%e6%88%aa%e5%b1%8f2020-05-31%e4%b8%8b%e5%8d%885.11.13.png"
+        data-srcset="https://img.llc687.top/uPic/%e6%88%aa%e5%b1%8f2020-05-31%e4%b8%8b%e5%8d%885.11.13.png, https://img.llc687.top/uPic/%e6%88%aa%e5%b1%8f2020-05-31%e4%b8%8b%e5%8d%885.11.13.png 1.5x, https://img.llc687.top/uPic/%e6%88%aa%e5%b1%8f2020-05-31%e4%b8%8b%e5%8d%885.11.13.png 2x"
         data-sizes="auto"
-        alt="http://img.llc687.top/uPic/截屏2020-05-31下午5.11.13.png"
+        alt="https://img.llc687.top/uPic/截屏2020-05-31下午5.11.13.png"
         title="截屏2020-05-31下午5.11.13" /></p>
 <p>当用户进程发出内存申请请求，系统会为进程分配虚拟地址，并创建内存映射放入页表中，如果对应的数据不在物理内存上就会发生缺页异常，需要把进程需要的数据从磁盘上拷贝到物理内存中。</p>
 <h4 id="22-内核空间与用户空间">2.2 内核空间与用户空间</h4>
@@ -215,10 +215,10 @@
 <p><img
         class="lazyload"
         src="/svg/loading.min.svg"
-        data-src="http://img.llc687.top/uPic/%e6%88%aa%e5%b1%8f2020-05-31%e4%b8%8b%e5%8d%885.19.16.png"
-        data-srcset="http://img.llc687.top/uPic/%e6%88%aa%e5%b1%8f2020-05-31%e4%b8%8b%e5%8d%885.19.16.png, http://img.llc687.top/uPic/%e6%88%aa%e5%b1%8f2020-05-31%e4%b8%8b%e5%8d%885.19.16.png 1.5x, http://img.llc687.top/uPic/%e6%88%aa%e5%b1%8f2020-05-31%e4%b8%8b%e5%8d%885.19.16.png 2x"
+        data-src="https://img.llc687.top/uPic/%e6%88%aa%e5%b1%8f2020-05-31%e4%b8%8b%e5%8d%885.19.16.png"
+        data-srcset="https://img.llc687.top/uPic/%e6%88%aa%e5%b1%8f2020-05-31%e4%b8%8b%e5%8d%885.19.16.png, https://img.llc687.top/uPic/%e6%88%aa%e5%b1%8f2020-05-31%e4%b8%8b%e5%8d%885.19.16.png 1.5x, https://img.llc687.top/uPic/%e6%88%aa%e5%b1%8f2020-05-31%e4%b8%8b%e5%8d%885.19.16.png 2x"
         data-sizes="auto"
-        alt="http://img.llc687.top/uPic/截屏2020-05-31下午5.19.16.png"
+        alt="https://img.llc687.top/uPic/截屏2020-05-31下午5.19.16.png"
         title="截屏2020-05-31下午5.19.16" /></p>
 <p>上图可以看到，应用程序和内核间无法直接通信，必须通过<strong>系统调用，而系统调用的成本很高</strong>。</p>
 <p>当用户进程想要执行 IO 操作时，由于没有执行这些操作的权限，只能发起系统调用请求操作系统帮忙完成。而系统调用会产生中断陷入到内核，也就是进行了一次<strong>上下文切换</strong>操作。</p>
@@ -233,7 +233,7 @@
 <p>那么，I/O 设备与 CPU 能用哪些方法进行通信呢？主要通过两种。</p>
 <h4 id="31-io中断">3.1 I/O中断</h4>
 <p>在 DMA 技术出现前，应用程序与磁盘间的 I/O 操作都通过 CPU 中断完成。外部存储设备<strong>采用中断方式主动通知 CPU</strong>，CPU 负责拷贝数据到内核缓冲区，再拷贝到用户缓冲区，每次就会有<strong>上下文切换的开销及 CPU 拷贝的时间</strong>。</p>
-<p><img src="http://img.llc687.top/uPic/screen-1527758.png" alt="screen-1527758" style="zoom:60%;" /></p>
+<p><img src="https://img.llc687.top/uPic/screen-1527758.png" alt="screen-1527758" style="zoom:60%;" /></p>
 <h4 id="32-dma">3.2 DMA</h4>
 <p>DMA 全称叫直接内存存取（Direct Memory Access），是一种允许外围设备直接访问系统主存的机制。</p>
 <p>CPU 通知 DMA 控制器拷贝外部存储设备数据到内核缓冲区，完成后再通知 CPU 拷贝到用户缓冲区。和 I/O 中断方式相比，改由内存来执行外部存储器数据的 I/O 操作，减轻了CPU负担，且 CPU 读取内存比读取外部存储设备速度要快。</p>
@@ -241,10 +241,10 @@
 <p><img
         class="lazyload"
         src="/svg/loading.min.svg"
-        data-src="http://img.llc687.top/uPic/screen-1531490.png"
-        data-srcset="http://img.llc687.top/uPic/screen-1531490.png, http://img.llc687.top/uPic/screen-1531490.png 1.5x, http://img.llc687.top/uPic/screen-1531490.png 2x"
+        data-src="https://img.llc687.top/uPic/screen-1531490.png"
+        data-srcset="https://img.llc687.top/uPic/screen-1531490.png, https://img.llc687.top/uPic/screen-1531490.png 1.5x, https://img.llc687.top/uPic/screen-1531490.png 2x"
         data-sizes="auto"
-        alt="http://img.llc687.top/uPic/screen-1531490.png"
+        alt="https://img.llc687.top/uPic/screen-1531490.png"
         title="screen-1531490" /></p>
 <h3 id="4-零拷贝">4. 零拷贝</h3>
 <p>一次 I/O ,无论是读还是写数据，都要经过硬盘 - 内核 - 用户空间，有了 DMA，磁盘到内核空间的拷贝问题得以解决，CPU 可以摸会鱼了。但用户空间和内核空间之间的传输怎么办呢，CPU 觉得要做就做一个摸鱼到下班的 CPU。于是有了零拷贝。</p>
@@ -260,30 +260,30 @@
 <p><img
         class="lazyload"
         src="/svg/loading.min.svg"
-        data-src="http://img.llc687.top/uPic/screen-1535441.png"
-        data-srcset="http://img.llc687.top/uPic/screen-1535441.png, http://img.llc687.top/uPic/screen-1535441.png 1.5x, http://img.llc687.top/uPic/screen-1535441.png 2x"
+        data-src="https://img.llc687.top/uPic/screen-1535441.png"
+        data-srcset="https://img.llc687.top/uPic/screen-1535441.png, https://img.llc687.top/uPic/screen-1535441.png 1.5x, https://img.llc687.top/uPic/screen-1535441.png 2x"
         data-sizes="auto"
-        alt="http://img.llc687.top/uPic/screen-1535441.png"
+        alt="https://img.llc687.top/uPic/screen-1535441.png"
         title="screen-1535441" /></p>
 <h4 id="2-用户态直接io">2. 用户态直接IO</h4>
 <p>这是第一种思路，使应用进程或处于用户态下的库函数跨过内核直接访问硬件，内核在数据传输过程除了进行必要的虚拟存储配置工作外，不参与任何其他工作。</p>
 <p><img
         class="lazyload"
         src="/svg/loading.min.svg"
-        data-src="http://img.llc687.top/uPic/screen-1535947.png"
-        data-srcset="http://img.llc687.top/uPic/screen-1535947.png, http://img.llc687.top/uPic/screen-1535947.png 1.5x, http://img.llc687.top/uPic/screen-1535947.png 2x"
+        data-src="https://img.llc687.top/uPic/screen-1535947.png"
+        data-srcset="https://img.llc687.top/uPic/screen-1535947.png, https://img.llc687.top/uPic/screen-1535947.png 1.5x, https://img.llc687.top/uPic/screen-1535947.png 2x"
         data-sizes="auto"
-        alt="http://img.llc687.top/uPic/screen-1535947.png"
+        alt="https://img.llc687.top/uPic/screen-1535947.png"
         title="screen-1535947" /></p>
 <p>但只适用于不需要内核缓冲区处理的应用程序，这些应用程序通常在进程地址空间有自己的数据缓存机制，又称为自缓存应用程序，如数据库管理系统。其次，因 CPU 和磁盘 I/O 之间的性能差距，就会造成资源的浪费，一般是会配合异步 I/O 使用。</p>
 <h4 id="3-mmap">3. mmap</h4>
 <p>这属于第二类优化，减少了 1 次 CPU 拷贝。MMAP 是数据不会到达用户空间内存，只会存在于系统空间的内存上，用户空间与系统空间共用同一个缓冲区，两者通过映射关联。<img
         class="lazyload"
         src="/svg/loading.min.svg"
-        data-src="http://img.llc687.top/uPic/screen-1773287.png"
-        data-srcset="http://img.llc687.top/uPic/screen-1773287.png, http://img.llc687.top/uPic/screen-1773287.png 1.5x, http://img.llc687.top/uPic/screen-1773287.png 2x"
+        data-src="https://img.llc687.top/uPic/screen-1773287.png"
+        data-srcset="https://img.llc687.top/uPic/screen-1773287.png, https://img.llc687.top/uPic/screen-1773287.png 1.5x, https://img.llc687.top/uPic/screen-1773287.png 2x"
         data-sizes="auto"
-        alt="http://img.llc687.top/uPic/screen-1773287.png"
+        alt="https://img.llc687.top/uPic/screen-1773287.png"
         title="screen-1773287" /></p>
 <p>整个 MMAP 过程，发生了 4 次上下文切换 + 1 次 CPU 拷贝 + 2 次 DMA 拷贝。</p>
 <h4 id="4-sendfile">4. sendfile</h4>
@@ -292,10 +292,10 @@
 <p><img
         class="lazyload"
         src="/svg/loading.min.svg"
-        data-src="http://img.llc687.top/uPic/image-20200610154454498.png"
-        data-srcset="http://img.llc687.top/uPic/image-20200610154454498.png, http://img.llc687.top/uPic/image-20200610154454498.png 1.5x, http://img.llc687.top/uPic/image-20200610154454498.png 2x"
+        data-src="https://img.llc687.top/uPic/image-20200610154454498.png"
+        data-srcset="https://img.llc687.top/uPic/image-20200610154454498.png, https://img.llc687.top/uPic/image-20200610154454498.png 1.5x, https://img.llc687.top/uPic/image-20200610154454498.png 2x"
         data-sizes="auto"
-        alt="http://img.llc687.top/uPic/image-20200610154454498.png"
+        alt="https://img.llc687.top/uPic/image-20200610154454498.png"
         title="image-20200610154454498" /></p>
 <p>整个过程发生 2 次上下文切换，1 次 CPU 拷贝和 2 次 DMA 拷贝。</p>
 <h4 id="5-sendfile--dma-gather-copy">5. sendfile + DMA gather copy</h4>
@@ -303,10 +303,10 @@
 <p><img
         class="lazyload"
         src="/svg/loading.min.svg"
-        data-src="http://img.llc687.top/uPic/image-20200610154613272.png"
-        data-srcset="http://img.llc687.top/uPic/image-20200610154613272.png, http://img.llc687.top/uPic/image-20200610154613272.png 1.5x, http://img.llc687.top/uPic/image-20200610154613272.png 2x"
+        data-src="https://img.llc687.top/uPic/image-20200610154613272.png"
+        data-srcset="https://img.llc687.top/uPic/image-20200610154613272.png, https://img.llc687.top/uPic/image-20200610154613272.png 1.5x, https://img.llc687.top/uPic/image-20200610154613272.png 2x"
         data-sizes="auto"
-        alt="http://img.llc687.top/uPic/image-20200610154613272.png"
+        alt="https://img.llc687.top/uPic/image-20200610154613272.png"
         title="image-20200610154613272" /></p>
 <p>这次只发生 2 次上下文切换 + 2 次 DMA 数据拷贝。</p>
 <h4 id="6-splice">6. splice</h4>
@@ -315,10 +315,10 @@
 <p><img
         class="lazyload"
         src="/svg/loading.min.svg"
-        data-src="http://img.llc687.top/uPic/image-20200610161033841.png"
-        data-srcset="http://img.llc687.top/uPic/image-20200610161033841.png, http://img.llc687.top/uPic/image-20200610161033841.png 1.5x, http://img.llc687.top/uPic/image-20200610161033841.png 2x"
+        data-src="https://img.llc687.top/uPic/image-20200610161033841.png"
+        data-srcset="https://img.llc687.top/uPic/image-20200610161033841.png, https://img.llc687.top/uPic/image-20200610161033841.png 1.5x, https://img.llc687.top/uPic/image-20200610161033841.png 2x"
         data-sizes="auto"
-        alt="http://img.llc687.top/uPic/image-20200610161033841.png"
+        alt="https://img.llc687.top/uPic/image-20200610161033841.png"
         title="image-20200610161033841" /></p>
 <p>同样发生 2 次上下文切换 + 2 次 DMA 数据拷贝。</p>
 <h4 id="7-写时复制">7. 写时复制</h4>
@@ -381,39 +381,39 @@
 <h3 id="5-unix-io模型">5. Unix IO模型</h3>
 <p>前面说了那么多，想必现在应该知道 I/O 是怎么一回事了，接着再瞧瞧啥叫阻塞啥叫同步。</p>
 <h4 id="51-阻塞-io---同步阻塞">5.1 阻塞 IO - 同步阻塞</h4>
-<p><img src="http://img.llc687.top/uPic/image-20200610163917210.png" alt="image-20200610163917210" style="zoom:50%;" /></p>
+<p><img src="https://img.llc687.top/uPic/image-20200610163917210.png" alt="image-20200610163917210" style="zoom:50%;" /></p>
 <p><strong>等待数据、拷贝数据都是处于阻塞状态的。</strong> 这就是<strong>同步阻塞</strong>。</p>
 <h4 id="52-非阻塞---同步非阻塞">5.2 非阻塞 - 同步非阻塞</h4>
-<p><img src="http://img.llc687.top/uPic/image-20200610164001260.png" alt="image-20200610164001260" style="zoom:50%;" /></p>
+<p><img src="https://img.llc687.top/uPic/image-20200610164001260.png" alt="image-20200610164001260" style="zoom:50%;" /></p>
 <p><strong>在I/O执行的第一个阶段（等待数据）不会阻塞线程，但在第二阶段（复制数据）会阻塞。</strong></p>
 <p>这就是<strong>同步非阻塞</strong>，其实就是轮询，当数据没准备好则返回 <code>EWOULDBLOCK</code>。</p>
 <h4 id="53-信号驱动---同步非阻塞">5.3 信号驱动 - 同步非阻塞</h4>
-<p><img src="http://img.llc687.top/uPic/image-20200610164056472.png" alt="image-20200610164056472" style="zoom:50%;" /></p>
+<p><img src="https://img.llc687.top/uPic/image-20200610164056472.png" alt="image-20200610164056472" style="zoom:50%;" /></p>
 <p>前一个非阻塞模型中，需要调用者轮询，怎么避免呢？</p>
 <p>首先要开启 socket 的信号驱动式 IO 功能，应用进程通过 sigaction 系统调用注册 SIGIO 信号处理函数，该系统调用会立即返回。当数据准备好时，内核会为该进程产生一个 SIGIO 信号通知，之后再把数据拷贝到用户空间中。</p>
 <p>这也是<strong>同步非阻塞</strong>。虽然等待数据期间用户态进程不被阻塞，但当收到信号通知时是阻塞并拷贝数据，所以还是同步的。</p>
 <h4 id="54-多路复用---同步阻塞">5.4 多路复用 - 同步阻塞</h4>
 <p>也称事件驱动IO，在单个线程里同时监控多个套接字，通过 select 或 poll 轮询查看所负责的所有 socket，当某个 socket 有数据到达了，就通知用户进程。</p>
-<p><img src="http://img.llc687.top/uPic/image-20200610164547883.png" alt="image-20200610164547883" style="zoom:50%;" /></p>
+<p><img src="https://img.llc687.top/uPic/image-20200610164547883.png" alt="image-20200610164547883" style="zoom:50%;" /></p>
 <p>多个进程的 IO 可以注册到同一个管道上，关键是<code>select</code>函数，多个进程的 IO 可以注册到同一个<code>select</code>上，当用户进程调用该<code>select</code>，<code>select</code>会监听所有注册好的 IO，如果所有被监听的 IO 需要的数据都没有准备好时，调用进程会阻塞，等待有套接字变为可读。当任意一个 IO 需要的数据准备好后，即当有套接字可读以后，<code>select</code>调用就会返回，然后进程再通过<code>recvfrom</code>来把对应的数据拷贝到用户进程缓冲区。</p>
 <p>**IO 复用模型，并没向内核注册信号处理函数，所以是阻塞的。**进程在发出<code>select</code>后，要等到<code>select</code>监听的所有 IO 操作中的至少一个需要的数据准备好，才会返回，也需要再次发送请求去进行文件拷贝。整个用户进程其实是一直被阻塞的，但 IO 复用的优势在于可以等待多个描述符就绪。</p>
 <p><strong>IO 复用的特点是进行了两次系统调用，进程先是阻塞在 select 上，再阻塞在读操作的第二个阶段上</strong>。这是<strong>同步阻塞</strong>的。</p>
 <p>多路复用机制还是值得细说的，比如重点的 select/poll/epoll，这里就不展开了，有兴趣的可以自行阅读相关资料。</p>
 <h4 id="55-异步io---异步非阻塞">5.5 异步IO - 异步非阻塞</h4>
-<p><img src="http://img.llc687.top/uPic/image-20200610170026760.png" alt="image-20200610170026760" style="zoom:50%;" /></p>
+<p><img src="https://img.llc687.top/uPic/image-20200610170026760.png" alt="image-20200610170026760" style="zoom:50%;" /></p>
 <p>如图， 用户进程在发起调用后，内核会立即返回。接着用户进程就干别的事去了。</p>
 <p>然后内核等待数据准备完毕，自动将数据拷贝到用户内存，接着给用户进程发了个信号，通知 IO 操作已完成，这才是五个 I/O 模型中唯一一个异步模型。</p>
 <p>可能会有疑问，为啥信号驱动模型是同步模型，这是因为信号驱动是由内核通知何时启动一个 IO 操作，还需要用户进程再拷贝数据。而异步 IO 是由内核是在所有工作做完后，通知 IO 操作已完成。</p>
 <p>异步 IO 特点是 IO 执行的两个阶段（等待数据、拷贝数据）都由内核去完成，用户进程无需干预，也不会被阻塞。这就是异步非阻塞了。也就是 Java 中的 AIO。</p>
 <h5 id="56-模型比较">5.6 模型比较</h5>
-<p><img src="http://img.llc687.top/uPic/image-20200610170140700.png" alt="image-20200610170140700" style="zoom:50%;" /></p>
+<p><img src="https://img.llc687.top/uPic/image-20200610170140700.png" alt="image-20200610170140700" style="zoom:50%;" /></p>
 <h3 id="6--java-及其他">6.  Java 及其他</h3>
 <p>前面说了这么多，或许你更想知道 “AIO 是不是异步”，“哪个框架用了这些东西”。</p>
 <h4 id="1-bio">1. BIO</h4>
 <p>BIO 属于同步阻塞，一客户端一线程。该模型下常见优化的方案就是用线程池。</p>
 <h4 id="2-nio">2. NIO</h4>
 <p>NIO 属于同步非阻塞，收到的请求会先注册到多路复用器 Selector 上，多路复用器轮询直到连接有 I/O 请求时才启动一个线程进行处理。也就是前文中的<strong>多路复用 I/O 模型</strong>，虽然说多路复用模型是阻塞的，但在 NIO 这里，因为有<strong>Selector</strong>，read 和 write 操作都是非阻塞的，其中 Selector 其实就是 select/poll/epoll 的外包类。</p>
-<p><img src="http://img.llc687.top/uPic/image-20200610173230680.png" alt="image-20200610173230680" style="zoom:50%;" /></p>
+<p><img src="https://img.llc687.top/uPic/image-20200610173230680.png" alt="image-20200610173230680" style="zoom:50%;" /></p>
 <p>不仅如此，NIO 除了面向流和非阻塞外，还有一个效率高的原因就是前文中也有提到的零拷贝。</p>
 <p>NIO 中的 Channel（通道）相当于操作系统中的内核缓冲区， Buffer 就相当于操作系统中的用户空间缓冲区。零拷贝在 NIO 这里重要的是两个实现：</p>
 <ul>

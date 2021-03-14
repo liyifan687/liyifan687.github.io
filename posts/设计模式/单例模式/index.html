@@ -152,21 +152,21 @@
 <p><img
         class="lazyload"
         src="/svg/loading.min.svg"
-        data-src="http://img.llc687.top/uPic/1591619977807-76818370-a3e1-4a34-b6fa-4b37895fb81e.png"
-        data-srcset="http://img.llc687.top/uPic/1591619977807-76818370-a3e1-4a34-b6fa-4b37895fb81e.png, http://img.llc687.top/uPic/1591619977807-76818370-a3e1-4a34-b6fa-4b37895fb81e.png 1.5x, http://img.llc687.top/uPic/1591619977807-76818370-a3e1-4a34-b6fa-4b37895fb81e.png 2x"
+        data-src="https://img.llc687.top/uPic/1591619977807-76818370-a3e1-4a34-b6fa-4b37895fb81e.png"
+        data-srcset="https://img.llc687.top/uPic/1591619977807-76818370-a3e1-4a34-b6fa-4b37895fb81e.png, https://img.llc687.top/uPic/1591619977807-76818370-a3e1-4a34-b6fa-4b37895fb81e.png 1.5x, https://img.llc687.top/uPic/1591619977807-76818370-a3e1-4a34-b6fa-4b37895fb81e.png 2x"
         data-sizes="auto"
-        alt="http://img.llc687.top/uPic/1591619977807-76818370-a3e1-4a34-b6fa-4b37895fb81e.png"
-        title="http://img.llc687.top/uPic/1591619977807-76818370-a3e1-4a34-b6fa-4b37895fb81e.png" /></p>
+        alt="https://img.llc687.top/uPic/1591619977807-76818370-a3e1-4a34-b6fa-4b37895fb81e.png"
+        title="https://img.llc687.top/uPic/1591619977807-76818370-a3e1-4a34-b6fa-4b37895fb81e.png" /></p>
 <h3 id="6种实现方式">6种实现方式</h3>
 <h3 id="实现方式总结">实现方式总结</h3>
 <p><img
         class="lazyload"
         src="/svg/loading.min.svg"
-        data-src="http://img.llc687.top/uPic/1591619976218-9478cedc-13a7-4e39-8f11-919d6860e376.png"
-        data-srcset="http://img.llc687.top/uPic/1591619976218-9478cedc-13a7-4e39-8f11-919d6860e376.png, http://img.llc687.top/uPic/1591619976218-9478cedc-13a7-4e39-8f11-919d6860e376.png 1.5x, http://img.llc687.top/uPic/1591619976218-9478cedc-13a7-4e39-8f11-919d6860e376.png 2x"
+        data-src="https://img.llc687.top/uPic/1591619976218-9478cedc-13a7-4e39-8f11-919d6860e376.png"
+        data-srcset="https://img.llc687.top/uPic/1591619976218-9478cedc-13a7-4e39-8f11-919d6860e376.png, https://img.llc687.top/uPic/1591619976218-9478cedc-13a7-4e39-8f11-919d6860e376.png 1.5x, https://img.llc687.top/uPic/1591619976218-9478cedc-13a7-4e39-8f11-919d6860e376.png 2x"
         data-sizes="auto"
-        alt="http://img.llc687.top/uPic/1591619976218-9478cedc-13a7-4e39-8f11-919d6860e376.png"
-        title="http://img.llc687.top/uPic/1591619976218-9478cedc-13a7-4e39-8f11-919d6860e376.png" /></p>
+        alt="https://img.llc687.top/uPic/1591619976218-9478cedc-13a7-4e39-8f11-919d6860e376.png"
+        title="https://img.llc687.top/uPic/1591619976218-9478cedc-13a7-4e39-8f11-919d6860e376.png" /></p>
 <h4 id="懒汉式-线程不安全">懒汉式-线程不安全</h4>
 <p>私有静态变量 instance 被延迟实例化，这样做的好处是，如果没有用到该类，那么就不会实例化 instance，节约资源。</p>
 <p>但多线程环境下是不安全的，如果多线程能够同时进入 <code>if (instance == null)</code> ，且 instance 为 null，那么会有多个线程执行 <code>instance = new Singleton();</code> 语句，导致多次实例化 instance。</p>
