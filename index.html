@@ -102,6 +102,11 @@
         alt="/images/avatar.png"
         title="/images/avatar.png" /></a></div><h1 class="home-title">高级复制粘贴工程师</h1><h2 class="home-subtitle"><div id="id-3" class="typeit"></div></h2><div class="links"><a href="https://github.com/liyifan687" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href="https://blog.csdn.net/liyifan687" title="CSDN" target="_blank" rel="noopener noreffer me"><i class="fab fa-codepen fa-fw"></i></a><a href="mailto:lyfa687@gmail.com" title="Email" rel=" me"><i class="far fa-envelope fa-fw"></i></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql%E7%9A%84acid/">MySQL 如何实现 ACID ?</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lyf</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-03-21">2021-03-21</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"><i class="far fa-folder fa-fw"></i>数据库</a></span></div><div class="content">写在前面 本文主要探讨MySQL InnoDB 引擎下ACID的实现原理，对于诸如什么是事务，隔离级别的含义等基础知识不做过多阐述。 ACID MySQL 作为一个关系型数据库</div><div class="post-footer">
+        <a href="/posts/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql%E7%9A%84acid/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/mysql/">MySQL</a>,&nbsp;<a href="/tags/acid/">ACID</a>,&nbsp;<a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/%E6%9E%B6%E6%9E%84/mysql45%E8%AE%B2/">MySQL实战45讲</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lyf</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-02-28">2021-02-28</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"><i class="far fa-folder fa-fw"></i>数据库</a></span></div><div class="content">MySQL45讲 1. 一条SQL查询语句怎么运行的 但是大多数情况下我会建议你不要使用查询缓存，为什么呢？因为查询缓存往往弊大于利。 查询缓存的失效</div><div class="post-footer">
         <a href="/posts/%E6%9E%B6%E6%9E%84/mysql45%E8%AE%B2/">阅读全文</a><div class="post-tags">
@@ -126,11 +131,6 @@
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lyf</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2020-07-12">2020-07-12</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><i class="far fa-folder fa-fw"></i>设计模式</a></span></div><div class="content">中介者模式 目的 集中相关对象之间复杂的沟通和控制方式。 类图 角色 Mediator: 抽象中介者 ConcreteMediator: 具体中介者 Colleague: 抽象同事类 ConcreteColleague: 具体同事类 实现 这个模式的现实案例最常见就是</div><div class="post-footer">
         <a href="/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%B8%AD%E4%BB%8B%E8%80%85%E6%A8%A1%E5%BC%8F/">阅读全文</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>,&nbsp;<a href="/tags/java/">Java</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F/">备忘录模式</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lyf</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2020-07-12">2020-07-12</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><i class="far fa-folder fa-fw"></i>设计模式</a></span></div><div class="content">备忘录模式 目的 在不违反封装的情况下获得对象的内部状态，在需要时可以将对象恢复到最初状态。 类图 角色 Originator: 原始对象，发起人。 Caretaker: 管理角色，负责保存好备</div><div class="post-footer">
-        <a href="/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>,&nbsp;<a href="/tags/java/">Java</a></div></div>
 </article><ul class="pagination"><li class="page-item active">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -147,7 +147,7 @@
                     <span class="page-link" aria-hidden="true">&hellip;</span>
                 </li><li class="page-item ">
                     <span class="page-link">
-                        <a href="/page/17/">17</a>
+                        <a href="/page/18/">18</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">

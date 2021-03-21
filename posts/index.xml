@@ -3,7 +3,14 @@
         <title>所有文章 - 无名鼠辈</title>
         <link>https://llc687.top/posts/</link>
         <description>所有文章 | 无名鼠辈</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 28 Feb 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://llc687.top/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 21 Mar 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://llc687.top/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>MySQL 如何实现 ACID ?</title>
+    <link>https://llc687.top/posts/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql%E7%9A%84acid/</link>
+    <pubDate>Sun, 21 Mar 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://llc687.top/posts/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql%E7%9A%84acid/</guid>
+    <description><![CDATA[写在前面 本文主要探讨MySQL InnoDB 引擎下ACID的实现原理，对于诸如什么是事务，隔离级别的含义等基础知识不做过多阐述。 ACID MySQL 作为一个关系型数据库]]></description>
+</item><item>
     <title>MySQL实战45讲</title>
     <link>https://llc687.top/posts/%E6%9E%B6%E6%9E%84/mysql45%E8%AE%B2/</link>
     <pubDate>Sun, 28 Feb 2021 00:00:00 &#43;0000</pubDate>
@@ -66,12 +73,5 @@
     <author>作者</author>
     <guid>https://llc687.top/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BF%E9%97%AE%E8%80%85%E6%A8%A1%E5%BC%8F/</guid>
     <description><![CDATA[访问者模式 目的 为一个对象结构(比如组合结构)增加新能力。 类图 角色 Visitor: 访问者。为每一个 ConcreteElement 声明一个 visit 操作 ConcreteVisitor: 具体访问者。存储遍历过程中的累计结果 ObjectStructure: 对]]></description>
-</item><item>
-    <title>迭代器模式</title>
-    <link>https://llc687.top/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/</link>
-    <pubDate>Sun, 12 Jul 2020 00:00:00 &#43;0000</pubDate>
-    <author>作者</author>
-    <guid>https://llc687.top/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/</guid>
-    <description><![CDATA[迭代器模式 目的 提供一种顺序访问聚合对象元素的方法，并且不暴露聚合对象的内部表示。 类图 角色 Aggregate 聚合类，其中 createIterator() 方法可以产生一个 Iterator； ConcreteAggregate]]></description>
 </item></channel>
 </rss>
