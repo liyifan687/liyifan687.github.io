@@ -241,11 +241,11 @@
 <p><img
         class="lazyload"
         src="/svg/loading.min.svg"
-        data-src="https://img.llc687.top/uPic/screen-1531490.png"
-        data-srcset="https://img.llc687.top/uPic/screen-1531490.png, https://img.llc687.top/uPic/screen-1531490.png 1.5x, https://img.llc687.top/uPic/screen-1531490.png 2x"
+        data-src="https://img.llc687.top/uPic/image-20210430202006264.png"
+        data-srcset="https://img.llc687.top/uPic/image-20210430202006264.png, https://img.llc687.top/uPic/image-20210430202006264.png 1.5x, https://img.llc687.top/uPic/image-20210430202006264.png 2x"
         data-sizes="auto"
-        alt="https://img.llc687.top/uPic/screen-1531490.png"
-        title="screen-1531490" /></p>
+        alt="https://img.llc687.top/uPic/image-20210430202006264.png"
+        title="image-20210430202006264" /></p>
 <h3 id="4-零拷贝">4. 零拷贝</h3>
 <p>一次 I/O ,无论是读还是写数据，都要经过硬盘 - 内核 - 用户空间，有了 DMA，磁盘到内核空间的拷贝问题得以解决，CPU 可以摸会鱼了。但用户空间和内核空间之间的传输怎么办呢，CPU 觉得要做就做一个摸鱼到下班的 CPU。于是有了零拷贝。</p>
 <p><code>零拷贝</code>是基于 DMA 的, 其目的就是优化多次数据拷贝的过程，避免 CPU 将数据从一块存储拷贝到另外一块存储。有 3 个实现思路：</p>
