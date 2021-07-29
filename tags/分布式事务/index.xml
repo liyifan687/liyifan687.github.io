@@ -9,6 +9,6 @@
     <pubDate>Sun, 28 Feb 2021 00:00:00 &#43;0000</pubDate>
     <author>作者</author>
     <guid>https://llc687.top/posts/%E6%9E%B6%E6%9E%84/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E6%96%B9%E6%A1%88/</guid>
-    <description><![CDATA[分布式事务方案 XA/二阶段提交 基于XA协议的二阶段提交 所谓的 XA 方案，即：两阶段提交，有一个事务管理器的概念，负责协调多个数据库（资源管理器）]]></description>
+    <description><![CDATA[分布式事务方案 本站点停止更新，新站点 https://llc687.top XA/二阶段提交 基于XA协议的二阶段提交 所谓的 XA 方案，即：两阶段提交，有一个事务管理器的概念，负责协调]]></description>
 </item></channel>
 </rss>

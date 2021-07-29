@@ -3,43 +3,50 @@
         <title>无名鼠辈</title>
         <link>https://llc687.top/</link>
         <description>无名鼠辈</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 21 Mar 2021 00:00:00 &#43;0000</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 29 Jul 2021 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="https://llc687.top/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>本站迁移</title>
+    <link>https://llc687.top/posts/%E6%9C%AC%E7%AB%99%E8%BF%81%E7%A7%BB/</link>
+    <pubDate>Thu, 29 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://llc687.top/posts/%E6%9C%AC%E7%AB%99%E8%BF%81%E7%A7%BB/</guid>
+    <description><![CDATA[鉴于种种原因，本站点将不再更新。 如曾帮助到你，有兴趣可移步原域名 https://llc687.top。]]></description>
+</item><item>
     <title>MySQL 如何实现 ACID ?</title>
     <link>https://llc687.top/posts/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql%E7%9A%84acid/</link>
     <pubDate>Sun, 21 Mar 2021 00:00:00 &#43;0000</pubDate>
     <author>作者</author>
     <guid>https://llc687.top/posts/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql%E7%9A%84acid/</guid>
-    <description><![CDATA[写在前面 本文主要探讨MySQL InnoDB 引擎下ACID的实现原理，对于诸如什么是事务，隔离级别的含义等基础知识不做过多阐述。 ACID MySQL 作为一个关系型数据库]]></description>
+    <description><![CDATA[写在前面 本站点停止更新，新站点 https://llc687.top 本文主要探讨MySQL InnoDB 引擎下ACID的实现原理，对于诸如什么是事务，隔离级别的含义等基础知识不做过多阐述。]]></description>
 </item><item>
     <title>MySQL实战45讲</title>
     <link>https://llc687.top/posts/%E6%9E%B6%E6%9E%84/mysql45%E8%AE%B2/</link>
     <pubDate>Sun, 28 Feb 2021 00:00:00 &#43;0000</pubDate>
     <author>作者</author>
     <guid>https://llc687.top/posts/%E6%9E%B6%E6%9E%84/mysql45%E8%AE%B2/</guid>
-    <description><![CDATA[MySQL45讲 1. 一条SQL查询语句怎么运行的 但是大多数情况下我会建议你不要使用查询缓存，为什么呢？因为查询缓存往往弊大于利。 查询缓存的失效]]></description>
+    <description><![CDATA[MySQL45讲 本站点停止更新，新站点 https://llc687.top 1. 一条SQL查询语句怎么运行的 但是大多数情况下我会建议你不要使用查询缓存，为什么呢？因为查询缓存往往]]></description>
 </item><item>
     <title>分布式事务方案</title>
     <link>https://llc687.top/posts/%E6%9E%B6%E6%9E%84/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E6%96%B9%E6%A1%88/</link>
     <pubDate>Sun, 28 Feb 2021 00:00:00 &#43;0000</pubDate>
     <author>作者</author>
     <guid>https://llc687.top/posts/%E6%9E%B6%E6%9E%84/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E6%96%B9%E6%A1%88/</guid>
-    <description><![CDATA[分布式事务方案 XA/二阶段提交 基于XA协议的二阶段提交 所谓的 XA 方案，即：两阶段提交，有一个事务管理器的概念，负责协调多个数据库（资源管理器）]]></description>
+    <description><![CDATA[分布式事务方案 本站点停止更新，新站点 https://llc687.top XA/二阶段提交 基于XA协议的二阶段提交 所谓的 XA 方案，即：两阶段提交，有一个事务管理器的概念，负责协调]]></description>
 </item><item>
     <title>微服务架构体系</title>
     <link>https://llc687.top/posts/%E6%9E%B6%E6%9E%84/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E4%BD%93%E7%B3%BB/</link>
     <pubDate>Sun, 28 Feb 2021 00:00:00 &#43;0000</pubDate>
     <author>作者</author>
     <guid>https://llc687.top/posts/%E6%9E%B6%E6%9E%84/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E4%BD%93%E7%B3%BB/</guid>
-    <description><![CDATA[微服务架构体系 前段内部听了下分享 Service Mesh。做一些总结 架构的演进 这种东西有点信雅达，没什么绝对标准 单体应用：在第一阶段的单体应用很好理解。 垂]]></description>
+    <description><![CDATA[微服务架构体系 本站点停止更新，新站点 https://llc687.top 前段内部听了下分享 Service Mesh。做一些总结 架构的演进 这种东西有点信雅达，没什么绝对标准 单体应用：在第一阶]]></description>
 </item><item>
     <title>从 SpringApplication.run 开始</title>
     <link>https://llc687.top/posts/java/%E4%BB%8E-springapplication.run-%E5%BC%80%E5%A7%8B/</link>
     <pubDate>Sun, 18 Oct 2020 00:00:00 &#43;0000</pubDate>
     <author>作者</author>
     <guid>https://llc687.top/posts/java/%E4%BB%8E-springapplication.run-%E5%BC%80%E5%A7%8B/</guid>
-    <description><![CDATA[从 SpringApplication.run 开始 这是你的 SpringBoot ，启动，只需一键。 1 2 3 4 5 6 @SpringBootApplication public class ServerApplication { public static void main(String[] args) { SpringApplication.run(ServerApplication.class,args); } } 但这一键背后发生了什么？ 挂着嘴边的 IOC 容器何时诞生，天天见的 @Au]]></description>
+    <description><![CDATA[从 SpringApplication.run 开始 本站点停止更新，新站点 https://llc687.top 这是你的 SpringBoot ，启动，只需一键。 1 2 3 4 5 6 @SpringBootApplication public class ServerApplication { public static void main(String[] args) { SpringApplication.run(ServerApplication.class,args); } } 但这一键背后发生了什么？ 挂着嘴边的 IOC 容器]]></description>
 </item><item>
     <title>中介者模式</title>
     <link>https://llc687.top/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%B8%AD%E4%BB%8B%E8%80%85%E6%A8%A1%E5%BC%8F/</link>
@@ -68,12 +75,5 @@
     <author>作者</author>
     <guid>https://llc687.top/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A7%A3%E9%87%8A%E5%99%A8%E6%A8%A1%E5%BC%8F/</guid>
     <description><![CDATA[解释器模式 目的 为语言创建解释器，通常由语言的语法和语法分析来定义。 类图 角色 AbstractExpression 抽象解释器：声明一个所有具体表达式都要实现的抽象接口（或者抽象类]]></description>
-</item><item>
-    <title>访问者模式</title>
-    <link>https://llc687.top/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BF%E9%97%AE%E8%80%85%E6%A8%A1%E5%BC%8F/</link>
-    <pubDate>Sun, 12 Jul 2020 00:00:00 &#43;0000</pubDate>
-    <author>作者</author>
-    <guid>https://llc687.top/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BF%E9%97%AE%E8%80%85%E6%A8%A1%E5%BC%8F/</guid>
-    <description><![CDATA[访问者模式 目的 为一个对象结构(比如组合结构)增加新能力。 类图 角色 Visitor: 访问者。为每一个 ConcreteElement 声明一个 visit 操作 ConcreteVisitor: 具体访问者。存储遍历过程中的累计结果 ObjectStructure: 对]]></description>
 </item></channel>
 </rss>

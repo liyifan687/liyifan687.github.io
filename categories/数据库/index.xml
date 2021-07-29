@@ -9,20 +9,20 @@
     <pubDate>Sun, 21 Mar 2021 00:00:00 &#43;0000</pubDate>
     <author>作者</author>
     <guid>https://llc687.top/posts/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql%E7%9A%84acid/</guid>
-    <description><![CDATA[写在前面 本文主要探讨MySQL InnoDB 引擎下ACID的实现原理，对于诸如什么是事务，隔离级别的含义等基础知识不做过多阐述。 ACID MySQL 作为一个关系型数据库]]></description>
+    <description><![CDATA[写在前面 本站点停止更新，新站点 https://llc687.top 本文主要探讨MySQL InnoDB 引擎下ACID的实现原理，对于诸如什么是事务，隔离级别的含义等基础知识不做过多阐述。]]></description>
 </item><item>
     <title>MySQL实战45讲</title>
     <link>https://llc687.top/posts/%E6%9E%B6%E6%9E%84/mysql45%E8%AE%B2/</link>
     <pubDate>Sun, 28 Feb 2021 00:00:00 &#43;0000</pubDate>
     <author>作者</author>
     <guid>https://llc687.top/posts/%E6%9E%B6%E6%9E%84/mysql45%E8%AE%B2/</guid>
-    <description><![CDATA[MySQL45讲 1. 一条SQL查询语句怎么运行的 但是大多数情况下我会建议你不要使用查询缓存，为什么呢？因为查询缓存往往弊大于利。 查询缓存的失效]]></description>
+    <description><![CDATA[MySQL45讲 本站点停止更新，新站点 https://llc687.top 1. 一条SQL查询语句怎么运行的 但是大多数情况下我会建议你不要使用查询缓存，为什么呢？因为查询缓存往往]]></description>
 </item><item>
     <title>如何完成一次快速的查询</title>
     <link>https://llc687.top/posts/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%A6%82%E4%BD%95%E5%AE%8C%E6%88%90%E4%B8%80%E6%AC%A1%E5%BF%AB%E9%80%9F%E7%9A%84%E6%9F%A5%E8%AF%A2/</link>
     <pubDate>Sun, 19 Apr 2020 00:00:00 &#43;0000</pubDate>
     <author>作者</author>
     <guid>https://llc687.top/posts/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%A6%82%E4%BD%95%E5%AE%8C%E6%88%90%E4%B8%80%E6%AC%A1%E5%BF%AB%E9%80%9F%E7%9A%84%E6%9F%A5%E8%AF%A2/</guid>
-    <description><![CDATA[哪个男孩不想完成一次快速的查询？ 1. MySQL 查询慢是什么体验？ 谢邀，利益相关。 大多数互联网应用场景都是读多写少，业务逻辑更多分布在写上。对读的要求大]]></description>
+    <description><![CDATA[哪个男孩不想完成一次快速的查询？ 本站点停止更新，新站点 https://llc687.top 1. MySQL 查询慢是什么体验？ 谢邀，利益相关。 大多数互联网应用场景都是读多写少，业务逻辑更多]]></description>
 </item></channel>
 </rss>
